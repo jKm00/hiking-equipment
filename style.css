@@ -1,3 +1,15 @@
+/*
+Font sizes: 8.19px – 10.24px – 12.80px – 16.00px – 20.00px – 
+25.00px – 31.25px – 39.06px - 48.83px 
+
+White space: 2px - 4px - 8px - 12px - 16px - 24px - 32px -
+48px - 64px - 80px - 96px - 128px
+
+Border radius: 2px
+
+Box shadow: 0 5px 10px rgba(0,0,0,.1)
+*/
+
 /*---------------
     Resets
 ---------------*/
@@ -7,134 +19,261 @@
     box-sizing: border-box;
 }
 
-/*---------
-  Global
----------*/
+button {
+    border:none;
+    background:transparent;
+}
+
+/*---------------
+    Global
+---------------*/
 html{
     font-size: 62.5%;
     scroll-behavior: smooth;
 }
 
 body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display:grid;
+    grid-template-columns: minmax(1em, 1fr) minmax(600px, 1200px) minmax(1em, 1fr);
 }
 
 :root{
-    /*teal*/
-    --accent-400: #20C997;
+    /* teal */
+    --clr-accent-000: #c3fae8;
+    --clr-accent-200: #63e6be;
+    --clr-accent-400: #20C997;
+    --clr-accent-600: #0ca678;
+    --clr-accent-800: #087f5b;
 
-    /*dark*/
-    --darker-400: #212529;
+    /* dark */
+    --clr-dark-000: #f1f3f5;
+    --clr-dark-200: #dee2e6;
+    --clr-dark-400: #adb5bd;
+    --clr-dark-600: #495057;
+    --clr-dark-700: #343a40;
+    --clr-dark-800: #212529;
+    --clr-dark-900: #171a1c;
+    --clr-dark-1000: #000000;
+
+    /* light */
+    --clr-light-400: #fff;
 }
 
 .logo{
+    font-size: 3.125rem;
+    font-weight: 700;
     text-decoration: none;
-    color: var(--accent-400);
-    font-size: 4rem;
+    color: var(--clr-accent-400);
 }
 
-/*-------------
-    buttons
--------------*/
+/*---------------
+    Typography
+---------------*/
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*---------------
+    Buttons
+---------------*/
 
 .cta{
-    background-color: var(--accent-400);
-    padding: 1rem 2rem;
-    text-align: center;
+    font-size: 1.6rem;
     text-decoration: none;
-    color: black;
+    color: var(--clr-dark-800);
+    background-color: var(--clr-accent-400);
+    border-radius: 2px;
+    padding: .5em 1.5em;
+    transition: background-color 100ms ease-in-out;
+}
+
+.cta:hover,
+.cta:focus {
+    background-color: var(--clr-light-400);
 }
 
 .cta--big{
-    padding: 2rem 4rem;
     font-size: 2rem;
 }
 
-/*-------------
-navigation bar
--------------*/
+/*---------------
+    Nav
+---------------*/
 .nav{
-    /* Flex */
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
 }
 
-/*-------------
-   first nav
--------------*/
+/* ------ First nav ------ */
 .first__nav{
-    /* nav placement */
-    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 1.6rem 2.4rem;
+}
+
+/* Search */
+.first__nav__search-form {
+    align-content: stretch;
+    display: flex;
+}
+
+.first__nav__search__input {
+    padding:.4em 1.2em;
+    border:none;
+    border:1px solid var(--clr-dark-800);
+    border-right: none;
+}
+
+.btn--search {
+    display: flex;
+    align-items: center;
+    padding:1.2rem;
+    width: 4rem;
+    aspect-ratio: 1 / 1;
+    border:1px solid var(--clr-dark-800);
+    border-left:none;
 }
 
 /* Icons */
-.first__nav__icon{
-    /* sizing */
-    width: 40px;
-    height: 40px;
-    outline: solid red 2px;
-}
-
 .first__nav__icons{
     display: flex;
     align-items: center;
     list-style: none;
-    column-gap: 4rem;
+    column-gap: 3rem;
 }
 
-/*------------
-    second nav
-------------*/
+.first__nav__btn{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.first__nav__icon img {
+    width: 100%;
+    height:100%;
+}
+
+/* ------ Second nav ------ */
 .second__nav{
-    /* flex */
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    padding: 1.5rem;
-    /* temp */
-    background-color: var(--darker-400);
+    background-color: var(--clr-dark-800);
 }
 
 .second__nav__links{
     display: flex;
     list-style: none;
-    font-size: 2rem;
-    column-gap: 10rem;
 }
 
-.second__nav__item a{
+.second__nav__link {
+    display:block;
+    font-size: 1.6rem;
     text-decoration: none;
-    color: white;
+    color:var(--clr-light-400);
+    padding:1.2rem 4.8rem;
+    transition: color 50ms ease-in-out;
 }
 
-/*-----------------
-    header
------------------*/
+.second__nav__link:hover,
+.second__nav__link:focus {
+    color:var(--clr-accent-200);
+}
+
+/*---------------
+    Header
+---------------*/
 .header{
+    grid-column: 1 / -1;
+    display:grid;
+    grid-template-columns: inherit;
     background-image: url("img/fjelltopp\ air.jpeg");
     background-position: center;
     background-size: cover;
-    width: 100%;
     height: 75vh;
+    position: relative;
 }
 
-.header__title{
-    color: white;
-}
-
-.header__desc{
-    color: white;
+.header::before {
+    content:'';
+    display: block;
+    position: absolute;
+    inset:0;
+    background:var(--clr-dark-800);
+    opacity: .3;
 }
 
 .header--wrapper{
-    max-width: 1200px;
-    margin: auto;
+    grid-column: 2 / -2;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    row-gap: 1rem;
-    outline: red solid 2px;
+    justify-content: center;
+    align-items: start;
+    z-index: 10;
+}
+
+.header__title{
+    font-size: 4.8rem;
+    color:var(--clr-light-400);
+}
+
+.header__desc{
+    font-size: 1.6rem;
+    color:var(--clr-light-400);
+    margin-bottom:6.4rem;    
+}
+
+/*---------------
+    Campaings
+---------------*/
+.campaigns {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Reviews
+---------------*/
+.reviews {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background:var(--clr-dark-000);
+}
+
+.reviews--wrapper {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Company info
+---------------*/
+.company-info {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Footer
+---------------*/
+.footer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background:var(--clr-dark-900);
+}
+
+/* ----- First footer ------ */
+.first__footer {
+    grid-column: 2 / -2;
+}
+
+/* ----- Second footer ------ */
+.second__footer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background:var(--clr-dark-1000);
+}
+
+.second__footer--wrapper {
+    grid-column: 2 / -2;    
 }

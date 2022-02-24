@@ -12,10 +12,13 @@
         <div class="first__nav">
             <a href="#" class="logo">XXS</a>
             <ul class="first__nav__icons">
-                <li class="first__nav__icon"><img src="img/icons/magnifying-glass-solid.svg" alt="Search icon"></li>
-                <li class="first__nav__icon"><img src="img/icons/headset-solid.svg" alt="Contact service icon"></li>
-                <li class="first__nav__icon"><img src="img/icons/cart-shopping-solid.svg" alt="Shopping cart icon"></li>
-                <li class="first__nav__icon"><img src="img/icons/user-solid.svg" alt="Profile icon"></li>
+                <form action="" class="first__nav__search-form">
+                    <input type="text" placeholder="Search..." class="first__nav__search__input">
+                    <button class="btn btn--search"><img src="img/icons/magnifying-glass-solid.svg" alt="Search icon"></button>
+                </form>
+                <li class="first__nav__item"><button class="first__nav__btn"><img src="img/icons/headset-solid.svg" alt="Contact service icon"></button></li>
+                <li class="first__nav__item"><button class="first__nav__btn"><img src="img/icons/cart-shopping-solid.svg" alt="Shopping cart icon"></button></li>
+                <li class="first__nav__item"><button class="first__nav__btn"><img src="img/icons/user-solid.svg" alt="Profile icon"></button></li>
             </ul> 
         </div>
         <div class="second__nav">
@@ -29,7 +32,7 @@
     <header class="header">
         <div class="header--wrapper">
             <h1 class="header__title">All-Weather Jacket</h1>
-            <p class="header__desc">Perfect for tough wheather</p>
+            <p class="header__desc">Perfect for tough weather</p>
             <a href="#" class="cta cta--big">Go to shop</a>
         </div>
     </header>
@@ -70,48 +73,50 @@
         </a>
     </section>
     <section class="reviews">
-        <h2 class="reviews__title">Reviews</h2>
-        <article class="review">
-            <img src="img/profile-pictures/anton-berg-hansen.jpg" alt="Profile picture" class="review__profile">
-            <h3 class="review__name">Anton Berg-Hansen</h3>
-            <ul class="review__ratings">
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-half-stroke-solid.svg" alt="Half full star"></li>
-            </ul>
-            <p class="review__desv">Hiking is a good way to use weekends together with your family. XXS is our go-to place for the latest hiking gear.</p>
-        </article>
-        <article class="review">
-            <img src="img/profile-pictures/chuck-venster.jpg" alt="Profile picture" class="review__profile">
-            <h3 class="review__name">Chuck Venster</h3>
-            <ul class="review__ratings">
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-half-stroke-solid.svg" alt="Half full star"></li>
-            </ul>
-            <p class="review__desv">We are a small IT company, full of geeks. I had 
-                difficulty getting the geeks out of their chairs. 
-                XXS suggested the latest water bottles as a 
-                Christmas gift for all employees. I was 
-                skeptical at first, but now I have difficulty getting 
-                them back indoors.</p>
-        </article>
-        <article class="review">
-            <img src="img/profile-pictures/pitbuill.jpeg" alt="Profile picture" class="review__profile">
-            <h3 class="review__name">Pitbull</h3>
-            <ul class="review__ratings">
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
-                <li class="review__rating"><img src="img/icons/star-half-stroke-solid.svg" alt="Half full star"></li>
-            </ul>
-            <p class="review__desv">Got a matching sweater for my dog and myself. We are out in the mountains every Sunday since.</p>
-        </article>
+        <div class="reviews--wrapper">
+            <h2 class="reviews__title">Reviews</h2>
+            <article class="review">
+                <img src="img/profile-pictures/anton-berg-hansen.jpg" alt="Profile picture" class="review__profile">
+                <h3 class="review__name">Anton Berg-Hansen</h3>
+                <ul class="review__ratings">
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-half-stroke-solid.svg" alt="Half full star"></li>
+                </ul>
+                <p class="review__desv">Hiking is a good way to use weekends together with your family. XXS is our go-to place for the latest hiking gear.</p>
+            </article>
+            <article class="review">
+                <img src="img/profile-pictures/chuck-venster.jpg" alt="Profile picture" class="review__profile">
+                <h3 class="review__name">Chuck Venster</h3>
+                <ul class="review__ratings">
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-half-stroke-solid.svg" alt="Half full star"></li>
+                </ul>
+                <p class="review__desv">We are a small IT company, full of geeks. I had 
+                    difficulty getting the geeks out of their chairs. 
+                    XXS suggested the latest water bottles as a 
+                    Christmas gift for all employees. I was 
+                    skeptical at first, but now I have difficulty getting 
+                    them back indoors.</p>
+            </article>
+            <article class="review">
+                <img src="img/profile-pictures/pitbuill.jpeg" alt="Profile picture" class="review__profile">
+                <h3 class="review__name">Pitbull</h3>
+                <ul class="review__ratings">
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-solid.svg" alt="Solid star"></li>
+                    <li class="review__rating"><img src="img/icons/star-half-stroke-solid.svg" alt="Half full star"></li>
+                </ul>
+                <p class="review__desv">Got a matching sweater for my dog and myself. We are out in the mountains every Sunday since.</p>
+            </article>
+        </div>
     </section>
     <section class="company-info">
         <article class="company__article"> 
@@ -166,6 +171,12 @@
                 <li class="contact-info__item"><img src="img/icons/phone-solid.svg" alt="" class="contact-info__icon">Call us now: <span class="contact-info__important">(+47) 463 87 526</span></li>
                 <li class="contact-info__item"><img src="img/icons/envelope-solid.svg" alt="" class="contact-info__icon">Email: <span class="contact-info__important">xxs@gmail.com</span></li>
             </ul>
+        </div>
+        <div class="second__footer">
+            <div class="second__footer--wrapper">
+                <p class="second__footer__copyright">&copy; 2022 XXS - All rights reserved</p>
+                <p class="second__footer__legal"><a href="">Sources & Inspiration</a> - <a href="">Terms & Condition</a></p>
+            </div>
         </div>
     </footer>
 </body>
