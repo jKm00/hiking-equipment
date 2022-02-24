@@ -269,6 +269,20 @@ body{
 }
 
 /*---------------
+    Newsletter
+---------------*/
+.newsletter {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background-color: var(--clr-accent-000);
+}
+
+.newsletter--wrapper {
+    grid-column: 2 / -2;
+}
+
+/*---------------
     Footer
 ---------------*/
 .footer {
