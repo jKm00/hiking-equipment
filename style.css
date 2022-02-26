@@ -89,7 +89,6 @@ svg {
 /*---------------
     Typography
 ---------------*/
-
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -101,7 +100,6 @@ body{
 /*---------------
     Buttons
 ---------------*/
-
 .cta{
     font-size: 1.6rem;
     text-decoration: none;
