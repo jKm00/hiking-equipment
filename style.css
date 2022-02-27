@@ -293,11 +293,40 @@ body{
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: inherit;
+    padding:12.8rem 0;
     background-color: var(--clr-accent-000);
 }
 
 .newsletter--wrapper {
     grid-column: 2 / -2;
+    text-align: center;
+}
+
+.newsletter__title {
+    font-size: 3.906rem;
+    margin-bottom:-.1em;
+}
+
+.newsletter__desc {
+    font-size: 1.6rem;
+    margin-bottom:4.8rem;
+}
+
+.newsletter__form {
+    display:flex;
+    justify-content: center;
+}
+
+.newsletter__input {
+    padding:1em;
+    width:50%;
+}
+
+.cta--newsletter {
+    --padding: 4.8rem;
+    font-size: 1.28rem;
+    padding-left:var(--padding);
+    padding-right:var(--padding);
 }
 
 /*---------------
