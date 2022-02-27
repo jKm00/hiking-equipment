@@ -145,7 +145,7 @@ body{
     padding:.4em 1.2em;
     width:8.5rem;
     border-radius: 3px 0 0 3px;
-    border:1px solid var(--clr-dark-800);
+    border:1px solid var(--clr-dark-400);
     border-right: none;
     transition: width 250ms ease-in-out;
 }
@@ -157,7 +157,7 @@ body{
 .first__nav__search__input:focus,
 .first__nav__search__input:focus + .btn--search {
     outline:none;
-    border-width: 2px;
+    border-color:var(--clr--dark--800);
 }
 
 .btn--search {
@@ -167,7 +167,7 @@ body{
     width: 4rem;
     aspect-ratio: 1 / 1;
     border-radius: 0 3px 3px 0;
-    border:1px solid var(--clr-dark-800);
+    border:1px solid var(--clr-dark-400);
     border-left:none;
 }
 
