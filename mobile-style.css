@@ -116,6 +116,7 @@ h5 {
 p,
 a {
     font-size: 1.6rem;
+    line-height: 1.5em;
 }
 
 /*---------------
@@ -123,6 +124,7 @@ a {
 ---------------*/
 
 .cta {
+    display: inline-block;
     text-decoration: none;
     color:var(--clr-dark-800);
     background-color: var(--clr-accent-400);
@@ -347,7 +349,6 @@ a {
 
 .review__desc {
     grid-column: 1 / -1;
-    line-height: 1.5em;
 }
 
 /*---------------
@@ -356,6 +357,27 @@ a {
 
 .company-info {
     grid-column: 2 / -2;
+    padding:4.8rem 0;
+}
+
+.company__article {
+    margin-bottom:6.4rem;
+}
+
+.company__article:last-of-type {
+    margin-bottom:0;
+}
+
+.company__article__title {
+    margin-bottom:1.6rem;
+}
+
+.company__article__desc {
+    margin-bottom:1.2rem;
+}
+
+.company__article .cta {
+    margin:1.6rem 0 2.4rem 0;
 }
 
 /*---------------
