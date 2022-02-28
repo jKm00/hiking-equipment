@@ -291,6 +291,10 @@ a {
     font-size: 2.5rem;
 }
 
+.card__body .cta {
+    justify-self: end;
+}
+
 /*---------------
     Reviews
 ---------------*/
