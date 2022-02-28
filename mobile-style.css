@@ -679,11 +679,31 @@ a {
         grid-template-columns: repeat(3, 1fr);
         grid-template-areas: 
             "logo . socials"
-            "links opening-hours contact-info";
+            "links business-hours contact-info";
+        row-gap:6.4rem;
+        column-gap: 3.2rem;
+        padding:12.8rem 0;
     }
 
     /* Footer item placement */
     .first__footer__logo--wrapper {
-        
+        grid-area: logo;
+    }
+
+    .footer__socials {
+        grid-area: socials;
+        align-self:end;
+    }
+
+    .footer__link {
+        grid-area: links;
+    }
+
+    .footer__business-hours {
+        grid-area: business-hours;
+    }
+
+    .footer__contact-info {
+        grid-area: contact-info;
     }
 }
