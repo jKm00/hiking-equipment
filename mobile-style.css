@@ -292,10 +292,57 @@ a {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: inherit;
+    background-color: var(--clr-dark-000);
+    padding:4.8rem 0;
 }
 
 .reviews--wrapper {
     grid-column: 2 / -2;
+}
+
+.reviews__title {
+    margin-bottom:2.4rem;
+}
+
+.review {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    column-gap:2.4rem;
+    row-gap: 1.6rem;
+    margin-bottom:8rem;
+}
+
+.review:last-of-type {
+    margin-bottom:0;
+}
+
+.review__profile {
+    width:7.5rem;
+}
+
+.review__name--wrapper {
+    align-self: center;
+}
+
+.review__name {
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+
+.review__ratings {
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.2rem;
+    list-style: none;
+}
+
+.review__ratings svg {
+    width: 1.5rem;
+}
+
+.review__desc {
+    grid-column: 1 / -1;
+    line-height: 1.5em;
 }
 
 /*---------------
