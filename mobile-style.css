@@ -35,6 +35,9 @@ button {
 
     /* light */
     --clr-light-400: #fff;
+
+    /* Shadow */
+    --shadow: 0px 5px 10px rgba(0,0,0,.1);
 }
 
 html{
@@ -44,7 +47,7 @@ html{
 
 body {
     display: grid;
-    grid-template-columns: minmax(1em, 1fr) minmax(200px, 1200px) minmax(1em, 1fr);
+    grid-template-columns: minmax(2em, 1fr) minmax(200px, 1200px) minmax(2em, 1fr);
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!
@@ -216,11 +219,24 @@ a {
 .header {
     grid-column: 1 / -1;
     display: grid;
+    align-items: center;
     grid-template-columns: inherit;
+    min-height: 75vh;
+    background-image: url('img/fjelltopp\ air.jpeg');
+    background-size: cover;
+    background-position: center;
+    color:var(--clr-light-400);
 }
 
 .header--wrapper {
     grid-column: 2 / -2;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.header__desc {
+    margin-bottom:6.4rem;
 }
 
 /*---------------
@@ -229,6 +245,43 @@ a {
 
 .campaigns {
     grid-column: 2 / -2;
+    display: flex;
+    flex-direction: column;
+    gap:1.6em;
+    padding:4.8rem 0;
+}
+
+.card-link--wrapper {
+    text-decoration: none;
+    color:var(--clr-dark-800);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: var(--shadow);
+}
+
+.card__body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding:1.2em;
+}
+
+.card__body__title {
+    grid-column: 1 / -1;
+    margin-bottom:.8rem;
+}
+
+.card__body__desc {
+    grid-column: 1 / -1;
+    margin-bottom:4.8rem;
+}
+
+.card__body__price {
+    font-weight: bold;
+    font-size: 2.5rem;
 }
 
 /*---------------
