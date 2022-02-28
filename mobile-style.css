@@ -177,7 +177,7 @@ a {
 .nav__search-bar__input:focus,
 .nav__search-bar__input:focus + .btn--search {
     outline: none;
-    border-color: var(--clr-dark-800);
+    border-color: var(--clr-accent-200);
 }
 
 .btn--search {
@@ -210,6 +210,11 @@ a {
     color:var(--clr-light-400);
     text-decoration: none;
     padding:.8em 1.6em;
+}
+
+.second__nav__link:hover,
+.second__nav__link:focus {
+    color:var(--clr-accent-200);
 }
 
 /*---------------
