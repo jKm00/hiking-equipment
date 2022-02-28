@@ -37,7 +37,8 @@ button {
     --clr-light-400: #fff;
 
     /* Shadow */
-    --shadow: 0px 5px 10px rgba(0,0,0,.1);
+    --shadow-box: 0px 5px 10px rgba(0,0,0,.1);
+    --shadow-txt: 0px 0px 10px rgba(0,0,0,.4);
 }
 
 html{
@@ -242,8 +243,13 @@ a {
     align-items: start;
 }
 
+.header__title {
+    text-shadow: var(--shadow-txt);
+}
+
 .header__desc {
     margin-bottom:6.4rem;
+    text-shadow: var(--shadow-txt);
 }
 
 /*---------------
@@ -267,7 +273,12 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-box);
+}
+
+.card__img {
+    max-height: 50rem;
+    object-fit: contain;
 }
 
 .card__body {
@@ -364,12 +375,8 @@ a {
     padding:4.8rem 0;
 }
 
-.company__article {
+.company__article:first-of-type {
     margin-bottom:6.4rem;
-}
-
-.company__article:last-of-type {
-    margin-bottom:0;
 }
 
 .company__article__title {
@@ -402,8 +409,9 @@ a {
 }
 
 .newsletter__title {
-    font-size: clamp(2.4rem, 5vw, 3.2rem); 
-    margin-bottom:-.5rem;
+    font-size: clamp(2.4rem, 5vw, 3.2rem);
+    margin-bottom:.2em;
+    line-height: .8em;
 }
 
 .newsletter__desc {
@@ -564,4 +572,118 @@ a {
 ---------------*/
 .hidden {
     display: none;
+}
+
+/*---------------
+    Media queries
+---------------*/
+
+@media only screen and (min-width: 40em) {
+    /* ------ Campaigns ------ */
+    .campaigns {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: stretch;
+        padding:4.8rem 0 6.4rem 0;
+    }
+
+    .campaigns__title {
+        grid-column: 1 / -1;
+    }
+
+    .card {
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .card__img {
+        max-height: 25rem;
+    }
+
+    /* ------ Company Info ------ */
+    .company-info {
+        padding:12.8rem 0;
+    }
+
+    .company__article {
+        display: flex;
+        align-items: stretch;
+        gap:4.8rem;
+        min-height: 40vh;
+    }
+
+    .company__article:first-of-type {
+        margin-bottom:9.6rem;
+    }
+
+    .company__article--wrapper {
+        align-self: center;
+    }
+
+    .company__article__img {
+        max-width: 50%;
+        object-fit: cover;
+    }
+
+    .company__article--mirrored img {
+        order: -1;
+    }
+
+    /* ------ Newsletter ------ */
+    .newsletter {
+        padding:12.8rem 0;
+    }
+}
+
+@media only screen and (min-width: 60em) {
+    /* ------ Campaigns ------ */
+    .campaigns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: stretch;
+        padding:4.8rem 0 9.6rem 0;
+    }
+
+    .card {
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .card__img {
+        max-height: 25rem;
+    }
+
+    /* ------ Reviews ------ */
+    .reviews {
+        padding:6.4rem 0 9.6rem 0;
+    }
+
+    .reviews--wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap:4.8rem;
+    }
+
+    .reviews__title {
+        grid-column: 1 / -1;
+    }
+
+    .review {
+        align-content: start;
+        margin-bottom:0;
+    }
+
+    /* ------ Footer ------ */
+    .first__footer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 
+            "logo . socials"
+            "links opening-hours contact-info";
+    }
+
+    /* Footer item placement */
+    .first__footer__logo--wrapper {
+        
+    }
 }
