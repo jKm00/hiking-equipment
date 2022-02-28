@@ -1,0 +1,302 @@
+/*---------------
+    Resets
+---------------*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button {
+    border:none;
+    background:transparent;
+}
+
+/*---------------
+    Global
+---------------*/
+:root{
+    /* teal */
+    --clr-accent-000: #c3fae8;
+    --clr-accent-200: #63e6be;
+    --clr-accent-400: #20C997;
+    --clr-accent-600: #0ca678;
+    --clr-accent-800: #087f5b;
+
+    /* dark */
+    --clr-dark-000: #f1f3f5;
+    --clr-dark-200: #dee2e6;
+    --clr-dark-400: #adb5bd;
+    --clr-dark-600: #495057;
+    --clr-dark-700: #343a40;
+    --clr-dark-800: #212529;
+    --clr-dark-900: #171a1c;
+    --clr-dark-1000: #000000;
+
+    /* light */
+    --clr-light-400: #fff;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: grid;
+    grid-template-columns: minmax(1em, 1fr) minmax(200px, 1200px) minmax(1em, 1fr);
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!
+    Temporary styles
+    Remove when done with site
+    !!!!!!!!!!!!!!!!!!!!!!! */
+img {
+    max-width: 100%;
+}
+
+svg {
+    height:2.5rem;
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!!
+    End of temporary styles
+    !!!!!!!!!!!!!!!!!!!!!!! */
+
+.logo{
+    font-size: 3.125rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--clr-accent-400);
+}
+
+.logo__slogan {
+    font-size: 1.6rem;
+    color:var(--clr-light-400);
+}
+
+/*---------------
+    Typography
+---------------*/
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 4.883rem;
+}
+
+h2 {
+    font-size: 3.906rem;
+}
+
+h3 {
+    font-size: 3.125rem;
+}
+
+h4 {
+    font-size: 2.5rem;
+}
+
+h5 {
+    font-size: 2rem;
+}
+
+p,
+a {
+    font-size: 1.6rem;
+}
+
+/*---------------
+    Buttons
+---------------*/
+
+.cta {
+    text-decoration: none;
+    color:var(--clr-dark-800);
+    background-color: var(--clr-accent-400);
+    padding:.8em 1.6em;
+    transition:background-color 150ms ease-in-out;
+}
+
+.cta:hover,
+.cta:focus {
+    background-color:var(--clr-light-400);
+}
+
+/*---------------
+    Nav
+---------------*/
+
+.nav {
+    grid-column: 1 / -1;
+}
+
+/* ------ First nav ------ */
+.first__nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.6rem 2.4rem;
+}
+
+.first__nav__icons {
+    display: flex;
+    align-items: center;
+    gap:3.2rem;
+    list-style: none;
+}
+
+/* Search form */
+.nav__search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:2.4rem;
+    background-color: var(--clr-dark-000);
+}
+
+.nav__search-bar__input {
+    padding:.8em 1.6em;
+    border:none;
+    border-left:1px solid var(--clr-dark-400);
+    border-top:1px solid var(--clr-dark-400);
+    border-bottom:1px solid var(--clr-dark-400);
+}
+
+.nav__search-bar__input:focus,
+.nav__search-bar__input:focus + .btn--search {
+    outline: none;
+    border-color: var(--clr-dark-800);
+}
+
+.btn--search {
+    display: flex;
+    align-items: center;
+    padding:1em;
+    height:2.8em;
+    border:1px solid var(--clr-dark-400);
+    border-left:none;
+    background:var(--clr-light-400);
+}
+
+/* ------ Second nav ------ */
+.second__nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--clr-dark-800);
+}
+
+.second__nav__links {
+    display: flex;
+    justify-content: space-around;
+    max-width: 500px;
+    width: 100%;
+    list-style: none;
+}
+
+.second__nav__link {
+    display: block;
+    color:var(--clr-light-400);
+    text-decoration: none;
+    padding:.8em 1.6em;
+}
+
+/*---------------
+    Header
+---------------*/
+
+.header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+}
+
+.header--wrapper {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Campaigns
+---------------*/
+
+.campaigns {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Reviews
+---------------*/
+
+.reviews {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+}
+
+.reviews--wrapper {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Company Info
+---------------*/
+
+.company-info {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Newsletter
+---------------*/
+
+.newsletter {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+}
+
+.newsletter--wrapper {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Footer
+---------------*/
+
+.footer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+}
+
+/* ------ First footer ------ */
+.first__footer {
+    grid-column: 2 / -2;
+}
+
+/* ------ Second footer ------ */
+.second__footer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+}
+
+.second__footer--wrapper {
+    grid-column: 2 / -2;
+}
+
+
+/*---------------
+    Modifications
+---------------*/
+.hidden {
+    display: none;
+}
