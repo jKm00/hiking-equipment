@@ -48,7 +48,7 @@ html{
 
 body {
     display: grid;
-    grid-template-columns: minmax(2em, 1fr) minmax(200px, 1200px) minmax(2em, 1fr);
+    grid-template-columns: minmax(2.4em, 1fr) minmax(200px, 1200px) minmax(2.4em, 1fr);
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!
@@ -332,6 +332,7 @@ a {
     column-gap:2.4rem;
     row-gap: 1.6rem;
     margin-bottom:8rem;
+    max-width: 60rem;
 }
 
 .review:last-of-type {
@@ -373,6 +374,10 @@ a {
 .company-info {
     grid-column: 2 / -2;
     padding:4.8rem 0;
+}
+
+.company__article {
+    max-width: 60rem;
 }
 
 .company__article:first-of-type {
@@ -600,35 +605,6 @@ a {
         max-height: 25rem;
     }
 
-    /* ------ Company Info ------ */
-    .company-info {
-        padding:12.8rem 0;
-    }
-
-    .company__article {
-        display: flex;
-        align-items: stretch;
-        gap:4.8rem;
-        min-height: 40vh;
-    }
-
-    .company__article:first-of-type {
-        margin-bottom:9.6rem;
-    }
-
-    .company__article--wrapper {
-        align-self: center;
-    }
-
-    .company__article__img {
-        max-width: 50%;
-        object-fit: cover;
-    }
-
-    .company__article--mirrored img {
-        order: -1;
-    }
-
     /* ------ Newsletter ------ */
     .newsletter {
         padding:12.8rem 0;
@@ -671,6 +647,36 @@ a {
     .review {
         align-content: start;
         margin-bottom:0;
+    }
+
+    /* ------ Company Info ------ */
+    .company-info {
+        padding:12.8rem 0;
+    }
+
+    .company__article {
+        display: flex;
+        align-items: stretch;
+        gap:4.8rem;
+        min-height: 40vh;
+        max-width: none;
+    }
+
+    .company__article:first-of-type {
+        margin-bottom:9.6rem;
+    }
+
+    .company__article--wrapper {
+        align-self: center;
+    }
+
+    .company__article__img {
+        max-width: 50%;
+        object-fit: cover;
+    }
+
+    .company__article--mirrored img {
+        order: -1;
     }
 
     /* ------ Footer ------ */
