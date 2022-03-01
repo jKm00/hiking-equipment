@@ -1,0 +1,477 @@
+/*
+Font sizes: 8.19px – 10.24px – 12.80px – 16.00px – 20.00px – 
+25.00px – 31.25px – 39.06px - 48.83px 
+
+White space: 2px - 4px - 8px - 12px - 16px - 24px - 32px -
+48px - 64px - 80px - 96px - 128px
+
+Border radius: 2px
+
+Box shadow: 0 5px 10px rgba(0,0,0,.1)
+*/
+
+/*---------------
+    Resets
+---------------*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button {
+    border:none;
+    background:transparent;
+}
+
+/*---------------
+    Global
+---------------*/
+:root{
+    /* teal */
+    --clr-accent-000: #c3fae8;
+    --clr-accent-200: #63e6be;
+    --clr-accent-400: #20C997;
+    --clr-accent-600: #0ca678;
+    --clr-accent-800: #087f5b;
+
+    /* dark */
+    --clr-dark-000: #f1f3f5;
+    --clr-dark-200: #dee2e6;
+    --clr-dark-400: #adb5bd;
+    --clr-dark-600: #495057;
+    --clr-dark-700: #343a40;
+    --clr-dark-800: #212529;
+    --clr-dark-900: #171a1c;
+    --clr-dark-1000: #000000;
+
+    /* light */
+    --clr-light-400: #fff;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body{
+    display:grid;
+    grid-template-columns: minmax(1em, 1fr) minmax(600px, 1200px) minmax(1em, 1fr);
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!
+    Temporary styles
+    Remove when done with site
+    !!!!!!!!!!!!!!!!!!!!!!! */
+img {
+    max-width: 100%;
+}
+
+svg {
+    height:2.5rem;
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!!
+    End of temporary styles
+    !!!!!!!!!!!!!!!!!!!!!!! */
+
+.logo{
+    font-size: 3.125rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--clr-accent-400);
+}
+
+.logo__slogan {
+    font-size: 1.6rem;
+    color:var(--clr-light-400);
+}
+
+/*---------------
+    Typography
+---------------*/
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.shadow--text {
+    text-shadow: 0px 0px 10px rgba(0,0,0,.4);
+}
+
+/*---------------
+    Buttons
+---------------*/
+.cta{
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--clr-dark-800);
+    background-color: var(--clr-accent-400);
+    border-radius: 2px;
+    padding: .5em 1.5em;
+    transition: background-color 100ms ease-in-out;
+}
+
+.cta:hover,
+.cta:focus {
+    background-color: var(--clr-light-400);
+}
+
+.cta--big{
+    font-size: 2rem;
+}
+
+/*---------------
+    Nav
+---------------*/
+.nav{
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------ First nav ------ */
+.first__nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.6rem 2.4rem;
+}
+
+/* Search */
+.first__nav__search-form {
+    align-content: stretch;
+    display: flex;
+}
+
+.first__nav__search__input {
+    padding:.4em 1.2em;
+    width:8.5rem;
+    border-radius: 3px 0 0 3px;
+    border:1px solid var(--clr-dark-400);
+    border-right: none;
+    transition: width 250ms ease-in-out;
+}
+
+.first__nav__search__input:focus {
+    width:25rem;
+}
+
+.first__nav__search__input:focus,
+.first__nav__search__input:focus + .btn--search {
+    outline:none;
+    border-color:var(--clr--dark--800);
+}
+
+.btn--search {
+    display: flex;
+    align-items: center;
+    padding:1.2rem;
+    width: 4rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 0 3px 3px 0;
+    border:1px solid var(--clr-dark-400);
+    border-left:none;
+}
+
+/* Icons */
+.first__nav__icons{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    column-gap: 3rem;
+}
+
+.first__nav__btn{
+    width: 2rem;
+    height: 2rem;
+}
+
+.first__nav__icon img {
+    width: 100%;
+    height:100%;
+}
+
+/* ------ Second nav ------ */
+.second__nav{
+    display: flex;
+    justify-content: center;
+    background-color: var(--clr-dark-800);
+}
+
+.second__nav__links{
+    display: flex;
+    list-style: none;
+}
+
+.second__nav__link {
+    display:block;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color:var(--clr-light-400);
+    padding:1.2rem 4.8rem;
+    transition: color 50ms ease-in-out;
+}
+
+.second__nav__link:hover,
+.second__nav__link:focus {
+    color:var(--clr-accent-200);
+}
+
+/*---------------
+    Header
+---------------*/
+.header{
+    grid-column: 1 / -1;
+    display:grid;
+    grid-template-columns: inherit;
+    background-image: url("img/fjelltopp\ air.jpeg");
+    background-position: center;
+    background-size: cover;
+    height: 75vh;
+    position: relative;
+}
+
+.header::before {
+    content:'';
+    display: block;
+    position: absolute;
+    inset:0;
+    background:var(--clr-accent-400);
+    opacity: .1;
+}
+
+.header--wrapper{
+    grid-column: 2 / -2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    z-index: 10;
+}
+
+.header__title{
+    font-size: 4.8rem;
+    color:var(--clr-light-400);
+}
+
+.header__desc{
+    font-size: 1.6rem;
+    color:var(--clr-light-400);
+    margin-bottom:6.4rem;    
+}
+
+/*---------------
+    Campaings
+---------------*/
+.campaigns {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Reviews
+---------------*/
+.reviews {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background:var(--clr-dark-000);
+}
+
+.reviews--wrapper {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Company info
+---------------*/
+.company-info {
+    grid-column: 2 / -2;
+}
+
+/*---------------
+    Newsletter
+---------------*/
+.newsletter {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    padding:12.8rem 0;
+    background-color: var(--clr-accent-000);
+}
+
+.newsletter--wrapper {
+    grid-column: 2 / -2;
+    text-align: center;
+}
+
+.newsletter__title {
+    font-size: 3.906rem;
+    margin-bottom:-.1em;
+}
+
+.newsletter__desc {
+    font-size: 1.6rem;
+    margin-bottom:4.8rem;
+}
+
+.newsletter__form {
+    display:flex;
+    justify-content: center;
+}
+
+.newsletter__input {
+    padding:1em;
+    width:50%;
+}
+
+.cta--newsletter {
+    --padding: 4.8rem;
+    font-size: 1.28rem;
+    padding-left:var(--padding);
+    padding-right:var(--padding);
+}
+
+/*---------------
+    Footer
+---------------*/
+.footer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background:var(--clr-dark-900);
+}
+
+.footer svg {
+    height:2.5rem;
+}
+
+/* ----- First footer ------ */
+.first__footer {
+    grid-column: 2 / -2;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "logo . socials"
+        "links business-hours contact-info";
+    row-gap:6.4rem;
+    column-gap: 3.2rem;
+    padding:12.8rem 0;
+}
+
+/* Footer item placements */
+.first__footer__logo--wrapper {
+    grid-area: logo;
+}
+
+.footer__socials {
+    grid-area: socials;
+}
+
+.footer__link {
+    grid-area: links;
+}
+
+.footer__business-hours {
+    grid-area: business-hours;
+}
+
+.footer__contact-info {
+    grid-area: contact-info;
+}
+
+.logo--footer {
+    margin-bottom:-.2em
+}
+
+/* Footer items styles */
+/* General list styles */
+.footer__list {
+    display:flex;
+    flex-direction: column;
+    gap:.4rem;
+    font-size: 1.6rem;
+    color:var(--clr-light-400);
+    list-style: none;
+}
+
+.footer__list svg {
+    display: inline-block;
+    height: 1.5rem;
+    margin-right:.8rem;
+    fill:var(--clr-dark-400);
+}
+
+.footer__list__item {
+    display:flex;
+    align-items: start;
+    gap:.4rem;
+}
+
+.footer__list__item--darker {
+    color:var(--clr-dark-400);
+}
+
+.footer__list__link {
+    text-decoration: none;
+    color:var(--clr-light-400);
+}
+
+.footer__list__link:hover,
+.footer__list__link:focus {
+    text-decoration: underline;
+}
+
+/* Social list styles */
+.footer__socials {
+    display: flex;
+    align-items: end;
+    gap:1.6rem;
+    list-style: none;
+}
+
+.footer__socials svg {
+    fill:var(--clr-light-400);
+}
+
+.footer__socials__link:hover svg,
+.footer__socials__link:focus svg {
+    fill:var(--clr-accent-200);
+}
+
+/* Business hours modifierers */
+.footer__business-hours {
+    width: 20rem;
+}
+
+.footer__business-hours .footer__list__item {
+    display:flex;
+    justify-content: space-between;
+}
+
+/* ----- Second footer ------ */
+.second__footer {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: inherit;
+    background:var(--clr-dark-1000);
+    padding:1.2rem 0;
+    font-size: 1.2rem;
+    color:var(--clr-light-400);
+}
+
+.second__footer a {
+    color:var(--clr-light-400);
+    text-decoration: none;
+}
+
+.second__footer a:hover,
+.second__footer a:focus {
+    text-decoration: underline;
+}
+
+.second__footer--wrapper {
+    grid-column: 2 / -2;    
+}
+
+.second__footer__copyright {
+    margin-bottom: .4rem;
+    color:var(--clr-dark-600);
+}
