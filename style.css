@@ -374,7 +374,7 @@ a {
 
 .company-info {
     grid-column: 2 / -2;
-    padding:4.8rem 0;
+    padding:8rem 0;
 }
 
 .company__article {
@@ -415,7 +415,7 @@ a {
 }
 
 .newsletter__title {
-    font-size: clamp(2.4rem, 5vw, 3.2rem);
+    font-size: clamp(1.6rem, 5vw, 3.2rem);
     margin-bottom:.2em;
     line-height: .8em;
 }
@@ -498,6 +498,7 @@ a {
     font-size: 1.6rem;
     color:var(--clr-light-400);
     list-style: none;
+    font-size: 1.2rem;
 }
 
 .footer__list svg {
@@ -514,6 +515,7 @@ a {
 .footer__list__link {
     text-decoration: none;
     color:var(--clr-light-400);
+    font-size: 1.2rem;
 }
 
 .footer__list__link:hover,
@@ -694,6 +696,11 @@ a {
         row-gap:6.4rem;
         column-gap: 3.2rem;
         padding:12.8rem 0;
+    }
+
+    .footer__list,
+    .footer__list__link {
+        font-size: 1.6rem;
     }
 
     /* Footer item placement */
