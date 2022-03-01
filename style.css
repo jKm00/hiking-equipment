@@ -152,6 +152,9 @@ a {
     display: flex;
     justify-content: space-between;
     padding: 1.6rem 2.4rem;
+    background-color: var(--clr-light-400);
+    position: relative;
+    z-index: 100;
 }
 
 .first__nav__icons {
@@ -168,6 +171,15 @@ a {
     align-items: center;
     padding:2.4rem;
     background-color: var(--clr-dark-000);
+    position: absolute;
+    left:0;
+    right:0;
+    transform: translateY(0);
+    transition: transform 150ms ease-in-out;
+}
+
+.hidden {
+    transform: translateY(-100%);
 }
 
 .nav__search-bar--wrapper {
@@ -585,13 +597,6 @@ a {
     margin-bottom: .2rem;
     color:var(--clr-dark-600);
     font-size: 1.2rem;
-}
-
-/*---------------
-    Modifications
----------------*/
-.hidden {
-    display: none;
 }
 
 /*---------------
