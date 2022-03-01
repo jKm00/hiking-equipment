@@ -129,6 +129,7 @@ a {
     text-decoration: none;
     color:var(--clr-dark-800);
     background-color: var(--clr-accent-400);
+    border-bottom:2px solid var(--clr-accent-400);
     padding:.8em 1.6em;
     transition:background-color 150ms ease-in-out;
 }
@@ -433,6 +434,10 @@ a {
     padding:0 .8rem;
     width: 50%;
     max-width: 50rem;
+}
+
+.cta--newsletter {
+    border-bottom:none;
 }
 
 /*---------------
