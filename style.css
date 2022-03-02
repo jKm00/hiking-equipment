@@ -137,6 +137,11 @@ a {
     border-radius: var(--br) var(--br) 0 0;
 }
 
+.cta--small {
+    display: inline-block;
+    font-size: 1.28rem;
+}
+
 /*---------------
     Nav
 ---------------*/
