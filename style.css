@@ -631,6 +631,44 @@ a {
 }
 
 /*---------------
+    Shop
+---------------*/
+
+.shop-header {
+    margin-top: 6.4rem;
+    grid-column: 2 / -2;
+    display: grid;
+    align-items: center;
+    grid-template-columns: inherit;
+    min-width: 50%;
+    background-image: url('/img/04-going-hiking-two-people.jpg');
+    background-size: cover;
+    background-position: 50% 25%;
+    color:var(--clr-light-400);
+    outline: 2px red solid;
+}
+
+.shop-header__title {
+    margin-left: 12.8rem;
+    text-shadow: var(--shadow-txt);
+    padding: 4.8rem 0rem;
+}
+
+.shop {
+    display: flex;
+    margin: 6.4rem 0;
+    grid-column: 2 / -2;
+    justify-content: space-between;
+    outline: red solid 2px;
+}
+
+.shop > .card-link--wrapper {
+    flex-direction: column;
+}
+
+
+
+/*---------------
     Media queries
 ---------------*/
 
@@ -661,6 +699,8 @@ a {
         padding:12.8rem 0;
     }
 }
+
+
 
 @media only screen and (min-width: 60em) {
     /* ------ Campaigns ------ */
@@ -768,4 +808,7 @@ a {
     .footer__contact-info {
         grid-area: contact-info;
     }
+
+
+
 }
