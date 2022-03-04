@@ -645,7 +645,6 @@ a {
     background-size: cover;
     background-position: 50% 25%;
     color:var(--clr-light-400);
-    outline: 2px red solid;
 }
 
 .shop-header__title {
@@ -656,14 +655,18 @@ a {
 
 .shop {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
     margin: 6.4rem 0;
     grid-column: 2 / -2;
     justify-content: space-between;
     outline: red solid 2px;
+    justify-content: start;
 }
 
 .shop > .card-link--wrapper {
     flex-direction: column;
+    height: 50rem;
 }
 
 
