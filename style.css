@@ -669,6 +669,17 @@ a {
     height: 50rem;
 }
 
+.shop--wrapper {
+    display: grid;
+    grid-template-columns: minmax(2.4em, 1fr) minmax(200px, 1200px) minmax(2.4em, 1fr);
+}
+
+.shop-categories {
+    grid-column: 2 / 2;
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 /*---------------
