@@ -655,7 +655,7 @@ a {
 
 .shop {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 20% 1fr;
     flex-wrap: wrap;
     gap: 1.6rem;
     margin: 6.4rem 0;
