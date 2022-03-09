@@ -692,6 +692,23 @@ a {
 }
 
 
+/*---------------
+    Mens shop
+---------------*/
+
+.mens-shop-header {
+    margin-top: 6.4rem;
+    grid-column: 2 / -2;
+    display: grid;
+    align-items: center;
+    grid-template-columns: inherit;
+    min-width: 50%;
+    background-image: url('/img/01-robust-clothing-anorak.jpg');
+    background-size: cover;
+    background-position: 50% 25%;
+    color:var(--clr-light-400);
+}
+
 
 /*---------------
     Media queries
