@@ -6,7 +6,7 @@ const searchForm = document.querySelector("[data-search-form]");
 
 page.addEventListener("click", (e) => {
   const result = e.target;
-  if (!result.hasAttribute("data-search-icon")) {
+  if (!result.hasAttribute("data-search")) {
     searchForm.classList.add("hidden");
   }
 });
