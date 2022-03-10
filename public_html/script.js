@@ -25,5 +25,5 @@ fetch(API_URL + "/products", {
     console.log(json);
   })
   .catch(function (err) {
-    alert("Error: " + err);
+    console.log("Error: " + err);
   });
