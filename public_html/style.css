@@ -706,7 +706,7 @@ a {
   align-items: center;
   grid-template-columns: inherit;
   min-width: 50%;
-  background-image: url("/img/01-robust-clothing-anorak.jpg");
+  background-image: url("img/01-robust-clothing-anorak.jpg");
   background-size: cover;
   background-position: 50% 25%;
   color: var(--clr-light-400);
@@ -723,7 +723,7 @@ a {
   align-items: center;
   grid-template-columns: inherit;
   min-width: 50%;
-  background-image: url("/img/02-people-outdoors-two-girls.jpg");
+  background-image: url("img/02-people-outdoors-two-girls.jpg");
   background-size: cover;
   background-position: 50% 18%;
   color: var(--clr-light-400);
