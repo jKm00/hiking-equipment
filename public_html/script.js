@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = "/api";
 
 const page = document.querySelector("body");
 const toggleSearchBtn = document.querySelector("[data-search-toggle]");
