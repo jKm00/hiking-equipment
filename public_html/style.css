@@ -639,8 +639,7 @@ a {
 ---------------*/
 
 .shop-header {
-  margin-top: 6.4rem;
-  grid-column: 2 / -2;
+  grid-column: 1 / -1;
   display: grid;
   align-items: center;
   grid-template-columns: inherit;
@@ -649,47 +648,56 @@ a {
   background-size: cover;
   background-position: 50% 25%;
   color: var(--clr-light-400);
+  height: 20rem;
 }
 
 .shop-header__title {
-  margin-left: 12.8rem;
+  grid-column: 2 / -2;
   text-shadow: var(--shadow-txt);
-  padding: 4.8rem 0rem;
 }
 
 .shop {
   display: grid;
-  grid-template-columns: 20% 1fr;
+  grid-template-rows:  1fr;
+  grid-template-columns: 1fr;
   flex-wrap: wrap;
   gap: 1.6rem;
   margin: 6.4rem 0;
   grid-column: 2 / -2;
   justify-content: space-between;
-
   justify-content: start;
 }
 
 .shop > .card-link--wrapper {
   flex-direction: column;
-  height: 50rem;
+  height: 25rem;
 }
 
 .shop-items {
   grid-column: 2 / -2;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1.6rem;
 }
 
 .shop-categories {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  flex-direction: row;
+  justify-content: start;
+  padding-bottom: 4.8rem;
+}
+
+.shop-categories__title {
+  padding-bottom: 1.6rem;
+  grid-column: 1 / -1;
 }
 
 .categories__item {
   text-decoration: none;
   color: var(--clr-dark-800);
 }
+
 
 .categories__item:hover {
   text-decoration: underline;
@@ -700,16 +708,7 @@ a {
 ---------------*/
 
 .mens-shop-header {
-  margin-top: 6.4rem;
-  grid-column: 2 / -2;
-  display: grid;
-  align-items: center;
-  grid-template-columns: inherit;
-  min-width: 50%;
   background-image: url("img/01-robust-clothing-anorak.jpg");
-  background-size: cover;
-  background-position: 50% 25%;
-  color: var(--clr-light-400);
 }
 
 /*---------------
@@ -717,16 +716,7 @@ a {
 ---------------*/
 
 .women-shop-header {
-  margin-top: 6.4rem;
-  grid-column: 2 / -2;
-  display: grid;
-  align-items: center;
-  grid-template-columns: inherit;
-  min-width: 50%;
   background-image: url("img/02-people-outdoors-two-girls.jpg");
-  background-size: cover;
-  background-position: 50% 18%;
-  color: var(--clr-light-400);
 }
 
 /*---------------
@@ -759,6 +749,11 @@ a {
   .newsletter {
     padding: 12.8rem 0;
   }
+
+  .shop-items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
 @media only screen and (min-width: 60em) {
@@ -866,5 +861,39 @@ a {
 
   .footer__contact-info {
     grid-area: contact-info;
+  }
+
+
+
+}
+
+@media only screen and (min-width: 75em) {
+  /*------shop------*/
+  .shop-items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .shop {
+    grid-template-columns: 20% 1fr;
+    flex-wrap: wrap;
+    margin: 9.6rem 0rem;
+    gap: 1.2rem;
+  }
+
+  .shop-header {
+    margin-top: 6.4rem;
+    grid-column: 2 / -2;
+  }
+  
+  .shop-header__title {
+    margin-left: 12.8rem;
+    text-shadow: var(--shadow-txt);
+  }
+
+  .shop-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-bottom: 4.8rem;
   }
 }
