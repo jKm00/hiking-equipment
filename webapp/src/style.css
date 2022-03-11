@@ -286,7 +286,7 @@ a {
   align-items: center;
   grid-template-columns: inherit;
   min-height: 75vh;
-  background-image: url("https://picsum.photos/200/300");
+  background-image: url("img/fjelltopp-air.jpeg");
   background-size: cover;
   background-position: center;
   color: var(--clr-light-400);
