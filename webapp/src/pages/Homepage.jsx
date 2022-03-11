@@ -6,7 +6,7 @@ import ReviewSection from "../components/ReviewSection";
 import CompanyInfo from "../components/CompanyInfo";
 import Newsletter from "../components/Newsletter";
 
-function Homepage() {
+function HomePage() {
   return (
     <>
       <Header />
@@ -18,4 +18,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;

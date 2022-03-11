@@ -4,7 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import Homepage from "./pages/Homepage";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
 
 import "./style.css";
 
@@ -13,8 +14,9 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Homepage />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route path="/shop" element={<h1>Shop page</h1>} />
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
       <Footer />
     </>
