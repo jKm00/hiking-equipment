@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import HomePage from "./pages/HomePage";
+import ShopPage from "./pages/ShopPage";
 import ProductPage from "./pages/ProductPage";
 
 import "./style.css";
@@ -15,7 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route path="/shop" element={<h1>Shop page</h1>} />
+        <Route path="/shop" element={<ShopPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
       <Footer />

@@ -645,51 +645,41 @@ a {
 ---------------*/
 
 .shop-header {
-  margin-top: 6.4rem;
-  grid-column: 2 / -2;
-  display: grid;
-  align-items: center;
-  grid-template-columns: inherit;
-  min-width: 50%;
-  background-image: url("https://picsum.photos/200/300");
+  grid-column: 1 / -1;
+  background-image: url("img/04-going-hiking-two-people.jpg");
   background-size: cover;
   background-position: 50% 25%;
   color: var(--clr-light-400);
 }
 
 .shop-header__title {
-  margin-left: 12.8rem;
+  margin-left: 6.4rem;
   text-shadow: var(--shadow-txt);
   padding: 4.8rem 0rem;
 }
 
 .shop {
-  display: grid;
-  grid-template-columns: 20% 1fr;
-  flex-wrap: wrap;
-  gap: 1.6rem;
-  margin: 6.4rem 0;
   grid-column: 2 / -2;
-  justify-content: space-between;
-
-  justify-content: start;
-}
-
-.shop > .card-link--wrapper {
-  flex-direction: column;
-  height: 50rem;
-}
-
-.shop-items {
-  grid-column: 2 / -2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 20em 1fr;
   gap: 1.6rem;
+  margin: 3.2rem 0;
 }
 
 .shop-categories {
+  display: grid;
+  grid-template-columns: repeat(4, auto) 1fr;
+  column-gap: 2.4em;
+  margin-bottom: 2.4em;
+}
+
+.shop-categories__title {
+  grid-column: 1 / -1;
+}
+
+.shop-items {
   display: flex;
   flex-direction: column;
+  gap: 1.6rem;
 }
 
 .categories__item {
@@ -701,38 +691,16 @@ a {
   text-decoration: underline;
 }
 
-/*---------------
-    Mens shop
----------------*/
+/* ----- Mens shop ------ */
 
 .mens-shop-header {
-  margin-top: 6.4rem;
-  grid-column: 2 / -2;
-  display: grid;
-  align-items: center;
-  grid-template-columns: inherit;
-  min-width: 50%;
   background-image: url("https://picsum.photos/200/300");
-  background-size: cover;
-  background-position: 50% 25%;
-  color: var(--clr-light-400);
 }
 
-/*---------------
-    womens shop
----------------*/
+/* ----- Womans shop ------ */
 
 .women-shop-header {
-  margin-top: 6.4rem;
-  grid-column: 2 / -2;
-  display: grid;
-  align-items: center;
-  grid-template-columns: inherit;
-  min-width: 50%;
   background-image: url("https://picsum.photos/200/300");
-  background-size: cover;
-  background-position: 50% 18%;
-  color: var(--clr-light-400);
 }
 
 /*---------------
@@ -764,6 +732,12 @@ a {
   /* ------ Newsletter ------ */
   .newsletter {
     padding: 12.8rem 0;
+  }
+
+  /* ------ Shop ------ */
+  .shop-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -872,5 +846,29 @@ a {
 
   .footer__contact-info {
     grid-area: contact-info;
+  }
+
+  /* ------ Shop ------ */
+  .shop {
+    display: grid;
+    grid-template-columns: 22em 1fr;
+    gap: 1.6em;
+  }
+
+  .shop-header {
+    grid-column: 2 / -2;
+    margin: 4.8em 0 3.2em 0;
+  }
+
+  .shop-categories {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  /* ------ Shop ------ */
+  .shop-items {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
