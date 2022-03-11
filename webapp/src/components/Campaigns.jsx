@@ -4,8 +4,8 @@ import ProductCard from "./ProductCard";
 
 function Campaigns() {
   return (
-    <section class="campaigns">
-      <h2 class="campaigns__title">Campaigns</h2>
+    <section className="campaigns">
+      <h2 className="campaigns__title">Campaigns</h2>
       <ProductCard
         img="img/articles/01-dog-boots-green.jpg"
         imgAlt="Military green dog boots"
