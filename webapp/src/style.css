@@ -693,14 +693,22 @@ a {
 
 /* ----- Mens shop ------ */
 
-.mens-shop-header {
-  background-image: url("https://picsum.photos/200/300");
+.shop-header--men {
+  background-image: url("img/01-robust-clothing-anorak.jpg");
 }
 
 /* ----- Womans shop ------ */
 
-.women-shop-header {
-  background-image: url("https://picsum.photos/200/300");
+.shop-header--women {
+  background-image: url("img/02-people-outdoors-two-girls.jpg");
+}
+
+/* ----- Animals shop ------ */
+
+.shop-header--animals {
+  background-image: url("img/01-dog-sweater-green.jpg");
+  background-size: contain;
+  background-position: left;
 }
 
 /*---------------

@@ -61,17 +61,17 @@ function Navbar() {
       <div className="second__nav">
         <ul className="second__nav__links">
           <li className="second__nav__item">
-            <Link to="shop?sex=men" className="second__nav__link">
+            <Link to="/shop/men" className="second__nav__link">
               Men
             </Link>
           </li>
           <li className="second__nav__item">
-            <Link to="shop?sex=women" className="second__nav__link">
+            <Link to="/shop/women" className="second__nav__link">
               Women
             </Link>
           </li>
           <li className="second__nav__item">
-            <Link to="shop?sex=animal" className="second__nav__link">
+            <Link to="/shop/animals" className="second__nav__link">
               Animal
             </Link>
           </li>

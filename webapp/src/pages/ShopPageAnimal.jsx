@@ -3,11 +3,11 @@ import React from "react";
 import ProductCard from "../components/ProductCard";
 import ShopCategories from "../components/ShopCategories";
 
-function ShopPageMen() {
+function ShopPageAnimal() {
   return (
     <>
-      <header className="shop-header shop-header--men">
-        <h1 className="shop-header__title">Men</h1>
+      <header className="shop-header shop-header--animals">
+        <h1 className="shop-header__title">Animals</h1>
       </header>
       <section className="shop">
         <ShopCategories />
@@ -66,4 +66,4 @@ function ShopPageMen() {
   );
 }
 
-export default ShopPageMen;
+export default ShopPageAnimal;
