@@ -83,7 +83,7 @@ function Footer() {
           </li>
           <li className="footer__list__item">
             <span className="footer__list__item--darker">Saturday:</span>10.00 -
-            20.0
+            20.00
           </li>
           <li className="footer__list__item">
             <span className="footer__list__item--darker">Sunday:</span>13.00 -
