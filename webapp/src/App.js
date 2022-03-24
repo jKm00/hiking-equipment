@@ -10,6 +10,7 @@ import ShopPageMen from "./pages/ShopPageMen";
 import ShopPageWomen from "./pages/ShopPageWomen";
 import ShopPageAnimal from "./pages/ShopPageAnimal";
 import ProductPage from "./pages/ProductPage";
+import SearchResultPage from "./pages/SearchResultPage";
 
 import "./style.css";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/shop/women" element={<ShopPageWomen />} />
         <Route path="/shop/animals" element={<ShopPageAnimal />} />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/search" element={<SearchResultPage/>} />
       </Routes>
       <Footer />
     </>
