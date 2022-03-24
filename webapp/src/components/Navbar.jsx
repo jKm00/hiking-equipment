@@ -12,6 +12,8 @@ function Navbar() {
   function doSearch() {
     const inputValue = document.querySelector("[data-search-input]").value;
     const path = "/search/" + inputValue;
+    const searchBar = document.querySelector("[data-search-form]");
+    searchBar.classList.add("hidden");
     navigate(path);
   }
 
