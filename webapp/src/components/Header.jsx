@@ -1,18 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
-function Header() {
+// Import Swiper styles
+import "swiper/css";
+
+
+export default function App() {
   return (
-    <header className="header">
-      <div className="header--wrapper">
-        <h1 className="header__title shadow--text">All-Weather Jacket</h1>
-        <p className="header__desc shadow--text">Perfect for tough weather</p>
-        <Link to="shop" className="cta cta--big">
-          Go to shop
-        </Link>
-      </div>
-    </header>
+    <>
+
+      <Swiper className="mySwiper header">
+      
+
+        <SwiperSlide> Test
+        <img className="retard" src="https://picsum.photos/1920/1080" alt="img" />
+        </SwiperSlide>
+        <SwiperSlide><img src="https://picsum.photos/1920/1080" alt="img" /></SwiperSlide>
+        <SwiperSlide><img src="https://picsum.photos/1920/1080" alt="img" /></SwiperSlide>
+        <SwiperSlide><img src="https://picsum.photos/1920/1080" alt="img" /></SwiperSlide>
+        <SwiperSlide><img src="https://picsum.photos/1920/1080" alt="img" /></SwiperSlide>
+        <SwiperSlide><img src="https://picsum.photos/1920/1080" alt="img" /></SwiperSlide>
+      </Swiper>
+    </>
   );
 }
-
-export default Header;
