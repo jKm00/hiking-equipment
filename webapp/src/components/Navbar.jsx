@@ -44,10 +44,16 @@ function Navbar() {
           </li>
         </ul>
       </div>
-      <form action="" className="nav__search-bar hidden" data-search-form>
+      <form
+        action="/search"
+        className="nav__search-bar hidden"
+        method="GET"
+        data-search-form
+      >
         <div className="nav__search-bar--wrapper">
           <input
             type="text"
+            name="keyword"
             placeholder="Search..."
             className="nav__search-bar__input"
           />
