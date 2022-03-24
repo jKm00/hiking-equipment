@@ -292,6 +292,17 @@ a {
   color: var(--clr-light-400);
 }
 
+
+.header-carousel{
+  color: white;
+}
+
+.retard {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
 .header--wrapper {
   grid-column: 2 / -2;
   display: flex;
