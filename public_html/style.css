@@ -720,6 +720,14 @@ a {
 }
 
 /*---------------
+    product page
+---------------*/
+
+.orange {
+  background-color: red;
+}
+
+/*---------------
     Media queries
 ---------------*/
 
