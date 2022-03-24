@@ -25,7 +25,7 @@ function App() {
         <Route path="/shop/women" element={<ShopPageWomen />} />
         <Route path="/shop/animals" element={<ShopPageAnimal />} />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/search" element={<SearchResultPage/>} />
+        <Route path="/search/:keyword" element={<SearchResultPage />} />
       </Routes>
       <Footer />
     </>
