@@ -112,7 +112,8 @@
         <div>
           <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__small__img">
           <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__small__img">
-          <img src="img/lorem picsum richie 1.jpg" alt="Placeholder image until i find out how to swap the images" class="showcase__big__img">
+          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__big__img hidden">
+          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__big__img ">
         </div>
       </section>
       <section>
@@ -121,14 +122,19 @@
             <!--! kan min card body elementer ha samme klasse som deres? -->
             <h1 class="card__body__title">Winter Sweater</h1>
             <h2 class="card__body__price">800,-</h2>
-            <h3 class="card__body__color">Color</h3>
+            <h3 class="card__body__color">Color:</h3>
             <button class="color_button">
-                <a href="#FFA500 " class="orange"></a>
+              <span></span>
             </button>
-            <button>
-              <a href="#008000"></a>
+            <button class="color_button2">
+              <span></span>
             </button>
-            <h4 class="card__body__size">Size</h4>
+            <label for="size">Size:</label>
+            <select name="Size" id="size_selector" placeholder="Pick size">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
             <p class="cta cta--small">Add to cart</p>
           </div>
         </pre>
@@ -136,9 +142,9 @@
       <section>
         <div>
           <pre>
-            <h5 class="product__description__title">
+            <h4 class="product__description__title">
               Lorem ipsum dolor
-            </h5>
+            </h4>
           <p class="product__description">
             <!--! brukte <br> here for å fa den til å se rettere ut, det må fikses -->
               <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Proin sollicitudin semper varius. <br> Sed lacinia semper dui, a dignissim ante finibus nec. 

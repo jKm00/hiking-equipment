@@ -722,10 +722,20 @@ a {
 /*---------------
     product page
 ---------------*/
-
-.orange {
-  background-color: red;
+#layout {
+  display: grid;
 }
+
+.color_button span {
+  border: 10px solid #008000;
+  background-color: green;
+}
+
+.color_button2 span {
+  border: 10px solid #ffa500;
+  background-color: orange;
+}
+
 
 /*---------------
     Media queries
