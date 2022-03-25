@@ -722,9 +722,49 @@ a {
 /*---------------
     product page
 ---------------*/
+
+
 #layout {
+  grid-column: 2 / -2;
   display: grid;
+  grid-template-rows: 800px [description-box]400px;
+  grid-template-columns: [small-gallery]200px [big-picture]500px [product-interaction]500px;
 }
+
+#green_sweater_small {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+#orange_sweater_small {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+#green_sweater_big {
+  outline: 2px red solid;
+
+  grid-column: 2 / -2;
+}
+
+#orange_sweater_big {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+}
+
+#description-box {
+grid-row: 2 / 3;
+grid-column: -4 / -1;
+}
+
+.showcase__big__img {
+
+}
+
+.card__body {
+  grid-column: 1 / -1 ;
+}
+
 
 .color_button span {
   border: 10px solid #008000;

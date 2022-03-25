@@ -109,11 +109,13 @@
     </nav>
     <div id="layout">
       <section class="showcase">
-        <div>
-          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__small__img">
-          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__small__img">
-          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__big__img hidden">
-          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__big__img ">
+        <div class="small__images">
+          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__small__img" id="green_sweater_small">
+          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__small__img" id="orange_sweater_small">
+        </div>
+        <div class="big_images">
+          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__big__img" id="green_sweater_big">
+          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__big__img" id="orange_sweater_big">
         </div>
       </section>
       <section>
@@ -130,7 +132,8 @@
               <span></span>
             </button>
             <label for="size">Size:</label>
-            <select name="Size" id="size_selector" placeholder="Pick size">
+            <select name="Size" id="size_selector" class="size_selector">
+              <option value="" disabled selected hidden>Pick size...</option>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>
@@ -140,14 +143,14 @@
         </pre>
       </section>
       <section>
-        <div>
+        <div id="description-box">
           <pre>
             <h4 class="product__description__title">
               Lorem ipsum dolor
             </h4>
           <p class="product__description">
             <!--! brukte <br> here for å fa den til å se rettere ut, det må fikses -->
-              <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Proin sollicitudin semper varius. <br> Sed lacinia semper dui, a dignissim ante finibus nec. 
+              <br>- Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>- Proin sollicitudin semper varius. <br>- Sed lacinia semper dui, a dignissim ante finibus nec. 
             </p>
           </pre>
         </div>
