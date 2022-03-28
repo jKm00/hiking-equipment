@@ -109,16 +109,15 @@
     </nav>
     <div class="layout">
         <div class="small__images">
-          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__small__img" id="green_sweater_small">
+          <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__small__img small__images--selected" id="green_sweater_small">
           <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__small__img" id="orange_sweater_small">
         </div>
         <div class="big__images">
           <img src="img/articles/winter-sweater-green.jpg" alt="Military green sweather" class="showcase__big__img" id="green_sweater_big">
-          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__big__img" id="orange_sweater_big">
+          <img src="img/articles/winter-sweater-orange.JPG" alt="Winter sweater orange sweather" class="showcase__big__img hidden--block" id="orange_sweater_big">
         </div>
       <section class="showcase__body">
-        <pre>
-          <div class="card__body">
+          <div >
             <!--! kan min card body elementer ha samme klasse som deres? -->
             <h1 class="card__body__title">Winter Sweater</h1>
             <h2 class="card__body__price">800,-</h2>
@@ -129,28 +128,27 @@
             <button class="color_button2">
               <span></span>
             </button>
-            <label for="size">Size:</label>
+            <label class="size_selector_text">Size:</label>
             <select name="Size" id="size_selector" class="size_selector">
-              <option value="" disabled selected hidden>Pick size...</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
+              <div class="option_text">
+                <option value="" disabled selected hidden>Pick size...</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </div>
             </select>
             <p class="cta cta--small">Add to cart</p>
           </div>
-        </pre>
-          <div class="description-box">
-            <pre>
-              <h4 class="product__description__title">
-                Lorem ipsum dolor
-              </h4>
-            <p class="product__description">
-              <!--! brukte <br> here for å fa den til å se rettere ut, det må fikses -->
-                <br>- Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>- Proin sollicitudin semper varius. <br>- Sed lacinia semper dui, a dignissim ante finibus nec. 
-              </p>
-            </pre>
-          </div>
       </section>
+      <div class="description-box">
+        <h4 class="product__description__title">
+          Lorem ipsum dolor
+        </h4>
+      <p class="product__description">
+        <!--! brukte <br> here for å fa den til å se rettere ut, det må fikses -->
+          <br>- Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>- Proin sollicitudin semper varius. <br>- Sed lacinia semper dui, a dignissim ante finibus nec. 
+        </p>
+    </div>
     </div>
     
 
