@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination, Navigation, Keyboard } from "swiper";
 
 // Import Swiper styles
 import "swiper/css";
@@ -23,7 +23,11 @@ export default function Header() {
                 clickable: true,
               }}
               navigation={true}
-              modules={[Autoplay, Pagination, Navigation]}
+              keyboard = {{
+                enabled: true,
+                onlyInViewport: false,
+              }}
+              modules={[Autoplay, Pagination, Navigation, Keyboard]}
               >
 
         <SwiperSlide className="header-carousel__item">
