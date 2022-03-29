@@ -285,18 +285,36 @@ a {
   display: grid;
   align-items: center;
   grid-template-columns: inherit;
-  min-height: 75vh;
-  background-image: url("img/fjelltopp-air.jpeg");
-  background-size: cover;
-  background-position: center;
+  height: 75vh;
+  background-color:#eee;
   color: var(--clr-light-400);
 }
 
+div.swiper-button-prev,
+div.swiper-button-next {
+color: var(--clr-accent-400);
+}
+
+
+span.swiper-pagination-bullet {
+  background-color: var(--clr-accent-400);
+  }
+
+
+.header-carousel__item {
+  color: white;
+}
+
 .header--wrapper {
-  grid-column: 2 / -2;
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: center;
+  height:100%;
+  width: 90%;
+  max-width: 1200px;
+  min-width: 200px;
+  margin:auto;
 }
 
 .header__title {
@@ -306,6 +324,17 @@ a {
 .header__desc {
   margin-bottom: 6.4rem;
   text-shadow: var(--shadow-txt);
+}
+
+
+
+.header-carousel-item-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height:100%;
+  width:100%;
+  object-fit: cover;
 }
 
 /*---------------
