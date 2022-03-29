@@ -290,6 +290,16 @@ a {
   color: var(--clr-light-400);
 }
 
+div.swiper-button-prev,
+div.swiper-button-next {
+color: var(--clr-accent-400);
+}
+
+
+span.swiper-pagination-bullet {
+  background-color: var(--clr-accent-400);
+  }
+
 
 .header-carousel__item {
   color: white;
@@ -316,17 +326,14 @@ a {
   text-shadow: var(--shadow-txt);
 }
 
-.header-carousel {
-  display: flex;
-  align-items: center;
-  border:1px solid red;
-}
 
-.header-carousel-item-wrap {
+
+.header-carousel-item-wrapper {
   position: absolute;
   inset: 0;
   z-index: -1;
   height:100%;
+  width:100%;
   object-fit: cover;
 }
 
