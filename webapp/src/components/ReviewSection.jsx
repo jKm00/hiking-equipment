@@ -1,6 +1,8 @@
 import React from "react";
 import Review from "./Review";
 
+import "../styles/reviewSection.css";
+
 function ReviewSection() {
   return (
     <section className="reviews">

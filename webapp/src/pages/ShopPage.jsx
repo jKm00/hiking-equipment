@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import ShopCategories from "../components/ShopCategories";
 import ProductCard from "../components/ProductCard";
 
+import "../styles/shop.css";
+
 function ShopPage() {
   return (
     <>

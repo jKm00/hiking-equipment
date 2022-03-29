@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "../styles/productCard.css";
+
 function ProductCard({ img, imgAlt, title, desc, price, id }) {
   return (
     <Link to={"/product/" + id} className="card-link--wrapper">

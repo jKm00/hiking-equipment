@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/review.css";
+
 function Review({ img, name, desc }) {
   return (
     <article className="review">

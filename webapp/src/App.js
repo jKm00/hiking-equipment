@@ -12,7 +12,8 @@ import ShopPageAnimal from "./pages/ShopPageAnimal";
 import ProductPage from "./pages/ProductPage";
 import SearchResultPage from "./pages/SearchResultPage";
 
-import "./style.css";
+import "./styles/global.css";
+import "./styles/mediaQueries.css";
 
 function App() {
   return (

@@ -1,0 +1,160 @@
+/*---------------
+    Resets
+---------------*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+/*---------------
+    Global
+---------------*/
+:root {
+  /* teal */
+  --clr-accent-000: #c3fae8;
+  --clr-accent-200: #63e6be;
+  --clr-accent-400: #20c997;
+  --clr-accent-600: #0ca678;
+  --clr-accent-800: #087f5b;
+
+  /* dark */
+  --clr-dark-000: #f1f3f5;
+  --clr-dark-200: #dee2e6;
+  --clr-dark-400: #adb5bd;
+  --clr-dark-600: #495057;
+  --clr-dark-700: #343a40;
+  --clr-dark-800: #212529;
+  --clr-dark-900: #171a1c;
+  --clr-dark-1000: #000000;
+
+  /* light */
+  --clr-light-400: #fff;
+
+  /* Shadow */
+  --shadow-box: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  --shadow-txt: 0px 0px 10px rgba(0, 0, 0, 0.4);
+
+  /* Border radius */
+  --br: 2px;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: grid;
+  grid-template-columns: minmax(2.4em, 1fr) minmax(200px, 1200px) minmax(
+      2.4em,
+      1fr
+    );
+}
+
+#root {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+svg {
+  height: 2.5rem;
+}
+
+.logo {
+  font-size: 3.125rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--clr-accent-400);
+}
+
+.logo__slogan {
+  font-size: 1.6rem;
+  color: var(--clr-light-400);
+}
+
+/*---------------
+    Typography
+---------------*/
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 4.883rem;
+}
+
+h2 {
+  font-size: 3.906rem;
+}
+
+h3 {
+  font-size: 3.125rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+p,
+a {
+  font-size: 1.6rem;
+  line-height: 1.5em;
+}
+
+/*---------------
+    Buttons
+---------------*/
+
+.cta {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--clr-dark-800);
+  background-color: var(--clr-accent-400);
+  border-bottom: 2px solid var(--clr-accent-400);
+  border-radius: var(--br);
+  padding: 0.8em 1.6em;
+  transition: background-color 150ms ease-in-out;
+}
+
+.cta:hover,
+.cta:focus {
+  background-color: var(--clr-light-400);
+  border-radius: var(--br) var(--br) 0 0;
+}
+
+.cta--small {
+  display: inline-block;
+  font-size: 1.28rem;
+}
+
+/*---------------
+    Extras
+---------------*/
+
+.hidden {
+  transform: translateY(-100%);
+}

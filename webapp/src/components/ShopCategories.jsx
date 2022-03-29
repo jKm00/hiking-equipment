@@ -1,8 +1,10 @@
 import React from "react";
 
+import "../styles/categories.css";
+
 function ShopCategories() {
   return (
-    <nav className="shop-categories">
+    <aside className="shop-categories">
       <h2 className="shop-categories__title">Categories</h2>
       <a className="categories__item" href="#">
         All items
@@ -16,7 +18,7 @@ function ShopCategories() {
       <a className="categories__item" href="#">
         Hats
       </a>
-    </nav>
+    </aside>
   );
 }
 

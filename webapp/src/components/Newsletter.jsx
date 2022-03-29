@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/newsletter.css";
+
 function Newsletter() {
   return (
     <section className="newsletter">
