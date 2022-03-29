@@ -2,6 +2,8 @@ import React from "react";
 
 import ProductCard from "./ProductCard";
 
+import "../styles/campaigns.css";
+
 function Campaigns() {
   return (
     <section className="campaigns">

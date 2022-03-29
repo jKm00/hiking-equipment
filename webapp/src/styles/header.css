@@ -1,0 +1,31 @@
+/*---------------
+    Header
+---------------*/
+
+.header {
+  grid-column: 1 / -1;
+  display: grid;
+  align-items: center;
+  grid-template-columns: inherit;
+  min-height: 75vh;
+  background-image: url("../img/fjelltopp-air.jpeg");
+  background-size: cover;
+  background-position: center;
+  color: var(--clr-light-400);
+}
+
+.header--wrapper {
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.header__title {
+  text-shadow: var(--shadow-txt);
+}
+
+.header__desc {
+  margin-bottom: 6.4rem;
+  text-shadow: var(--shadow-txt);
+}

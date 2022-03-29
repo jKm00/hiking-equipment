@@ -3,6 +3,8 @@ import React from "react";
 import ProductCard from "../components/ProductCard";
 import ShopCategories from "../components/ShopCategories";
 
+import "../styles/shop.css";
+
 function ShopPageWomen() {
   return (
     <>

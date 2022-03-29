@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/companyInfo.css";
+
 function CompanyInfo() {
   return (
     <div className="company-info">
