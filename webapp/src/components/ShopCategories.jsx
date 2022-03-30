@@ -4,8 +4,8 @@ import "../styles/categories.css";
 
 function ShopCategories() {
   return (
-    <aside className="shop-categories">
-      <h2 className="shop-categories__title">Categories</h2>
+    <aside className="categories">
+      <h2 className="categories__title">Categories</h2>
       <a className="categories__item" href="#">
         All items
       </a>

@@ -14,7 +14,16 @@
   color: var(--clr-light-400);
 }
 
-.header--wrapper {
+.header-carousel__img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.header-carousel__body {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -26,23 +35,18 @@
   margin: auto;
 }
 
-.header__title {
+.header-carousel__body__title {
+  max-width: 500px;
   text-shadow: var(--shadow-txt);
 }
 
-.header__desc {
+.header-carousel__body__desc {
   margin-bottom: 6.4rem;
+  max-width: 600px;
   text-shadow: var(--shadow-txt);
 }
 
-.header-carousel-item-wrapper {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
+/* Styles for swiper addons */
 
 .header .swiper-pagination-bullet-active {
   background-color: var(--clr-accent-400);

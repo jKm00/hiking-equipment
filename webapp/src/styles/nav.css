@@ -7,7 +7,7 @@
 }
 
 /* ------ First nav ------ */
-.first__nav {
+.first-nav {
   display: flex;
   justify-content: space-between;
   padding: 1.6rem 2.4rem;
@@ -16,18 +16,18 @@
   z-index: 100;
 }
 
-.first__nav__icons {
+.first-nav__icons {
   display: flex;
   align-items: center;
   gap: 3.2rem;
   list-style: none;
 }
 
-.first__nav__item {
+.first-nav__item {
   position: relative;
 }
 
-.first__nav__item::after {
+.first-nav__item::after {
   content: "";
   display: block;
   width: 100%;
@@ -40,14 +40,14 @@
   transition: transform 150ms ease-in-out;
 }
 
-.first__nav__item:hover::after,
-.first__nav__item:focus::after {
+.first-nav__item:hover::after,
+.first-nav__item:focus::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
 /* Search form */
-.nav__search-bar {
+.search-bar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,15 +58,20 @@
   right: 0;
   transform: translateY(0);
   transition: transform 150ms ease-in-out;
+  z-index: 10;
 }
 
-.nav__search-bar--wrapper {
+.search-bar--hidden {
+  transform: translateY(-100%);
+}
+
+.search-bar--wrapper {
   display: flex;
   width: 90%;
   max-width: 500px;
 }
 
-.nav__search-bar__input {
+.search-bar__input {
   padding: 0.8em 1.6em;
   border: none;
   border-left: 1px solid var(--clr-dark-400);
@@ -76,13 +81,13 @@
   width: 100%;
 }
 
-.nav__search-bar__input:focus,
-.nav__search-bar__input:focus + .btn--search {
+.search-bar__input:focus,
+.search-bar__input:focus + .btn--search {
   outline: none;
   border-color: var(--clr-accent-200);
 }
 
-.btn--search {
+.search-bar__btn {
   display: flex;
   align-items: center;
   border: 1px solid var(--clr-dark-400);
@@ -93,13 +98,13 @@
 }
 
 /* ------ Second nav ------ */
-.second__nav {
+.second-nav {
   display: flex;
   justify-content: center;
   background-color: var(--clr-dark-800);
 }
 
-.second__nav__links {
+.second-nav__links {
   display: flex;
   justify-content: space-around;
   max-width: 500px;
@@ -107,14 +112,14 @@
   list-style: none;
 }
 
-.second__nav__link {
+.second-nav__link {
   display: block;
   color: var(--clr-light-400);
   text-decoration: none;
   padding: 0.8em 1.6em;
 }
 
-.second__nav__link:hover,
-.second__nav__link:focus {
+.second-nav__link:hover,
+.second-nav__link:focus {
   color: var(--clr-accent-200);
 }

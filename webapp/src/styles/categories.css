@@ -1,11 +1,11 @@
-.shop-categories {
+.categories {
   display: grid;
   grid-template-columns: repeat(4, auto) 1fr;
   column-gap: 2.4em;
   margin-bottom: 2.4em;
 }
 
-.shop-categories__title {
+.categories__title {
   grid-column: 1 / -1;
 }
 
