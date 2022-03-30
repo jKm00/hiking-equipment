@@ -1,0 +1,19 @@
+.shop-categories {
+  display: grid;
+  grid-template-columns: repeat(4, auto) 1fr;
+  column-gap: 2.4em;
+  margin-bottom: 2.4em;
+}
+
+.shop-categories__title {
+  grid-column: 1 / -1;
+}
+
+.categories__item {
+  text-decoration: none;
+  color: var(--clr-dark-800);
+}
+
+.categories__item:hover {
+  text-decoration: underline;
+}

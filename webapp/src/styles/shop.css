@@ -1,0 +1,50 @@
+/*---------------
+    Shop
+---------------*/
+
+.shop-header {
+  grid-column: 1 / -1;
+  background-image: url("../img/04-going-hiking-two-people.jpg");
+  background-size: cover;
+  background-position: 50% 25%;
+  color: var(--clr-light-400);
+}
+
+.shop-header__title {
+  margin-left: 6.4rem;
+  text-shadow: var(--shadow-txt);
+  padding: 4.8rem 0rem;
+}
+
+.shop {
+  grid-column: 2 / -2;
+  grid-template-columns: 20em 1fr;
+  gap: 1.6rem;
+  margin: 3.2rem 0;
+}
+
+.shop-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* ----- Mens shop ------ */
+
+.shop-header--men {
+  background-image: url("../img/01-robust-clothing-anorak.jpg");
+}
+
+/* ----- Womans shop ------ */
+
+.shop-header--women {
+  background-image: url("../img/02-people-outdoors-two-girls.jpg");
+  background-position: 50% 20%;
+}
+
+/* ----- Animals shop ------ */
+
+.shop-header--animals {
+  background-image: url("../img/dog-on-hike.jpeg");
+  background-position: 50% 75%;
+}
