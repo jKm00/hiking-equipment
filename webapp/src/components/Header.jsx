@@ -4,13 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Autoplay, Pagination, Navigation, Keyboard } from "swiper";
 
-// Import header styles
-import "../styles/header.css";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+
+// Import header styles
+import "../styles/header.css";
 
 export default function Header() {
   return (

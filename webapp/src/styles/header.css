@@ -15,10 +15,15 @@
 }
 
 .header--wrapper {
-  grid-column: 2 / -2;
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: center;
+  height: 100%;
+  width: 70%;
+  max-width: 1200px;
+  min-width: 200px;
+  margin: auto;
 }
 
 .header__title {
@@ -28,4 +33,32 @@
 .header__desc {
   margin-bottom: 6.4rem;
   text-shadow: var(--shadow-txt);
+}
+
+.header-carousel-item-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.header .swiper-pagination-bullet-active {
+  background-color: var(--clr-accent-400);
+}
+
+.header .swiper-button-prev,
+.header .swiper-button-next {
+  --offset: 3%;
+  position: absolute;
+  color: var(--clr-light-400);
+}
+
+.header .swiper-button-prev {
+  left: var(--offset);
+}
+
+.header .swiper-button-next {
+  right: var(--offset);
 }
