@@ -78,7 +78,7 @@ svg {
   color: var(--clr-accent-400);
 }
 
-.logo__slogan {
+.logo--slogan {
   font-size: 1.6rem;
   color: var(--clr-light-400);
 }
@@ -149,12 +149,4 @@ a {
 .cta--small {
   display: inline-block;
   font-size: 1.28rem;
-}
-
-/*---------------
-    Extras
----------------*/
-
-.hidden {
-  transform: translateY(-100%);
 }

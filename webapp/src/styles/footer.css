@@ -1,32 +1,6 @@
 /*---------------
     Footer
 ---------------*/
-
-.footer {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: inherit;
-}
-
-/* ------ First footer ------ */
-.first__footer {
-  grid-column: 2 / -2;
-}
-
-/* ------ Second footer ------ */
-.second__footer {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: inherit;
-}
-
-.second__footer--wrapper {
-  grid-column: 2 / -2;
-}
-
-/*---------------
-    Footer
----------------*/
 .footer {
   grid-column: 1 / -1;
   display: grid;
@@ -39,7 +13,7 @@
 }
 
 /* ----- First footer ------ */
-.first__footer {
+.first-footer {
   grid-column: 2 / -2;
   display: flex;
   flex-direction: column;
@@ -49,7 +23,7 @@
 
 /* Footer items styles */
 /* General list styles */
-.footer__list {
+.footer-list {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -59,41 +33,41 @@
   font-size: 1.2rem;
 }
 
-.footer__list svg {
+.footer-list svg {
   display: inline-block;
   height: 1.5rem;
   margin-right: 0.8rem;
   fill: var(--clr-dark-400);
 }
 
-.footer__list__item--darker {
+.footer-list__item--darker {
   color: var(--clr-dark-400);
 }
 
-.footer__list__link {
+.footer-list__link {
   text-decoration: none;
   color: var(--clr-light-400);
   font-size: 1.2rem;
 }
 
-.footer__list__link:hover,
-.footer__list__link:focus {
+.footer-list__link:hover,
+.footer-list__link:focus {
   text-decoration: underline;
 }
 
 /* Social list styles */
-.footer__socials {
+.socials {
   display: flex;
   gap: 1.6rem;
   list-style: none;
 }
 
-.footer__socials svg {
+.socials svg {
   fill: var(--clr-light-400);
 }
 
-.footer__socials__link:hover svg,
-.footer__socials__link:focus svg {
+.socials__link:hover svg,
+.socials__link:focus svg {
   fill: var(--clr-accent-200);
 }
 
@@ -108,7 +82,7 @@
 }
 
 /* ----- Second footer ------ */
-.second__footer {
+.second-footer {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: inherit;
@@ -116,22 +90,22 @@
   padding: 1.2rem 0;
 }
 
-.second__footer--wrapper {
+.second-footer--wrapper {
   grid-column: 2 / -2;
 }
 
-.second__footer a {
+.second-footer a {
   color: var(--clr-light-400);
   text-decoration: none;
   font-size: 1.2rem;
 }
 
-.second__footer a:hover,
-.second__footer a:focus {
+.second-footer a:hover,
+.second-footer a:focus {
   text-decoration: underline;
 }
 
-.second__footer__copyright {
+.second-footer__copyright {
   margin-bottom: 0.2rem;
   color: var(--clr-dark-600);
   font-size: 1.2rem;

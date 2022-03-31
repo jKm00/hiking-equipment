@@ -7,22 +7,22 @@
   padding: 8rem 0;
 }
 
-.company__article {
+.company-article {
   max-width: 60rem;
 }
 
-.company__article:first-of-type {
+.company-article:first-of-type {
   margin-bottom: 6.4rem;
 }
 
-.company__article__title {
+.company-article__title {
   margin-bottom: 1.6rem;
 }
 
-.company__article__desc {
+.company-article__desc {
   margin-bottom: 1.2rem;
 }
 
-.company__article .cta {
+.company-article .cta {
   margin: 1.6rem 0 2.4rem 0;
 }

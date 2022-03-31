@@ -5,7 +5,7 @@ import "../styles/review.css";
 function Review({ img, name, desc }) {
   return (
     <article className="review">
-      <img src={img} alt="Profile picture" className="review__profile" />
+      <img src={img} alt="Profile picture" className="review__profile-img" />
       <div className="review__name--wrapper">
         <h3 className="review__name">{name}</h3>
         <ul className="review__ratings">
