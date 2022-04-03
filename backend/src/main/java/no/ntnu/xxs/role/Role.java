@@ -5,6 +5,8 @@ import no.ntnu.xxs.user.User;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Set;
 
 
 /**
@@ -15,32 +17,50 @@ import javax.persistence.Id;
 public class Role {
     @Id
     @GeneratedValue
-    private long roleId;
-    // TODO: Create relation with user
-    private User user;
+    private long id;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
+
     private String roleName;
 
     public Role() {}
 
-    public Role(User user, String roleName) {
-        this.user = user;
+    public Role(Set<User> users, String roleName) {
+        this.users = users;
         this.roleName = roleName;
     }
 
-    public long getRoleId() {
-        return roleId;
+    public long getId() {
+        return id;
     }
 
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    /**
+     * Add a user to a role
+     * @param user the user to add
+     */
+    public void addUser(User user) {
+        this.users.add(user);
+    }
+
+    /**
+     * Remove a user from a role
+     * @param user the user to remove
+     */
+    public void removeUser(User user) {
+        this.users.remove(user);
     }
 
     public String getRoleName() {

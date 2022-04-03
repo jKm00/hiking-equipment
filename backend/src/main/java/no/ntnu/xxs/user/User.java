@@ -2,19 +2,18 @@ package no.ntnu.xxs.user;
 
 import no.ntnu.xxs.role.Role;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Represents a User in the web application.
  */
 @Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue
-    private long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -23,7 +22,13 @@ public class User {
     private String zipCode;
     private String city;
     private String address;
-    // TODO: Many to one relation
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<Role> roles;
 
     public User() {}
@@ -41,11 +46,11 @@ public class User {
 
     //TODO: Add error handling for setters
     public long getId() {
-        return userId;
+        return id;
     }
 
     public void setId(long id) {
-        this.userId = id;
+        this.id = id;
     }
 
     public String getFirstName() {
