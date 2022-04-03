@@ -5,15 +5,14 @@ import no.ntnu.xxs.product.addons.Discount;
 import no.ntnu.xxs.product.addons.ProductDetail;
 import no.ntnu.xxs.product.addons.Size;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Represents a product that is soled in the web-application
  */
 @Entity
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue
@@ -21,28 +20,43 @@ public class Product {
     private String productName;
     private String description;
     private float price;
-    private int productCount;
     private String category;
     private String sex;
 
-    // TODO: Add many to many relation between product and color
+    // TODO: Update colors and sizes relations to follow the new modified structure
+    // of the database with a product_entry table containing all the info.
+    // Se ER diagram for reference.
+    @ManyToMany
+    @JoinTable(
+            name = "product_color",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "color_id")
+    )
     private Set<Color> colors;
-    // TODO: Add many to many relation between product and sizes
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_size",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "size_id")
+    )
     private Set<Size> sizes;
 
-    // TODO: Add many to one relation between product and product-details
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails;
 
     // TODO: Add one to one relation and create discount classes
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "discount_id", referencedColumnName = "id")
     private Discount discount;
 
     public Product() {}
 
-    public Product(String productName, String description, float price, int productCount, String category, String sex) {
+    public Product(String productName, String description, float price, String category, String sex) {
         this.productName = productName;
         this.description = description;
         this.price = price;
-        this.productCount = productCount;
         this.category = category;
         this.sex = sex;
     }
@@ -77,14 +91,6 @@ public class Product {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public int getProductCount() {
-        return productCount;
-    }
-
-    public void setProductCount(int productCount) {
-        this.productCount = productCount;
     }
 
     public String getCategory() {
