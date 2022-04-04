@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.product.Product;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 public class ProductDetail {
