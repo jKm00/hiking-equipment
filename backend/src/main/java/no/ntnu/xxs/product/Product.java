@@ -1,6 +1,11 @@
 package no.ntnu.xxs.product;
 
+import no.ntnu.xxs.product.details.ProductDetail;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a product that is soled in the web-application
@@ -17,6 +22,9 @@ public class Product {
     private String category;
     private String sex;
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ProductDetail> productDetails;
+
     public Product() {}
 
     public Product(String productName, String description, float price, String category, String sex) {
@@ -27,12 +35,12 @@ public class Product {
         this.sex = sex;
     }
 
-    public long getProductId() {
+    public long getId() {
         return id;
     }
 
-    public void setProductId(long productId) {
-        this.id = productId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -73,5 +81,22 @@ public class Product {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public Set<ProductDetail> getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(Set<ProductDetail> productDetails) {
+        this.productDetails = productDetails;
+    }
+
+    /**
+     * Adds a detail about the product to the details list.
+     * A product can have many or none details.
+     * @param detail the detail to add.
+     */
+    public void addProductDetail(ProductDetail detail) {
+        this.productDetails.add(detail);
     }
 }
