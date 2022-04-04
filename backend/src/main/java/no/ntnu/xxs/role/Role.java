@@ -18,7 +18,7 @@ public class Role {
     private Integer id;
     private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
+    // TODO: Make relation with user
     private Set<User> users;
 
     public Role() {}

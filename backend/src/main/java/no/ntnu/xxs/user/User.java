@@ -24,11 +24,7 @@ public class User {
     private String city;
     private String address;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    // TODO: Make relation with role
     private Set<Role> roles;
 
     public User() {}
