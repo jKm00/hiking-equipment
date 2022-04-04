@@ -59,6 +59,8 @@ public class Product {
         this.price = price;
         this.category = category;
         this.sex = sex;
+
+        // TODO: Initialize all sets (Maybe implement params for each set)
     }
 
     public long getProductId() {

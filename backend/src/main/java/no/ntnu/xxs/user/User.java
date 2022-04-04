@@ -3,6 +3,7 @@ package no.ntnu.xxs.user;
 import no.ntnu.xxs.role.Role;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -42,6 +43,8 @@ public class User {
         this.zipCode = zipCode;
         this.city = city;
         this.address = address;
+
+        // TODO: Initialize roles set
     }
 
     //TODO: Add error handling for setters
