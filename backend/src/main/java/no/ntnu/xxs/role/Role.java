@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -26,9 +27,9 @@ public class Role {
 
     public Role() {}
 
-    public Role(Set<User> users, String roleName) {
-        this.users = users;
+    public Role(String roleName) {
         this.roleName = roleName;
+        this.users = new HashSet<>();
     }
 
     public long getId() {
