@@ -34,7 +34,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             return;
         }
 
-        logger.info("Importing dymmy data...");
+        logger.info("Importing dummy data...");
 
         // Create and save a product
         Product boots = new Product("Boots", "Winter boots", 399.9f, "boot", "unisex");
