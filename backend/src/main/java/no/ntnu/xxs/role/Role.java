@@ -1,5 +1,6 @@
 package no.ntnu.xxs.role;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.user.User;
 
 import javax.persistence.*;
@@ -18,8 +19,9 @@ public class Role {
     private Integer id;
     private String roleName;
 
-    // TODO: Make relation with user
-    private Set<User> users;
+    @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
 
     public Role() {}
 
