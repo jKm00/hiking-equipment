@@ -1,6 +1,7 @@
 package no.ntnu.xxs.product;
 
 import no.ntnu.xxs.product.details.ProductDetail;
+import no.ntnu.xxs.product.entry.ProductEntry;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -22,6 +23,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductEntry> productEntries;
 
     public Product() {}
 

@@ -4,6 +4,8 @@ import no.ntnu.xxs.product.Product;
 import no.ntnu.xxs.product.ProductRepository;
 import no.ntnu.xxs.product.details.ProductDetail;
 import no.ntnu.xxs.product.details.ProductDetailRepository;
+import no.ntnu.xxs.product.entry.ProductEntry;
+import no.ntnu.xxs.product.entry.ProductEntryRepository;
 import no.ntnu.xxs.role.Role;
 import no.ntnu.xxs.role.RoleRepository;
 import no.ntnu.xxs.user.User;
@@ -28,6 +30,8 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     private RoleRepository roleRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
+    @Autowired
+    private ProductEntryRepository productEntryRepository;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -50,7 +54,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         productDetailRepository.save(new ProductDetail("Very warm", boots));
         productDetailRepository.save(new ProductDetail("Comfy", sweater));
         productDetailRepository.save(new ProductDetail("Slim-fit", sweater));
-        
+
+        ProductEntry largeSweater = new ProductEntry(sweater, "large", "military green", 50);
+        ProductEntry mediumSweater = new ProductEntry(sweater, "medium","military green", 25);
+        productEntryRepository.save(largeSweater);
+        productEntryRepository.save(mediumSweater);
+
         // Create an admin user and one default user
         Role admin = new Role("ADMIN");
         Role user = new Role("USER");
