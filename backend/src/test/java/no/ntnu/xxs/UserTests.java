@@ -18,8 +18,17 @@ public class UserTests {
     @Test
     public void testCreatingUser() {
         User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
-        user.addRole(new Role("ADMIN"));
 
         assertEquals("Arne", user.getFirstName());
+    }
+
+    @Test
+    public void testAddingRoleToUser() {
+        User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
+
+        user.addRole(new Role("ADMIN"));
+        user.addRole(new Role("USER"));
+
+        assertEquals(2, user.getRoles().size());
     }
 }
