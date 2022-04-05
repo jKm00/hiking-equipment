@@ -10,7 +10,9 @@ import javax.persistence.*;
  * can have many colors and sizes.
  * Stored in this table is the product with its size, color and quantity
  */
+// TODO: Rename to something more understandable
 @Entity
+@Table(name = "product_entry")
 public class ProductEntry {
 
     @Id
@@ -20,7 +22,6 @@ public class ProductEntry {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
 
     private String size;
     private String color;
