@@ -88,13 +88,4 @@ public class Product {
     public void setProductDetails(Set<ProductDetail> productDetails) {
         this.productDetails = productDetails;
     }
-
-    /**
-     * Adds a detail about the product to the details list.
-     * A product can have many or none details.
-     * @param detail the detail to add.
-     */
-    public void addProductDetail(ProductDetail detail) {
-        this.productDetails.add(detail);
-    }
 }

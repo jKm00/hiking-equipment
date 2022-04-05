@@ -15,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 public class UserTests {
 
+    /**
+     * Test that creating a user works as intended
+     */
     @Test
     public void testCreatingUser() {
         User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
@@ -22,6 +25,9 @@ public class UserTests {
         assertEquals("Arne", user.getFirstName());
     }
 
+    /**
+     * Test that adding roles gets added to correct user
+     */
     @Test
     public void testAddingRoleToUser() {
         User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
