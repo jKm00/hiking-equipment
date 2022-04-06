@@ -3,6 +3,7 @@ package no.ntnu.xxs.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ProductController {
      * @return a list of all products
      */
     @GetMapping
+    @PreAuthorize("hasRole('USER')")
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
     }
@@ -31,6 +33,7 @@ public class ProductController {
      * @return an item with same id as given
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Product> getProductById(@PathVariable long id) {
         ResponseEntity<Product> response;
         Product product = this.productService.getProductById(id);

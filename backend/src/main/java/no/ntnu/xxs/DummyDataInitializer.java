@@ -51,8 +51,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         productDetailRepository.save(new ProductDetail("Comfy", sweater));
         productDetailRepository.save(new ProductDetail("Slim-fit", sweater));
 
-
-
         // Create an admin user and one default user
         Role admin = new Role("ROLE_ADMIN");
         Role user = new Role("ROLE_USER");

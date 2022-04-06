@@ -20,12 +20,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * The @EnableGlobalMethodSecurity is needed so that each endpoint can specify which role it requires
  */
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     /**
      * A service providing our users from the database
      */
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
     /**
      * This method is called automatically by the framework, so that its knows what type of authentication to use.
@@ -47,15 +50,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Set up the authorization requests. Most restrictive should be specified first, then continue is a descending order
-        http.csrf().disable()
+        // Allow JWT authentication
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/users").hasRole("ADMIN")
-                .antMatchers("/api/product-entries").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/api/products").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/api").permitAll()
-                .and()
-            .formLogin();
+                .antMatchers("/api/authenticate").permitAll()
+                .anyRequest().authenticated()
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        // Enable the JWT authentication filter
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     /**
