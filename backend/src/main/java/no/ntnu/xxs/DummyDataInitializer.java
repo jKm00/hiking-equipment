@@ -54,20 +54,20 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
 
         // Create an admin user and one default user
-        Role admin = new Role("ADMIN");
-        Role user = new Role("USER");
+        Role admin = new Role("ROLE_ADMIN");
+        Role user = new Role("ROLE_USER");
 
         roleRepository.save(admin);
         roleRepository.save(user);
 
-        User adam = new User("Adam", "Jensen", "adam@gmail.com", "Adam123", "Norway", "1302", "Langehus", "Grensegata 89");
-        User carl = new User("Carl", "Hansen", "carl@gmail.com", "Carl123", "Norway", "1884", "Trondheim", "Kongens gate 12");
+        User adminUser = new User("Admin", "Jensen", "Adam", "adam@gmail.com", "$2a$10$2v2cawu29cb35WJKxVajBeNE2sXC0AD95.LWAjT5CpHfGgEULyF1m", "Norway", "1302", "Langehus", "Grensegata 89");
+        User carl = new User("Carl", "Hansen", "Carl", "carl@gmail.com", "$2a$10$F1oGKj9Cw3T78qzChXsaTuYX90/MWu5XkknWDbpwglwry9Bh2h9OK", "Norway", "1884", "Trondheim", "Kongens gate 12");
 
-        adam.addRole(admin);
-        adam.addRole(user);
+        adminUser.addRole(admin);
+        adminUser.addRole(user);
         carl.addRole(user);
 
-        userRepository.save(adam);
+        userRepository.save(adminUser);
         userRepository.save(carl);
 
         logger.info("Finished initializing data...");

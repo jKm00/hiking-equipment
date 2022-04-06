@@ -29,7 +29,7 @@ public class UserRepositoryTests {
         roleRepository.save(admin);
         roleRepository.save(user);
 
-        User arne = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
+        User arne = new User("Arne", "Nilsen", "Arne", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
         arne.addRole(admin);
         arne.addRole(user);
         userRepository.save(arne);
