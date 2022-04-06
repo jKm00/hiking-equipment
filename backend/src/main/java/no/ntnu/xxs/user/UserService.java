@@ -20,4 +20,16 @@ public class UserService {
     public List<User> getAllUsers() {
         return (List<User>) this.userRepository.findAll();
     }
+
+    /**
+     * Tries to log in a user with the username and password given
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return {@code true} if user details are correct, {@code false} otherwise
+     */
+    public boolean tryLogin(String username, String password) {
+        // TODO: Implement logic
+        return true;
+    }
 }
