@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @GetMapping("/hello")
+    @GetMapping("/api/hello")
     public String greeting() {
         return "Hello, endpoint is reachable for everyone";
     }

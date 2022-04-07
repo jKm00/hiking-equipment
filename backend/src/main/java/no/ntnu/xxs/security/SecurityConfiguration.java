@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // Public endpoints
                 .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/hello").permitAll()
+                .antMatchers("/api/hello").permitAll()
                 // Endpoints which needs authentication
                 .anyRequest().authenticated()
                 .and().sessionManagement()
