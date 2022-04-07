@@ -37,7 +37,7 @@ public class UserTests {
      */
     @Test
     public void testAddingRoleToUser() {
-        User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
+        User user = new User("Arne", "Nilsen", "Arne", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
 
         user.addRole(new Role("ADMIN"));
         user.addRole(new Role("USER"));
