@@ -17,14 +17,16 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
+    private String username;
     private String email;
     private String password;
     private String country;
     private String zipCode;
     private String city;
     private String address;
+    private boolean isActive = true;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -33,9 +35,10 @@ public class User {
 
     public User() {}
 
-    public User(String firstName, String lastName, String email, String password, String country, String zipCode, String city, String address) {
+    public User(String firstName, String lastName, String username, String email, String password, String country, String zipCode, String city, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.country = country;
@@ -66,6 +69,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -114,6 +125,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public Set<Role> getRoles() {
