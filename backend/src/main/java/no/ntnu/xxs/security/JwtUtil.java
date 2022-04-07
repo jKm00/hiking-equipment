@@ -3,6 +3,7 @@ package no.ntnu.xxs.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -47,11 +48,23 @@ public class JwtUtil {
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
+        try {
+            final Claims claims = extractAllClaims(token);
+            return claimsResolver.apply(claims);
+        } catch (SignatureException e) {
+            return null;
+        }
     }
 
-    private Claims extractAllClaims(String token) {
+    /**
+     * Returns all claims in the token
+     *
+     * @param token the token to extract claims from
+     * @return all claims in token
+     * @throws SignatureException if parser failed to parse token, this exception is thrown. For example
+     * if an invalid token is submitted in a request.
+     */
+    private Claims extractAllClaims(String token) throws SignatureException {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
 
