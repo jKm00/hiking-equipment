@@ -54,9 +54,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 // Public endpoints
+                // TODO: Make product endpoint public. This is made private only for demo purposes
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/hello").permitAll()
-                // Endpoints which needs authentication
+                // Every other endpoints need one form of authentication
+                // What type of authentication is specified with an annotation over each endpoint
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
