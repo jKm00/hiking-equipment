@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * REST API controller for product collection
  */
+// TODO: Make product endpoint public. This is made private only for demo purposes
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
