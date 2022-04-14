@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 
 import "../styles/login.css";
+import "../styles/form.css";
 
 export default function LoginPage() {
   return (
     <div className="login--background">
       <form action="" className="form">
-        <h2 className="form__logo logo">XXS</h2>
+        <Link to="/" className="form__logo logo">
+          XXS
+        </Link>
+        <h2 className="form__title">Sign in</h2>
         <fieldset className="form__section">
-          <legend className="form__title">Login</legend>
           <div className="form__input--wrapper">
             <label htmlFor="username" className="form__label">
               Username / email

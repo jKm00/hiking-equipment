@@ -150,3 +150,7 @@ a {
   display: inline-block;
   font-size: 1.28rem;
 }
+
+.cta--max-width {
+  width: 100%;
+}

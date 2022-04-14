@@ -1,0 +1,40 @@
+.form {
+  background-color: var(--clr-light-400);
+  padding: 2.4em;
+  font-size: 1.6rem;
+  width: 90%;
+  max-width: 500px;
+}
+
+.form__logo {
+  display: block;
+  margin-bottom: -0.4em;
+  cursor: pointer;
+}
+
+.form__title {
+  font-size: 3.906rem;
+  font-weight: bold;
+}
+
+.form__section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+  border: none;
+  margin: 4.8em 0;
+}
+
+.form__input--wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  margin-bottom: 0.4em;
+}
+
+.form__input {
+  border: 1px solid var(--clr-dark-1000);
+  padding: 0.4em;
+}

@@ -1,6 +1,23 @@
 .login--background {
   grid-column: 1 / -1;
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url();
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/01-robust-clothing-rainydude.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login__redirect {
+  text-align: center;
+  margin-top: 1.2em;
+  font-size: 1.28rem;
+  color: var(--clr-dark-600);
+}
+
+.login__redirect a {
+  font-size: inherit;
+  color: inherit;
 }
