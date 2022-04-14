@@ -35,6 +35,7 @@ public class AuthenticationController {
      * @return Http.OK with JWT token, or Http. UNAUTHORIZED
      */
     @PostMapping("/api/authenticate")
+    // TODO: Remove this annotation before deployment. Only used while testing login from react.
     @CrossOrigin
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
         try {
