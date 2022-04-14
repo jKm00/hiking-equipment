@@ -1,5 +1,7 @@
 import React from "react";
 
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 import ShopCategories from "../components/ShopCategories";
 
@@ -8,6 +10,7 @@ import "../styles/shop.css";
 function ShopPageMen() {
   return (
     <>
+      <Navbar />
       <header className="shop-header shop-header--men">
         <h1 className="shop-header__title">Men</h1>
       </header>
@@ -64,6 +67,7 @@ function ShopPageMen() {
           />
         </div>
       </section>
+      <Footer />
     </>
   );
 }
