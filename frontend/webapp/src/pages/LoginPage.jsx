@@ -39,8 +39,10 @@ export default function LoginPage() {
     const response = loginUser(requestData);
     // Check if response contains a JWT token
     if ("accessToken" in response) {
+      // TODO: Store JWT token in browser
       console.log("Logged in");
     } else {
+      // TODO: Display error msg
       console.log("Login failed!");
     }
   }
