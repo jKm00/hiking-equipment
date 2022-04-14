@@ -35,7 +35,7 @@ export default function LoginPage() {
       password: event.target.password.value,
     };
     // Send login request to API
-    // TODO: fix 416 http response code
+    // TODO: fix 415 http response code
     const response = loginUser(requestData);
     // Check if response contains a JWT token
     if ("accessToken" in response) {
