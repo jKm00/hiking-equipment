@@ -11,15 +11,16 @@ export default function LoginPage() {
    * @param {*} userDetails the username and password of the user to login
    */
   async function loginUser(userDetails) {
-    console.log(JSON.stringify(userDetails));
-    const data = await fetch(LOGIN_URL, {
-      method: "POST",
-      header: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userDetails),
-    });
-    return await data.json();
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", LOGIN_URL);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        console.log(this.response);
+        return this.response;
+      }
+    };
+    xhr.send(JSON.stringify(userDetails));
   }
 
   /**
@@ -35,10 +36,11 @@ export default function LoginPage() {
       password: event.target.password.value,
     };
     // Send login request to API
-    // TODO: fix 415 http response code
+    // TODO: fix response being undefined
     const response = loginUser(requestData);
+    console.log(response);
     // Check if response contains a JWT token
-    if ("accessToken" in response) {
+    if ("jwt" in response) {
       // TODO: Store JWT token in browser
       console.log("Logged in");
     } else {
