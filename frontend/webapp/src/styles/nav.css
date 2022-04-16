@@ -82,7 +82,7 @@
 }
 
 .search-bar__input:focus,
-.search-bar__input:focus + .btn--search {
+.search-bar__input:focus + .search-bar__btn {
   outline: none;
   border-color: var(--clr-accent-200);
 }

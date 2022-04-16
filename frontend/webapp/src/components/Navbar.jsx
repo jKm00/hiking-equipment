@@ -5,6 +5,27 @@ import "../styles/nav.css";
 
 function Navbar() {
   const navigate = useNavigate();
+  const searchElements = [
+    "data-search-form",
+    "data-search-input",
+    "data-search-btn",
+    "data-search-svg",
+    "data-search-path",
+  ];
+
+  document.addEventListener("click", (e) => {
+    const targetedElement = e.target;
+    if (
+      !targetedElement.hasAttribute(searchElements[0]) &&
+      !targetedElement.hasAttribute(searchElements[1]) &&
+      !targetedElement.hasAttribute(searchElements[2]) &&
+      !targetedElement.hasAttribute(searchElements[3]) &&
+      !targetedElement.hasAttribute(searchElements[4])
+    ) {
+      const searchBar = document.querySelector("[data-search-form");
+      searchBar.classList.add("search-bar--hidden");
+    }
+  });
 
   function doToggleSearch() {
     const searchBar = document.querySelector("[data-search-form]");
@@ -27,9 +48,16 @@ function Navbar() {
         </Link>
         <ul className="first-nav__icons">
           <li className="first-nav__item">
-            <button className="btn" onClick={doToggleSearch}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z" />
+            <button className="btn" onClick={doToggleSearch} data-search-btn>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                data-search-svg
+              >
+                <path
+                  data-search-path
+                  d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"
+                />
               </svg>
             </button>
           </li>
@@ -65,7 +93,11 @@ function Navbar() {
             className="search-bar__input"
             data-search-input
           />
-          <button className="search-bar__btn" onClick={doSearch} data-search>
+          <button
+            className="search-bar__btn"
+            onClick={doSearch}
+            data-search-btn
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z" />
             </svg>
