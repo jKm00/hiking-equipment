@@ -22,7 +22,7 @@
   flex-direction: column;
   gap: 1.2em;
   border: none;
-  margin: 4.8em 0;
+  margin: 4.8em 0 3.2em 0;
 }
 
 .form__input--wrapper {
@@ -37,4 +37,16 @@
 .form__input {
   border: 1px solid var(--clr-dark-1000);
   padding: 0.4em;
+}
+
+.form__error-msg {
+  font-size: 1.28rem;
+  text-align: center;
+  color: var(--clr-light-400);
+  padding: 0.4rem 0;
+  background-color: var(--clr-error-200);
+  outline: 2px solid var(--clr-error-400);
+  opacity: 0;
+
+  transition: opacity 250ms ease-in-out;
 }
