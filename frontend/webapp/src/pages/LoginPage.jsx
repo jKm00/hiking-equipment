@@ -22,10 +22,9 @@ export default function LoginPage() {
           const result = JSON.parse(this.response);
           localStorage.setItem("jwt", result.jwt);
           navigate("/");
-        } else if (this.status === 401) {
+        } else {
           // Display error message
           const errorMsg = document.querySelector("[data-error]");
-          console.log(errorMsg);
           errorMsg.style.opacity = 1;
         }
       }
