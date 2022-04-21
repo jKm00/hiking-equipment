@@ -48,15 +48,14 @@
 
 /* Styles for swiper addons */
 
-.header .swiper-pagination-bullet-active {
-  background-color: var(--clr-accent-400);
+.swiper {
+  --swiper-theme-color: var(--clr-accent-400);
 }
 
 .header .swiper-button-prev,
 .header .swiper-button-next {
   --offset: 3%;
   position: absolute;
-  color: var(--clr-light-400);
 }
 
 .header .swiper-button-prev {
