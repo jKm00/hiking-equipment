@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS "products" (
     price int NOT NULL,
     category VARCHAR(255) NOT NULL,
     sex VARCHAR(255) NOT NULL,
+    featured BOOLEAN DEFAULT false,
     discoundID integer REFERENCES "discounts" (discountID)
 )
 
