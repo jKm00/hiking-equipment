@@ -46,7 +46,10 @@
   padding: 0.4rem 0;
   background-color: var(--clr-error-200);
   outline: 2px solid var(--clr-error-400);
-  opacity: 0;
 
   transition: opacity 250ms ease-in-out;
+}
+
+.form__error-msg--hidden {
+  opacity: 0;
 }

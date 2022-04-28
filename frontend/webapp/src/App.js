@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
@@ -14,6 +14,8 @@ import "./styles/global.css";
 import "./styles/mediaQueries.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <>
       <Routes>
@@ -24,7 +26,7 @@ function App() {
         <Route path="/shop/animals" element={<ShopPageAnimal />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage setUser={setUser} />} />
       </Routes>
     </>
   );
