@@ -33,3 +33,7 @@ insert into "colors" (color) values ('Red');
 insert into "colors" (color) values ('Transparent');
 insert into "colors" (color) values ('Green');
 insert into "colors" (color) values ('Orange');
+
+-- Insert into roles
+insert into "roles" (role_name, userID) values ("admin");
+insert into "roles" (role_name, userID) values ("user");
