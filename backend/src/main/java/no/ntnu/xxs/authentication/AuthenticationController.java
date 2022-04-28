@@ -5,12 +5,8 @@ import no.ntnu.xxs.security.AuthenticationResponse;
 import no.ntnu.xxs.security.JwtUtil;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
-import no.ntnu.xxs.user.UserRepository;
 import no.ntnu.xxs.user.UserSignUpRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,8 +29,6 @@ public class AuthenticationController {
     private UserDetailsService userDetailsService;
     @Autowired
     private JwtUtil jwtUtil;   
-    @Autowired
-    private UserRepository userRepository;
     @Autowired
     private UserSignUpService userSignUpService;
 
