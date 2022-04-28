@@ -1,9 +1,9 @@
 -- Insert data into products
 -- ADD FK
-insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Hiking boots', 'Keeps your feet warm', 2400, 'Boots', 'Unisex', false, );
-insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Winter sweater', 'Holds the heat effectively', 800, 'Sweaters', 'Unisex', false, );
+insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Hiking boots', 'Keeps your feet warm', 2400, 'Boots', 'Unisex', false, NULL);
+insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Winter sweater', 'Holds the heat effectively', 800, 'Sweaters', 'Unisex', false, NULL);
 insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Winter hat', 'Fits well on most heads', 200, 'Hats', 'Unisex', false, 1);
-insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Water bottle', 'Lightweight plastic bottle', 120, 'All items', 'Unisex', false, );
+insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Water bottle', 'Lightweight plastic bottle', 120, 'All items', 'Unisex', false, NULL);
 insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Clothes set for dogs', 'Boots, pants and sweater for dogs', 6670, 'All items', 'Animal', false, 2);
 
 -- Insert data into discounts
@@ -41,8 +41,8 @@ insert into "colors" (color) values ('Swedish flag');
 
 -- Insert into roles
 -- ADD FK
-insert into "roles" (role_name, userID) values ("admin");
-insert into "roles" (role_name, userID) values ("user");
+insert into "roles" (role_name) values ("admin");
+insert into "roles" (role_name) values ("user");
 
 -- Insert into product_details
 -- hiking boots
@@ -105,15 +105,30 @@ insert into "product_entries" (productID, sizeID, colorID) values (2, 14 , 6 , 9
 --winter hat
 insert into "product_entries" (productID, sizeID, colorID) values (3, 15 , 7 , 1);
 insert into "product_entries" (productID, sizeID, colorID) values (3, 15 , 7 , 23);
---transparent water bottle
-insert into "product_entries" (productID, sizeID, colorID) values (4, 15 , 7 , 0);
+--water bottle
+insert into "product_entries" (productID, sizeID, colorID) values (4, 17 , 4 , 10);
+insert into "product_entries" (productID, sizeID, colorID) values (4, 17 , 2 , 13);
+insert into "product_entries" (productID, sizeID, colorID) values (4, 17 , 3 , 12);
+--clothes set for dogs
+insert into "product_entries" (productID, sizeID, colorID) values (5, 16 , 5 , 32);
+insert into "product_entries" (productID, sizeID, colorID) values (5, 16 , 6 , 23);
+
+-- Insert into users
+insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Torstein', 'Eide', 'tosse@kewlmail.com', 'Torstein', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
+insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Joakim', 'Edvadsen', 'jokke@kewlmail.com', 'Joakim', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
+insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Richie', 'Bailey', 'bichy@kewlmail.com', 'Richie', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
+insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Eduard', 'Cristea', 'eddy@kewlmail.com', 'Eduard', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
+
+-- Insert into user_roles
+insert into "user_roles" (userID, roleID) values (1, 1);
+insert into "user_roles" (userID, roleID) values (2, 1);
+insert into "user_roles" (userID, roleID) values (3, 1);
+insert into "user_roles" (userID, roleID) values (4, 2);
 
 
+CREATE TABLE IF NOT EXISTS "user_roles" (
+    userID integer REFERENCES "users" (userID),
+    roleID integer REFERENCES "roles" (roleID),
 
-CREATE TABLE IF NOT EXISTS "product_entries" (
-    productID integer REFERENCES "products" (productID),
-    sizeID integer REFERENCES "sizes" (sizeID),
-    colorID integer REFERENCES "colors" (colorID),
-    quanitity integer NOT NULL DEFAULT 0,
-
-    PRIMAR
+    PRIMARY KEY (userID, roleID)
+)
