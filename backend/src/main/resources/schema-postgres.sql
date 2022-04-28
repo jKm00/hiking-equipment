@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "discounts" (
     discountID serial PRIMARY KEY,
     discount_name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    discount_percentage VARCHAR(255) NOT NULL,
+    discount_percentage int NOT NULL,
     active BOOLEAN DEFAULT false
 )
 
