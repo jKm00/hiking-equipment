@@ -3,7 +3,14 @@ package no.ntnu.xxs.authentication;
 import no.ntnu.xxs.security.AuthenticationRequest;
 import no.ntnu.xxs.security.AuthenticationResponse;
 import no.ntnu.xxs.security.JwtUtil;
+import no.ntnu.xxs.user.User;
+import no.ntnu.xxs.user.UserAlreadyExistException;
+import no.ntnu.xxs.user.UserRepository;
+import no.ntnu.xxs.user.UserSignUpRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,8 +32,12 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
-    private JwtUtil jwtUtil;
-    
+    private JwtUtil jwtUtil;   
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserSignUpService userSignUpService;
+
     /**
     * HTTP POST request to /api/authenticate
     *
@@ -47,47 +58,28 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
     
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
-        }
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
-        }
+
+    @PostMapping("/api/signup")
+    public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
         // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
+        User user = new User(
+        signUpRequest.getFirstName(),
+        signUpRequest.getLastName(),
+        signUpRequest.getUsername(),
         signUpRequest.getEmail(),
-        encoder.encode(signUpRequest.getPassword()));
-        Set<String> strRoles = signUpRequest.getRole();
-        Set<Role> roles = new HashSet<>();
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-            .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                    Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                    roles.add(adminRole);
-                    break;
-                    case "mod":
-                    Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                    roles.add(modRole);
-                    break;
-                    default:
-                    Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                    roles.add(userRole);
-                }
-            });
-        }
-        user.setRoles(roles);
-        userRepository.save(user);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        signUpRequest.getPassword(),
+        signUpRequest.getCountry(),
+        signUpRequest.getZipCode(),
+        signUpRequest.getCity(),
+        signUpRequest.getAddress());
+        userSignUpService.signUp(user);
+        return ResponseEntity.ok(body("User registered successfully"));
     }
-    
+
+
+    private Object body(String string) {
+        return string;
+    }
+
+
 }

@@ -27,13 +27,13 @@ public class UserSignUpController {
     private UserDetailsService userDetailsService;
     @Autowired
     private JwtUtil jwtUtil;
-
+}
     /**
      * HTTP POST request to /api/signup
      *
      * @param signUpRequest The request JSON Object containing username and password
      * @return Http.OK with JWT token, or Http. UNAUTHORIZED
-     */
+     *
     @PostMapping("/api/signup")
     public ResponseEntity<?> signUp(@RequestBody UserSignUpRequest signUpRequest) {
         try {
@@ -55,3 +55,4 @@ public class UserSignUpController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 }
+*/
