@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import ShopCategories from "../components/ShopCategories";
@@ -8,13 +8,15 @@ import ProductCard from "../components/ProductCard";
 import "../styles/shop.css";
 
 function ShopPage() {
+  const { category } = useParams();
+
   return (
     <>
       <header className="shop-header">
         <h1 className="shop-header__title">Shop</h1>
       </header>
       <section className="shop">
-        <ShopCategories />
+        <ShopCategories selected={category} sex="all" />
         <div className="shop-items">
           <ProductCard
             img="/img/articles/01-dog-boots-green.jpg"
