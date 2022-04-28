@@ -15,7 +15,7 @@ function CompanyInfo() {
           </p>
         </div>
         <img
-          src="img/02-people-outdoors-iceman.jpg"
+          src="img/ice-climber-compressed.jpg"
           alt="Employee ice climbing"
           className="company-article__img"
         />
@@ -34,8 +34,8 @@ function CompanyInfo() {
           </a>
         </div>
         <img
-          src="img/01-robust-clothing-waterproofjacket.jpg"
-          alt="Employee ice climbing"
+          src="img/our-products-shoes-compressed.jpg"
+          alt="Nice hiking shoes"
           className="company-article__img"
         />
       </article>
