@@ -10,7 +10,7 @@ insert into "products" (product_name, description, price, category, sex, feature
 insert into "discounts" (discount_name, description, discount_percentage, active) values ('Hat campaign', 'Buy 3 for 500 NOK', 17, true);
 insert into "discounts" (discount_name, description, discount_percentage, active) values ('Dog set campaign', 'Discount from 6670 NOK to 700 NOK', 89.5, true);
 
--- Insert data into
+-- Insert data into sizes
 insert into "sizes" (size) values ('37');
 insert into "sizes" (size) values ('38');
 insert into "sizes" (size) values ('39');
@@ -26,7 +26,10 @@ insert into "sizes" (size) values ('XS');
 insert into "sizes" (size) values ('S');
 insert into "sizes" (size) values ('M');
 
-CREATE TABLE IF NOT EXISTS "sizes" (
-    sizeID serial PRIMARY KEY,
-    size VARCHAR(255)
-)
+-- Insert into colors
+insert into "colors" (color) values ('Black');
+insert into "colors" (color) values ('Blue');
+insert into "colors" (color) values ('Red');
+insert into "colors" (color) values ('Transparent');
+insert into "colors" (color) values ('Green');
+insert into "colors" (color) values ('Orange');
