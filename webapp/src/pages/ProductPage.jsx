@@ -12,6 +12,11 @@ function ProductPage() {
   return (
     <div style={mystyle}>
       <h1>Product page</h1>
+      <section>
+      <Header />
+      
+      <Footer />
+      </section>
       <p>
         Tried to display item with id {id}, but failed because this page is not
         fully implemented

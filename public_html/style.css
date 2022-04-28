@@ -733,6 +733,7 @@ a {
   display: grid;
   row-gap: 1.6rem;
   grid-template-columns: 20rem 50rem 50rem;
+  margin: 9.6rem;
 }
 
 
