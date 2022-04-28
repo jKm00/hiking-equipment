@@ -1,6 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 function SearchResultPage() {
   const { keyword } = useParams();
 
@@ -10,10 +13,14 @@ function SearchResultPage() {
   };
 
   return (
-    <div style={mystyle}>
-      <h1>Results for {keyword}</h1>
-      <p>Tried to display search results for {keyword}</p>
-    </div>
+    <>
+      <Navbar />
+      <div style={mystyle}>
+        <h1>Results for {keyword}</h1>
+        <p>Tried to display search results for {keyword}</p>
+      </div>
+      <Footer />
+    </>
   );
 }
 

@@ -36,6 +36,10 @@ button {
   /* light */
   --clr-light-400: #fff;
 
+  /* error */
+  --clr-error-200: #ff8080;
+  --clr-error-400: #ff3333;
+
   /* Shadow */
   --shadow-box: 0px 5px 10px rgba(0, 0, 0, 0.1);
   --shadow-txt: 0px 0px 10px rgba(0, 0, 0, 0.4);
@@ -149,4 +153,8 @@ a {
 .cta--small {
   display: inline-block;
   font-size: 1.28rem;
+}
+
+.cta--max-width {
+  width: 100%;
 }

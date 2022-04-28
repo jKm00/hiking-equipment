@@ -10,9 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -34,6 +32,8 @@ public class AuthenticationController {
      * @return Http.OK with JWT token, or Http. UNAUTHORIZED
      */
     @PostMapping("/api/authenticate")
+    // TODO: Remove this annotation before deployment. Only used while testing login from react.
+    @CrossOrigin
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
