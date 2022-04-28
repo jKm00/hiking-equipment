@@ -1,4 +1,4 @@
-import { setCookie } from "./cookies";
+import { deleteCookie, setCookie } from "./cookies";
 import { sendApiRequest } from "./request";
 
 /**
@@ -38,6 +38,12 @@ export function sendAuthenticationRequest(
       errorCallback();
     }
   );
+}
+
+export function deleteAuthorizationCookies() {
+  deleteCookie("jwt");
+  deleteCookie("current_username");
+  deleteCookie("current_user_roles");
 }
 
 /**

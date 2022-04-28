@@ -1,9 +1,10 @@
 .login--background {
+  --nav-height: 128px;
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--nav-height));
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("../img/01-robust-clothing-rainydude.jpg");
   background-size: cover;

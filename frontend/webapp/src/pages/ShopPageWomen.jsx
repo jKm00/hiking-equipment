@@ -1,6 +1,5 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 import ShopCategories from "../components/ShopCategories";
@@ -10,7 +9,6 @@ import "../styles/shop.css";
 function ShopPageWomen() {
   return (
     <>
-      <Navbar />
       <header className="shop-header shop-header--women">
         <h1 className="shop-header__title">Women</h1>
       </header>

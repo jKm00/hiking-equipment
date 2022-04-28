@@ -38,6 +38,7 @@ button {
 
   /* Shadow */
   --shadow-box: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  --shadow-box-strong: 0 5px 10px rgba(0, 0, 0, 0.5);
   --shadow-txt: 0px 0px 10px rgba(0, 0, 0, 0.4);
 
   /* Border radius */

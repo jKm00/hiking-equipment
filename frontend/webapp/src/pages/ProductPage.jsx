@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function ProductPage() {
@@ -14,7 +13,6 @@ function ProductPage() {
 
   return (
     <>
-      <Navbar />
       <div style={mystyle}>
         <h1>Product page</h1>
         <p>
