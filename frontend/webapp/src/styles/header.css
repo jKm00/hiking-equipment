@@ -1,0 +1,67 @@
+/*---------------
+    Header
+---------------*/
+
+.header {
+  grid-column: 1 / -1;
+  display: grid;
+  align-items: center;
+  grid-template-columns: inherit;
+  min-height: 75vh;
+  background-image: url("../img/fjelltopp-air.jpeg");
+  background-size: cover;
+  background-position: center;
+  color: var(--clr-light-400);
+}
+
+.header-carousel__img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.header-carousel__body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  height: 100%;
+  width: 70%;
+  max-width: 1200px;
+  min-width: 200px;
+  margin: auto;
+}
+
+.header-carousel__body__title {
+  max-width: 500px;
+  text-shadow: var(--shadow-txt);
+}
+
+.header-carousel__body__desc {
+  margin-bottom: 6.4rem;
+  max-width: 600px;
+  text-shadow: var(--shadow-txt);
+}
+
+/* Styles for swiper addons */
+
+.swiper {
+  --swiper-theme-color: var(--clr-accent-400);
+}
+
+.header .swiper-button-prev,
+.header .swiper-button-next {
+  --offset: 3%;
+  position: absolute;
+}
+
+.header .swiper-button-prev {
+  left: var(--offset);
+}
+
+.header .swiper-button-next {
+  right: var(--offset);
+}

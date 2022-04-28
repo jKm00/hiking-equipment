@@ -1,0 +1,169 @@
+/*---------------
+    Media queries
+--------------- */
+
+@media only screen and (min-width: 40em) {
+  /* ------ Campaigns ------ */
+  .campaigns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+    padding: 4.8rem 0 6.4rem 0;
+  }
+
+  .campaigns__title {
+    grid-column: 1 / -1;
+  }
+
+  .product-card {
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .product-card__img {
+    max-height: 25rem;
+  }
+
+  /* ------ Newsletter ------ */
+  .newsletter {
+    padding: 12.8rem 0;
+  }
+
+  /* ------ Shop ------ */
+  .shop-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 60em) {
+  /* ------ Campaigns ------ */
+  .campaigns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    padding: 4.8rem 0 9.6rem 0;
+  }
+
+  .product-card {
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .product-card__img {
+    max-height: 25rem;
+  }
+
+  /* ------ Reviews ------ */
+  .reviews {
+    padding: 9.6em 0 12.8rem 0;
+  }
+
+  .reviews--wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 4.8rem;
+  }
+
+  .reviews__title {
+    grid-column: 1 / -1;
+  }
+
+  .review {
+    align-content: start;
+    margin-bottom: 0;
+  }
+
+  /* ------ Company Info ------ */
+  .company-info {
+    padding: 12.8rem 0;
+  }
+
+  .company-article {
+    display: flex;
+    align-items: stretch;
+    gap: 4.8rem;
+    max-width: none;
+  }
+
+  .company-article:first-of-type {
+    margin-bottom: 9.6rem;
+  }
+
+  .company-article--wrapper {
+    align-self: center;
+  }
+
+  .company-article__img {
+    max-width: 50%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .company-article--mirrored img {
+    order: -1;
+  }
+
+  /* ------ Footer ------ */
+  .first-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "logo . socials"
+      "links business-hours contact-info";
+    row-gap: 6.4rem;
+    column-gap: 3.2rem;
+    padding: 12.8rem 0;
+  }
+
+  .footer__list,
+  .footer__list__link {
+    font-size: 1.6rem;
+  }
+
+  /* Footer item placement */
+  .first-footer__logo--wrapper {
+    grid-area: logo;
+  }
+
+  .socials {
+    grid-area: socials;
+    align-self: end;
+  }
+
+  .footer-list--link {
+    grid-area: links;
+  }
+
+  .footer-list--business-hours {
+    grid-area: business-hours;
+  }
+
+  .footer-list--contact-info {
+    grid-area: contact-info;
+  }
+
+  /* ------ Shop ------ */
+  .shop {
+    display: grid;
+    grid-template-columns: 22em 1fr;
+    gap: 1.6em;
+  }
+
+  .shop-header {
+    grid-column: 2 / -2;
+    margin: 4.8em 0 3.2em 0;
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 75em) {
+  /* ------ Shop ------ */
+  .shop-items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

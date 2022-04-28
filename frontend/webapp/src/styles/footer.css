@@ -1,0 +1,112 @@
+/*---------------
+    Footer
+---------------*/
+.footer {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  background: var(--clr-dark-900);
+}
+
+.footer svg {
+  height: 2.5rem;
+}
+
+/* ----- First footer ------ */
+.first-footer {
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 6.4rem 0;
+}
+
+/* Footer items styles */
+/* General list styles */
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.6rem;
+  color: var(--clr-light-400);
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+.footer-list svg {
+  display: inline-block;
+  height: 1.5rem;
+  margin-right: 0.8rem;
+  fill: var(--clr-dark-400);
+}
+
+.footer-list__item--darker {
+  color: var(--clr-dark-400);
+}
+
+.footer-list__link {
+  text-decoration: none;
+  color: var(--clr-light-400);
+  font-size: 1.2rem;
+}
+
+.footer-list__link:hover,
+.footer-list__link:focus {
+  text-decoration: underline;
+}
+
+/* Social list styles */
+.socials {
+  display: flex;
+  gap: 1.6rem;
+  list-style: none;
+}
+
+.socials svg {
+  fill: var(--clr-light-400);
+}
+
+.socials__link:hover svg,
+.socials__link:focus svg {
+  fill: var(--clr-accent-200);
+}
+
+/* Business hours modifierers */
+.footer__business-hours {
+  width: 20rem;
+}
+
+.footer__business-hours .footer__list__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ----- Second footer ------ */
+.second-footer {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  background: var(--clr-dark-1000);
+  padding: 1.2rem 0;
+}
+
+.second-footer--wrapper {
+  grid-column: 2 / -2;
+}
+
+.second-footer a {
+  color: var(--clr-light-400);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.second-footer a:hover,
+.second-footer a:focus {
+  text-decoration: underline;
+}
+
+.second-footer__copyright {
+  margin-bottom: 0.2rem;
+  color: var(--clr-dark-600);
+  font-size: 1.2rem;
+}
