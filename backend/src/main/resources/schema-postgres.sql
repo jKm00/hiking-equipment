@@ -10,27 +10,12 @@ CREATE TABLE IF NOT EXISTS "users" (
     address VARCHAR(255) NOT NULL
 )
 
-CREATE TABLE IF NOT EXISTS "roles" (
-    roleID serial PRIMARY KEY,
-    roleName VARCHAR(255) NOT NULL,
-    userID integer REFERENCES "users" (userID) NOT NULL
-)
-
-CREATE TABLE IF NOT EXISTS "carts" (
-    cartID serial PRIMARY KEY,
-    userID integer REFERENCES "users" (userID) NOT NULL
-)
-
-CREATE TABLE IF NOT EXISTS "orders" (
-    orderID serial PRIMARY KEY,
-    total_price int NOT NULL DEFAULT 0,
-    status VARCHAR(255) NOT NULL, 
-    userID integer REFERENCES "users" (userID)
-)
-
-CREATE TABLE IF NOT EXISTS "order_products" (
-    orderID integer REFERENCES "orders" (orderID) NOT NULL,
-    productID integer REFERENCES "products" (productID) NOT NULL,
+CREATE TABLE IF NOT EXISTS "discounts" (
+    discountID serial PRIMARY KEY,
+    discount_name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    discount_percentage VARCHAR(255) NOT NULL,
+    active BOOLEAN DEFAULT false
 )
 
 CREATE TABLE IF NOT EXISTS "products" (
@@ -43,25 +28,50 @@ CREATE TABLE IF NOT EXISTS "products" (
     discoundID integer REFERENCES "discounts" (discountID)
 )
 
-CREATE TABLE IF NOT EXISTS "product_details" (
-    product_detailsID serial PRIMARY KEY,
-    productID integer REFERENCES "products" (productID),
-    details VARCHAR(255) NOT NULL
+CREATE TABLE IF NOT EXISTS "sizes" (
+    sizeID serial PRIMARY KEY,
+    size VARCHAR(255)
+)
+
+CREATE TABLE IF NOT EXISTS "colors" (
+    colorID serial PRIMARY KEY,
+    color VARCHAR(255)
+)
+
+CREATE TABLE IF NOT EXISTS "roles" (
+    roleID serial PRIMARY KEY,
+    role_name VARCHAR(255) NOT NULL,
+    userID integer REFERENCES "users" (userID) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS "carts" (
+    cartID serial PRIMARY KEY,
+    userID integer REFERENCES "users" (userID) NOT NULL
 )
 
 CREATE TABLE IF NOT EXISTS "cart_products" (
     cartID integer REFERENCES "carts" (cartID),
-    productID integer REFERENCES "products" (cartID),
+    productID integer REFERENCES "products" (productID),
     product_size VARCHAR(255) NOT NULL,
-    product_color VARCHAR(255) NOT NULL,
+    product_color VARCHAR(255) NOT NULL
 )
 
-CREATE TABLE IF NOT EXISTS "discounts" (
-    discountID serial PRIMARY KEY,
-    discount_name VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    discount_percentage VARCHAR(255) NOT NULL,
-    active BOOLEAN DEFAULT false
+CREATE TABLE IF NOT EXISTS "orders" (
+    orderID serial PRIMARY KEY,
+    total_price int NOT NULL DEFAULT 0,
+    status VARCHAR(255) NOT NULL, 
+    userID integer REFERENCES "users" (userID)
+)
+
+CREATE TABLE IF NOT EXISTS "order_products" (
+    orderID integer REFERENCES "orders" (orderID) NOT NULL,
+    productID integer REFERENCES "products" (productID) NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS "product_details" (
+    product_detailsID serial PRIMARY KEY,
+    productID integer REFERENCES "products" (productID),
+    details VARCHAR(255) NOT NULL
 )
 
 CREATE TABLE IF NOT EXISTS "product_entries" (
@@ -71,14 +81,4 @@ CREATE TABLE IF NOT EXISTS "product_entries" (
     quanitity integer NOT NULL DEFAULT 0,
 
     PRIMARY KEY (productID, sizeID, colorID)
-)
-
-CREATE TABLE IF NOT EXISTS "sizes" (
-    sizeID serial PRIMARY KEY,
-    size VARCHAR(255)
-)
-
-CREATE TABLE IF NOT EXISTS "colors" (
-    colorID serial PRIMARY KEY,
-    color VARCHAR(255)
 )
