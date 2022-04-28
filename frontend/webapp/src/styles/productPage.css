@@ -1,0 +1,10 @@
+/*---------------
+    product page
+---------------*/
+
+.layout {
+    grid-column: 2 / -2;
+    display: grid;
+    row-gap: 1.6rem;
+    grid-template-columns: 20rem 50rem 50rem;
+  }
