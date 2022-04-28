@@ -82,3 +82,10 @@ CREATE TABLE IF NOT EXISTS "product_entries" (
 
     PRIMARY KEY (productID, sizeID, colorID)
 )
+
+CREATE TABLE IF NOT EXISTS "images" (
+    imageID serial PRIMARY KEY,
+    image bytea NOT NULL,
+    thumbnail bytea NOT NULL,
+    productID integer REFERENCES "products" (productID)
+)
