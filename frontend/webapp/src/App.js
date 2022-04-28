@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { getCookie } from "./tools/cookies";
 
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
@@ -16,6 +17,17 @@ import "./styles/mediaQueries.css";
 
 function App() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const username = getCookie("current_username");
+    const roles = getCookie("current_user_roles");
+    if (username !== "" && roles !== "") {
+      setUser({
+        username: username,
+        roles: roles,
+      });
+    }
+  }, []);
 
   return (
     <>
