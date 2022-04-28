@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ShopCategories from "../components/ShopCategories";
 import ProductCard from "../components/ProductCard";
@@ -11,7 +10,6 @@ import "../styles/shop.css";
 function ShopPage() {
   return (
     <>
-      <Navbar />
       <header className="shop-header">
         <h1 className="shop-header__title">Shop</h1>
       </header>

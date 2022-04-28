@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import ShopPageMen from "./pages/ShopPageMen";
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <>
+      <Navbar user={user} setUser={setUser} />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
