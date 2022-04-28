@@ -92,7 +92,8 @@ CREATE TABLE IF NOT EXISTS "images" (
 )
 
 CREATE TABLE IF NOT EXISTS "user_roles" (
+    userID integer REFERENCES "users" (userID),
     roleID integer REFERENCES "roles" (roleID),
-    
+
     PRIMARY KEY (userID, roleID)
 )

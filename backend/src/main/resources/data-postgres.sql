@@ -1,5 +1,4 @@
 -- Insert data into products
--- ADD FK
 insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Hiking boots', 'Keeps your feet warm', 2400, 'Boots', 'Unisex', false, NULL);
 insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Winter sweater', 'Holds the heat effectively', 800, 'Sweaters', 'Unisex', false, NULL);
 insert into "products" (product_name, description, price, category, sex, featured, discountID) values ('Winter hat', 'Fits well on most heads', 200, 'Hats', 'Unisex', false, 1);
@@ -40,7 +39,6 @@ insert into "colors" (color) values ('Norwegian flag');
 insert into "colors" (color) values ('Swedish flag');
 
 -- Insert into roles
--- ADD FK
 insert into "roles" (role_name) values ("admin");
 insert into "roles" (role_name) values ("user");
 
