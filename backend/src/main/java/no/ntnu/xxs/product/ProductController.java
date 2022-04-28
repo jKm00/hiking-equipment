@@ -23,7 +23,6 @@ public class ProductController {
      * @return a list of all products
      */
     @GetMapping
-    @PreAuthorize("hasRole('USER')")
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
     }

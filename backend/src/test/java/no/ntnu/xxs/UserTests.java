@@ -20,11 +20,10 @@ public class UserTests {
      */
     @Test
     public void testCreatingUser() {
-        User user = new User("Arne", "Nilsen", "Arne", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
+        User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
 
         assertEquals("Arne", user.getFirstName());
         assertEquals("Nilsen", user.getLastName());
-        assertEquals("Arne", user.getUsername());
         assertEquals("Arne@nilsen.no", user.getEmail());
         assertEquals("Norway", user.getCountry());
         assertEquals("6004", user.getZipCode());
@@ -37,7 +36,7 @@ public class UserTests {
      */
     @Test
     public void testAddingRoleToUser() {
-        User user = new User("Arne", "Nilsen", "Arne", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
+        User user = new User("Arne", "Nilsen", "Arne@nilsen.no", "Arne123", "Norway", "6004", "Ålesund", "Strandgata 10");
 
         user.addRole(new Role("ADMIN"));
         user.addRole(new Role("USER"));
