@@ -17,3 +17,7 @@
 .categories__item:hover {
   text-decoration: underline;
 }
+
+.categories__item--selected {
+  text-decoration: underline;
+}

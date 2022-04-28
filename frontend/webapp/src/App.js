@@ -34,10 +34,14 @@ function App() {
       <Navbar user={user} setUser={setUser} />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop/all" element={<ShopPage />} />
+        <Route path="/shop/all/:category" element={<ShopPage />} />
         <Route path="/shop/men" element={<ShopPageMen />} />
+        <Route path="/shop/men/:category" element={<ShopPageMen />} />
         <Route path="/shop/women" element={<ShopPageWomen />} />
+        <Route path="/shop/women/:category" element={<ShopPageWomen />} />
         <Route path="/shop/animals" element={<ShopPageAnimal />} />
+        <Route path="/shop/animals/:category" element={<ShopPageAnimal />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
