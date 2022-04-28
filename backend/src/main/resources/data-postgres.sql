@@ -25,7 +25,9 @@ insert into "sizes" (size) values ('47');
 insert into "sizes" (size) values ('XS');
 insert into "sizes" (size) values ('S');
 insert into "sizes" (size) values ('M');
+insert into "sizes" (size) values ('One size');
 insert into "sizes" (size) values ('Small dogs');
+insert into "sizes" (size) values ('0.7L');
 
 -- Insert into colors
 insert into "colors" (color) values ('Black');
@@ -34,6 +36,8 @@ insert into "colors" (color) values ('Red');
 insert into "colors" (color) values ('Transparent');
 insert into "colors" (color) values ('Green');
 insert into "colors" (color) values ('Orange');
+insert into "colors" (color) values ('Norwegian flag');
+insert into "colors" (color) values ('Swedish flag');
 
 -- Insert into roles
 -- ADD FK
@@ -52,3 +56,64 @@ insert into "product_detals" (productID, details) values (4, 'Hook for easy atta
 insert into "product_detals" (productID, details) values (4, 'Volume: 0.7 liters');
 -- Clothes set for dogs
 insert into "product_detals" (productID, details) values (5, 'Only for small dogs (no larger than pitbull)');
+
+-- Insert into product_entries
+--black boots
+insert into "product_entries" (productID, sizeID, colorID) values (1, 1 , 1 , 125);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 2 , 1 , 13);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 3 , 1 , 23);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 4 , 1 , 19);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 5 , 1 , 53);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 6 , 1 , 39);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 7 , 1 , 12);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 8 , 1 , 13);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 9 , 1 , 7);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 10 , 1 , 5);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 11 , 1 , 2);
+--blue boots
+insert into "product_entries" (productID, sizeID, colorID) values (1, 1 , 2 , 123);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 2 , 2 , 11);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 3 , 2 , 13);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 4 , 2 , 15);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 5 , 2 , 56);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 6 , 2 , 33);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 7 , 2 , 22);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 8 , 2 , 15);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 9 , 2 , 2);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 10 , 2 , 1);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 11 , 2 , 1);
+--red boots
+insert into "product_entries" (productID, sizeID, colorID) values (1, 1 , 3 , 51);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 2 , 3 , 3);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 3 , 3 , 64);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 4 , 3 , 19);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 5 , 3 , 33);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 6 , 3 , 59);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 7 , 3 , 12);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 8 , 3 , 23);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 9 , 3 , 6);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 10 , 3 , 5);
+insert into "product_entries" (productID, sizeID, colorID) values (1, 11 , 3 , 3);
+--green winter sweater
+insert into "product_entries" (productID, sizeID, colorID) values (2, 12 , 5 , 10);
+insert into "product_entries" (productID, sizeID, colorID) values (2, 13 , 5 , 9);
+insert into "product_entries" (productID, sizeID, colorID) values (2, 14 , 5 , 2);
+--orange winter sweater 
+insert into "product_entries" (productID, sizeID, colorID) values (2, 12 , 6 , 6);
+insert into "product_entries" (productID, sizeID, colorID) values (2, 13 , 6 , 10);
+insert into "product_entries" (productID, sizeID, colorID) values (2, 14 , 6 , 9);
+--winter hat
+insert into "product_entries" (productID, sizeID, colorID) values (3, 15 , 7 , 1);
+insert into "product_entries" (productID, sizeID, colorID) values (3, 15 , 7 , 23);
+--transparent water bottle
+insert into "product_entries" (productID, sizeID, colorID) values (4, 15 , 7 , 0);
+
+
+
+CREATE TABLE IF NOT EXISTS "product_entries" (
+    productID integer REFERENCES "products" (productID),
+    sizeID integer REFERENCES "sizes" (sizeID),
+    colorID integer REFERENCES "colors" (colorID),
+    quanitity integer NOT NULL DEFAULT 0,
+
+    PRIMAR

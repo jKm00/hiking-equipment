@@ -90,3 +90,9 @@ CREATE TABLE IF NOT EXISTS "images" (
     thumbnail bytea NOT NULL,
     productID integer REFERENCES "products" (productID)
 )
+
+CREATE TABLE IF NOT EXISTS "user_roles" (
+    roleID integer REFERENCES "roles" (roleID),
+    
+    PRIMARY KEY (userID, roleID)
+)
