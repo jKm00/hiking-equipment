@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Represents a product that is soled in the web-application
+ * Represents a product that is sold in the web-application
  */
 @Entity
 @Table(name = "products")
