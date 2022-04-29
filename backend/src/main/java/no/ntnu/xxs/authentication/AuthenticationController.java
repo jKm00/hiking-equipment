@@ -38,15 +38,15 @@ public class AuthenticationController {
     // TODO: Remove this annotation before deployment. Only used while testing login from react.
     @CrossOrigin
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getEmail(),
-                        authenticationRequest.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    authenticationRequest.getEmail(),
+                    authenticationRequest.getPassword()));
+        } catch (BadCredentialsException e) {
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+        }
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
 
         final String jwt = jwtUtil.generateToken(userDetails);
 

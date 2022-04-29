@@ -21,7 +21,7 @@ public class UserController {
      * @return a list of all users in the database
      */
     @GetMapping
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<User> getAllUsers() {
         return this.userService.getAllUsers();
     }
