@@ -15,17 +15,17 @@ export function sendAuthenticationRequest(
   errorCallback
 ) {
   const postData = {
-    username: username,
+    email: username,
     password: password,
   };
   sendApiRequest(
     "POST",
-    "/authenticate",
+    "/auth/signin",
     function (jwtResponse) {
       setCookie("jwt", jwtResponse.jwt);
       const userData = parseJwtUser(jwtResponse.jwt);
       if (userData) {
-        setCookie("current_username", userData.username);
+        setCookie("current_email", userData.username);
         setCookie("current_user_roles", userData.roles.join(","));
         successCallback(userData);
       }
@@ -42,7 +42,7 @@ export function sendAuthenticationRequest(
 
 export function deleteAuthorizationCookies() {
   deleteCookie("jwt");
-  deleteCookie("current_username");
+  deleteCookie("current_email");
   deleteCookie("current_user_roles");
 }
 

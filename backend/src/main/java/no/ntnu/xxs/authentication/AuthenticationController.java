@@ -1,8 +1,6 @@
 package no.ntnu.xxs.authentication;
 
-import no.ntnu.xxs.security.AuthenticationRequest;
-import no.ntnu.xxs.security.AuthenticationResponse;
-import no.ntnu.xxs.security.JwtUtil;
+import no.ntnu.xxs.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
