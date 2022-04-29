@@ -56,7 +56,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // Public endpoints
                 // TODO: Make product endpoint public. This is made private only for demo purposes
                 .antMatchers("/api/auth/signin").permitAll()
-                .antMatchers("/api/hello").permitAll()
                 .antMatchers("/api/products").permitAll()
                 // Every other endpoints need one form of authentication
                 // What type of authentication is specified with an annotation over each endpoint
