@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
@@ -10,62 +10,35 @@ import "../styles/shop.css";
 function ShopPageWomen() {
   const { category } = useParams();
 
+  const [products, setProducts] = useState([]);
+
   return (
     <>
       <header className="shop-header shop-header--women">
         <h1 className="shop-header__title">Women</h1>
       </header>
       <section className="shop">
-        <ShopCategories selected={category} sex="women" />
+        <ShopCategories
+          selected={category}
+          sex="women"
+          updateProducts={setProducts}
+        />
         <div className="shop-items">
-          <ProductCard
-            img="/img/articles/01-dog-boots-green.jpg"
-            imgAlt="Military green dog boots"
-            title="Dog set"
-            desc="For small dogs. Includes boots, pants and sweater"
-            price="700,-"
-            id="1"
-          />
-          <ProductCard
-            img="/img/articles/water-bottle-blue.jpeg"
-            imgAlt="Blue water bottle"
-            title="Water bottle"
-            desc="0.7 Liters, with hook for easy attachment."
-            price="120,-"
-            id="2"
-          />
-          <ProductCard
-            img="/img/articles/winter-sweater-green.jpg"
-            imgAlt="Military green sweater"
-            title="Winter Sweater"
-            desc="Holds the heat effectively."
-            price="800,-"
-            id="3"
-          />
-          <ProductCard
-            img="/img/articles/01-dog-boots-green.jpg"
-            imgAlt="Military green dog boots"
-            title="Dog set"
-            desc="For small dogs. Includes boots, pants and sweater"
-            price="700,-"
-            id="1"
-          />
-          <ProductCard
-            img="/img/articles/water-bottle-blue.jpeg"
-            imgAlt="Blue water bottle"
-            title="Water bottle"
-            desc="0.7 Liters, with hook for easy attachment."
-            price="120,-"
-            id="2"
-          />
-          <ProductCard
-            img="/img/articles/winter-sweater-green.jpg"
-            imgAlt="Military green sweater"
-            title="Winter Sweater"
-            desc="Holds the heat effectively."
-            price="800,-"
-            id="3"
-          />
+          {products.length === 0 ? (
+            <p>Loading...</p>
+          ) : (
+            products.map((product) => (
+              <ProductCard
+                key={product.id}
+                img="/img/articles/winter-sweater-green.jpg"
+                imgAlt={product.productName}
+                title={product.productName}
+                desc={product.description}
+                price={product.price}
+                id={product.id}
+              />
+            ))
+          )}
         </div>
       </section>
       <Footer />
