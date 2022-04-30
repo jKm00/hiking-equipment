@@ -4,9 +4,9 @@
 
 .shop-header {
   grid-column: 1 / -1;
-  background-image: url("../img/04-going-hiking-two-people.jpg");
+  background-image: url("../img/shop-header/girl-hiking-compressed.jpg");
   background-size: cover;
-  background-position: 50% 25%;
+  background-position: 50% 35%;
   color: var(--clr-light-400);
 }
 
@@ -32,19 +32,19 @@
 /* ----- Mens shop ------ */
 
 .shop-header--men {
-  background-image: url("../img/01-robust-clothing-anorak.jpg");
+  background-image: url("../img/shop-header/man-hiking-compressed.jpg");
 }
 
 /* ----- Womans shop ------ */
 
 .shop-header--women {
-  background-image: url("../img/02-people-outdoors-two-girls.jpg");
-  background-position: 50% 20%;
+  background-image: url("../img/shop-header/girl-hiking-compressed.jpg");
+  background-position: 50% 40%;
 }
 
 /* ----- Animals shop ------ */
 
 .shop-header--animals {
-  background-image: url("../img/dog-on-hike.jpeg");
-  background-position: 50% 75%;
+  background-image: url("../img/shop-header/dog-hiking-compressed.jpg");
+  background-position: 50% 70%;
 }

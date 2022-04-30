@@ -34,6 +34,6 @@ public class UserRepositoryTests {
         arne.addRole(user);
         userRepository.save(arne);
 
-        assertEquals(1, userRepository.count());
+        assertEquals(3, userRepository.count());
     }
 }

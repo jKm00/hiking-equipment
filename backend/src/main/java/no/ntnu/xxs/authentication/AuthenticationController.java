@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * A controller responsible for authentication
- */
+* A controller responsible for authentication
+*/
 @RestController
 @RequestMapping("/api/auth")
 public class AuthenticationController {
@@ -22,7 +22,9 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtUtil jwtUtil;   
+    @Autowired
+    private UserSignUpService userSignUpService;
 
     /**
      * HTTP POST request to /api/authenticate
@@ -48,4 +50,29 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
+    
+
+    @PostMapping("/api/signup")
+    public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
+        // Create new user's account
+        User user = new User(
+        signUpRequest.getFirstName(),
+        signUpRequest.getLastName(),
+        signUpRequest.getUsername(),
+        signUpRequest.getEmail(),
+        signUpRequest.getPassword(),
+        signUpRequest.getCountry(),
+        signUpRequest.getZipCode(),
+        signUpRequest.getCity(),
+        signUpRequest.getAddress());
+        userSignUpService.signUp(user);
+        return ResponseEntity.ok(body("User registered successfully"));
+    }
+
+
+    private Object body(String string) {
+        return string;
+    }
+
+
 }
