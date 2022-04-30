@@ -42,10 +42,8 @@
 .form__error-msg {
   font-size: 1.28rem;
   text-align: center;
-  color: var(--clr-light-400);
+  color: var(--clr-error-400);
   padding: 0.4rem 0;
-  background-color: var(--clr-error-200);
-  outline: 2px solid var(--clr-error-400);
 
   transition: opacity 250ms ease-in-out;
 }

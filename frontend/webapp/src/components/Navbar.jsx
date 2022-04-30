@@ -80,7 +80,12 @@ function Navbar({ user, setUser }) {
         </Link>
         <ul className="first-nav__icons">
           <li className="first-nav__item">
-            <button className="btn" onClick={doToggleSearch} data-search-btn>
+            <button
+              aria-label="search-bar toggle"
+              className="btn"
+              onClick={doToggleSearch}
+              data-search-btn
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -94,14 +99,18 @@ function Navbar({ user, setUser }) {
             </button>
           </li>
           <li className="first-nav__item">
-            <button className="first-nav__btn">
+            <button aria-label="customer service" className="first-nav__btn">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path d="M191.1 224c0-17.72-14.34-32.04-32-32.04L144 192c-35.34 0-64 28.66-64 64.08v47.79C80 339.3 108.7 368 144 368H160c17.66 0 32-14.36 32-32.06L191.1 224zM256 0C112.9 0 4.583 119.1 .0208 256L0 296C0 309.3 10.75 320 23.1 320S48 309.3 48 296V256c0-114.7 93.34-207.8 208-207.8C370.7 48.2 464 141.3 464 256v144c0 22.09-17.91 40-40 40h-110.7C305 425.7 289.7 416 272 416H241.8c-23.21 0-44.5 15.69-48.87 38.49C187 485.2 210.4 512 239.1 512H272c17.72 0 33.03-9.711 41.34-24H424c48.6 0 88-39.4 88-88V256C507.4 119.1 399.1 0 256 0zM368 368c35.34 0 64-28.7 64-64.13V256.1C432 220.7 403.3 192 368 192l-16 0c-17.66 0-32 14.34-32 32.04L320 335.9C320 353.7 334.3 368 352 368H368z" />
               </svg>
             </button>
           </li>
           <li className="first-nav__item">
-            <Link to="/cart" className="first-nav__btn">
+            <Link
+              to="/cart"
+              className="first-nav__btn"
+              aria-label="shopping cart"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <path d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z" />
               </svg>
@@ -109,6 +118,7 @@ function Navbar({ user, setUser }) {
           </li>
           <li className="first-nav__item">
             <button
+              aria-label="user-details"
               className="first-nav__btn"
               onClick={toggleUserDetails}
               data-user-details-element
@@ -191,6 +201,7 @@ function Navbar({ user, setUser }) {
             data-search-input
           />
           <button
+            aria-label="search"
             className="search-bar__btn"
             onClick={doSearch}
             data-search-btn
