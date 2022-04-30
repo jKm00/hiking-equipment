@@ -1,6 +1,9 @@
 package no.ntnu.xxs.authentication;
 
 import no.ntnu.xxs.security.*;
+import no.ntnu.xxs.user.User;
+import no.ntnu.xxs.user.UserAlreadyExistException;
+import no.ntnu.xxs.user.UserSignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +61,6 @@ public class AuthenticationController {
         User user = new User(
         signUpRequest.getFirstName(),
         signUpRequest.getLastName(),
-        signUpRequest.getUsername(),
         signUpRequest.getEmail(),
         signUpRequest.getPassword(),
         signUpRequest.getCountry(),
