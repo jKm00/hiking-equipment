@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchProducts } from "../tools/products";
 
 import "../styles/categories.css";
 
-function ShopCategories({ selected, sex, updateProducts }) {
+function ShopCategories({ category, sex, updateProducts }) {
   useEffect(() => {
-    fetchProducts(
-      selected,
-      sex,
-      function (response) {
-        updateProducts(response);
-      },
-      function (error) {
-        console.error("Could not load products: " + error);
-      }
-    );
-  }, [selected]);
+    updateProducts(sex, category);
+  }, [category]);
 
   return (
     <aside className="categories">
@@ -24,7 +14,7 @@ function ShopCategories({ selected, sex, updateProducts }) {
       <Link
         to={"/shop/" + sex}
         className={
-          selected == undefined
+          category == undefined
             ? "categories__item categories__item--selected"
             : "categories__item"
         }
@@ -34,7 +24,7 @@ function ShopCategories({ selected, sex, updateProducts }) {
       <Link
         to={"/shop/" + sex + "/boots"}
         className={
-          selected === "boots"
+          category === "boots"
             ? "categories__item categories__item--selected"
             : "categories__item"
         }
@@ -44,7 +34,7 @@ function ShopCategories({ selected, sex, updateProducts }) {
       <Link
         to={"/shop/" + sex + "/sweater"}
         className={
-          selected === "sweater"
+          category === "sweater"
             ? "categories__item categories__item--selected"
             : "categories__item"
         }
@@ -55,7 +45,7 @@ function ShopCategories({ selected, sex, updateProducts }) {
       <Link
         to={"/shop/" + sex + "/hats"}
         className={
-          selected === "hats"
+          category === "hats"
             ? "categories__item categories__item--selected"
             : "categories__item"
         }
