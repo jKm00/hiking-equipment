@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/categories.css";
 
-function ShopCategories({ category, sex, updateProducts }) {
+function ShopCategories({ sex, category, updateProducts }) {
   useEffect(() => {
     updateProducts(sex, category);
   }, [category]);

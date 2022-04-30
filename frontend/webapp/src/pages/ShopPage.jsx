@@ -15,7 +15,6 @@ function ShopPage() {
   const { sex } = useParams();
   const { category } = useParams();
   const [products, setProducts] = useState([]);
-
   const [title, setTitle] = useState("");
   const [headerStyle, setHeaderStyle] = useState("");
 
@@ -72,8 +71,8 @@ function ShopPage() {
       <ShopHeader headerStyle={headerStyle} title={title} />
       <section className="shop">
         <ShopCategories
-          category={category}
           sex={sex}
+          category={category}
           updateProducts={updateProducts}
         />
         <div className="shop-items">
