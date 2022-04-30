@@ -11,7 +11,7 @@ function ProductCard({ img, imgAlt, title, desc, price, id }) {
         <div className="product-card__body">
           <h3 className="product-card__body__title">{title}</h3>
           <p className="product-card__body__desc">{desc}</p>
-          <p className="product-card__body__price">{price},-</p>
+          <p className="product-card__body__price">{price} ,-</p>
           <p className="cta cta--small">View item</p>
         </div>
       </article>
