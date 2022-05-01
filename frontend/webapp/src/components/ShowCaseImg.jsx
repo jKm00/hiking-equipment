@@ -14,13 +14,15 @@ import "../styles/showCaseImg.css";
 
 
 
-function ShowCaseImg({ bigImg, bigImgAlt, smallImg, smallImgAlt, smallImg2, smallImg2Alt}) {
+function ShowCaseImg({ bigImg, bigImgAlt, smallImg, smallImgAlt, smallImg2, smallImg2Alt }) {
   return (
-      <section>
-            <img src={bigImg} alt={bigImgAlt} className="big__images" />
-            <img src={smallImg} alt={smallImgAlt} className="small__images" />
-            <img src={smallImg2} alt={smallImg2Alt} className="small__images" />
-      </section>
+      <><div className="small__images">
+      <img src={smallImg} alt={smallImgAlt} />
+      <img src={smallImg2} alt={smallImg2Alt} />
+    </div><div className="big__images">
+        <img src={bigImg} alt={bigImgAlt} />
+      </div></>
+// fikk opp quick fix wrap in jsx fragment og da funket griden
   );
 }
 

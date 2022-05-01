@@ -2,6 +2,15 @@
     showcase card body
 ---------------*/
 
+.showcase__body {
+  grid-column: 3 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 1.6rem;
+}
+
+
 .card__body__title{
     display: flex;
     justify-self: flex-start;
@@ -23,6 +32,29 @@
     padding: 0rem 0rem 1.6rem 2.4rem;
   }
   
+  .color_button span{
+    width: 4rem;
+    display: flex;
+    border: 2rem solid #008000;
+    background-color: green;
+    justify-self: flex-start;
+    order: 4;
+    margin: 0rem 1.6rem 2.4rem 2.4rem;
+        /*---------------
+      kan forbedres til en color button klasse
+  ---------------*/
+  }
+  
+  .color_button2 span{
+    width: 4rem;
+    display: flex;
+    border: 2rem solid #ffa500;
+    background-color: orange;
+    justify-self: flex-start;
+    order: 4;
+    margin: 0rem 1.6rem 2.4rem 0rem;
+  }
+
   .size_selector_text{
     display: flex;
     justify-self: flex-start;
@@ -52,7 +84,24 @@
   #cta--add--to--cart {
     display: block;
     justify-self: flex-start;
+    order: 7;
     padding: 0.8rem 0rem 0.8rem 0rem;
     margin: 6.4rem 2.4rem 2.4rem 2.4rem;
     text-align: center;
   }
+
+  .cta {
+    display: inline-block;
+    text-decoration: none;
+    color:var(--clr-dark-800);
+    background-color: var(--clr-accent-400);
+    border-bottom:2px solid var(--clr-accent-400);
+    border-radius: var(--br);
+    padding:.8em 1.6em;
+    transition:background-color 150ms ease-in-out;
+}
+
+.cta--small {
+  display: inline-block;
+  font-size: 1.28rem;
+}
