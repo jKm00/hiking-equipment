@@ -3,14 +3,14 @@ import "../styles/table.css";
 
 export default function ProductForm({ products }) {
   /**
-   * Handles adding products
+   * TODO: Handles adding products
    */
   function handleSubmit(event) {
     event.preventDefault();
   }
 
   /**
-   * Handles deleting products
+   * TODO: Handles deleting products
    */
   function handleDeletion(event) {
     const productId = event.target.value;
