@@ -8,6 +8,7 @@ import ShopPage from "./pages/ShopPage";
 import ProductPage from "./pages/ProductPage";
 import SearchResultPage from "./pages/SearchResultPage";
 import LoginPage from "./pages/LoginPage";
+import AdminPage from "./pages/AdminPage";
 
 import "./styles/global.css";
 import "./styles/mediaQueries.css";
@@ -16,7 +17,8 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const username = getCookie("current_username");
+    console.log("Hello");
+    const username = getCookie("current_email");
     const roles = getCookie("current_user_roles");
     if (username !== "" && roles !== "") {
       setUser({
@@ -36,6 +38,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </>
   );
