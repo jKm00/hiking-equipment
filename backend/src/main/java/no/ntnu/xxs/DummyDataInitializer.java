@@ -69,8 +69,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         roleRepository.save(admin);
         roleRepository.save(user);
 
-        User adminUser = new User("Adam", "Jensen", "admin", "adam@gmail.com", "$2a$10$2v2cawu29cb35WJKxVajBeNE2sXC0AD95.LWAjT5CpHfGgEULyF1m", "Norway", "1302", "Langehus", "Grensegata 89");
-        User carl = new User("Carl", "Hansen", "Carl", "carl@gmail.com", "$2a$10$F1oGKj9Cw3T78qzChXsaTuYX90/MWu5XkknWDbpwglwry9Bh2h9OK", "Norway", "1884", "Trondheim", "Kongens gate 12");
+        // Password = adam123
+        User adminUser = new User("Adam", "Jensen", "adam@gmail.com", "$2a$10$Z1Hv5cq1uzscCA94L/GqgOOvNfQiEH8izQimZBTOCopLuF18Ggqg.", "Norway", "1302", "Langehus", "Grensegata 89");
+        // Password = carl123
+        User carl = new User("Carl", "Hansen", "carl@gmail.com", "$2a$10$bUi6E8PPgwlUhBszkEugw.Ma/exSzgXUhMZTf4Bf/SvcaWwonHKSO", "Norway", "1884", "Trondheim", "Kongens gate 12");
 
         adminUser.addRole(admin);
         adminUser.addRole(user);

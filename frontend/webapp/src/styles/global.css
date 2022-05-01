@@ -37,8 +37,7 @@ button {
   --clr-light-400: #fff;
 
   /* error */
-  --clr-error-200: #ff8080;
-  --clr-error-400: #ff3333;
+  --clr-error-400: #e12c2c;
 
   /* Shadow */
   --shadow-box: 0px 5px 10px rgba(0, 0, 0, 0.1);
@@ -138,10 +137,11 @@ a {
   text-decoration: none;
   color: var(--clr-dark-800);
   background-color: var(--clr-accent-400);
-  border-bottom: 2px solid var(--clr-accent-400);
+  border: 2px solid var(--clr-accent-400);
   border-radius: var(--br);
   padding: 0.8em 1.6em;
   transition: background-color 150ms ease-in-out;
+  cursor: pointer;
 }
 
 .cta:hover,

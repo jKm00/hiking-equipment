@@ -23,7 +23,8 @@ public class ProductController {
      * @return a list of all products
      */
     @GetMapping
-    @PreAuthorize("hasRole('USER')")
+    // TODO: remove this in deployment
+    @CrossOrigin
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
     }
@@ -34,7 +35,6 @@ public class ProductController {
      * @return an item with same id as given
      */
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Product> getProductById(@PathVariable long id) {
         ResponseEntity<Product> response;
         Product product = this.productService.getProductById(id);
