@@ -89,6 +89,13 @@ svg {
   color: var(--clr-light-400);
 }
 
+.box {
+  border-radius: 5px;
+  box-shadow: var(--shadow-box);
+  background-color: var(--clr-light-400);
+  padding: 2.4rem 3.2rem;
+}
+
 /*---------------
     Typography
 ---------------*/
@@ -156,6 +163,10 @@ a {
 .cta--small {
   display: inline-block;
   font-size: 1.28rem;
+}
+
+.cta--tiny {
+  font-size: 1.024rem;
 }
 
 .cta--max-width {

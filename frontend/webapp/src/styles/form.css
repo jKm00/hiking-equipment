@@ -1,14 +1,17 @@
 .form {
   background-color: var(--clr-light-400);
-  padding: 2.4em;
   font-size: 1.6rem;
   width: 90%;
   max-width: 500px;
 }
 
-.form--box {
-  border-radius: 5px;
-  box-shadow: var(--shadow-box);
+.form--padding {
+  padding: 2.4em;
+}
+
+.form--stretch {
+  width: 100%;
+  max-width: none;
 }
 
 .form__logo {
@@ -20,6 +23,7 @@
 .form__title {
   font-size: 3.906rem;
   font-weight: bold;
+  margin-bottom: 1.6rem;
 }
 
 .form__title--small {
@@ -32,6 +36,11 @@
   gap: 1.2em;
   border: none;
   margin: 4.8em 0 3.2em 0;
+}
+
+.form__section--horizontal {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .form__section--no-space {

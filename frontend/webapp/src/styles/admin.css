@@ -2,7 +2,7 @@
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: start;
   row-gap: 2.4rem;
   column-gap: 1.6rem;
   padding: 1.6rem;

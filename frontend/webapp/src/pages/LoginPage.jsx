@@ -27,7 +27,12 @@ export default function LoginPage({ setUser }) {
 
   return (
     <div className="login--background">
-      <form action="" method="POST" className="form" onSubmit={handleSubmit}>
+      <form
+        action=""
+        method="POST"
+        className="form form--padding"
+        onSubmit={handleSubmit}
+      >
         <Link to="/" className="form__logo logo">
           XXS
         </Link>
