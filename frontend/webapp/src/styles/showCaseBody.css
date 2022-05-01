@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 1.6rem;
+  padding-left: 2.4rem;
 }
 
 
@@ -15,51 +15,48 @@
     display: flex;
     justify-self: flex-start;
     order: 0;
-    padding: 2.4rem 0rem 1.6rem 2.4rem;
+    padding: 2.4rem 0rem 1.6rem 0rem;
   }
   
   .card__body__price {
     display: flex;
     justify-self: flex-start;
     order: 1;
-    padding: 0rem 0rem 6.4rem 2.4rem;
+    padding: 0rem 0rem 6.4rem 0rem;
   }
   
   .card__body__color{
     display: flex;
     justify-self: flex-start;
     order: 3;
-    padding: 0rem 0rem 1.6rem 2.4rem;
+    padding: 0rem 0rem 1.6rem 0rem;
   }
   
-  .color_button span{
-    width: 4rem;
-    display: flex;
-    border: 2rem solid #008000;
-    background-color: green;
-    justify-self: flex-start;
+  .color_button_wrapper {
     order: 4;
-    margin: 0rem 1.6rem 2.4rem 2.4rem;
-        /*---------------
-      kan forbedres til en color button klasse
-  ---------------*/
+    display: flex;
+    gap: 1.6rem;
   }
   
-  .color_button2 span{
+  .color_button {
     width: 4rem;
-    display: flex;
+  }
+  
+  .color_button--orange {
     border: 2rem solid #ffa500;
     background-color: orange;
-    justify-self: flex-start;
-    order: 4;
-    margin: 0rem 1.6rem 2.4rem 0rem;
+  }
+
+  .color_button--green {
+    border: 2rem solid #008000;
+    background-color: green;
   }
 
   .size_selector_text{
     display: flex;
     justify-self: flex-start;
     order: 5;
-    padding: 0rem 0rem 0.8rem 2.4rem;
+    padding: 0rem 0rem 0.8rem 0rem;
     font-size: 2.5rem;
     font-weight: bold;
     /*---------------
@@ -67,12 +64,15 @@
   ---------------*/
   }
   
-  .size_selector {
+  .size_selector {    
+    /*---------------
+    sjekk om denne verdien er innenfor
+---------------*/
+    width: 50%;
     display: flex;
     justify-self: flex-start;
     order: 6;
-    margin-left: 2.4rem;
-    padding: 1.6rem 9.6rem 1.6rem 1.6rem;
+    padding: 1.6rem;
     text-align: left;
   }
   
@@ -86,7 +86,7 @@
     justify-self: flex-start;
     order: 7;
     padding: 0.8rem 0rem 0.8rem 0rem;
-    margin: 6.4rem 2.4rem 2.4rem 2.4rem;
+    margin: 6.4rem 2.4rem 2.4rem 0rem;
     text-align: center;
   }
 

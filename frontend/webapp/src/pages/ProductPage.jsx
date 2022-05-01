@@ -12,23 +12,28 @@ function ProductPage() {
     <>
     <div className="layout">
     <ShowCaseImg 
-            bigImg="./img/lorem-picsum.jpg" 
+            bigImg="https://picsum.photos/200/300" 
             bigImgAlt="lorem picsum placeholder"
-            smallImg="./img/lorem-picsum.jpg" 
+            smallImg="https://picsum.photos/200/300" 
             smallImgAlt="lorem picsum placeholder"
-            smallImg2="./img/lorem-picsum-2.jpg" 
+            smallImg2="https://picsum.photos/200/300" 
             smallImg2Alt="lorem picsum placeholder"
       />
 
       <ShowCaseBody 
       title="Lorem ipsum dolor."
-      price="800"
+      price="800,-"
       colorTitle="Color:"
       colorBtn
       colorBtn2
       sizeLabel="Size:"
       sizeSelector={ 
-      <><option value="" disabled selected hidden>Pick size...</option><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option></>
+      <>
+      <option value="" disabled selected hidden>Pick size...</option>
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+      </>
     }
       addToCart="add to cart"
        />
@@ -36,8 +41,8 @@ function ProductPage() {
       title="Lorem ipsum dolor."
       desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquet."
       />
-      <Footer />
     </div>
+    <Footer />
     </>
   );
 }
