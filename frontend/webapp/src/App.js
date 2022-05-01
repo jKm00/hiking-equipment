@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { getCookie } from "./tools/cookies";
 
 import Navbar from "./components/Navbar";
@@ -37,7 +37,16 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
-        <Route path="/admin" element={<AdminPage user={user} />} />
+        <Route
+          path="/admin"
+          element={
+            !user || !user.roles.includes("ROLE_ADMIN") ? (
+              <Navigate to="/" replace />
+            ) : (
+              <AdminPage user={user} />
+            )
+          }
+        />
       </Routes>
     </>
   );
