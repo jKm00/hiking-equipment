@@ -17,6 +17,10 @@
   font-weight: bold;
 }
 
+.form__title--small {
+  font-size: 2.5rem;
+}
+
 .form__section {
   display: flex;
   flex-direction: column;

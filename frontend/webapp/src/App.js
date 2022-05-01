@@ -17,7 +17,6 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log("Hello");
     const username = getCookie("current_email");
     const roles = getCookie("current_user_roles");
     if (username !== "" && roles !== "") {
@@ -38,7 +37,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin" element={<AdminPage user={user} />} />
       </Routes>
     </>
   );
