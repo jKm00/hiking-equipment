@@ -6,7 +6,7 @@ import "../styles/categories.css";
 function ShopCategories({ sex, category, updateProducts }) {
   useEffect(() => {
     updateProducts(sex, category);
-  }, [category]);
+  }, [sex, category]);
 
   return (
     <aside className="categories">
