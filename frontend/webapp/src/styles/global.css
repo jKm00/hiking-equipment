@@ -25,8 +25,11 @@ button {
 
   /* dark */
   --clr-dark-000: #f1f3f5;
+  --clr-dark-100: #e9ecef;
   --clr-dark-200: #dee2e6;
+  --clr-dark-300: #ced4da;
   --clr-dark-400: #adb5bd;
+  --clr-dark-500: #868e96;
   --clr-dark-600: #495057;
   --clr-dark-700: #343a40;
   --clr-dark-800: #212529;

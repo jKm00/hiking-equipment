@@ -6,6 +6,11 @@
   max-width: 500px;
 }
 
+.form--box {
+  border-radius: 5px;
+  box-shadow: var(--shadow-box);
+}
+
 .form__logo {
   display: block;
   margin-bottom: -0.4em;
@@ -27,6 +32,10 @@
   gap: 1.2em;
   border: none;
   margin: 4.8em 0 3.2em 0;
+}
+
+.form__section--no-space {
+  margin: 0;
 }
 
 .form__input--wrapper {

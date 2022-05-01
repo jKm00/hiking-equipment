@@ -1,3 +1,11 @@
 .admin-page {
-  grid-column: 2 / -2;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 2.4rem;
+  column-gap: 1.6rem;
+  padding: 1.6rem;
+  min-height: 50vh;
+  background-color: var(--clr-dark-300);
 }
