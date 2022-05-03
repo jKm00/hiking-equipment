@@ -154,8 +154,7 @@ a {
   cursor: pointer;
 }
 
-.cta:hover,
-.cta:focus {
+.cta:hover {
   background-color: var(--clr-light-400);
   border-radius: var(--br) var(--br) 0 0;
 }

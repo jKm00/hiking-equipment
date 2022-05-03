@@ -66,6 +66,26 @@
   max-width: 225px;
 }
 
+.form__feedback {
+  font-size: 1.28rem;
+  margin-top: 0.8rem;
+  padding: 0.4rem;
+  opacity: 0;
+}
+
+.form__feedback--success {
+  color: var(--clr-accent-400);
+}
+
+.form__feedback--error {
+  color: var(--clr-error-400);
+}
+
+.form__feedback__animation {
+  opacity: 1;
+  animation: fade-out 250ms ease-in-out 2s forwards;
+}
+
 .form__error-msg {
   font-size: 1.28rem;
   text-align: center;
@@ -77,4 +97,13 @@
 
 .form__error-msg--hidden {
   opacity: 0;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

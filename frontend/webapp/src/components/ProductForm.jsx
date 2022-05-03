@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { sendApiRequest } from "../tools/request";
 
 import "../styles/productForm.css";
 import "../styles/table.css";
@@ -13,12 +14,68 @@ export default function ProductForm({ products }) {
   const [sizes, setSize] = useState("");
   const [images, setImages] = useState([]);
 
+  const feedback = document.querySelector("[data-feedback]");
+
   /**
-   * TODO: Handles adding products
+   * Handles submit when submit button is pressed
    */
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(images);
+    // Check valid fields
+    if (
+      name === "" ||
+      desc === "" ||
+      price === "" ||
+      category === "" ||
+      sex === "" ||
+      sizes === "" ||
+      images.length === 0
+    ) {
+      displayFeedback("error", "Make sure there are no empty fields");
+    } else {
+      const newProduct = {
+        name: name,
+        desc: desc,
+        price: parseFloat(price),
+        category: category,
+        sex: sex,
+        colors: colors.split(", "),
+        sizes: sizes.split(", "),
+        images: images,
+      };
+      sendApiRequest(
+        "POST",
+        "/products",
+        function (response) {
+          displayFeedback("success", "Product was added");
+        },
+        newProduct,
+        function (error) {
+          displayFeedback(
+            "error",
+            "Something went wrong. Product was not added"
+          );
+        }
+      );
+    }
+  }
+
+  /**
+   * Displays a feedback message for 2 seconds
+   * @param {*} type the type of the message, "success" or "error"
+   * @param {*} msg the message to be displayed
+   */
+  function displayFeedback(type, msg) {
+    if (type === "success") {
+      feedback.classList.add("form__feedback--success");
+    } else {
+      feedback.classList.add("form__feedback--error");
+    }
+    feedback.innerHTML = msg;
+    feedback.classList.add("form__feedback__animation");
+    setTimeout(() => {
+      feedback.classList.remove("form__feedback__animation");
+    }, 3000);
   }
 
   /**
@@ -139,6 +196,9 @@ export default function ProductForm({ products }) {
         <button className="cta cta--tiny" onClick={handleSubmit}>
           Add product
         </button>
+        <p className="form__feedback" data-feedback>
+          Failed to add product
+        </p>
       </form>
       <table className="table">
         <caption className="table__title">Products</caption>
