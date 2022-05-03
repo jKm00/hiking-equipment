@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { sendApiRequest } from "../tools/request";
 
 import ProductForm from "../components/ProductForm";
@@ -10,7 +9,6 @@ import "../styles/form.css";
 import "../styles/admin.css";
 
 export default function AdminPage({ user }) {
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
   // Load products

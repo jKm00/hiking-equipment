@@ -45,6 +45,7 @@
 
 .form__section--no-space {
   margin: 0;
+  margin-bottom: 1.6rem;
 }
 
 .form__input--wrapper {
@@ -59,6 +60,10 @@
 .form__input {
   border: 1px solid var(--clr-dark-1000);
   padding: 0.4em;
+}
+
+.form__input--file {
+  max-width: 225px;
 }
 
 .form__error-msg {
