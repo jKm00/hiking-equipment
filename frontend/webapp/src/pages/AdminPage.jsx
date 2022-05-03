@@ -3,9 +3,9 @@ import { sendApiRequest } from "../tools/request";
 
 import ProductForm from "../components/ProductForm";
 import PictureForm from "../components/PictureForm";
+import CreateAdminUserForm from "../components/CreateAdminUserForm";
 import Footer from "../components/Footer";
 
-import "../styles/form.css";
 import "../styles/admin.css";
 
 export default function AdminPage({ user }) {
@@ -32,9 +32,12 @@ export default function AdminPage({ user }) {
 
   return (
     <>
-      <div className="admin-page">
-        <ProductForm products={products} updateProducts={updateProducts} />
-        <PictureForm />
+      <div className="admin-page--wrapper">
+        <div className="admin-page">
+          <PictureForm />
+          <CreateAdminUserForm />
+          <ProductForm products={products} updateProducts={updateProducts} />
+        </div>
       </div>
       <Footer />
     </>

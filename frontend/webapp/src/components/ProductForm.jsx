@@ -196,13 +196,16 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-images" className="form__label">
-              Images
+            <label
+              htmlFor="product-images"
+              className="form__label custom-file-upload"
+            >
+              Upload images
             </label>
             <input
               id="product-images"
               type="file"
-              className="form__input form__input--file"
+              className="form__input"
               accept="image/png, image/jpeg"
               multiple
               onChange={(e) => setImages(e.target.files)}

@@ -7,7 +7,7 @@ export default function PictureForm() {
   }
 
   return (
-    <form action="" className="form box">
+    <form action="" className="form form--stretch box">
       <fieldset className="form__section form__section--no-space">
         <legend className="form__title form__title--small">
           Add picture to product

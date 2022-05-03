@@ -40,7 +40,11 @@
 
 .form__section--horizontal {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: var(--grid-column, repeat(5, 1fr));
+}
+
+.form__section--four-column {
+  --grid-column: repeat(4, 1fr);
 }
 
 .form__section--no-space {
@@ -59,11 +63,27 @@
 
 .form__input {
   border: 1px solid var(--clr-dark-1000);
-  padding: 0.4em;
+  padding: var(--spacing-smaller);
+  width: 100%;
 }
 
-.form__input--file {
+.form__input[type="file"] {
+  padding: 0;
   max-width: 22.5rem;
+  border: none;
+}
+
+.form__input[type="file"]::file-selector-button {
+  border: 1px solid var(--clr-dark-900);
+  padding: var(--spacing-smaller);
+}
+
+.form__input[type="file"]::file-selector-button:hover {
+  background-color: var(--clr-dark-200);
+}
+
+.form__input[type="file"]::file-selector-button:active {
+  background-color: var(--clr-dark-300);
 }
 
 .form__feedback {
