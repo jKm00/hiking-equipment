@@ -4,7 +4,7 @@ import { sendApiRequest } from "../tools/request";
 import "../styles/productForm.css";
 import "../styles/table.css";
 
-export default function ProductForm({ products }) {
+export default function ProductForm({ products, updateProducts }) {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
@@ -15,9 +15,12 @@ export default function ProductForm({ products }) {
   const [images, setImages] = useState([]);
 
   const feedback = document.querySelector("[data-feedback]");
+  const submitBtn = document.querySelector("[data-submit]");
 
   /**
-   * Handles submit when submit button is pressed
+   * Tries to add product to API. If unsuccessfull an error message is
+   * display to the UI, if successfull a success message is display
+   * to the UI
    */
   function handleSubmit(event) {
     event.preventDefault();
@@ -33,6 +36,7 @@ export default function ProductForm({ products }) {
     ) {
       displayFeedback("error", "Make sure there are no empty fields");
     } else {
+      // TODO: transform images into binary
       const newProduct = {
         name: name,
         desc: desc,
@@ -66,24 +70,36 @@ export default function ProductForm({ products }) {
    * @param {*} msg the message to be displayed
    */
   function displayFeedback(type, msg) {
+    // Disable button
+    submitBtn.disabled = true;
+    // Change style of feedback depending on type
     if (type === "success") {
       feedback.classList.add("form__feedback--success");
     } else {
       feedback.classList.add("form__feedback--error");
     }
+    // Set feedback text
     feedback.innerHTML = msg;
+    // Display element and fade it out
     feedback.classList.add("form__feedback__animation");
     setTimeout(() => {
+      // Reset button and feedback message
       feedback.classList.remove("form__feedback__animation");
-    }, 3000);
+      submitBtn.disabled = false;
+    }, 2250);
   }
 
   /**
-   * TODO: Handles deleting products
+   * Sends a delete request trying to delete product with the id of
+   * the product to delete to the API.
+   * If unsuccessfull an error message is printed to console
    */
   function handleDeletion(event) {
     const productId = event.target.value;
-    console.log(productId);
+    const relativeUrl = "/products/" + productId;
+    sendApiRequest("DELETE", relativeUrl, updateProducts, null, function () {
+      console.error("Could not delete product with id: " + productId);
+    });
   }
 
   return (
@@ -193,7 +209,7 @@ export default function ProductForm({ products }) {
             />
           </div>
         </fieldset>
-        <button className="cta cta--tiny" onClick={handleSubmit}>
+        <button className="cta cta--tiny" onClick={handleSubmit} data-submit>
           Add product
         </button>
         <p className="form__feedback" data-feedback>

@@ -13,6 +13,10 @@ export default function AdminPage({ user }) {
 
   // Load products
   useEffect(() => {
+    updateProducts();
+  }, []);
+
+  function updateProducts() {
     sendApiRequest(
       "GET",
       "/products",
@@ -24,12 +28,12 @@ export default function AdminPage({ user }) {
         console.error("Could not load products: " + error);
       }
     );
-  }, []);
+  }
 
   return (
     <>
       <div className="admin-page">
-        <ProductForm products={products} />
+        <ProductForm products={products} updateProducts={updateProducts} />
         <PictureForm />
       </div>
       <Footer />
