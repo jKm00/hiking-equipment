@@ -1,5 +1,5 @@
 .product-form {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: var(--spacing-large);
 }

@@ -1,14 +1,14 @@
 .table {
-  font-size: 1.6rem;
-  border-spacing: 1.2rem;
+  font-size: var(--fs-medium);
+  border-spacing: var(--spacing-small);
   width: 100%;
 }
 
 .table__title {
-  font-size: 2rem;
+  font-size: var(--fs-large);
   font-weight: bold;
   text-align: left;
-  margin-bottom: 1.6rem;
+  margin-bottom: var(--spacing-medium);
 }
 
 .table__heading {

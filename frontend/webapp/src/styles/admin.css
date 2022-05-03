@@ -3,9 +3,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: start;
-  row-gap: 2.4rem;
-  column-gap: 1.6rem;
-  padding: 1.6rem;
+  row-gap: var(--spacing-large);
+  column-gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
   min-height: 50vh;
   background-color: var(--clr-dark-300);
 }
