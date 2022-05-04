@@ -36,6 +36,7 @@ export function sendApiRequest(
       }
     }
   };
+
   const fullUrl = API_BASE_URL + url;
   request.open(method, fullUrl);
 
