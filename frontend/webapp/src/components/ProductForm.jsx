@@ -173,7 +173,7 @@ export default function ProductForm({ products, updateProducts }) {
         <fieldset className="form__section form__section--no-space form__section--horizontal">
           <div className="form__input--wrapper">
             <label htmlFor="product-color" className="form__label">
-              Colors (separeted by ", ")
+              Colors (separated by ", ")
             </label>
             <input
               id="product-color"
@@ -185,7 +185,7 @@ export default function ProductForm({ products, updateProducts }) {
           </div>
           <div className="form__input--wrapper">
             <label htmlFor="product-sizes" className="form__label">
-              Sizes (separeted by ", ")
+              Sizes (separated by ", ")
             </label>
             <input
               id="product-sizes"
