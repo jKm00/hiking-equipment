@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { sendApiRequest } from "../tools/request";
-import { displayFeedback } from "../tools/feedback";
-import { isImages } from "../tools/validators";
+import { sendApiRequest } from "../../tools/request";
+import { displayFeedback } from "../../tools/feedback";
+import { isImages } from "../../tools/validators";
 
-import "../styles/productForm.css";
-import "../styles/table.css";
+import "../../styles/productForm.css";
+import "../../styles/table.css";
 
 export default function ProductForm({ products, updateProducts }) {
   const [name, setName] = useState("");

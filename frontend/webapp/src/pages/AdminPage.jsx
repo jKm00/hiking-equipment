@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { sendApiRequest } from "../tools/request";
 
-import ProductForm from "../components/ProductForm";
-import PictureForm from "../components/PictureForm";
-import CreateAdminUserForm from "../components/CreateAdminUserForm";
+import ProductForm from "../components/admin/ProductForm";
+import PictureForm from "../components/admin/PictureForm";
+import CreateAdminUserForm from "../components/admin/CreateAdminUserForm";
 import Footer from "../components/Footer";
 
 import "../styles/admin.css";

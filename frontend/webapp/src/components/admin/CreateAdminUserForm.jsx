@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { sendApiRequest } from "../tools/request";
-import { displayFeedback } from "../tools/feedback";
-import { validEmail } from "../tools/validators";
+import { sendApiRequest } from "../../tools/request";
+import { displayFeedback } from "../../tools/feedback";
+import { validEmail } from "../../tools/validators";
 
-import "../styles/form.css";
+import "../../styles/form.css";
 
 export default function CreateAdminUserForm() {
   const [firstName, setFirstName] = useState("");
