@@ -14,6 +14,7 @@ import java.util.Set;
 public class Product {
     @Id
     @GeneratedValue
+    @Column(unique = true, name = "product_id")
     private long id;
     @Column(name="product_name")
     private String productName;

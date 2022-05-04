@@ -17,7 +17,8 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue
-    private Integer id;
+    @Column(unique = true, name = "role_id")
+    private long id;
     @Column(name="role_name")
     private String roleName;
 
@@ -31,7 +32,7 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 

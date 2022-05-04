@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Table(name = "product_details")
 public class ProductDetail {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, name = "product_details_id")
     private long id;
     @Column(name="details")
     private String detail;

@@ -15,6 +15,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, name = "user_id")
     private int id;
     @Column(name= "first_name")
     private String firstName;
@@ -32,7 +33,6 @@ public class User {
     private String city;
     @Column(name="address")
     private String address;
-    @Column(name="")
     private boolean isActive = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
