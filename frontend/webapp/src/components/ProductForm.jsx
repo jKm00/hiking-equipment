@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { sendApiRequest } from "../tools/request";
 import { displayFeedback } from "../tools/feedback";
+import { isImages } from "../tools/validators";
 
 import "../styles/productForm.css";
 import "../styles/table.css";
@@ -61,45 +62,24 @@ export default function ProductForm({ products, updateProducts }) {
         "POST",
         "/products",
         function (response) {
-          displayFeedback("success", "Product was added");
+          displayFeedback(
+            "success",
+            "Product was added",
+            document.querySelector("[data-submit-product]"),
+            document.querySelector("[data-feedback-product]")
+          );
         },
         newProduct,
         function (error) {
           displayFeedback(
             "error",
-            "Something went wrong. Product was not added"
+            "Something went wrong. Product was not added",
+            document.querySelector("[data-submit-product]"),
+            document.querySelector("[data-feedback-product]")
           );
         }
       );
     }
-  }
-
-  /**
-   * Checks if a list of files only contains images
-   * @param {*} files the list of files to check
-   * @returns true if all files are images, false otherwise
-   */
-  function isImages(files) {
-    let i = 0;
-    let allImages = true;
-    while (allImages && i < files.length) {
-      const extension = getExtension(files[i].name);
-      if (extension !== "jpg" && extension !== "jpeg" && extension !== "png") {
-        allImages = false;
-      }
-      i++;
-    }
-    return allImages;
-  }
-
-  /**
-   * Returns the extension of a file
-   * @param {*} filename the file to get the extension of
-   * @returns extension of file
-   */
-  function getExtension(filename) {
-    const parts = filename.split(".");
-    return parts[parts.length - 1];
   }
 
   /**
