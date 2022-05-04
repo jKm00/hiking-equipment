@@ -2,18 +2,28 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { sendAuthenticationRequest } from "../tools/authentication";
 import { displayFeedback } from "../tools/feedback";
+import { validEmail } from "../tools/validators";
 
 import "../styles/login.css";
 import "../styles/form.css";
 
 export default function LoginPage({ setUser }) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
-    sendAuthenticationRequest(username, password, onLoginSuccess, onError);
+    if (!validEmail(email)) {
+      displayFeedback(
+        "error",
+        "Invalid email, please try again...",
+        document.querySelector("[data-submit-login]"),
+        document.querySelector("[data-feedback-login]")
+      );
+    } else {
+      sendAuthenticationRequest(email, password, onLoginSuccess, onError);
+    }
   }
 
   function onLoginSuccess(userData) {
@@ -45,14 +55,15 @@ export default function LoginPage({ setUser }) {
         <fieldset className="form__section">
           <div className="form__input--wrapper">
             <label htmlFor="username" className="form__label">
-              Username / email
+              Email
             </label>
             <input
               type="text"
               id="username"
               name="username"
               className="form__input"
-              onChange={(event) => setUsername(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               required
             />
           </div>
@@ -65,6 +76,7 @@ export default function LoginPage({ setUser }) {
               id="password"
               name="password"
               className="form__input"
+              value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
             />

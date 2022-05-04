@@ -3,19 +3,19 @@ import { sendApiRequest } from "./request";
 
 /**
  * Send an authentication request to the API
- * @param {*} username username
+ * @param {*} email username
  * @param {*} password password
  * @param {*} successCallback function to be called on success
  * @param {*} errorCallback function to be called on error
  */
 export function sendAuthenticationRequest(
-  username,
+  email,
   password,
   successCallback,
   errorCallback
 ) {
   const postData = {
-    email: username,
+    email: email,
     password: password,
   };
   sendApiRequest(
