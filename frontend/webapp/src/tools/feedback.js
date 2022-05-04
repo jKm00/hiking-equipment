@@ -1,6 +1,6 @@
 /**
  * Displays a feedback message for 2 seconds when a form is submitted
- * @param {*} type the type of the message, "success" or "error"
+ * @param {*} type the type of the feedback, "success" or "error"
  * @param {*} msg the message to be displayed
  * @param {*} submit the submit button of the form
  * @param {*} element the text element that displays the feedback

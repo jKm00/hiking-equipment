@@ -39,6 +39,7 @@ export default function ProductForm({ products, updateProducts }) {
         document.querySelector("[data-submit-product]"),
         document.querySelector("[data-feedback-product]")
       );
+      // Make sure only images are uploaded
     } else if (!isImages(images)) {
       displayFeedback(
         "error",
