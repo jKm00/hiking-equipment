@@ -35,6 +35,8 @@ export default function ProductForm({ products, updateProducts }) {
       images.length === 0
     ) {
       displayFeedback("error", "Make sure there are no empty fields");
+    } else if (!isImages(images)) {
+      displayFeedback("error", "Only jpg/jpeg and png accepted");
     } else {
       // TODO: transform images into binary
       const newProduct = {
@@ -65,6 +67,34 @@ export default function ProductForm({ products, updateProducts }) {
   }
 
   /**
+   * Checks if a list of files only contains images
+   * @param {*} files the list of files to check
+   * @returns true if all files are images, false otherwise
+   */
+  function isImages(files) {
+    let i = 0;
+    let allImages = true;
+    while (allImages && i < files.length) {
+      const extension = getExtension(files[i].name);
+      if (extension !== "jpg" && extension !== "jpeg" && extension !== "png") {
+        allImages = false;
+      }
+      i++;
+    }
+    return allImages;
+  }
+
+  /**
+   * Returns the extension of a file
+   * @param {*} filename the file to get the extension of
+   * @returns extension of file
+   */
+  function getExtension(filename) {
+    const parts = filename.split(".");
+    return parts[parts.length - 1];
+  }
+
+  /**
    * Displays a feedback message for 2 seconds
    * @param {*} type the type of the message, "success" or "error"
    * @param {*} msg the message to be displayed
@@ -83,7 +113,7 @@ export default function ProductForm({ products, updateProducts }) {
     // Display element and fade it out
     feedback.classList.add("form__feedback__animation");
     setTimeout(() => {
-      // Reset button and feedback message
+      // Reset button and feedback message after 2250ms
       feedback.classList.remove("form__feedback__animation");
       submitBtn.disabled = false;
     }, 2250);
