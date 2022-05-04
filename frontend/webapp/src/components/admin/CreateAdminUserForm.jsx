@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { sendApiRequest } from "../../tools/request";
 import { displayFeedback } from "../../tools/feedback";
-import { validEmail } from "../../tools/validators";
+import { validEmail, validPassword } from "../../tools/validators";
 
 import "../../styles/form.css";
 
@@ -42,6 +42,13 @@ export default function CreateAdminUserForm() {
       displayFeedback(
         "error",
         "Email is not valid",
+        document.querySelector("[data-submit-user]"),
+        document.querySelector("[data-feedback-user]")
+      );
+    } else if (!validPassword(password)) {
+      displayFeedback(
+        "error",
+        "Password is invalid",
         document.querySelector("[data-submit-user]"),
         document.querySelector("[data-feedback-user]")
       );

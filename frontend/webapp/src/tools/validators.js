@@ -28,13 +28,23 @@ function getExtension(filename) {
 
 /**
  * Checks if a string is a valid email
- * @param {*} string the string to check
+ * @param {*} email the string to check
  * @returns true if string is a valid email, false otherwise
  */
-export function validEmail(string) {
-  return string
+export function validEmail(email) {
+  return email
     .toLowerCase()
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
+}
+
+/**
+ * Checks if a password is valid. Its valid if its 8 or more characters,
+ * has atleast one upper and lower case letter as well as atleast one digit
+ * @param {*} password the password to validate
+ * @returns true if password is valid, false otherwise
+ */
+export function validPassword(password) {
+  return password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/);
 }
