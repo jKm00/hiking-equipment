@@ -52,7 +52,7 @@ export function deleteAuthorizationCookies() {
  * @param token JWT token string
  * @returns {any} Decoded JWT object
  */
-function parseJwt(token) {
+export function parseJwt(token) {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   const jsonPayload = decodeURIComponent(
