@@ -3,7 +3,7 @@ import { sendApiRequest } from "./request";
 
 /**
  * Send an authentication request to the API
- * @param {*} email username
+ * @param {*} email email
  * @param {*} password password
  * @param {*} successCallback function to be called on success
  * @param {*} errorCallback function to be called on error
