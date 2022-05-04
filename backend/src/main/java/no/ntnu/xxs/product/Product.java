@@ -15,11 +15,18 @@ public class Product {
     @Id
     @GeneratedValue
     private long id;
+    @Column(name="product_name")
     private String productName;
+    @Column(name="product_description")
     private String description;
+    @Column(name="price")
     private float price;
+    @Column(name="category")
     private String category;
+    @Column(name="sex")
     private String sex;
+    @Column(name="featured")
+    private boolean featured;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails;

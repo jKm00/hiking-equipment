@@ -6,10 +6,12 @@ import no.ntnu.xxs.product.Product;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "product_details")
 public class ProductDetail {
     @Id
     @GeneratedValue
     private long id;
+    @Column(name="details")
     private String detail;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
