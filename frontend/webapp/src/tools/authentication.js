@@ -25,7 +25,7 @@ export function sendAuthenticationRequest(
       setCookie("jwt", jwtResponse.jwt);
       const userData = parseJwtUser(jwtResponse.jwt);
       if (userData) {
-        setCookie("current_email", userData.username);
+        setCookie("current_email", userData.email);
         setCookie("current_user_roles", userData.roles.join(","));
         successCallback(userData);
       }
@@ -52,7 +52,7 @@ export function deleteAuthorizationCookies() {
  * @param token JWT token string
  * @returns {any} Decoded JWT object
  */
-export function parseJwt(token) {
+function parseJwt(token) {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   const jsonPayload = decodeURIComponent(
@@ -72,12 +72,12 @@ export function parseJwt(token) {
  * @param jwtString
  * @return User object
  */
-function parseJwtUser(jwtString) {
+export function parseJwtUser(jwtString) {
   let user = null;
   const jwtObject = parseJwt(jwtString);
   if (jwtObject) {
     user = {
-      username: jwtObject.sub,
+      email: jwtObject.sub,
       roles: jwtObject.roles.map((r) => r.authority),
     };
   }

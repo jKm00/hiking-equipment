@@ -122,11 +122,11 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-name" className="form__label">
+            <label htmlFor="product-desc" className="form__label">
               Desc
             </label>
             <input
-              id="product-name"
+              id="product-desc"
               type="text"
               className="form__input"
               value={desc}
@@ -134,11 +134,11 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-name" className="form__label">
+            <label htmlFor="product-price" className="form__label">
               Price
             </label>
             <input
-              id="product-name"
+              id="product-price"
               type="number"
               className="form__input"
               value={price}
@@ -146,11 +146,11 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-name" className="form__label">
+            <label htmlFor="product-category" className="form__label">
               Category
             </label>
             <input
-              id="product-name"
+              id="product-category"
               type="text"
               className="form__input"
               value={category}
@@ -158,11 +158,11 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-name" className="form__label">
+            <label htmlFor="product-sex" className="form__label">
               Sex
             </label>
             <input
-              id="product-name"
+              id="product-sex"
               type="text"
               className="form__input"
               value={sex}

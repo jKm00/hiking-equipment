@@ -162,7 +162,7 @@ function Navbar({ user, setUser }) {
                   data-user-details-element
                 >
                   <li className="user-details__item" data-user-details-element>
-                    {user.username}
+                    {user.email}
                   </li>
                   <li data-user-details-element>
                     <Link to="/orders" className="user-details__link">
