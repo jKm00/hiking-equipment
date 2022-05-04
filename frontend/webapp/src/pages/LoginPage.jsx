@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { sendAuthenticationRequest } from "../tools/authentication";
+import { displayFeedback } from "../tools/feedback";
 
 import "../styles/login.css";
 import "../styles/form.css";
@@ -21,8 +22,12 @@ export default function LoginPage({ setUser }) {
   }
 
   function onError() {
-    const errorMsg = document.querySelector("[data-error]");
-    errorMsg.classList.remove("form__error-msg--hidden");
+    displayFeedback(
+      "error",
+      "Something went wrong, please try again...",
+      document.querySelector("[data-submit-login]"),
+      document.querySelector("[data-feedback-login]")
+    );
   }
 
   return (
@@ -64,11 +69,13 @@ export default function LoginPage({ setUser }) {
               required
             />
           </div>
-          <p className="form__error-msg form__error-msg--hidden" data-error>
+          <p className="form__feedback" data-feedback-login>
             Something went wrong, please try again...
           </p>
         </fieldset>
-        <button className="cta cta--max-width">Login</button>
+        <button className="cta cta--max-width" data-submit-login>
+          Login
+        </button>
         <p className="login__redirect">
           Don't have an account? <Link to="/signup">Sign up</Link> for free
         </p>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { sendApiRequest } from "../tools/request";
+import { displayFeedback } from "../tools/feedback";
 
 import "../styles/productForm.css";
 import "../styles/table.css";
@@ -13,9 +14,6 @@ export default function ProductForm({ products, updateProducts }) {
   const [colors, setColors] = useState("");
   const [sizes, setSize] = useState("");
   const [images, setImages] = useState([]);
-
-  const feedback = document.querySelector("[data-feedback]");
-  const submitBtn = document.querySelector("[data-submit]");
 
   /**
    * Tries to add product to API. If unsuccessfull an error message is
@@ -34,9 +32,19 @@ export default function ProductForm({ products, updateProducts }) {
       sizes === "" ||
       images.length === 0
     ) {
-      displayFeedback("error", "Make sure there are no empty fields");
+      displayFeedback(
+        "error",
+        "Make sure there are no empty fields",
+        document.querySelector("[data-submit-product]"),
+        document.querySelector("[data-feedback-product]")
+      );
     } else if (!isImages(images)) {
-      displayFeedback("error", "Only jpg/jpeg and png accepted");
+      displayFeedback(
+        "error",
+        "Only jpg/jpeg and png accepted",
+        document.querySelector("[data-submit-product]"),
+        document.querySelector("[data-feedback-product]")
+      );
     } else {
       // TODO: transform images into binary
       const newProduct = {
@@ -92,31 +100,6 @@ export default function ProductForm({ products, updateProducts }) {
   function getExtension(filename) {
     const parts = filename.split(".");
     return parts[parts.length - 1];
-  }
-
-  /**
-   * Displays a feedback message for 2 seconds
-   * @param {*} type the type of the message, "success" or "error"
-   * @param {*} msg the message to be displayed
-   */
-  function displayFeedback(type, msg) {
-    // Disable button
-    submitBtn.disabled = true;
-    // Change style of feedback depending on type
-    if (type === "success") {
-      feedback.classList.add("form__feedback--success");
-    } else {
-      feedback.classList.add("form__feedback--error");
-    }
-    // Set feedback text
-    feedback.innerHTML = msg;
-    // Display element and fade it out
-    feedback.classList.add("form__feedback__animation");
-    setTimeout(() => {
-      // Reset button and feedback message after 2250ms
-      feedback.classList.remove("form__feedback__animation");
-      submitBtn.disabled = false;
-    }, 2250);
   }
 
   /**
@@ -242,10 +225,17 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
         </fieldset>
-        <button className="cta cta--tiny" onClick={handleSubmit} data-submit>
+        <button
+          className="cta cta--tiny"
+          onClick={handleSubmit}
+          data-submit-product
+        >
           Add product
         </button>
-        <p className="form__feedback" data-feedback>
+        <p
+          className="form__feedback form__feedback--inline"
+          data-feedback-product
+        >
           Failed to add product
         </p>
       </form>

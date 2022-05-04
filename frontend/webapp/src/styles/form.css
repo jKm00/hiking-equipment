@@ -92,6 +92,11 @@
   opacity: 0;
 }
 
+.form__feedback--inline {
+  display: inline-block;
+  margin-left: var(--spacing-medium);
+}
+
 .form__feedback--success {
   color: var(--clr-accent-400);
 }
@@ -102,20 +107,7 @@
 
 .form__feedback__animation {
   opacity: 1;
-  animation: fade-out 250ms ease-in-out 2s forwards;
-}
-
-.form__error-msg {
-  font-size: var(--fs-small);
-  text-align: center;
-  color: var(--clr-error-400);
-  padding: var(--spacing-tiny) 0;
-
-  transition: opacity 250ms ease-in-out;
-}
-
-.form__error-msg--hidden {
-  opacity: 0;
+  animation: fade-out 250ms ease-in-out 3s forwards;
 }
 
 @keyframes fade-out {
