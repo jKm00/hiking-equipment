@@ -1,5 +1,6 @@
 package no.ntnu.xxs.authentication;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import no.ntnu.xxs.security.*;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
@@ -70,13 +71,6 @@ public class AuthenticationController {
         signUpRequest.getCity(),
         signUpRequest.getAddress());
         userSignUpService.signUp(user);
-        return ResponseEntity.ok(body("User registered successfully"));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-    private Object body(String string) {
-        return string;
-    }
-
-
 }
