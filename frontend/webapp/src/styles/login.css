@@ -13,8 +13,8 @@
 
 .login__redirect {
   text-align: center;
-  margin-top: 1.2em;
-  font-size: 1.28rem;
+  margin-top: var(--spacing-small);
+  font-size: var(--fs-small);
   color: var(--clr-dark-600);
 }
 

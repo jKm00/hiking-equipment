@@ -1,8 +1,6 @@
 package no.ntnu.xxs.authentication;
 
-import no.ntnu.xxs.security.AuthenticationRequest;
-import no.ntnu.xxs.security.AuthenticationResponse;
-import no.ntnu.xxs.security.JwtUtil;
+import no.ntnu.xxs.security.*;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
 import no.ntnu.xxs.user.UserSignUpRequest;
@@ -20,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 * A controller responsible for authentication
 */
 @RestController
+@RequestMapping("/api/auth")
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -31,24 +30,27 @@ public class AuthenticationController {
     private UserSignUpService userSignUpService;
 
     /**
-    * HTTP POST request to /api/authenticate
-    *
-    * @param authenticationRequest The request JSON Object containing username and password
-    * @return Http.OK with JWT token, or Http. UNAUTHORIZED
-    */
-    @PostMapping("/api/authenticate")
+     * HTTP POST request to /api/authenticate
+     *
+     * @param authenticationRequest The request JSON Object containing username and password
+     * @return Http.OK with JWT token, or Http. UNAUTHORIZED
+     */
+    @PostMapping("/signin")
     // TODO: Remove this annotation before deployment. Only used while testing login from react.
     @CrossOrigin
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-            authenticationRequest.getUsername(),
-            authenticationRequest.getPassword()));
+                    authenticationRequest.getEmail(),
+                    authenticationRequest.getPassword()));
         } catch (BadCredentialsException e) {
-            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
         }
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+
         final String jwt = jwtUtil.generateToken(userDetails);
+
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
     
@@ -61,7 +63,6 @@ public class AuthenticationController {
         User user = new User(
         signUpRequest.getFirstName(),
         signUpRequest.getLastName(),
-        signUpRequest.getUsername(),
         signUpRequest.getEmail(),
         signUpRequest.getPassword(),
         signUpRequest.getCountry(),

@@ -1,7 +1,6 @@
 .form {
   background-color: var(--clr-light-400);
-  padding: 2.4em;
-  font-size: 1.6rem;
+  font-size: var(--fs-medium);
   width: 90%;
   max-width: 500px;
 }
@@ -13,6 +12,15 @@
   max-width: 100rem;
 }
 
+.form--padding {
+  padding: var(--spacing-larger);
+}
+
+.form--stretch {
+  width: 100%;
+  max-width: none;
+}
+
 .form__logo {
   display: block;
   margin-bottom: -0.4em;
@@ -20,17 +28,36 @@
 }
 
 .form__title {
-  font-size: 3.906rem;
+  font-size: var(--fs-xxl);
   font-weight: bold;
   grid-column: 1 / -1;
+  margin-bottom: var(--spacing-medium);
+}
+
+.form__title--small {
+  font-size: var(--fs-larger);
 }
 
 .form__section {
   display: flex;
   flex-direction: column;
-  gap: 1.2em;
+  gap: var(--spacing-medium);
   border: none;
-  margin: 4.8em 0 3.2em 0;
+  margin: var(--spacing-xxl) 0 var(--spacing-larger) 0;
+}
+
+.form__section--horizontal {
+  display: grid;
+  grid-template-columns: var(--grid-column, repeat(5, 1fr));
+}
+
+.form__section--four-column {
+  --grid-column: repeat(4, 1fr);
+}
+
+.form__section--no-space {
+  margin: 0;
+  margin-bottom: var(--spacing-medium);
 }
 
 .form__input--wrapper {
@@ -39,25 +66,63 @@
 }
 
 .form__label {
-  margin-bottom: 0.4em;
+  margin-bottom: var(--spacing-smaller);
 }
 
 .form__input {
   border: 1px solid var(--clr-dark-1000);
-  padding: 0.4em;
+  padding: var(--spacing-smaller);
+  width: 100%;
 }
 
-.form__error-msg {
-  font-size: 1.28rem;
-  text-align: center;
-  color: var(--clr-light-400);
-  padding: 0.4rem 0;
-  background-color: var(--clr-error-200);
-  outline: 2px solid var(--clr-error-400);
-
-  transition: opacity 250ms ease-in-out;
+.form__input[type="file"] {
+  padding: 0;
+  max-width: 22.5rem;
+  border: none;
 }
 
-.form__error-msg--hidden {
+.form__input[type="file"]::file-selector-button {
+  border: 1px solid var(--clr-dark-900);
+  padding: var(--spacing-smaller);
+}
+
+.form__input[type="file"]::file-selector-button:hover {
+  background-color: var(--clr-dark-200);
+}
+
+.form__input[type="file"]::file-selector-button:active {
+  background-color: var(--clr-dark-300);
+}
+
+.form__feedback {
+  font-size: var(--fs-small);
+  margin-top: var(--spacing-smaller);
   opacity: 0;
+}
+
+.form__feedback--inline {
+  display: inline-block;
+  margin-left: var(--spacing-medium);
+}
+
+.form__feedback--success {
+  color: var(--clr-accent-400);
+}
+
+.form__feedback--error {
+  color: var(--clr-error-400);
+}
+
+.form__feedback__animation {
+  opacity: 1;
+  animation: fade-out 250ms ease-in-out 2s forwards;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
