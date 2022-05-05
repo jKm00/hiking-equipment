@@ -2,19 +2,42 @@ import { useState, useEffect } from "react";
 import { sendApiRequest } from "../tools/request";
 import { Link } from "react-router-dom";
 
+import CartItem from "../components/CartItem";
 import Footer from "../components/Footer";
 
 import "../styles/cart.css";
 
 export default function CartPage({ user }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([
+    {
+      id: 1,
+      title: "Winter Sweater",
+      color: "green",
+      size: "L",
+      quantity: 1,
+      price: 463.89,
+      discount: 200,
+    },
+    {
+      id: 2,
+      title: "Boots",
+      color: "Blue",
+      size: "42",
+      quantity: 2,
+      price: 399.49,
+      discount: 0,
+    },
+  ]);
+  const [total, setTotal] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [finalSum, setFinalSum] = useState(0);
 
   useEffect(() => {
-    loadCart();
-  });
+    updateCart();
+  }, []);
 
   useEffect(() => {
-    calculatePrice();
+    calculateBill();
   }, [cart]);
 
   /**
@@ -22,8 +45,8 @@ export default function CartPage({ user }) {
    * If request is successfull, cart is populated with producs. Otherwise
    * an error message is printed to console.
    */
-  function loadCart() {
-    if (user !== null && cart.length === 0) {
+  function updateCart() {
+    if (user !== null) {
       sendApiRequest(
         "GET",
         "/carts/" + user.email,
@@ -42,7 +65,27 @@ export default function CartPage({ user }) {
    * Sums the prices for each item in the cart and stores
    * it to the price useState variable
    */
-  function calculatePrice() {}
+  function calculateBill() {
+    let total = 0;
+    let discount = 0;
+    let finalSum = 0;
+    cart.forEach((product) => {
+      total += product.price * product.quantity;
+      discount += product.discount * product.quantity;
+    });
+    finalSum = total - discount;
+    setTotal(total);
+    setDiscount(discount);
+    setFinalSum(finalSum);
+  }
+
+  /**
+   * Removes an item from the shopping cart
+   * @param {*} id the id of the item to remove
+   */
+  function removeItem(id) {
+    console.log(id);
+  }
 
   return (
     <>
@@ -56,34 +99,24 @@ export default function CartPage({ user }) {
           <>
             <h2 className="cart-page__title">Your cart</h2>
             <div className="cart">
-              <div className="cart__item">
-                <img
-                  className="cart__item__img"
-                  src="https://picsum.photos/200/300"
-                  alt=""
+              {cart.map((product) => (
+                <CartItem
+                  key={product.id}
+                  product={product}
+                  handleRemove={removeItem}
                 />
-                <div className="cart__item__details">
-                  <h3 className="cart__item__title">Winter Sweater</h3>
-                  <p className="cart__item__detail">Color: green</p>
-                  <p className="cart__item__detail">Size: L</p>
-                  <p className="cart__item__detail">Quantity: 1</p>
-                </div>
-                <div className="cart__item__addons">
-                  <p className="cart__item__price">463.00,-</p>
-                  <button className="cart__item__remove">Remove</button>
-                </div>
-              </div>
+              ))}
             </div>
             <div>
               <div className="total">
                 <p className="total__item">
-                  Total price: <span>1156.00,-</span>
+                  Total price: <span>{total},-</span>
                 </p>
                 <p className="total__item">
-                  Discount: <span>0,-</span>
+                  Discount: <span>{discount},-</span>
                 </p>
                 <p className="total__item">
-                  Total: <span>1156.00,-</span>
+                  Total: <span>{finalSum},-</span>
                 </p>
               </div>
               <button className="cart__submit cta">Make purchase</button>

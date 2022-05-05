@@ -43,10 +43,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: end;
+}
+
+.cart__item__price--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 .cart__item__price {
   font-size: var(--fs-small);
+  font-weight: bold;
+}
+
+.cart__item__price--small {
+  font-size: var(--fs-smaller);
 }
 
 .cart__item__remove {
