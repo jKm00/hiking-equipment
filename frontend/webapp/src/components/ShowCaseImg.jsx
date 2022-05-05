@@ -23,71 +23,50 @@ export default function App() {
           "--swiper-navigation-color": "#fff",
           "--swiper-pagination-color": "#fff",
         }}
+        loop={true}
         spaceBetween={10}
-        direction="vertical"
         slidesPerView="auto"
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="small__images"
+        className="big__images"
       >
         <SwiperSlide>
-          <img src="https://picsum.photos/200/300" />
+          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/200" />
+          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
         </SwiperSlide>
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
-        slidesPerView="auto"
+        slidesPerView="3.5"
+        direction="vertical"
+        navigation={true}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="big__images"
+        className="small__images"
       >
+        <div className="swiper-wrapper">
+
+        </div>
         <SwiperSlide>
-          <img src="https://picsum.photos/200/300" />
+          <img src="https://swiperjs.com/demos/images/nature-1.jpg" className="swiper-slide-pic" />
+        </SwiperSlide>
+        <SwiperSlide >
+          <img src="https://swiperjs.com/demos/images/nature-2.jpg" className="swiper-slide-pic" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/200" />
+          <img src="https://swiperjs.com/demos/images/nature-3.jpg" className="swiper-slide-pic"/>
         </SwiperSlide>
       </Swiper>
     </>
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function ShowCaseImg({ bigImg, bigImgAlt, bigImg2, bigImgAlt2, smallImg, smallImgAlt, smallImg2, smallImg2Alt }) {
-  return (
-      <><div className="small__images">
-      <img src={smallImg} alt={smallImgAlt} onClick={() => Swiper.mySwiper.slideTo(0)} />
-      <img src={smallImg2} alt={smallImg2Alt} onClick={() => Swiper.mySwiper.slideTo(1)} />
-    </div><div className="big__images">
-      <img src={bigImg} alt={bigImgAlt} />
-      <img src={bigImg2} alt={bigImgAlt2} />
-
-      </div></>
-// fikk opp quick fix wrap in jsx fragment og da funket griden
-  );
-}
-
-// export default ShowCaseImg;
 
