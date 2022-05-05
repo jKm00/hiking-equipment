@@ -1,10 +1,9 @@
 package no.ntnu.xxs.role;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.user.User;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 
@@ -19,33 +18,43 @@ public class Role {
     @GeneratedValue
     @Column(unique = true, name = "role_id")
     private long id;
-    @Column(name="role_name")
-    private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private Set<User> users = new HashSet<>();
+    @Column(name = "role_name")
+    private String name;
 
-    public Role() {}
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set<User> users = new LinkedHashSet<>();
 
-    public Role(String roleName) {
-        this.roleName = roleName;
+    /**
+     * Empty constructor
+     */
+    public Role(){}
+
+
+    /**
+     * not empty constructor
+     * @param name name of role
+     */
+    public Role(String name)
+    {
+        this.name = name;
     }
+
 
     public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<User> getUsers() {
@@ -54,13 +63,5 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
-
-    /**
-     * Add a user to a specific role
-     * @param user the user to add
-     */
-    public void addUser(User user) {
-        this.users.add(user);
     }
 }

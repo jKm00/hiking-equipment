@@ -16,16 +16,22 @@ public class Product {
     @GeneratedValue
     @Column(unique = true, name = "product_id")
     private long id;
+
     @Column(name="product_name")
     private String productName;
+
     @Column(name="product_description")
     private String description;
+
     @Column(name="price")
     private float price;
+
     @Column(name="category")
     private String category;
+
     @Column(name="sex")
     private String sex;
+
     @Column(name="featured")
     private boolean featured;
 

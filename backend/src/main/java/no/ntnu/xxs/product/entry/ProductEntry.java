@@ -1,5 +1,7 @@
 package no.ntnu.xxs.product.entry;
 
+import no.ntnu.xxs.entities.Color;
+import no.ntnu.xxs.entities.Size;
 import no.ntnu.xxs.product.Product;
 
 import javax.persistence.*;
@@ -12,35 +14,40 @@ import javax.persistence.*;
  */
 // TODO: Rename to something more understandable
 @Entity
-@Table(name = "product_entry")
+@Table(name = "product_entries")
 public class ProductEntry {
 
-    @Id
-    @GeneratedValue
-    private long id;
+    @EmbeddedId
+    ProductEntryKey id;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private String size;
-    private String color;
+    @ManyToOne
+    @JoinColumn(name = "size_id")
+    private Size size;
+
+    @ManyToOne
+    @JoinColumn(name = "color_id")
+    private Color color;
+
     private int quantity;
 
     public ProductEntry() {}
 
-    public ProductEntry(Product product, String size, String color, int quantity) {
+    public ProductEntry(Product product, Size size, Color color, int quantity) {
         this.product = product;
         this.size = size;
         this.color = color;
         this.quantity = quantity;
     }
 
-    public long getId() {
+    public ProductEntryKey getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(ProductEntryKey id) {
         this.id = id;
     }
 
@@ -52,19 +59,19 @@ public class ProductEntry {
         this.product = product;
     }
 
-    public String getSize() {
+    public Size getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Size size) {
         this.size = size;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

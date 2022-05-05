@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "colors")
-public class Colors
+public class Color
 {
     //fields
     @Id
@@ -20,5 +20,29 @@ public class Colors
     /**
      * empty constructor
      */
-    public Colors(){}
+    public Color() {
+
+    }
+
+
+    public Color(String color){
+        this.color = color;
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

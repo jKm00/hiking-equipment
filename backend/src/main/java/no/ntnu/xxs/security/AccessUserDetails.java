@@ -34,7 +34,7 @@ public class AccessUserDetails implements UserDetails {
     private void convertRoles(Set<Role> roles) {
         authorities.clear();
         for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
     }
 

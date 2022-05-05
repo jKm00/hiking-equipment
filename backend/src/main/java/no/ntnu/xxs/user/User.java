@@ -1,10 +1,13 @@
 package no.ntnu.xxs.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import no.ntnu.xxs.entities.carts.Cart;
+import no.ntnu.xxs.entities.orders.Order;
 import no.ntnu.xxs.role.Role;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -36,11 +39,13 @@ public class User {
     private boolean isActive = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
+    @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new LinkedHashSet<>();
+
+
 
     public User() {}
 
@@ -139,16 +144,43 @@ public class User {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    /**
+     * Adds role to the role set
+     * @param role
+     */
+    public void addRole(Role role){
+        this.roles.add(role);
     }
 
     /**
-     * Adds a role to the user
-     * @param role the role to add
+     * Returns true if a user is admin, false if not
+     * @return true if a user is admin, false if not
      */
-    public void addRole(Role role) {
-        this.roles.add(role);
+    public boolean isAdmin(){
+        return this.hasRole("ROLE_ADMIN");
+    }
+
+    /**
+     * Checks if a user has a specific role
+     * @param roleName name of the role to be checked
+     * @return true if role is found, false if not
+     */
+    public boolean hasRole(String roleName){
+        boolean found = false;
+        Iterator<Role> it = roles.iterator();
+        while(!found && it.hasNext())
+        {
+            Role role = it.next();
+            if(role.getName().equals(roleName))
+            {
+                found=true;
+            }
+        }
+        return found;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
 

@@ -11,6 +11,7 @@ import no.ntnu.xxs.role.RoleRepository;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
 import no.ntnu.xxs.user.UserRepository;
+
 @Service
 public class UserSignUpService {
     
@@ -32,12 +33,16 @@ public class UserSignUpService {
             throw new UserAlreadyExistException("Username is already taken");
         }
         */
-        Role userRole = new Role("ROLE_USER");
-        roleRepository.save(userRole);
+        Role roleFound = roleRepository.findByRoleName("ROLE_USER");
+        if(roleFound==null)
+        {
+            roleFound = new Role("ROLE_USER");
+            roleRepository.save(roleFound);
+        }
         User userToRegister = new User();
         BeanUtils.copyProperties(user, userToRegister);
         encodePassword(userToRegister);
-        userToRegister.addRole(userRole);
+        userToRegister.addRole(roleFound);
         userRepository.save(userToRegister);    
     }
     

@@ -1,4 +1,4 @@
-package no.ntnu.xxs.entities;
+package no.ntnu.xxs.entities.orders;
 
 
 import no.ntnu.xxs.user.User;
@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "orders")
-public class Orders
+public class Order
 {
     //fields
     @Id
@@ -25,13 +25,14 @@ public class Orders
 
     @Column(name = "total_price")
     private long totalPrice;
+
     @Column(name = "status")
     private String status;
 
     /**
      * Empty constructor
      */
-    public Orders()
+    public Order()
     {
 
     }

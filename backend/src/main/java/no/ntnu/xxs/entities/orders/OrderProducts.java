@@ -1,4 +1,4 @@
-package no.ntnu.xxs.entities;
+package no.ntnu.xxs.entities.orders;
 
 import no.ntnu.xxs.product.Product;
 
@@ -18,7 +18,7 @@ public class OrderProducts implements Serializable
     @ManyToOne
     @MapsId("orderID")
     @JoinColumn(name = "order_id")
-    private Orders order;
+    private Order order;
 
 
     @ManyToOne

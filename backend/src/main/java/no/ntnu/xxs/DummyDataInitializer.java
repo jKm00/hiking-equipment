@@ -1,5 +1,7 @@
 package no.ntnu.xxs;
 
+import no.ntnu.xxs.entities.Color;
+import no.ntnu.xxs.entities.Size;
 import no.ntnu.xxs.product.Product;
 import no.ntnu.xxs.product.ProductRepository;
 import no.ntnu.xxs.product.details.ProductDetail;
@@ -55,9 +57,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         productDetailRepository.save(new ProductDetail("Comfy", sweater));
         productDetailRepository.save(new ProductDetail("Slim-fit", sweater));
 
-        ProductEntry largeSweater = new ProductEntry(sweater, "large", "military green", 50);
-        ProductEntry mediumSweater = new ProductEntry(sweater, "medium","military green", 25);
-        ProductEntry blackBoots = new ProductEntry(boots, "42", "black", 32);
+        ProductEntry largeSweater = new ProductEntry(sweater, new Size("medium"), new Color("military green"), 50);
+        ProductEntry mediumSweater = new ProductEntry(sweater, new Size("medium"),new Color("military green"), 25);
+        ProductEntry blackBoots = new ProductEntry(boots, new Size("42"), new Color("black"), 32);
         productEntryRepository.save(largeSweater);
         productEntryRepository.save(mediumSweater);
         productEntryRepository.save(blackBoots);

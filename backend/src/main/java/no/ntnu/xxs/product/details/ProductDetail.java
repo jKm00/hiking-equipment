@@ -12,6 +12,7 @@ public class ProductDetail {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "product_details_id")
     private long id;
+
     @Column(name="details")
     private String detail;
 
