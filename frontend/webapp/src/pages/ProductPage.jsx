@@ -14,9 +14,11 @@ function ProductPage() {
     <ShowCaseImg 
             bigImg="https://picsum.photos/200/300" 
             bigImgAlt="lorem picsum placeholder"
+            bigImg2="https://picsum.photos/200" 
+            bigImgAlt2="lorem picsum placeholder"
             smallImg="https://picsum.photos/200/300" 
             smallImgAlt="lorem picsum placeholder"
-            smallImg2="https://picsum.photos/200/300" 
+            smallImg2="https://picsum.photos/200" 
             smallImg2Alt="lorem picsum placeholder"
       />
 
