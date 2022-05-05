@@ -1,3 +1,5 @@
+import "../styles/cartItem.css";
+
 export default function CartItem({ product, handleRemove }) {
   function onSubmit() {
     handleRemove(product.id);
