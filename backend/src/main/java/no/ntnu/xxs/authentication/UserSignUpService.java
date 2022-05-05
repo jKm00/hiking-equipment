@@ -32,6 +32,7 @@ public class UserSignUpService {
             throw new UserAlreadyExistException("Username is already taken");
         }
         */
+        // TODO: check if user role already exists, if not only then create a new role
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
         User userToRegister = new User();
