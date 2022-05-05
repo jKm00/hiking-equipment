@@ -38,16 +38,7 @@ function App() {
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route
-          path="/cart"
-          element={
-            user === null ? (
-              <Navigate to="/login" replace />
-            ) : (
-              <CartPage user={user} />
-            )
-          }
-        />
+        <Route path="/cart" element={<CartPage user={user} />} />
         <Route
           path="/admin"
           element={

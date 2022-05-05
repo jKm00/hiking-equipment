@@ -185,6 +185,7 @@
   .cart-page {
     display: grid;
     grid-template-columns: 1fr 30rem;
+    grid-template-rows: auto 1fr;
     align-items: start;
   }
 
