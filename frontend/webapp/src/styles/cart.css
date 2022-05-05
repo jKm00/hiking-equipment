@@ -4,74 +4,55 @@
   flex-direction: column;
   gap: var(--spacing-large);
   margin: var(--spacing-xxl) 0;
-  min-height: 50vh;
 }
 
 .cart {
-  border-radius: var(--br);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large);
   box-shadow: var(--shadow-box);
   padding: var(--spacing-large);
-  border-spacing: var(--spacing-small);
-  width: 100%;
 }
 
-.cart__title {
-  text-align: left;
-  font-size: var(--fs-medium);
+.cart__item {
+  display: flex;
+  gap: var(--spacing-smaller);
 }
 
-.cart__item__content {
-  display: grid;
-  grid-template-columns: 10rem 1fr;
-  column-gap: var(--spacing-medium);
-  align-items: center;
-}
-
-.cart__item__content__img {
-  --size: 10rem;
-  height: var(--size);
-  width: var(--size);
-  grid-row: span 3;
+.cart__item__img {
+  width: 5rem;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
-.cart__item__content__title {
-  font-size: var(--fs-large);
-}
-
-.cart__item__content__details {
+.cart__item__title {
   font-size: var(--fs-small);
-  color: var(--clr-dark-500);
 }
 
-.cart__item__input {
-  padding: var(--spacing-small) var(--spacing-medium);
-  max-width: 8rem;
-  text-align: right;
+.cart__item__details {
+  flex-grow: 1;
+}
+
+.cart__item__detail {
+  font-size: var(--fs-smaller);
+}
+
+.cart__item__addons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cart__item__price {
   font-size: var(--fs-small);
 }
 
-.cart__item__price--total {
-  font-size: var(--fs-medium);
-  font-weight: bold;
-}
-
 .cart__item__remove {
-  border: 1px solid var(--clr-dark-500);
-  padding: var(--spacing-smaller);
-  border-radius: var(--br);
-  transition: background-color 200ms ease-in-out;
+  font-size: var(--fs-smaller);
 }
 
 .cart__item__remove:hover {
-  background-color: var(--clr-accent-400);
-}
-
-.cart__item__remove:active {
-  background-color: var(--clr-accent-600);
+  text-decoration: underline;
 }
 
 .total {
@@ -86,9 +67,9 @@
 }
 
 .total__item:last-child {
-  border-top: 1px solid var(--clr-dark-800);
-  margin-top: var(--spacing-medium);
-  padding-top: var(--spacing-medium);
+  margin-top: var(--spacing-small);
+  padding-top: var(--spacing-small);
+  border-top: 1px solid var(--clr-dark-500);
 }
 
 .cart__submit {

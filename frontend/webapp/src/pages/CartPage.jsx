@@ -26,45 +26,25 @@ export default function CartPage({ user }) {
     <>
       <section className="cart-page">
         <h2 className="cart-page__title">Your cart</h2>
-        <table className="cart">
-          <thead>
-            <tr>
-              <th className="cart__title">Product</th>
-              <th className="cart__title">Quantity</th>
-              <th className="cart__title">Price</th>
-            </tr>
-          </thead>
-          <tbody className="cart__body">
-            <tr className="cart__item">
-              <td>
-                <div className="cart__item__content">
-                  <img
-                    src="https://picsum.photos/200/300"
-                    alt=""
-                    className="cart__item__content__img"
-                  />
-                  <h3 className="cart__item__content__title">Winter sweater</h3>
-                  <p className="cart__item__content__details">Size: L</p>
-                  <p className="cart__item__content__details">Color: Green</p>
-                </div>
-              </td>
-              <td>
-                <input type="number" className="cart__item__input" />
-              </td>
-              <td>
-                <div>
-                  <p className="cart__item__price cart__item__price--total">
-                    1156.00,-
-                  </p>
-                  <p className="cart__item__price">315.20,- each</p>
-                </div>
-              </td>
-              <td>
-                <button className="cart__item__remove">Remove</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="cart">
+          <div className="cart__item">
+            <img
+              className="cart__item__img"
+              src="https://picsum.photos/200/300"
+              alt=""
+            />
+            <div className="cart__item__details">
+              <h3 className="cart__item__title">Winter Sweater</h3>
+              <p className="cart__item__detail">Color: green</p>
+              <p className="cart__item__detail">Size: L</p>
+              <p className="cart__item__detail">Quantity: 1</p>
+            </div>
+            <div className="cart__item__addons">
+              <p className="cart__item__price">463.00,-</p>
+              <button className="cart__item__remove">Remove</button>
+            </div>
+          </div>
+        </div>
         <div>
           <div className="total">
             <p className="total__item">

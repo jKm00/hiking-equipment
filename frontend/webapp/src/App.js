@@ -11,10 +11,10 @@ import SearchResultPage from "./pages/SearchResultPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
 import CartPage from "./pages/CartPage";
+import SignUpPage from "./pages/SignUpPage";
 
 import "./styles/global.css";
 import "./styles/mediaQueries.css";
-import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const [user, setUser] = useState(null);
