@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 import "../styles/footer.css";
 
@@ -46,29 +46,29 @@ function Footer() {
             <h4 className="footer-list__title">Links</h4>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="/shop/all" className="footer-list__link">
               Go to shop
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#campaigns" className="footer-list__link">
               Campaigns
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#reviews" className="footer-list__link">
               Reviews
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#about-us" className="footer-list__link">
               About us
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#products-and-services" className="footer-list__link">
               Our products & services
-            </a>
+            </Link>
           </li>
         </ul>
         <ul className="footer-list footer-list--business-hours">

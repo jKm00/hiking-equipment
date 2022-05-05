@@ -6,7 +6,7 @@ import "../styles/campaigns.css";
 
 function Campaigns() {
   return (
-    <section className="campaigns">
+    <section className="campaigns" id="campaigns">
       <h2 className="campaigns__title">Campaigns</h2>
       <ProductCard
         img="/img/articles/01-dog-boots-green.jpg"
