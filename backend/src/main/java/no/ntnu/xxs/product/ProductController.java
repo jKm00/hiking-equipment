@@ -56,12 +56,20 @@ public class ProductController {
         * @throws ProductAlreadyExistException if the product already exists
         */
         
-        @PostMapping("/api/products")
-        @PreAuthorize("hasRole('ADMIN')")
+        @PostMapping("")
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
-        public ResponseEntity<?> addProduct(@RequestBody Product product) {
-            return ResponseEntity.ok(product);
-            
+        public ResponseEntity<?> addProduct(@RequestBody Product productToBeAdded) {
+            Product product = new Product(
+                    productToBeAdded.getProductName(),
+                    productToBeAdded.getDescription(),
+                    productToBeAdded.getPrice(),
+                    productToBeAdded.getSex(),
+                    productToBeAdded.getCategory()
+                    
+            );
+            this.productService.addProduct(product);
+            return new ResponseEntity<>(product, HttpStatus.OK);            
         }
 
         /**
@@ -69,10 +77,11 @@ public class ProductController {
          * @param id The id of the product to be updated
          * 
          */
-        @DeleteMapping("/api/products/{id}")
-        @PreAuthorize("hasRole('ADMIN')")
+        @DeleteMapping("/{id}")
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
-        public ResponseEntity<?> deleteProduct(@PathVariable long id) {
+        public ResponseEntity<?> deleteProduct(@PathVariable("id") long id) {
+            productService.deleteProduct(id);
             return ResponseEntity.ok(id);
         }
 
