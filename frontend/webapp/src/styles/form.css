@@ -8,7 +8,7 @@
 .form--grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 4.8rem;
+  column-gap: var(--spacing-extra-large);
   max-width: 100rem;
 }
 
@@ -66,6 +66,8 @@
 }
 
 .form__label {
+  display: flex;
+  gap: var(--spacing-small);
   margin-bottom: var(--spacing-smaller);
 }
 
@@ -92,6 +94,10 @@
 
 .form__input[type="file"]::file-selector-button:active {
   background-color: var(--clr-dark-300);
+}
+
+.form-submit-wrapper--stretch {
+  grid-column: 1 / -1;
 }
 
 .form__feedback {

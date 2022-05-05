@@ -121,6 +121,38 @@ svg {
   padding: 2.4rem 3.2rem;
 }
 
+.tooltip {
+  --size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+  background-color: var(--clr-dark-900);
+  color: var(--clr-light-400);
+  font-size: var(--fs-small);
+  position: relative;
+}
+
+.tooltip:hover .tooltip__content,
+.tooltip:focus .tooltip__content {
+  display: block;
+}
+
+.tooltip__content {
+  display: none;
+  background: var(--clr-dark-800);
+  width: max-content;
+  max-width: 300px;
+  padding: var(--spacing-smaller);
+  line-height: var(--spacing-medium);
+  box-shadow: var(--shadow-box);
+  position: absolute;
+  left: 0;
+  top: calc(var(--size) + 0.5rem);
+}
+
 /*---------------
     Typography
 ---------------*/
