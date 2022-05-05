@@ -13,7 +13,8 @@ import "../styles/showCaseImg.css";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
-export default function App() {
+export default function App(bigImg, bigImgAlt, bigImg2, bigImgAlt2, bigImg3, bigImgAlt3,
+   navImg, navImgAlt, navImg2, navImgAlt2, navImg3, navImgAlt3) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -32,13 +33,13 @@ export default function App() {
         className="big__images"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img src= {bigImg} alt={bigImgAlt} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <img src= {bigImg2} alt={bigImgAlt2} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          <img src= {bigImg3} alt={bigImgAlt3} />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -52,21 +53,16 @@ export default function App() {
         modules={[FreeMode, Navigation, Thumbs]}
         className="small__images"
       >
-        <div className="swiper-wrapper">
-
-        </div>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" className="swiper-slide-pic" />
+          <img src= {navImg} alt={navImgAlt}  className="swiper-slide-pic" />
         </SwiperSlide>
         <SwiperSlide >
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" className="swiper-slide-pic" />
+          <img src= {navImg2} alt={navImgAlt2}  className="swiper-slide-pic" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" className="swiper-slide-pic"/>
+          <img src= {navImg3} alt={navImgAlt3}  className="swiper-slide-pic"/>
         </SwiperSlide>
       </Swiper>
     </>
   );
 }
-
-

@@ -65,9 +65,6 @@
   }
   
   .size_selector {    
-    /*---------------
-    sjekk om denne verdien er innenfor
----------------*/
     width: 50%;
     display: flex;
     justify-self: flex-start;
