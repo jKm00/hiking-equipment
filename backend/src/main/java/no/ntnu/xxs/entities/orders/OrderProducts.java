@@ -17,13 +17,13 @@ public class OrderProducts implements Serializable
 
     @ManyToOne
     @MapsId("orderID")
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
 
     @ManyToOne
     @MapsId("productID")
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     /**

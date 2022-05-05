@@ -1,9 +1,12 @@
 package no.ntnu.xxs.entities.orders;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.user.User;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * This class represents an order in the web shop
@@ -15,13 +18,17 @@ public class Order
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "order_id")
+    @Column(unique = true, name = "id")
     private long id;
 
     //Foreign key
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "order")
+    private Set<OrderProducts> orderProducts = new LinkedHashSet<>();
 
     @Column(name = "total_price")
     private long totalPrice;

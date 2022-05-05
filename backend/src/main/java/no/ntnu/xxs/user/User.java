@@ -2,6 +2,8 @@ package no.ntnu.xxs.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import no.ntnu.xxs.entities.carts.Cart;
+import no.ntnu.xxs.entities.orders.Order;
 import no.ntnu.xxs.role.Role;
 
 import javax.persistence.*;
@@ -17,7 +19,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "user_id")
+    @Column(unique = true, name = "id")
     private int id;
     @Column(name= "first_name")
     private String firstName;
@@ -43,6 +45,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new LinkedHashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> order = new LinkedHashSet<>();
 
 
 
@@ -141,6 +150,22 @@ public class User {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
     }
 
     /**

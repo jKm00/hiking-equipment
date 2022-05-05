@@ -1,6 +1,13 @@
 package no.ntnu.xxs.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import no.ntnu.xxs.product.Product;
+import org.hibernate.type.CharacterArrayNClobType;
+
+
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * This class represents all sizes that exist in the shop
@@ -12,10 +19,18 @@ public class Size
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "size_id")
+    @Column(unique = true, name = "id")
     private long id;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "sizes")
+    private Set<Product> productEntrySet = new LinkedHashSet<>();
+
     @Column(name = "size")
     private String size;
+
+    @OneToMany(mappedBy = "size")
+    private Set<CartItem> cartItem;
 
 
     /**

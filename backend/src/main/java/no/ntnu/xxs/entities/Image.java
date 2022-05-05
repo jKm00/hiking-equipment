@@ -11,13 +11,13 @@ public class Image {
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "image_id")
+    @Column(unique = true, name = "id")
     private long id;
     @Column(name = "image")
     private String image; //thought is to have a binary string, may be swapped with another datatype
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
 

@@ -10,14 +10,14 @@ import javax.persistence.*;
 public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "product_details_id")
+    @Column(unique = true, name = "id")
     private long id;
 
     @Column(name="details")
     private String detail;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
     @JsonIgnore
     private Product product;
 

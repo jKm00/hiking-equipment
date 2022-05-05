@@ -1,5 +1,7 @@
 package no.ntnu.xxs.entities;
 
+import no.ntnu.xxs.product.Product;
+
 import javax.persistence.*;
 
 /**
@@ -12,8 +14,11 @@ public class Discount
     //fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "discount_id")
+    @Column(unique = true, name = "id")
     private long id;
+
+    @OneToOne(mappedBy = "discount")
+    private Product product;
 
     @Column(name = "discount_name")
     private String discountName;
