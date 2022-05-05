@@ -166,4 +166,15 @@
   .shop-items {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  /* ------ Cart page ------ */
+  .cart-page {
+    display: grid;
+    grid-template-columns: 1fr 30rem;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .cart-page__title {
+    grid-column: 1 / -1;
+  }
 }
