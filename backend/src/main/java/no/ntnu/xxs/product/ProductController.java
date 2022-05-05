@@ -35,6 +35,7 @@ public class ProductController {
      * @return an item with same id as given
      */
     @GetMapping("/{id}")
+    @CrossOrigin
     public ResponseEntity<Product> getProductById(@PathVariable long id) {
         ResponseEntity<Product> response;
         Product product = this.productService.getProductById(id);
@@ -45,4 +46,35 @@ public class ProductController {
         }
         return response;
     }
+
+
+            
+        /**
+        * HTTP POST request to /api/products
+        * @param product The product to be added
+        * @return Http.OK with the added product, or Http.UNAUTHORIZED
+        * @throws ProductAlreadyExistException if the product already exists
+        */
+        
+        @PostMapping("/api/products")
+        @PreAuthorize("hasRole('ADMIN')")
+        @CrossOrigin
+        public ResponseEntity<?> addProduct(@RequestBody Product product) {
+            return ResponseEntity.ok(product);
+            
+        }
+
+        /**
+         *  HTTP PUT request to /api/products/{id}
+         * @param id The id of the product to be updated
+         * 
+         */
+        @DeleteMapping("/api/products/{id}")
+        @PreAuthorize("hasRole('ADMIN')")
+        @CrossOrigin
+        public ResponseEntity<?> deleteProduct(@PathVariable long id) {
+            return ResponseEntity.ok(id);
+        }
+
+
 }
