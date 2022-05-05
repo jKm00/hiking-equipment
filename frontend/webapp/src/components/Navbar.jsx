@@ -70,6 +70,7 @@ function Navbar({ user, setUser }) {
     deleteAuthorizationCookies();
     setUser(null);
     toggleUserDetails();
+    navigate("/");
   }
 
   return (
