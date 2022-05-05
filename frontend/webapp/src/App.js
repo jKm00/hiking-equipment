@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 
 import "./styles/global.css";
 import "./styles/mediaQueries.css";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -45,6 +46,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
+        <Route path="signup" element={<SignUpPage />} />
       </Routes>
     </>
   );
