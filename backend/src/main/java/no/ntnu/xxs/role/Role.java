@@ -1,5 +1,6 @@
 package no.ntnu.xxs.role;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.user.User;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Role {
     @Column(name = "role_name")
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<User> users = new LinkedHashSet<>();
 

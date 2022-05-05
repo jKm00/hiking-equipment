@@ -1,8 +1,7 @@
 package no.ntnu.xxs.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import no.ntnu.xxs.entities.carts.Cart;
-import no.ntnu.xxs.entities.orders.Order;
+
 import no.ntnu.xxs.role.Role;
 
 import javax.persistence.*;

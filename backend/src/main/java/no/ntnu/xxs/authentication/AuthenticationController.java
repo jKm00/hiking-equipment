@@ -55,7 +55,7 @@ public class AuthenticationController {
     }
     
 
-    @PostMapping("/api/signup")
+    @PostMapping("/signup")
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
         // Create new user's account
         User user = new User(

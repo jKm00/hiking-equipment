@@ -33,7 +33,7 @@ public class UserSignUpService {
             throw new UserAlreadyExistException("Username is already taken");
         }
         */
-        Role roleFound = roleRepository.findByRoleName("ROLE_USER");
+        Role roleFound = roleRepository.findOneByName("ROLE_USER");
         if(roleFound==null)
         {
             roleFound = new Role("ROLE_USER");
