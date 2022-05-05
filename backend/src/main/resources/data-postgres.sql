@@ -113,7 +113,7 @@ insert into "product_entries" (productID, sizeID, colorID) values (5, 16 , 6 , 2
 
 -- Insert into users
 insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Torstein', 'Eide', 'tosse@kewlmail.com', 'Torstein', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
-insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Joakim', 'Edvadsen', 'jokke@kewlmail.com', 'Joakim', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
+insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Joakim', 'Edvardsen', 'jokke@kewlmail.com', 'Joakim', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
 insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Richie', 'Bailey', 'bichy@kewlmail.com', 'Richie', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
 insert into "users" (first_name, last_name, email, password, country, zipcode, city, address) values ('Eduard', 'Cristea', 'eddy@kewlmail.com', 'Eduard', 'Norway', 6004, 'Ålesund', 'Øvre strandgate 2');
 

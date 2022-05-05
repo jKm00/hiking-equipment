@@ -6,7 +6,6 @@ package no.ntnu.xxs.user;
 public class UserSignUpRequest {
     private String firstName;
     private String lastName;
-    private String username;
     private String email;
     private String password;
     private String country;
@@ -16,24 +15,15 @@ public class UserSignUpRequest {
 
     public UserSignUpRequest() {}
 
-    public UserSignUpRequest(String firstName, String lastName, String username, String email, String password, String country, String zipCode, String city, String address) {
+    public UserSignUpRequest(String firstName, String lastName, String email, String password, String country, String zipCode, String city, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
         this.email = email;
         this.password = password;
         this.country = country;
         this.zipCode = zipCode;
         this.city = city;
         this.address = address;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {

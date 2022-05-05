@@ -13,7 +13,7 @@ function Campaigns() {
         imgAlt="Military green dog boots"
         title="Dog set"
         desc="For small dogs. Includes boots, pants and sweater"
-        price="700,-"
+        price="700"
         id="1"
       />
       <ProductCard
@@ -21,7 +21,7 @@ function Campaigns() {
         imgAlt="Blue water bottle"
         title="Water bottle"
         desc="0.7 Liters, with hook for easy attachment."
-        price="120,-"
+        price="120"
         id="2"
       />
       <ProductCard
@@ -29,7 +29,7 @@ function Campaigns() {
         imgAlt="Military green sweater"
         title="Winter Sweater"
         desc="Holds the heat effectively."
-        price="800,-"
+        price="800"
         id="3"
       />
     </section>

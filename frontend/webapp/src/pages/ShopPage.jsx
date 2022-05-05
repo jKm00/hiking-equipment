@@ -1,71 +1,96 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { sendApiRequest } from "../tools/request";
 
+import ShopHeader from "../components/ShopHeader";
 import Footer from "../components/Footer";
 import ShopCategories from "../components/ShopCategories";
 import ProductCard from "../components/ProductCard";
 
 import "../styles/shop.css";
 
+import mainBackground from "../img/04-going-hiking-two-people.jpg";
+
 function ShopPage() {
+  const { sex } = useParams();
   const { category } = useParams();
+  const [products, setProducts] = useState([]);
+  const [title, setTitle] = useState("");
+  const [headerStyle, setHeaderStyle] = useState("");
+
+  // Update shop header based on gender
+  useEffect(() => {
+    if (sex === "all") {
+      setTitle("Shop");
+      setHeaderStyle("shop-header");
+    } else if (sex === "men") {
+      setTitle("Men");
+      setHeaderStyle("shop-header shop-header--men");
+    } else if (sex === "women") {
+      setTitle("Women");
+      setHeaderStyle("shop-header shop-header--women");
+    } else if (sex === "animals") {
+      setTitle("Animals");
+      setHeaderStyle("shop-header shop-header--animals");
+    }
+  }, [sex]);
+
+  /**
+   * Updates the product to be displayed in the shop. The
+   * update is triggered by the ShopCategories component, when
+   * the category value changes.
+   * @param {*} sex if provided products are filtered to only
+   * the sex specified
+   * @param {*} category if provided products are filtered
+   * to only the category specified
+   */
+  function updateProducts(sex, category) {
+    let url = "/products";
+    if (sex !== "all" && category) {
+      url += "?sex=" + sex + "&category=" + category;
+    } else if (category) {
+      url += "?category=" + category;
+    } else if (sex !== "all") {
+      url += "?sex=" + sex;
+    }
+    sendApiRequest(
+      "GET",
+      url,
+      function (response) {
+        setProducts(response);
+      },
+      null,
+      function (error) {
+        console.error("Could not load products: " + error);
+      }
+    );
+  }
 
   return (
     <>
-      <header className="shop-header">
-        <h1 className="shop-header__title">Shop</h1>
-      </header>
+      <ShopHeader headerStyle={headerStyle} title={title} />
       <section className="shop">
-        <ShopCategories selected={category} sex="all" />
+        <ShopCategories
+          sex={sex}
+          category={category}
+          updateProducts={updateProducts}
+        />
         <div className="shop-items">
-          <ProductCard
-            img="/img/articles/01-dog-boots-green.jpg"
-            imgAlt="Military green dog boots"
-            title="Dog set"
-            desc="For small dogs. Includes boots, pants and sweater"
-            price="700,-"
-            id="1"
-          />
-          <ProductCard
-            img="/img/articles/water-bottle-blue.jpeg"
-            imgAlt="Blue water bottle"
-            title="Water bottle"
-            desc="0.7 Liters, with hook for easy attachment."
-            price="120,-"
-            id="2"
-          />
-          <ProductCard
-            img="/img/articles/winter-sweater-green.jpg"
-            imgAlt="Military green sweater"
-            title="Winter Sweater"
-            desc="Holds the heat effectively."
-            price="800,-"
-            id="3"
-          />
-          <ProductCard
-            img="/img/articles/01-dog-boots-green.jpg"
-            imgAlt="Military green dog boots"
-            title="Dog set"
-            desc="For small dogs. Includes boots, pants and sweater"
-            price="700,-"
-            id="1"
-          />
-          <ProductCard
-            img="/img/articles/water-bottle-blue.jpeg"
-            imgAlt="Blue water bottle"
-            title="Water bottle"
-            desc="0.7 Liters, with hook for easy attachment."
-            price="120,-"
-            id="2"
-          />
-          <ProductCard
-            img="/img/articles/winter-sweater-green.jpg"
-            imgAlt="Military green sweater"
-            title="Winter Sweater"
-            desc="Holds the heat effectively."
-            price="800,-"
-            id="3"
-          />
+          {products.length === 0 ? (
+            <p>Loading...</p>
+          ) : (
+            products.map((product) => (
+              <ProductCard
+                key={product.id}
+                img="/img/articles/winter-sweater-green.jpg"
+                imgAlt={product.productName}
+                title={product.productName}
+                desc={product.description}
+                price={product.price}
+                id={product.id}
+              />
+            ))
+          )}
         </div>
       </section>
       <Footer />

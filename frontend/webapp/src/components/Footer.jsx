@@ -8,7 +8,7 @@ function Footer() {
     <footer className="footer">
       <div className="first-footer">
         <div className="first-footer__logo--wrapper">
-          <h4 className="logo logo--footer">XXS -</h4>
+          <h3 className="logo logo--footer">XXS -</h3>
           <p className="logo--slogan">Because the size doesn't matter</p>
         </div>
         <ul className="socials">
@@ -43,7 +43,7 @@ function Footer() {
         </ul>
         <ul className="footer-list footer-list--link">
           <li>
-            <h5 className="footer-list__title">Links</h5>
+            <h4 className="footer-list__title">Links</h4>
           </li>
           <li className="footer-list__item">
             <a href="#" className="footer-list__link">
@@ -73,28 +73,28 @@ function Footer() {
         </ul>
         <ul className="footer-list footer-list--business-hours">
           <li>
-            <h5 className="footer-list__title">Opening Hours</h5>
+            <h4 className="footer-list__title">Opening Hours</h4>
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Mon - Thurs:</span>
+            <span className="footer-list__item--darker">Mon - Thurs: </span>
             09.00 - 22.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Friday:</span>09.00 -
+            <span className="footer-list__item--darker">Friday: </span>09.00 -
             20.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Saturday:</span>10.00 -
+            <span className="footer-list__item--darker">Saturday: </span>10.00 -
             20.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Sunday:</span>13.00 -
+            <span className="footer-list__item--darker">Sunday: </span>13.00 -
             19.00
           </li>
         </ul>
         <ul className="footer-list footer-list--contact-info">
           <li>
-            <h5 className="footer-list__title">Contact Information</h5>
+            <h4 className="footer-list__title">Contact Information</h4>
           </li>
           <li className="footer-list__item">
             <span className="footer-list__item--darker">

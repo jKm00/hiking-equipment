@@ -1,0 +1,23 @@
+.table {
+  font-size: var(--fs-medium);
+  border-spacing: var(--spacing-small);
+  width: 100%;
+}
+
+.table__title {
+  font-size: var(--fs-large);
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: var(--spacing-medium);
+}
+
+.table__heading {
+  text-align: left;
+}
+
+.table__row--delete,
+.table__row--delete button {
+  text-align: center;
+  color: var(--clr-error-400);
+  cursor: pointer;
+}

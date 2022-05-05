@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: stretch;
-    padding: 4.8rem 0 6.4rem 0;
+    padding: var(--spacing-extra-large) 0 var(--spacing-xxl) 0;
   }
 
   .campaigns__title {
@@ -26,7 +26,7 @@
 
   /* ------ Newsletter ------ */
   .newsletter {
-    padding: 12.8rem 0;
+    padding: var(--spacing-gigantic) 0;
   }
 
   /* ------ Shop ------ */
@@ -42,7 +42,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: stretch;
-    padding: 4.8rem 0 9.6rem 0;
+    padding: var(--spacing-extra-large) 0 var(--spacing-huge) 0;
   }
 
   .product-card {
@@ -56,13 +56,13 @@
 
   /* ------ Reviews ------ */
   .reviews {
-    padding: 9.6em 0 12.8rem 0;
+    padding: var(--spacing-huge) 0 var(--spacing-gigantic) 0;
   }
 
   .reviews--wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 4.8rem;
+    column-gap: var(--spacing-extra-large);
   }
 
   .reviews__title {
@@ -76,18 +76,18 @@
 
   /* ------ Company Info ------ */
   .company-info {
-    padding: 12.8rem 0;
+    padding: var(--spacing-gigantic) 0;
   }
 
   .company-article {
     display: flex;
     align-items: stretch;
-    gap: 4.8rem;
+    gap: var(--spacing-extra-large);
     max-width: none;
   }
 
   .company-article:first-of-type {
-    margin-bottom: 9.6rem;
+    margin-bottom: var(--spacing-huge);
   }
 
   .company-article--wrapper {
@@ -96,7 +96,7 @@
 
   .company-article__img {
     max-width: 50%;
-    height: 400px;
+    height: 40rem;
     object-fit: cover;
   }
 
@@ -111,14 +111,14 @@
     grid-template-areas:
       "logo . socials"
       "links business-hours contact-info";
-    row-gap: 6.4rem;
-    column-gap: 3.2rem;
-    padding: 12.8rem 0;
+    row-gap: var(--spacing-xxl);
+    column-gap: var(--spacing-larger);
+    padding: var(--spacing-gigantic) 0;
   }
 
   .footer__list,
   .footer__list__link {
-    font-size: 1.6rem;
+    font-size: var(--fs-medium);
   }
 
   /* Footer item placement */
@@ -147,12 +147,12 @@
   .shop {
     display: grid;
     grid-template-columns: 22em 1fr;
-    gap: 1.6em;
+    gap: var(--spacing-medium);
   }
 
   .shop-header {
     grid-column: 2 / -2;
-    margin: 4.8em 0 3.2em 0;
+    margin: var(--spacing-extra-large) 0 var(--spacing-larger) 0;
   }
 
   .categories {
