@@ -76,19 +76,19 @@ function Footer() {
             <h4 className="footer-list__title">Opening Hours</h4>
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Mon - Thurs:</span>
+            <span className="footer-list__item--darker">Mon - Thurs: </span>
             09.00 - 22.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Friday:</span>09.00 -
+            <span className="footer-list__item--darker">Friday: </span>09.00 -
             20.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Saturday:</span>10.00 -
+            <span className="footer-list__item--darker">Saturday: </span>10.00 -
             20.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Sunday:</span>13.00 -
+            <span className="footer-list__item--darker">Sunday: </span>13.00 -
             19.00
           </li>
         </ul>

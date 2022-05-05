@@ -11,22 +11,22 @@
 }
 
 .shop-header__title {
-  margin-left: 6.4rem;
+  margin-left: var(--spacing-xxl);
   text-shadow: var(--shadow-txt);
-  padding: 4.8rem 0rem;
+  padding: var(--spacing-extra-large) 0rem;
 }
 
 .shop {
   grid-column: 2 / -2;
   grid-template-columns: 20em 1fr;
-  gap: 1.6rem;
-  margin: 3.2rem 0;
+  gap: var(--spacing-medium);
+  margin: var(--spacing-larger) 0;
 }
 
 .shop-items {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: var(--spacing-medium);
 }
 
 /* ----- Mens shop ------ */
