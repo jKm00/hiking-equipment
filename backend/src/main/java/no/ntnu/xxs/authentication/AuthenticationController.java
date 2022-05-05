@@ -77,7 +77,7 @@ public class AuthenticationController {
 
     //TODO: implement method
     @PostMapping("/signup/admin")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> registerAdmin(@RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
         return new ResponseEntity<>(HttpStatus.OK);
     }
