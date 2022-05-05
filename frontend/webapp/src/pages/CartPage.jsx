@@ -80,11 +80,26 @@ export default function CartPage({ user }) {
   }
 
   /**
+   * TODO: make this work with API
    * Removes an item from the shopping cart
    * @param {*} id the id of the item to remove
    */
   function removeItem(id) {
-    console.log(id);
+    let index = 0;
+    let found = false;
+    while (index < cart.length && !found) {
+      if (cart[index].id === id) {
+        found = true;
+      } else {
+        index++;
+      }
+    }
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      cart.splice(index, 1);
+    }
+    setCart([...cart]);
   }
 
   return (
@@ -99,13 +114,21 @@ export default function CartPage({ user }) {
           <>
             <h2 className="cart-page__title">Your cart</h2>
             <div className="cart">
-              {cart.map((product) => (
-                <CartItem
-                  key={product.id}
-                  product={product}
-                  handleRemove={removeItem}
-                />
-              ))}
+              {cart.length === 0 ? (
+                <p>
+                  You have 0 items in your cart.{" "}
+                  <Link to="/shop/all">Go to shop</Link> to discover our
+                  products
+                </p>
+              ) : (
+                cart.map((product) => (
+                  <CartItem
+                    key={product.id}
+                    product={product}
+                    handleRemove={removeItem}
+                  />
+                ))
+              )}
             </div>
             <div>
               <div className="total">
