@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { getCookie } from "./tools/cookies";
-import { parseJwtUser } from "./tools/authentication";
+import {
+  isUnexpired,
+  parseJwtUser,
+  deleteAuthorizationCookies,
+} from "./tools/authentication";
 
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
@@ -21,8 +25,12 @@ function App() {
   useEffect(() => {
     const jwt = getCookie("jwt");
     if (jwt !== "") {
-      const userData = parseJwtUser(jwt);
-      setUser(userData);
+      if (!isUnexpired(jwt)) {
+        const userData = parseJwtUser(jwt);
+        setUser(userData);
+      } else {
+        deleteAuthorizationCookies();
+      }
     }
   }, []);
 
