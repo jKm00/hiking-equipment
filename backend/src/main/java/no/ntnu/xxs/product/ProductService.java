@@ -16,7 +16,7 @@ public class ProductService {
      * @return a list of all products
      */
     public List<Product> getAllProducts() {
-        return (List<Product>) this.productRepository.getAllProducts();
+        return (List<Product>) this.productRepository.findAll();
     }
 
     /**

@@ -3,19 +3,19 @@ import { sendApiRequest } from "./request";
 
 /**
  * Send an authentication request to the API
- * @param {*} username username
+ * @param {*} email email
  * @param {*} password password
  * @param {*} successCallback function to be called on success
  * @param {*} errorCallback function to be called on error
  */
 export function sendAuthenticationRequest(
-  username,
+  email,
   password,
   successCallback,
   errorCallback
 ) {
   const postData = {
-    email: username,
+    email: email,
     password: password,
   };
   sendApiRequest(
@@ -25,7 +25,7 @@ export function sendAuthenticationRequest(
       setCookie("jwt", jwtResponse.jwt);
       const userData = parseJwtUser(jwtResponse.jwt);
       if (userData) {
-        setCookie("current_email", userData.username);
+        setCookie("current_email", userData.email);
         setCookie("current_user_roles", userData.roles.join(","));
         successCallback(userData);
       }
@@ -72,12 +72,12 @@ function parseJwt(token) {
  * @param jwtString
  * @return User object
  */
-function parseJwtUser(jwtString) {
+export function parseJwtUser(jwtString) {
   let user = null;
   const jwtObject = parseJwt(jwtString);
   if (jwtObject) {
     user = {
-      username: jwtObject.sub,
+      email: jwtObject.sub,
       roles: jwtObject.roles.map((r) => r.authority),
     };
   }

@@ -1,5 +1,6 @@
 package no.ntnu.xxs.authentication;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import no.ntnu.xxs.security.*;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
@@ -56,7 +57,9 @@ public class AuthenticationController {
     }
     
 
-    @PostMapping("/api/signup")
+    @PostMapping("/signup")
+    // TODO: remove before production
+    @CrossOrigin
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
         // Create new user's account
         User user = new User(
@@ -69,7 +72,7 @@ public class AuthenticationController {
         signUpRequest.getCity(),
         signUpRequest.getAddress());
         userSignUpService.signUp(user);
-        return ResponseEntity.ok(body("User registered successfully"));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //TODO: implement method
@@ -78,11 +81,4 @@ public class AuthenticationController {
     public ResponseEntity<?> registerAdmin(@RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-    private Object body(String string) {
-        return string;
-    }
-
-
 }

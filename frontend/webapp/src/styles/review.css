@@ -1,9 +1,9 @@
 .review {
   display: grid;
   grid-template-columns: 7.5rem 1fr;
-  column-gap: 2.4rem;
-  row-gap: 1.6rem;
-  margin-bottom: 8rem;
+  column-gap: var(--spacing-large);
+  row-gap: var(--spacing-medium);
+  margin-bottom: var(--spacing-xxxl);
   max-width: 60rem;
 }
 
@@ -17,14 +17,14 @@
 }
 
 .review__name {
-  font-size: 1.6rem;
+  font-size: var(--fs-medium);
   font-weight: normal;
 }
 
 .review__ratings {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.2rem;
+  gap: var(--spacing-small);
   list-style: none;
 }
 

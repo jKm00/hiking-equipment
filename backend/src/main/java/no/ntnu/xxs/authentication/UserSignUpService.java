@@ -11,6 +11,9 @@ import no.ntnu.xxs.role.RoleRepository;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
 import no.ntnu.xxs.user.UserRepository;
+
+import java.util.Optional;
+
 @Service
 public class UserSignUpService {
     
