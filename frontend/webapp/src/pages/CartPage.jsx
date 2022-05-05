@@ -27,6 +27,15 @@ export default function CartPage({ user }) {
       price: 399.49,
       discount: 0,
     },
+    {
+      id: 3,
+      title: "Dog Set",
+      color: "green",
+      size: "S",
+      quantity: 5,
+      price: 6670,
+      discount: 5970,
+    },
   ]);
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
@@ -68,15 +77,13 @@ export default function CartPage({ user }) {
   function calculateBill() {
     let total = 0;
     let discount = 0;
-    let finalSum = 0;
     cart.forEach((product) => {
       total += product.price * product.quantity;
       discount += product.discount * product.quantity;
     });
-    finalSum = total - discount;
     setTotal(total);
     setDiscount(discount);
-    setFinalSum(finalSum);
+    setFinalSum(total - discount);
   }
 
   /**
@@ -133,13 +140,13 @@ export default function CartPage({ user }) {
             <div>
               <div className="total">
                 <p className="total__item">
-                  Total price: <span>{total},-</span>
+                  Total price: <span>{parseFloat(total).toFixed(2)},-</span>
                 </p>
                 <p className="total__item">
-                  Discount: <span>{discount},-</span>
+                  Discount: <span>{parseFloat(discount).toFixed(2)},-</span>
                 </p>
                 <p className="total__item">
-                  Total: <span>{finalSum},-</span>
+                  Total: <span>{parseFloat(finalSum).toFixed(2)},-</span>
                 </p>
               </div>
               <button className="cart__submit cta">Make purchase</button>

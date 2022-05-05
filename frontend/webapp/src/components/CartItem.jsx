@@ -19,9 +19,14 @@ export default function CartItem({ product, handleRemove }) {
       <div className="cart__item__addons">
         <div className="cart__item__price--wrapper">
           <p className="cart__item__price">
-            {product.price * product.quantity},-
+            {parseFloat(
+              (product.price - product.discount) * product.quantity
+            ).toFixed(2)}
+            ,-
           </p>
-          <p className="cart__item__price--small">{product.price},-</p>
+          <p className="cart__item__price--small">
+            {parseFloat(product.price - product.discount).toFixed(2)},-
+          </p>
         </div>
         <button className="cart__item__remove" onClick={onSubmit}>
           Remove
