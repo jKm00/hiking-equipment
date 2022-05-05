@@ -55,7 +55,7 @@ public class AuthenticationController {
     }
     
 
-    @PostMapping("/api/signup")
+    @PostMapping("/signup")
     // TODO: remove before production
     @CrossOrigin
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
