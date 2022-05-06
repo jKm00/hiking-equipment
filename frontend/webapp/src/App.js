@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { getCookie } from "./tools/cookies";
 import {
-  isUnexpired,
+  isExpired,
   parseJwtUser,
   deleteAuthorizationCookies,
 } from "./tools/authentication";
@@ -25,11 +25,12 @@ function App() {
   useEffect(() => {
     const jwt = getCookie("jwt");
     if (jwt !== "") {
-      if (!isUnexpired(jwt)) {
+      if (isExpired(jwt)) {
+        deleteAuthorizationCookies();
+        setUser(null);
+      } else {
         const userData = parseJwtUser(jwt);
         setUser(userData);
-      } else {
-        deleteAuthorizationCookies();
       }
     }
   }, []);
