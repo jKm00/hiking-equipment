@@ -1,5 +1,6 @@
 package no.ntnu.xxs.product;
 
+import no.ntnu.xxs.exception.ProductAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,12 +51,11 @@ public class ProductController {
 
             
         /**
-        * HTTP POST request to /api/products
+        * HTTP POST request to /api/products. Tries to add product to database.
         * @param productToBeAdded The product to be added
-        * @return Http.OK with the added product, or Http.UNAUTHORIZED
-        * @throws ProductAlreadyExistException if the product already exists
+        * @return Http.OK when product is added, or Http.CONFLICT if product
+         * is already registered
         */
-        
         @PostMapping("")
         @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
@@ -69,8 +69,12 @@ public class ProductController {
                     productToBeAdded.getCategory()
                     
             );
-            this.productService.addProduct(product);
-            return new ResponseEntity<>(product, HttpStatus.OK);            
+            try {
+                this.productService.addProduct(product);
+                return new ResponseEntity<>(product, HttpStatus.OK);
+            } catch (ProductAlreadyExistException e) {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
         }
 
         /**
@@ -81,9 +85,11 @@ public class ProductController {
         @DeleteMapping("/{id}")
         @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
-        public ResponseEntity<?> deleteProduct(@PathVariable("id") long id) {
-            productService.deleteProduct(id);
-            return ResponseEntity.ok(id);
+        public ResponseEntity<?> deleteProduct(@PathVariable() Long id) {
+            if (this.productService.deleteProduct(id)) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
 
