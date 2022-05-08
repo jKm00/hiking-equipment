@@ -59,6 +59,18 @@
   .cart__item__remove {
     font-size: var(--fs-small);
   }
+    
+  /* ------ Orders ------ */
+  .orders {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+  }
+
+  .order {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 @media only screen and (min-width: 60em) {
@@ -195,6 +207,16 @@
 
   .cart-page__title {
     grid-column: 1 / -1;
+  }
+    
+  /* ------ Orders ------ */
+  .order__detail__title {
+    font-size: var(--fs-large);
+  }
+
+  .order__detail__item,
+  .order__detail__body {
+    font-size: var(--fs-medium);
   }
 }
 

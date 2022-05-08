@@ -1,5 +1,6 @@
 package no.ntnu.xxs.product;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,15 @@ public class ProductService {
             productFound = result.get();
         }
         return productFound;
+    }
+
+    public void addProduct(Product product) {
+        Product productToAdd = new Product();
+        BeanUtils.copyProperties(product, productToAdd);
+        this.productRepository.save(productToAdd);
+    }
+
+    public void deleteProduct(long id) {
+        this.productRepository.deleteById(id);
     }
 }

@@ -83,3 +83,19 @@ export function parseJwtUser(jwtString) {
   }
   return user;
 }
+
+/**
+ * Checks if a jwt token is expired or not
+ * @param {*} jwt the jwt to check
+ * @returns true if it has expired, false otherwise
+ */
+export function isExpired(jwt) {
+  const jwtObject = parseJwt(jwt);
+  const expiration = jwtObject.exp;
+  const current = parseInt(Date.now().toString().slice(0, -3));
+
+  if (expiration < current) {
+    return true;
+  }
+  return false;
+}
