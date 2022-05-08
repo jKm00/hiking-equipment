@@ -51,7 +51,7 @@ public class ProductController {
             
         /**
         * HTTP POST request to /api/products
-        * @param product The product to be added
+        * @param productToBeAdded The product to be added
         * @return Http.OK with the added product, or Http.UNAUTHORIZED
         * @throws ProductAlreadyExistException if the product already exists
         */
@@ -59,6 +59,7 @@ public class ProductController {
         @PostMapping("")
         @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
+        // TODO: add dto class for product request
         public ResponseEntity<?> addProduct(@RequestBody Product productToBeAdded) {
             Product product = new Product(
                     productToBeAdded.getProductName(),

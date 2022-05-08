@@ -50,8 +50,8 @@ export default function ProductForm({ products, updateProducts }) {
     } else {
       // TODO: transform images into binary
       const newProduct = {
-        name: name,
-        desc: desc,
+        productName: name,
+        description: desc,
         price: parseFloat(price),
         category: category,
         sex: sex,
