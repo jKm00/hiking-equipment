@@ -69,6 +69,7 @@ export default function ProductForm({ products, updateProducts }) {
             document.querySelector("[data-submit-product]"),
             document.querySelector("[data-feedback-product]")
           );
+          updateProducts();
         },
         newProduct,
         function (error) {
