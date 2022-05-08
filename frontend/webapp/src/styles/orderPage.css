@@ -1,0 +1,11 @@
+.order-page {
+  grid-column: 2 / -2;
+  margin: var(--spacing-xxl) 0;
+  min-height: 50vh;
+}
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}

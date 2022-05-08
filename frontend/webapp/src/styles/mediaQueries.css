@@ -34,6 +34,18 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* ------ Orders ------ */
+  .orders {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+  }
+
+  .order {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 @media only screen and (min-width: 60em) {
@@ -158,6 +170,16 @@
   .categories {
     display: flex;
     flex-direction: column;
+  }
+
+  /* ------ Orders ------ */
+  .order__detail__title {
+    font-size: var(--fs-large);
+  }
+
+  .order__detail__item,
+  .order__detail__body {
+    font-size: var(--fs-medium);
   }
 }
 
