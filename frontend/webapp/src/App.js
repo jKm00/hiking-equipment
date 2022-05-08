@@ -14,11 +14,12 @@ import ProductPage from "./pages/ProductPage";
 import SearchResultPage from "./pages/SearchResultPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
+import CartPage from "./pages/CartPage";
+import SignUpPage from "./pages/SignUpPage";
 import OrderPage from "./pages/OrderPage";
 
 import "./styles/global.css";
 import "./styles/mediaQueries.css";
-import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,6 +48,7 @@ function App() {
         <Route path="/search/:keyword" element={<SearchResultPage />} />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/cart" element={<CartPage user={user} />} />
         <Route
           path="/admin"
           element={

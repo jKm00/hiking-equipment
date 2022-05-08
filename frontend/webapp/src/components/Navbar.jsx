@@ -70,6 +70,7 @@ function Navbar({ user, setUser }) {
     deleteAuthorizationCookies();
     setUser(null);
     toggleUserDetails();
+    navigate("/");
   }
 
   return (
@@ -107,7 +108,7 @@ function Navbar({ user, setUser }) {
           </li>
           <li className="first-nav__item">
             <Link
-              to="/cart"
+              to={user === null ? "/login" : "/cart"}
               className="first-nav__btn"
               aria-label="shopping cart"
             >
