@@ -58,6 +58,7 @@ public class AuthenticationController {
     
 
     @PostMapping("/signup")
+    // TODO: handle if user already is signed up
     // TODO: remove before production
     @CrossOrigin
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
