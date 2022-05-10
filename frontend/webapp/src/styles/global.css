@@ -25,8 +25,11 @@ button {
 
   /* dark */
   --clr-dark-000: #f1f3f5;
+  --clr-dark-100: #e9ecef;
   --clr-dark-200: #dee2e6;
+  --clr-dark-300: #ced4da;
   --clr-dark-400: #adb5bd;
+  --clr-dark-500: #868e96;
   --clr-dark-600: #495057;
   --clr-dark-700: #343a40;
   --clr-dark-800: #212529;
@@ -45,6 +48,31 @@ button {
 
   /* Border radius */
   --br: 2px;
+
+  /* Font sizes */
+  --fs-tinyest: 0.8rem;
+  --fs-tiny: 1rem;
+  --fs-small: 1.3rem;
+  --fs-medium: 1.6rem;
+  --fs-large: 2rem;
+  --fs-larger: 2.5rem;
+  --fs-extra-large: 3.1rem;
+  --fs-xxl: 3.9rem;
+  --fs-xxxl: 4.8rem;
+
+  /* White space */
+  --spacing-tinyest: 0.2rem;
+  --spacing-tiny: 0.4rem;
+  --spacing-smaller: 0.8rem;
+  --spacing-small: 1.2rem;
+  --spacing-medium: 1.6rem;
+  --spacing-large: 2.4rem;
+  --spacing-larger: 3.2rem;
+  --spacing-extra-large: 4.8rem;
+  --spacing-xxl: 6.4rem;
+  --spacing-xxxl: 8rem;
+  --spacing-huge: 9.6rem;
+  --spacing-gigantic: 12.8rem;
 }
 
 html {
@@ -84,6 +112,45 @@ svg {
 .logo--slogan {
   font-size: 1.6rem;
   color: var(--clr-light-400);
+}
+
+.box {
+  border-radius: 5px;
+  box-shadow: var(--shadow-box);
+  background-color: var(--clr-light-400);
+  padding: 2.4rem 3.2rem;
+}
+
+.tooltip {
+  --size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+  background-color: var(--clr-dark-900);
+  color: var(--clr-light-400);
+  font-size: var(--fs-small);
+  position: relative;
+}
+
+.tooltip:hover .tooltip__content,
+.tooltip:focus .tooltip__content {
+  display: block;
+}
+
+.tooltip__content {
+  display: none;
+  background: var(--clr-dark-800);
+  width: max-content;
+  max-width: 300px;
+  padding: var(--spacing-smaller);
+  line-height: var(--spacing-medium);
+  box-shadow: var(--shadow-box);
+  position: absolute;
+  left: 0;
+  top: calc(var(--size) + 0.5rem);
 }
 
 /*---------------
@@ -144,8 +211,7 @@ a {
   cursor: pointer;
 }
 
-.cta:hover,
-.cta:focus {
+.cta:hover {
   background-color: var(--clr-light-400);
   border-radius: var(--br) var(--br) 0 0;
 }
@@ -153,6 +219,10 @@ a {
 .cta--small {
   display: inline-block;
   font-size: 1.28rem;
+}
+
+.cta--tiny {
+  font-size: 1.024rem;
 }
 
 .cta--max-width {

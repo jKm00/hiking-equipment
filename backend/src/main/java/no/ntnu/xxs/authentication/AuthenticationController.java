@@ -1,5 +1,6 @@
 package no.ntnu.xxs.authentication;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import no.ntnu.xxs.security.*;
 import no.ntnu.xxs.user.User;
 import no.ntnu.xxs.user.UserAlreadyExistException;
@@ -7,6 +8,7 @@ import no.ntnu.xxs.user.UserSignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -56,6 +58,9 @@ public class AuthenticationController {
     
 
     @PostMapping("/signup")
+    // TODO: handle if user already is signed up
+    // TODO: remove before production
+    @CrossOrigin
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
         // Create new user's account
         User user = new User(
@@ -68,13 +73,13 @@ public class AuthenticationController {
         signUpRequest.getCity(),
         signUpRequest.getAddress());
         userSignUpService.signUp(user);
-        return ResponseEntity.ok(body("User registered successfully"));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-    private Object body(String string) {
-        return string;
+    //TODO: implement method
+    @PostMapping("/signup/admin")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> registerAdmin(@RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }

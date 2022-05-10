@@ -10,7 +10,7 @@
 .first-nav {
   display: flex;
   justify-content: space-between;
-  padding: 1.6rem 2.4rem;
+  padding: var(--spacing-medium) var(--spacing-large);
   background-color: var(--clr-light-400);
   position: relative;
   z-index: 100;
@@ -19,7 +19,7 @@
 .first-nav__icons {
   display: flex;
   align-items: center;
-  gap: 3.2rem;
+  gap: var(--spacing-larger);
   list-style: none;
 }
 
@@ -50,10 +50,10 @@
 .user-details {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: var(--spacing-small);
   align-items: center;
-  width: 200px;
-  padding: 2.4em 2.4em;
+  min-width: 20rem;
+  padding: var(--spacing-large);
   background-color: var(--clr-light-400);
   box-shadow: var(--shadow-box);
   border: 2px solid var(--clr-dark-900);
@@ -71,18 +71,18 @@
 }
 
 .user-details__link {
-  font-size: 1.28rem;
+  font-size: var(--fs-small);
   color: var(--clr-dark-900);
 }
 
 .user-details__list {
   display: flex;
   flex-direction: column;
-  gap: 0.8em;
+  gap: var(--spacing-small);
   align-items: center;
   width: 100%;
   list-style-type: none;
-  font-size: 1.6rem;
+  font-size: var(--fs-medium);
 }
 
 .user-details__list--left {
@@ -90,7 +90,7 @@
 }
 
 .user-details__item--small {
-  font-size: 1.28rem;
+  font-size: var(--fs-small);
 }
 
 .user-details__item--underline {
@@ -103,7 +103,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.4rem;
+  padding: var(--spacing-large);
   background-color: var(--clr-dark-000);
   position: absolute;
   left: 0;
@@ -120,11 +120,11 @@
 .search-bar--wrapper {
   display: flex;
   width: 90%;
-  max-width: 500px;
+  max-width: 50rem;
 }
 
 .search-bar__input {
-  padding: 0.8em 1.6em;
+  padding: var(--spacing-small) var(--spacing-medium);
   border: none;
   border-left: 1px solid var(--clr-dark-400);
   border-top: 1px solid var(--clr-dark-400);
@@ -145,7 +145,7 @@
   border: 1px solid var(--clr-dark-400);
   border-left: none;
   border-radius: 0 var(--br) var(--br) 0;
-  padding: 0 0.8em;
+  padding: 0 var(--spacing-small);
   background: var(--clr-light-400);
 }
 
@@ -159,7 +159,7 @@
 .second-nav__links {
   display: flex;
   justify-content: space-around;
-  max-width: 500px;
+  max-width: 50rem;
   width: 100%;
   list-style: none;
 }
@@ -168,7 +168,7 @@
   display: block;
   color: var(--clr-light-400);
   text-decoration: none;
-  padding: 0.8em 1.6em;
+  padding: var(--spacing-small) var(--spacing-larger);
 }
 
 .second-nav__link:hover,
