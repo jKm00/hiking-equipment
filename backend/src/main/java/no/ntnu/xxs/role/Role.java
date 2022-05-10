@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.user.User;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 
@@ -13,36 +13,54 @@ import java.util.Set;
  * A user can have one or multiple roles.
  */
 @Entity
+@Table(name = "roles")
 public class Role {
+
+    // Primary Key
     @Id
     @GeneratedValue
-    private Integer id;
-    private String roleName;
+    @Column(unique = true, name = "id")
+    private long id;
 
-    @ManyToMany(mappedBy = "roles")
+    // Columns
+    @Column(name = "role_name")
+    private String name;
+
+    // Relation to User
     @JsonIgnore
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set<User> users = new LinkedHashSet<>();
 
-    public Role() {}
+    /**
+     * Empty constructor
+     */
+    public Role(){}
 
-    public Role(String roleName) {
-        this.roleName = roleName;
+
+    /**
+     * not empty constructor
+     * @param name name of role
+     */
+    public Role(String name)
+    {
+        this.name = name;
     }
 
-    public Integer getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<User> getUsers() {
@@ -51,13 +69,5 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
-
-    /**
-     * Add a user to a specific role
-     * @param user the user to add
-     */
-    public void addUser(User user) {
-        this.users.add(user);
     }
 }

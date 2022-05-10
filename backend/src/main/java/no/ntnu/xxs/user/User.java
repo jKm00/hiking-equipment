@@ -1,36 +1,66 @@
 package no.ntnu.xxs.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import no.ntnu.xxs.entities.carts.Cart;
+import no.ntnu.xxs.entities.orders.Order;
 import no.ntnu.xxs.role.Role;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
  * Represents a User in the web application.
  */
 @Entity
+@Table(name = "users")
 public class User {
+    // Primary Key
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, name = "id")
     private int id;
+
+    //Columns
+    @Column(name= "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @JsonIgnore
     private String password;
+    @Column(name="country")
     private String country;
+    @Column(name="zipcode")
     private String zipCode;
+    @Column(name="city")
     private String city;
+    @Column(name="address")
     private String address;
+    @Column
     private boolean isActive = true;
 
+    // Relation to Role
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
+    @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new LinkedHashSet<>();
+
+    // Relation to Cart
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
+
+    //Relation to Order
+    @OneToMany(mappedBy = "user")
+    private Set<Order> order = new LinkedHashSet<>();
+
+
 
     public User() {}
 
@@ -129,16 +159,59 @@ public class User {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Set<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Set<Order> order) {
+        this.order = order;
     }
 
     /**
-     * Adds a role to the user
-     * @param role the role to add
+     * Adds role to the role set
+     * @param role
      */
-    public void addRole(Role role) {
+    public void addRole(Role role){
         this.roles.add(role);
+    }
+
+    /**
+     * Returns true if a user is admin, false if not
+     * @return true if a user is admin, false if not
+     */
+    public boolean isAdmin(){
+        return this.hasRole("ROLE_ADMIN");
+    }
+
+    /**
+     * Checks if a user has a specific role
+     * @param roleName name of the role to be checked
+     * @return true if role is found, false if not
+     */
+    public boolean hasRole(String roleName){
+        boolean found = false;
+        Iterator<Role> it = roles.iterator();
+        while(!found && it.hasNext())
+        {
+            Role role = it.next();
+            if(role.getName().equals(roleName))
+            {
+                found=true;
+            }
+        }
+        return found;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
 
