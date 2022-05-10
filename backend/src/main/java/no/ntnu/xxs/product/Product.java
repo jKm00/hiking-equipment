@@ -1,7 +1,7 @@
 package no.ntnu.xxs.product;
 
 import no.ntnu.xxs.entities.*;
-import no.ntnu.xxs.entities.carts.Cart;
+import no.ntnu.xxs.entities.orders.Order;
 import no.ntnu.xxs.product.details.ProductDetail;
 
 import javax.persistence.*;
@@ -72,6 +72,14 @@ public class Product {
     // Relation to Image
     @OneToMany(mappedBy = "product")
     private Set<Image> image = new LinkedHashSet<>();
+
+    // Relation to Order
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "order_products",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id")
+    )
+    private Set<Order> order = new LinkedHashSet<>();
 
     public Product() {}
 

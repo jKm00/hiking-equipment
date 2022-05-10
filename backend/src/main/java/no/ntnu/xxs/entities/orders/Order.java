@@ -2,6 +2,7 @@ package no.ntnu.xxs.entities.orders;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import no.ntnu.xxs.product.Product;
 import no.ntnu.xxs.user.User;
 
 import javax.persistence.*;
@@ -28,9 +29,10 @@ public class Order
     @JoinColumn(name = "user_id")
     private User user;
 
-    // Relation to OrderProducts
-    @OneToMany(mappedBy = "order")
-    private Set<OrderProducts> orderProducts = new LinkedHashSet<>();
+    // Relation to Product
+    @JsonIgnore
+    @ManyToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private Set<Product> product = new LinkedHashSet<>();
 
     // Columns
     @Column(name = "total_price")
