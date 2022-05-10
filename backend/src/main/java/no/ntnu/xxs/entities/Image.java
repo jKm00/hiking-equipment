@@ -8,17 +8,21 @@ import javax.persistence.*;
 @Table(name = "images")
 public class Image {
 
-    //fields
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
-    @Column(name = "image")
-    private String image; //thought is to have a binary string, may be swapped with another datatype
 
+    // Relation to Product
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
+
+    // Columns
+    @Column(name = "image")
+    private String image; //thought is to have a binary string, may be swapped with another datatype
+
 
 
 
@@ -26,7 +30,6 @@ public class Image {
      * empty constructor
      */
     public Image(){}
-
 
     public long getId() {
         return id;
@@ -36,19 +39,19 @@ public class Image {
         this.id = id;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public Product getProduct() {
         return product;
     }
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

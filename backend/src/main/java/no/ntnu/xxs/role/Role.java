@@ -15,14 +15,18 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Role {
+
+    // Primary Key
     @Id
     @GeneratedValue
     @Column(unique = true, name = "id")
     private long id;
 
+    // Columns
     @Column(name = "role_name")
     private String name;
 
+    // Relation to User
     @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<User> users = new LinkedHashSet<>();

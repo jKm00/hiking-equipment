@@ -11,9 +11,11 @@ import java.io.Serializable;
 public class CartProductsKey implements Serializable
 {
 
+    // Foreign key
     @Column(name = "cart_id")
     private long cartID;
 
+    // Foreign key
     @Column(name = "product_id")
     private long productID;
 

@@ -11,15 +11,17 @@ import javax.persistence.*;
 @Table(name = "discounts")
 public class Discount
 {
-    //fields
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
 
+    // Relation to Product
     @OneToOne(mappedBy = "discount")
     private Product product;
 
+    // Columns
     @Column(name = "discount_name")
     private String discountName;
     @Column(name = "description")
@@ -28,6 +30,7 @@ public class Discount
     private long discountPercentage;
     @Column(name = "active")
     private boolean active;
+
 
     /**
      * Empty constructor
@@ -40,6 +43,14 @@ public class Discount
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public String getDiscountName() {

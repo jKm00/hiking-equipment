@@ -14,21 +14,25 @@ import java.util.Set;
 @Table(name = "colors")
 public class Color
 {
-    //fields
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
 
+    // Relation to ProductEntrySet
     @JsonIgnore
     @ManyToMany(mappedBy = "colors")
     private Set<Product> productEntrySet = new LinkedHashSet<>();
 
+    // Relation to CartItem
+    @OneToMany(mappedBy = "color")
+    private Set<CartItem> cartItem;
+
+    // Columns
     @Column(name = "color")
     private String color;
 
-    @OneToMany(mappedBy = "color")
-    private Set<CartItem> cartItem;
 
 
     /**
@@ -38,18 +42,28 @@ public class Color
 
     }
 
-
-    public Color(String color){
-        this.color = color;
-    }
-
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Set<Product> getProductEntrySet() {
+        return productEntrySet;
+    }
+
+    public void setProductEntrySet(Set<Product> productEntrySet) {
+        this.productEntrySet = productEntrySet;
+    }
+
+    public Set<CartItem> getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(Set<CartItem> cartItem) {
+        this.cartItem = cartItem;
     }
 
     public String getColor() {

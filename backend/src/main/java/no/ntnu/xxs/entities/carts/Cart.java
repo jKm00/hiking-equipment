@@ -17,24 +17,19 @@ import java.util.Set;
 @Table(name = "carts")
 public class Cart
 {
-    //fields
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
 
-    //relations
-
+    // Relation to cartItem
     @OneToMany(mappedBy = "cart")
     private Set<CartItem> cartItem;
 
+    // Relation to User
     @OneToOne(mappedBy = "cart")
     private User user;
-
-    /*
-    @JsonIgnore
-    @ManyToMany(mappedBy = "carts")
-    private Set<Product> products = new LinkedHashSet<>();*/
 
     /**
      * Empty constructor

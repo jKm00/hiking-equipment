@@ -2,8 +2,6 @@ package no.ntnu.xxs.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.product.Product;
-import org.hibernate.type.CharacterArrayNClobType;
-
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -16,21 +14,24 @@ import java.util.Set;
 @Table(name = "sizes")
 public class Size
 {
-    //fields
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
 
+    // Relation to ProductEntrySet
     @JsonIgnore
     @ManyToMany(mappedBy = "sizes")
     private Set<Product> productEntrySet = new LinkedHashSet<>();
 
-    @Column(name = "size")
-    private String size;
-
+    // Relation to CartItems
     @OneToMany(mappedBy = "size")
     private Set<CartItem> cartItem;
+
+    // Columns
+    @Column(name = "size")
+    private String size;
 
 
     /**

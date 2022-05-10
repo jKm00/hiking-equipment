@@ -17,10 +17,13 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private int id;
+
+    //Columns
     @Column(name= "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -37,8 +40,10 @@ public class User {
     private String city;
     @Column(name="address")
     private String address;
+    @Column
     private boolean isActive = true;
 
+    // Relation to Role
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -46,10 +51,12 @@ public class User {
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
+    // Relation to Cart
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
+    //Relation to Order
     @OneToMany(mappedBy = "user")
     private Set<Order> order = new LinkedHashSet<>();
 

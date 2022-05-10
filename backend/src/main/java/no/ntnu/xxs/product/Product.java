@@ -14,29 +14,30 @@ import java.util.Set;
 @Entity
 @Table(name = "products")
 public class Product {
+
+    //Primary Key
     @Id
     @GeneratedValue
     @Column(unique = true, name = "id")
     private long id;
 
+    //Columns
     @Column(name="product_name")
     private String productName;
-
     @Column(name="product_description")
     private String description;
-
     @Column(name="price")
     private float price;
-
     @Column(name="category")
     private String category;
-
     @Column(name="sex")
     private String sex;
-
     @Column(name="featured")
     private boolean featured;
+    @Column(name = "quantity")
+    private int quantity;
 
+    // Relation to Sizes
     @Column(name = "product_size")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_entries",
@@ -45,6 +46,7 @@ public class Product {
     )
     private Set<Size> sizes = new LinkedHashSet<>();
 
+    //Relation to Colors
     @Column(name = "product_color")
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_entries",
@@ -53,31 +55,21 @@ public class Product {
     )
     private Set<Color> colors = new LinkedHashSet<>();
 
-    @Column(name = "quantity")
-    private int quantity;
-
-    //relations
-
+    // Relation to ProductDetails
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails = new LinkedHashSet<>();
 
-    /*@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "cart_products",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "cart_id")
-    )
-    private Set<Cart> carts = new LinkedHashSet<>();*/
-
+    // Relation to CartItem
     @OneToOne
     @JoinColumn(name = "cart_item", referencedColumnName = "id")
     private CartItem cartItem;
 
-
-
+    // Relation to Discount
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "discount_id", referencedColumnName = "id")
     private Discount discount;
 
+    // Relation to Image
     @OneToMany(mappedBy = "product")
     private Set<Image> image = new LinkedHashSet<>();
 
@@ -139,11 +131,67 @@ public class Product {
         this.sex = sex;
     }
 
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Set<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(Set<Size> sizes) {
+        this.sizes = sizes;
+    }
+
+    public Set<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(Set<Color> colors) {
+        this.colors = colors;
+    }
+
     public Set<ProductDetail> getProductDetails() {
         return productDetails;
     }
 
     public void setProductDetails(Set<ProductDetail> productDetails) {
         this.productDetails = productDetails;
+    }
+
+    public CartItem getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    public Set<Image> getImage() {
+        return image;
+    }
+
+    public void setImage(Set<Image> image) {
+        this.image = image;
     }
 }

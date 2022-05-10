@@ -8,18 +8,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "product_details")
 public class ProductDetail {
+
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
 
-    @Column(name="details")
-    private String detail;
-
+    // Relation to Product
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
     @JsonIgnore
     private Product product;
+
+    // Columns
+    @Column(name="details")
+    private String detail;
 
     public ProductDetail() {}
 

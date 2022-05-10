@@ -15,24 +15,26 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order
 {
-    //fields
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private long id;
 
     //Foreign key
+    //Relation to User
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
+    // Relation to OrderProducts
     @OneToMany(mappedBy = "order")
     private Set<OrderProducts> orderProducts = new LinkedHashSet<>();
 
+    // Columns
     @Column(name = "total_price")
     private long totalPrice;
-
     @Column(name = "status")
     private String status;
 
