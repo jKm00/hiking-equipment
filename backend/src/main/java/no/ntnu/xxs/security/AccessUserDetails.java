@@ -1,7 +1,7 @@
 package no.ntnu.xxs.security;
 
-import no.ntnu.xxs.role.Role;
-import no.ntnu.xxs.user.User;
+import no.ntnu.xxs.entities.user.Role;
+import no.ntnu.xxs.entities.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
