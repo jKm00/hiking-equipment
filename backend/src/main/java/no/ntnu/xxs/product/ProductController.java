@@ -66,8 +66,7 @@ public class ProductController {
                     productToBeAdded.getDescription(),
                     productToBeAdded.getPrice(),
                     productToBeAdded.getSex(),
-                    productToBeAdded.getCategory()
-                    
+                    productToBeAdded.getCategory();
             );
             try {
                 this.productService.addProduct(product);
