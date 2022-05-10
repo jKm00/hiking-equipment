@@ -1,10 +1,10 @@
 package no.ntnu.xxs;
 
 
-import no.ntnu.xxs.role.Role;
-import no.ntnu.xxs.role.RoleRepository;
-import no.ntnu.xxs.user.User;
-import no.ntnu.xxs.user.UserRepository;
+import no.ntnu.xxs.entities.user.Role;
+import no.ntnu.xxs.repositories.RoleRepository;
+import no.ntnu.xxs.entities.user.User;
+import no.ntnu.xxs.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

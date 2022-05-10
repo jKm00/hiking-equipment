@@ -1,7 +1,7 @@
 package no.ntnu.xxs.security;
 
-import no.ntnu.xxs.user.User;
-import no.ntnu.xxs.user.UserRepository;
+import no.ntnu.xxs.entities.user.User;
+import no.ntnu.xxs.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
