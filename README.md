@@ -5,7 +5,7 @@
 ### Run/create docker container for postgres
 
 - Install docker
-- First time run `docker run -d --name some-name -p 5000:5432 -e POSTGRESS_PASSWORD=mysecretpassword` where "some-name" is the name of the container and "mysecretpassword" is the database password
+- First time run `docker run -d --name some-name -p 5000:5432 -e POSTGRES_PASSWORD=mysecretpassword` where "some-name" is the name of the container and "mysecretpassword" is the database password
 - Later you can use docker dashboard to start the container
 
 ### Fix env variables
