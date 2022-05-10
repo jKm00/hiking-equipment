@@ -15,13 +15,17 @@ import java.util.Set;
  * Contains authentication information needed by UserDetailsService
  */
 public class AccessUserDetails implements UserDetails {
-    private final String username;
+    private final String firstname;
+    private final String lastname;
+    private final String email;
     private final String password;
     private final boolean isActive;
     private final List<GrantedAuthority> authorities = new LinkedList<>();
 
     public AccessUserDetails(User user) {
-        this.username = user.getUsername();
+        this.firstname = user.getFirstName();
+        this.lastname = user.getLastName();
+        this.email = user.getEmail();
         this.password = user.getPassword();
         this.isActive = user.isActive();
         this.convertRoles(user.getRoles());
@@ -39,6 +43,14 @@ public class AccessUserDetails implements UserDetails {
         return authorities;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
     @Override
     public String getPassword() {
         return password;
@@ -46,7 +58,7 @@ public class AccessUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

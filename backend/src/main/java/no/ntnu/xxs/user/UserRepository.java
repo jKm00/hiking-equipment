@@ -7,6 +7,6 @@ import java.util.Optional;
 /**
  * Repository interface for accessing User data in the database.
  */
-public interface UserRepository extends CrudRepository<User, Integer> {
-    Optional<User> findByUsername(String username);
+public interface UserRepository extends CrudRepository<User, Long> {
+  Optional<User> findUserByEmail(String email);
 }
