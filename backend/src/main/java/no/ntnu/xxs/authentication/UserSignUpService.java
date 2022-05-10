@@ -25,7 +25,7 @@ public class UserSignUpService {
     RoleRepository roleRepository;
     public void signUp(User user) throws UserAlreadyExistException {
         
-        //TODO: Create logic to check for duplicate username and email.
+        //TODO: Create logic to check for duplicate email.
         /* 
         //Let's check if user already registered with us
         if(checkIfUserEmailExist(user.getEmail())){
@@ -38,6 +38,8 @@ public class UserSignUpService {
         // TODO: check if user role already exists, if not only then create a new role
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
+        /* TODO: is is necessary to create a new user object, or can we just use the one
+            passed in from the parameter */
         User userToRegister = new User();
         BeanUtils.copyProperties(user, userToRegister);
         encodePassword(userToRegister);
