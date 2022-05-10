@@ -5,7 +5,7 @@ import "../styles/companyInfo.css";
 function CompanyInfo() {
   return (
     <div className="company-info">
-      <article className="company-article">
+      <article className="company-article" id="about-us">
         <div className="company-article--wrapper">
           <h2 className="company-article__title">About XXS</h2>
           <p className="company-article__desc">
@@ -20,7 +20,10 @@ function CompanyInfo() {
           className="company-article__img"
         />
       </article>
-      <article className="company-article company-article--mirrored">
+      <article
+        className="company-article company-article--mirrored"
+        id="products-and-services"
+      >
         <div className="company-article--wrapper">
           <h2 className="company-article__title">Our products & services</h2>
           <p className="company-article__desc">

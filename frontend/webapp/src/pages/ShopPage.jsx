@@ -9,8 +9,6 @@ import ProductCard from "../components/ProductCard";
 
 import "../styles/shop.css";
 
-import mainBackground from "../img/04-going-hiking-two-people.jpg";
-
 function ShopPage() {
   const { sex } = useParams();
   const { category } = useParams();
