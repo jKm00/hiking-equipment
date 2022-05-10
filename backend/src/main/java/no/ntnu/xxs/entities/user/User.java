@@ -18,9 +18,9 @@ import java.util.Set;
 public class User {
     // Primary Key
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, name = "id")
-    private int id;
+    private Long id;
 
     //Columns
     @Column(name= "first_name")
@@ -74,11 +74,11 @@ public class User {
         this.address = address;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

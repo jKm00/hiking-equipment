@@ -1,7 +1,7 @@
 package no.ntnu.xxs.controllers;
 
 import no.ntnu.xxs.entities.user.User;
-import no.ntnu.xxs.services.UserService;
+import no.ntnu.xxs.services.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin
 public class UserController {
     @Autowired
-    private UserService userService;
+    private AccessUserService userService;
 
     /**
      * Get all users from database

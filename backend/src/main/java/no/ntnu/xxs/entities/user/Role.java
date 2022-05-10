@@ -19,7 +19,7 @@ public class Role {
     @Id
     @GeneratedValue
     @Column(unique = true, name = "id")
-    private long id;
+    private Long id;
 
     // Columns
     @Column(name = "role_name")
@@ -27,7 +27,7 @@ public class Role {
 
     // Relation to User
     @JsonIgnore
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users = new LinkedHashSet<>();
 
     /**
@@ -46,11 +46,11 @@ public class Role {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

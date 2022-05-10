@@ -20,7 +20,7 @@ export function sendAuthenticationRequest(
   };
   sendApiRequest(
     "POST",
-    "/auth/signin",
+    "/authenticate",
     function (jwtResponse) {
       setCookie("jwt", jwtResponse.jwt);
       const userData = parseJwtUser(jwtResponse.jwt);

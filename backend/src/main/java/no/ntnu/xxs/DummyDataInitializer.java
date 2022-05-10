@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -41,69 +42,31 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        if (isDataImported()) {
-            logger.info("Data already exists! Not importing again...");
-            return;
+        Optional<User> existingUser = userRepository.findUserByEmail("adam@gmail.com");
+
+        if (existingUser.isEmpty()) {
+            logger.info("Importing dummy data...");
+
+            // Password = adam123
+            User adam = new User("Adam", "Jensen", "adam@gmail.com", "$2a$10$Z1Hv5cq1uzscCA94L/GqgOOvNfQiEH8izQimZBTOCopLuF18Ggqg.", "Norway", "1302", "Langhus", "Grensegata 89");
+            // Password = carl123
+            User carl = new User("Carl", "Hansen", "carl@gmail.com", "$2a$10$bUi6E8PPgwlUhBszkEugw.Ma/exSzgXUhMZTf4Bf/SvcaWwonHKSO", "Norway", "1884", "Trondheim", "Kongens gate 12");
+
+            Role user = new Role("ROLE_USER");
+            Role admin = new Role("ROLE_ADMIN");
+            adam.addRole(user);
+            adam.addRole(admin);
+            carl.addRole(user);
+
+            roleRepository.save(user);
+            roleRepository.save(admin);
+
+            userRepository.save(adam);
+            userRepository.save(carl);
+
+            logger.info("Finished initializing data...");
+        } else {
+            logger.info("Data already imported...");
         }
-
-        logger.info("Importing dummy data...");
-
-        // Create and save a product
-        Color black = new Color("black");
-        Color green = new Color("green");
-        Color blue = new Color("blue");
-        colorRepository.save(black);
-        colorRepository.save(green);
-        colorRepository.save(blue);
-
-        Size small = new Size("S");
-        Size medium = new Size("M");
-        Size large = new Size("L");
-        sizeRepository.save(small);
-        sizeRepository.save(medium);
-        sizeRepository.save(large);
-
-        Discount discount = new Discount("Winter", "Winter sale", 20, false);
-        discountRepository.save(discount);
-
-        Product sweater = new Product("Winter sweater", "Holds your warm", 399.9f, "sweater", "unisex");
-
-        Set<Size> sweaterSizes = new LinkedHashSet<>();
-        sweaterSizes.add(small);
-        sweaterSizes.add(medium);
-        sweaterSizes.add(large);
-        sweater.setSizes(sweaterSizes);
-
-        Set<Color> sweaterColors = new LinkedHashSet<>();
-        sweaterColors.add(black);
-        sweaterColors.add(green);
-        sweater.setColors(sweaterColors);
-
-        productRepository.save(sweater);
-
-        // Create an admin user and one default user
-        Role admin = new Role("ROLE_ADMIN");
-        Role user = new Role("ROLE_USER");
-
-        roleRepository.save(admin);
-        roleRepository.save(user);
-
-        // Password = adam123
-        User adminUser = new User("Adam", "Jensen", "adam@gmail.com", "$2a$10$Z1Hv5cq1uzscCA94L/GqgOOvNfQiEH8izQimZBTOCopLuF18Ggqg.", "Norway", "1302", "Langehus", "Grensegata 89");
-        // Password = carl123
-        User carl = new User("Carl", "Hansen", "carl@gmail.com", "$2a$10$bUi6E8PPgwlUhBszkEugw.Ma/exSzgXUhMZTf4Bf/SvcaWwonHKSO", "Norway", "1884", "Trondheim", "Kongens gate 12");
-
-        adminUser.addRole(admin);
-        adminUser.addRole(user);
-        carl.addRole(user);
-
-        userRepository.save(adminUser);
-        userRepository.save(carl);
-
-        logger.info("Finished initializing data...");
-    }
-
-    private boolean isDataImported() {
-        return productRepository.count() > 0;
     }
 }

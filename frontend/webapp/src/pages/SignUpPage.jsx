@@ -60,7 +60,7 @@ export default function SignUpPage() {
     } else {
       sendApiRequest(
         "POST",
-        "/auth/signup",
+        "/signup",
         function (response) {
           navigate("/login");
         },
