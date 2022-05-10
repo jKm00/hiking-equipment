@@ -13,8 +13,9 @@ import "../styles/showCaseImg.css";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
-export default function App(bigImg, bigImgAlt, bigImg2, bigImgAlt2, bigImg3, bigImgAlt3,
-   navImg, navImgAlt, navImg2, navImgAlt2, navImg3, navImgAlt3) {
+// pass inn en liste med bilder istedenfor. se på thumbs.
+export default function ShowCaseImg({bigImg, bigImgAlt, bigImg2, bigImgAlt2, bigImg3, bigImgAlt3,
+   navImg, navImgAlt, navImg2, navImgAlt2, navImg3, navImgAlt3}) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -33,13 +34,13 @@ export default function App(bigImg, bigImgAlt, bigImg2, bigImgAlt2, bigImg3, big
         className="big__images"
       >
         <SwiperSlide>
-          <img src= {bigImg} alt={bigImgAlt} />
+          <img src= {bigImg} alt={bigImgAlt} className="swiper-slide-pic"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src= {bigImg2} alt={bigImgAlt2} />
+          <img src= {bigImg2} alt={bigImgAlt2} className="swiper-slide-pic"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src= {bigImg3} alt={bigImgAlt3} />
+          <img src= {bigImg3} alt={bigImgAlt3} className="swiper-slide-pic"/>
         </SwiperSlide>
       </Swiper>
       <Swiper
