@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "discounts" (
     discountID serial PRIMARY KEY,
     discount_name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    discount_percentage VARCHAR(255) NOT NULL,
+    discount_percentage int NOT NULL,
     active BOOLEAN DEFAULT false
 )
 
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS "products" (
     category VARCHAR(255) NOT NULL,
     sex VARCHAR(255) NOT NULL,
     featured BOOLEAN DEFAULT false,
-    discoundID integer REFERENCES "discounts" (discountID)
+    discountID integer REFERENCES "discounts" (discountID)
 )
 
 CREATE TABLE IF NOT EXISTS "sizes" (
@@ -89,4 +89,11 @@ CREATE TABLE IF NOT EXISTS "images" (
     image bytea NOT NULL,
     thumbnail bytea NOT NULL,
     productID integer REFERENCES "products" (productID)
+)
+
+CREATE TABLE IF NOT EXISTS "user_roles" (
+    userID integer REFERENCES "users" (userID),
+    roleID integer REFERENCES "roles" (roleID),
+
+    PRIMARY KEY (userID, roleID)
 )

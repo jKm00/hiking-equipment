@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 import "../styles/footer.css";
 
@@ -8,7 +8,7 @@ function Footer() {
     <footer className="footer">
       <div className="first-footer">
         <div className="first-footer__logo--wrapper">
-          <h4 className="logo logo--footer">XXS -</h4>
+          <h3 className="logo logo--footer">XXS -</h3>
           <p className="logo--slogan">Because the size doesn't matter</p>
         </div>
         <ul className="socials">
@@ -43,58 +43,58 @@ function Footer() {
         </ul>
         <ul className="footer-list footer-list--link">
           <li>
-            <h5 className="footer-list__title">Links</h5>
+            <h4 className="footer-list__title">Links</h4>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="/shop/all" className="footer-list__link">
               Go to shop
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#campaigns" className="footer-list__link">
               Campaigns
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#reviews" className="footer-list__link">
               Reviews
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#about-us" className="footer-list__link">
               About us
-            </a>
+            </Link>
           </li>
           <li className="footer-list__item">
-            <a href="#" className="footer-list__link">
+            <Link to="#products-and-services" className="footer-list__link">
               Our products & services
-            </a>
+            </Link>
           </li>
         </ul>
         <ul className="footer-list footer-list--business-hours">
           <li>
-            <h5 className="footer-list__title">Opening Hours</h5>
+            <h4 className="footer-list__title">Opening Hours</h4>
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Mon - Thurs:</span>
+            <span className="footer-list__item--darker">Mon - Thurs: </span>
             09.00 - 22.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Friday:</span>09.00 -
+            <span className="footer-list__item--darker">Friday: </span>09.00 -
             20.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Saturday:</span>10.00 -
+            <span className="footer-list__item--darker">Saturday: </span>10.00 -
             20.00
           </li>
           <li className="footer-list__item">
-            <span className="footer-list__item--darker">Sunday:</span>13.00 -
+            <span className="footer-list__item--darker">Sunday: </span>13.00 -
             19.00
           </li>
         </ul>
         <ul className="footer-list footer-list--contact-info">
           <li>
-            <h5 className="footer-list__title">Contact Information</h5>
+            <h4 className="footer-list__title">Contact Information</h4>
           </li>
           <li className="footer-list__item">
             <span className="footer-list__item--darker">

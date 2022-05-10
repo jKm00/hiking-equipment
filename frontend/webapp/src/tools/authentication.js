@@ -3,29 +3,29 @@ import { sendApiRequest } from "./request";
 
 /**
  * Send an authentication request to the API
- * @param {*} username username
+ * @param {*} email email
  * @param {*} password password
  * @param {*} successCallback function to be called on success
  * @param {*} errorCallback function to be called on error
  */
 export function sendAuthenticationRequest(
-  username,
+  email,
   password,
   successCallback,
   errorCallback
 ) {
   const postData = {
-    username: username,
+    email: email,
     password: password,
   };
   sendApiRequest(
     "POST",
-    "/authenticate",
+    "/auth/signin",
     function (jwtResponse) {
       setCookie("jwt", jwtResponse.jwt);
       const userData = parseJwtUser(jwtResponse.jwt);
       if (userData) {
-        setCookie("current_username", userData.username);
+        setCookie("current_email", userData.email);
         setCookie("current_user_roles", userData.roles.join(","));
         successCallback(userData);
       }
@@ -42,7 +42,7 @@ export function sendAuthenticationRequest(
 
 export function deleteAuthorizationCookies() {
   deleteCookie("jwt");
-  deleteCookie("current_username");
+  deleteCookie("current_email");
   deleteCookie("current_user_roles");
 }
 
@@ -72,14 +72,30 @@ function parseJwt(token) {
  * @param jwtString
  * @return User object
  */
-function parseJwtUser(jwtString) {
+export function parseJwtUser(jwtString) {
   let user = null;
   const jwtObject = parseJwt(jwtString);
   if (jwtObject) {
     user = {
-      username: jwtObject.sub,
+      email: jwtObject.sub,
       roles: jwtObject.roles.map((r) => r.authority),
     };
   }
   return user;
+}
+
+/**
+ * Checks if a jwt token is expired or not
+ * @param {*} jwt the jwt to check
+ * @returns true if it has expired, false otherwise
+ */
+export function isExpired(jwt) {
+  const jwtObject = parseJwt(jwt);
+  const expiration = jwtObject.exp;
+  const current = parseInt(Date.now().toString().slice(0, -3));
+
+  if (expiration < current) {
+    return true;
+  }
+  return false;
 }

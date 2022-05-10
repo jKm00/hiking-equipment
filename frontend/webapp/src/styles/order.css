@@ -1,0 +1,30 @@
+.order {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  box-shadow: var(--shadow-box);
+  padding: var(--spacing-medium);
+}
+
+.order__detail__title {
+  font-size: var(--fs-medium);
+}
+
+.order__detail__list {
+  list-style-type: none;
+}
+
+.order__detail__item,
+.order__detail__body {
+  font-size: var(--fs-small);
+}
+
+.order__link {
+  color: var(--clr-dark-800);
+  text-decoration: none;
+  justify-self: end;
+}
+
+.order__link:hover {
+  text-decoration: underline;
+}
