@@ -37,6 +37,13 @@ public class Discount
      */
     public Discount(){}
 
+    public Discount(String discountName, String description, long discountPercentage, boolean active) {
+        this.discountName = discountName;
+        this.description = description;
+        this.discountPercentage = discountPercentage;
+        this.active = active;
+    }
+
     public long getId() {
         return id;
     }

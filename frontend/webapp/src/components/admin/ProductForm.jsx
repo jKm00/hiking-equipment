@@ -55,9 +55,8 @@ export default function ProductForm({ products, updateProducts }) {
         price: parseFloat(price),
         category: category,
         sex: sex,
-        colors: colors.split(", "),
-        sizes: sizes.split(", "),
-        images: images,
+        colors: colors,
+        sizes: sizes,
       };
       sendApiRequest(
         "POST",

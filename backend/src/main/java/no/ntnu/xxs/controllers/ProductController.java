@@ -1,5 +1,6 @@
 package no.ntnu.xxs.controllers;
 
+import no.ntnu.xxs.dto.AddProductRequest;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.services.ProductService;
@@ -54,7 +55,7 @@ public class ProductController {
             
         /**
         * HTTP POST request to /api/products. Tries to add product to database.
-        * @param productToBeAdded The product to be added
+        * @param requestBody The body of the request containing the product to be added
         * @return Http.OK when product is added, or Http.CONFLICT if product
          * is already registered
         */
@@ -62,16 +63,16 @@ public class ProductController {
         @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
         // TODO: add dto class for product request
-        public ResponseEntity<?> addProduct(@RequestBody Product productToBeAdded) {
+        public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
             Product product = new Product(
-                    productToBeAdded.getProductName(),
-                    productToBeAdded.getDescription(),
-                    productToBeAdded.getPrice(),
-                    productToBeAdded.getSex(),
-                    productToBeAdded.getCategory();
+                    requestBody.getProductName(),
+                    requestBody.getDescription(),
+                    requestBody.getPrice(),
+                    requestBody.getSex(),
+                    requestBody.getCategory()
             );
             try {
-                this.productService.addProduct(product);
+                this.productService.addProduct(product, requestBody.getColorsAsList(), requestBody.getSizesAsList());
                 return new ResponseEntity<>(product, HttpStatus.OK);
             } catch (ProductAlreadyExistException e) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);

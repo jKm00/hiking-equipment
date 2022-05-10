@@ -1,16 +1,22 @@
 package no.ntnu.xxs;
 
 
+import no.ntnu.xxs.entities.product.Color;
+import no.ntnu.xxs.entities.product.Discount;
+import no.ntnu.xxs.entities.product.Product;
+import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.entities.user.Role;
-import no.ntnu.xxs.repositories.RoleRepository;
+import no.ntnu.xxs.repositories.*;
 import no.ntnu.xxs.entities.user.User;
-import no.ntnu.xxs.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * A class which initializes some data in the database, when the web application start
@@ -22,7 +28,14 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private ColorRepository colorRepository;
+    @Autowired
+    private SizeRepository sizeRepository;
+    @Autowired
+    private DiscountRepository discountRepository;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -36,7 +49,37 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
         logger.info("Importing dummy data...");
 
         // Create and save a product
+        Color black = new Color("black");
+        Color green = new Color("green");
+        Color blue = new Color("blue");
+        colorRepository.save(black);
+        colorRepository.save(green);
+        colorRepository.save(blue);
 
+        Size small = new Size("S");
+        Size medium = new Size("M");
+        Size large = new Size("L");
+        sizeRepository.save(small);
+        sizeRepository.save(medium);
+        sizeRepository.save(large);
+
+        Discount discount = new Discount("Winter", "Winter sale", 20, false);
+        discountRepository.save(discount);
+
+        Product sweater = new Product("Winter sweater", "Holds your warm", 399.9f, "sweater", "unisex");
+
+        Set<Size> sweaterSizes = new LinkedHashSet<>();
+        sweaterSizes.add(small);
+        sweaterSizes.add(medium);
+        sweaterSizes.add(large);
+        sweater.setSizes(sweaterSizes);
+
+        Set<Color> sweaterColors = new LinkedHashSet<>();
+        sweaterColors.add(black);
+        sweaterColors.add(green);
+        sweater.setColors(sweaterColors);
+
+        productRepository.save(sweater);
 
         // Create an admin user and one default user
         Role admin = new Role("ROLE_ADMIN");
@@ -61,6 +104,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     }
 
     private boolean isDataImported() {
-        return userRepository.count() > 0;
+        return productRepository.count() > 0;
     }
 }

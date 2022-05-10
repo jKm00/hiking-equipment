@@ -43,6 +43,10 @@ public class Color
 
     }
 
+    public Color(String color) {
+        this.color = color;
+    }
+
     public long getId() {
         return id;
     }

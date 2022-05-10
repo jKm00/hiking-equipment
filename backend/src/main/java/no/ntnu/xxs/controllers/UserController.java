@@ -3,6 +3,7 @@ package no.ntnu.xxs.controllers;
 import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,15 +18,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-
     /**
      * Get all users from database
      * @return a list of all users in the database
      */
     @GetMapping
-
-    @Autowired
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User> getAllUsers() {
         return this.userService.getAllUsers();
     }
