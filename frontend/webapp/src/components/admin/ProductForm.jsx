@@ -51,7 +51,9 @@ export default function ProductForm({ products, updateProducts }) {
       category === "" ||
       sex === "" ||
       sizes === "" ||
-      images.length === 0
+      quantity === "" ||
+      images.length === 0 ||
+      details === ""
     ) {
       displayFeedback(
         "error",
@@ -77,6 +79,9 @@ export default function ProductForm({ products, updateProducts }) {
         sex: sex,
         colors: colors,
         sizes: sizes,
+        quantity: quantity,
+        discount: discount,
+        details: details,
       };
       sendApiRequest(
         "POST",
