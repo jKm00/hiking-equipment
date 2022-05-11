@@ -44,6 +44,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     public void onApplicationEvent(ApplicationReadyEvent event) {
         Optional<User> existingUser = userRepository.findUserByEmail("adam@gmail.com");
 
+        if(productRepository.count()<=0){
+            Product product = new Product();
+        }
+
         if (existingUser.isEmpty()) {
             logger.info("Importing dummy data...");
 

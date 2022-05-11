@@ -37,21 +37,30 @@ public class Product {
     private int quantity;
 
     // Relation to Sizes
-    @Column(name = "product_size")
-    @ManyToMany(fetch = FetchType.EAGER)
+    /*@Column(name = "product_size")
     @JoinTable(name = "product_entries",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "size_id")
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "size_id", referencedColumnName = "id")
     )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Size> sizes = new LinkedHashSet<>();
 
     //Relation to Colors
     @Column(name = "product_color")
-    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "product_entries",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "color_id")
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "color_id", referencedColumnName = "id")
     )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Color> colors = new LinkedHashSet<>();
+    */
+
+    @Column(name = "product_size")
+    @OneToMany(mappedBy = "size")
+    private Set<Size> sizes = new LinkedHashSet<>();
+
+    @Column(name = "product_color")
+    @OneToMany(mappedBy = "color")
     private Set<Color> colors = new LinkedHashSet<>();
 
     // Relation to ProductDetails

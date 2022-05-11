@@ -23,8 +23,8 @@ public class Size
 
     // Relation to ProductEntrySet
     @JsonIgnore
-    @ManyToMany(mappedBy = "sizes")
-    private Set<Product> productEntrySet = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "size")
+    private Set<ProductEntries> productEntries = new LinkedHashSet<>();
 
     // Relation to CartItems
     @OneToMany(mappedBy = "size")
@@ -58,11 +58,27 @@ public class Size
         this.id = id;
     }
 
+    public Set<ProductEntries> getProductEntries() {
+        return productEntries;
+    }
+
+    public void setProductEntries(Set<ProductEntries> productEntries) {
+        this.productEntries = productEntries;
+    }
+
+    public Set<CartItem> getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(Set<CartItem> cartItem) {
+        this.cartItem = cartItem;
+    }
+
     public String getSize() {
         return size;
     }
 
     public void setSize(String size) {
-        size = size;
+        this.size = size;
     }
 }

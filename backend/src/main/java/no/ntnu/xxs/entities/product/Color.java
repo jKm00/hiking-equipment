@@ -23,8 +23,8 @@ public class Color
 
     // Relation to ProductEntrySet
     @JsonIgnore
-    @ManyToMany(mappedBy = "colors")
-    private Set<Product> productEntrySet = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "color")
+    private Set<ProductEntries> productEntries = new LinkedHashSet<>();
 
     // Relation to CartItem
     @OneToMany(mappedBy = "color")
@@ -55,12 +55,12 @@ public class Color
         this.id = id;
     }
 
-    public Set<Product> getProductEntrySet() {
-        return productEntrySet;
+    public Set<ProductEntries> getProductEntrySet() {
+        return productEntries;
     }
 
-    public void setProductEntrySet(Set<Product> productEntrySet) {
-        this.productEntrySet = productEntrySet;
+    public void setProductEntrySet(Set<ProductEntries> productEntrySet) {
+        this.productEntries = productEntrySet;
     }
 
     public Set<CartItem> getCartItem() {
