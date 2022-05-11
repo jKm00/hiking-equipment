@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { sendApiRequest } from "../../tools/request";
 import { displayFeedback } from "../../tools/feedback";
 import { isImages } from "../../tools/validators";
@@ -14,7 +14,25 @@ export default function ProductForm({ products, updateProducts }) {
   const [sex, setSex] = useState("");
   const [colors, setColors] = useState("");
   const [sizes, setSize] = useState("");
+  const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([]);
+
+  const [discounts, setDiscounts] = useState([]);
+
+  // Retrieve all the discount stored in the backend
+  useEffect(() => {
+    sendApiRequest(
+      "GET",
+      "/discounts",
+      function (respone) {
+        setDiscounts(respone);
+      },
+      null,
+      function (error) {
+        console.error("Could not retrieve discounts: " + error);
+      }
+    );
+  }, []);
 
   /**
    * Tries to add product to API. If unsuccessfull an error message is
@@ -163,8 +181,6 @@ export default function ProductForm({ products, updateProducts }) {
               onChange={(e) => setSex(e.target.value)}
             />
           </div>
-        </fieldset>
-        <fieldset className="form__section form__section--no-space form__section--horizontal">
           <div className="form__input--wrapper">
             <label htmlFor="product-color" className="form__label">
               Colors (separated by ", ")
@@ -188,6 +204,35 @@ export default function ProductForm({ products, updateProducts }) {
               value={sizes}
               onChange={(e) => setSize(e.target.value)}
             />
+          </div>
+          <div className="form__input--wrapper">
+            <label htmlFor="product-sizes" className="form__label">
+              Quantity
+            </label>
+            <input
+              id="product-sizes"
+              type="number"
+              className="form__input"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+          </div>
+          <div className="form__input--wrapper">
+            <label htmlFor="product-sizes" className="form__label">
+              Discount
+            </label>
+            <select
+              id="product-sizes"
+              type="number"
+              className="form__input"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            >
+              <option value="null">None</option>
+              {discounts.forEach((discount) => (
+                <option value={discount}>{discount}</option>
+              ))}
+            </select>
           </div>
           <div className="form__input--wrapper">
             <label

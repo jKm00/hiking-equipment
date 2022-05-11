@@ -18,7 +18,7 @@ import java.util.Set;
 public class User {
     // Primary Key
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "id")
     private Long id;
 
