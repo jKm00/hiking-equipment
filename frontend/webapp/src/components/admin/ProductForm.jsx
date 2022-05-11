@@ -16,6 +16,8 @@ export default function ProductForm({ products, updateProducts }) {
   const [sizes, setSize] = useState("");
   const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([]);
+  const [discount, setDiscount] = useState("");
+  const [details, setDetails] = useState("");
 
   const [discounts, setDiscounts] = useState([]);
 
@@ -206,11 +208,11 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-sizes" className="form__label">
+            <label htmlFor="product-quantity" className="form__label">
               Quantity
             </label>
             <input
-              id="product-sizes"
+              id="product-quantity"
               type="number"
               className="form__input"
               value={quantity}
@@ -218,15 +220,15 @@ export default function ProductForm({ products, updateProducts }) {
             />
           </div>
           <div className="form__input--wrapper">
-            <label htmlFor="product-sizes" className="form__label">
+            <label htmlFor="product-discount" className="form__label">
               Discount
             </label>
             <select
-              id="product-sizes"
+              id="product-discount"
               type="number"
               className="form__input"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              value={discount}
+              onChange={(e) => setDiscount(e.target.value)}
             >
               <option value="null">None</option>
               {discounts.forEach((discount) => (
@@ -249,6 +251,18 @@ export default function ProductForm({ products, updateProducts }) {
               multiple
               onChange={(e) => setImages(e.target.files)}
             />
+          </div>
+          <div className="form__input--wrapper form__input--full-width">
+            <label htmlFor="product-details" className="form__label">
+              Product Details (separate with new line)
+            </label>
+            <textarea
+              rows="4"
+              id="product-details"
+              className="form__input form__input--textarea"
+              value={details}
+              onChange={(e) => setDetails(e.target.value)}
+            ></textarea>
           </div>
         </fieldset>
         <button

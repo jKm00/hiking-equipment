@@ -96,6 +96,14 @@
   background-color: var(--clr-dark-300);
 }
 
+.form__input--textarea {
+  resize: none;
+}
+
+.form__input--full-width {
+  grid-column: 1 / span 2;
+}
+
 .form-submit-wrapper--stretch {
   grid-column: 1 / -1;
 }
