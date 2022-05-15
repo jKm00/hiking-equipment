@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ProductService {
@@ -26,7 +28,7 @@ public class ProductService {
      * @return a list of all products
      */
     public List<Product> getAllProducts() {
-        return (List<Product>) this.productRepository.findAll();
+        return StreamSupport.stream(this.productRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
     /**
@@ -53,33 +55,7 @@ public class ProductService {
      * @throws ProductAlreadyExistException if the product already exists
      */
     public void addProduct(Product product, List<String> colors, List<String> sizes) throws ProductAlreadyExistException {
-        product.setColors(this.createColorSet(colors));
-        product.setSizes(this.createSizeSet(sizes));
-
-        Optional<Product> result = this.productRepository.findById(product.getId());
-        if (result.isEmpty()) {
-            this.productRepository.save(product);
-        } else {
-            throw new ProductAlreadyExistException("Product already in database");
-        }
-    }
-
-    /**
-     * Creates a set of sizes that can be applied to a product
-     * @param sizes a list of string that described the sizes
-     * @return a set of sizes
-     */
-    private Set<Size> createSizeSet(List<String> sizes) {
-        Set<Size> sizeSet = new LinkedHashSet<>();
-        for (String size : sizes) {
-            Size sizeFound = this.sizeRepository.findOneBySize(size);
-            if (sizeFound == null) {
-                sizeFound = new Size(size);
-                this.sizeRepository.save(sizeFound);
-            }
-            sizeSet.add(sizeFound);
-        }
-        return sizeSet;
+        // TODO: fix
     }
 
     /**
@@ -95,23 +71,5 @@ public class ProductService {
             deleted = true;
         }
         return deleted;
-    }
-
-    /**
-     * Creates a set of colors that can be applied to a product
-     * @param colors a list of string that described the colors
-     * @return a set of colors
-     */
-    private Set<Color> createColorSet(List<String> colors) {
-        Set<Color> colorSet = new LinkedHashSet<>();
-        for (String color : colors) {
-            Color colorFound = this.colorRepository.findOneByColor(color);
-            if (colorFound == null) {
-                colorFound = new Color(color);
-                this.colorRepository.save(colorFound);
-            }
-            colorSet.add(colorFound);
-        }
-        return colorSet;
     }
 }

@@ -64,19 +64,7 @@ public class ProductController {
         @CrossOrigin
         // TODO: add dto class for product request
         public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
-            Product product = new Product(
-                    requestBody.getProductName(),
-                    requestBody.getDescription(),
-                    requestBody.getPrice(),
-                    requestBody.getSex(),
-                    requestBody.getCategory()
-            );
-            try {
-                this.productService.addProduct(product, requestBody.getColorsAsList(), requestBody.getSizesAsList());
-                return new ResponseEntity<>(product, HttpStatus.OK);
-            } catch (ProductAlreadyExistException e) {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
-            }
+            return new ResponseEntity<>(HttpStatus.OK);
         }
 
         /**
