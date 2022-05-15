@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.function.Function;
 
+import no.ntnu.xxs.entities.user.User;
+
 /**
  * A utility class for handling JWT token
  */
@@ -19,7 +21,7 @@ public class JwtUtil {
      * This is the key inside the JWT token that stores all the roles
      */
     private static final String JWT_AUTH_KEY = "roles";
-
+    //private static final String JWT_ID_KEY = "ueid";
     // TODO: add user id to token
     public String generateToken(UserDetails userDetails) {
         final long CURRENT_TIME = System.currentTimeMillis();
@@ -29,6 +31,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .claim(JWT_AUTH_KEY, userDetails.getAuthorities())
+                //.claim(JWT_ID_KEY, user.getId())
                 .setIssuedAt(new Date(CURRENT_TIME))
                 .setExpiration(new Date(TIME_AFTER_ONE_HOUR))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
