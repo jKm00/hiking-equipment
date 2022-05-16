@@ -3,6 +3,7 @@ package no.ntnu.xxs.entities.cart;
 import no.ntnu.xxs.entities.user.User;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -20,7 +21,7 @@ public class Cart
 
     // Relation to cartItem
     @OneToMany(mappedBy = "cart")
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItem = new LinkedHashSet<>();
 
     // Relation to User
     @OneToOne(mappedBy = "cart")
@@ -30,6 +31,18 @@ public class Cart
      * Empty constructor
      */
     public Cart(){}
+
+    public Cart(User user) {
+        this.user = user;
+    }
+
+    /**
+     * Adds a cart item to the cart
+     * @param cartItem the cart item to be added
+     */
+    public void addCartItem(CartItem cartItem) {
+        this.cartItem.add(cartItem);
+    }
 
     public long getId() {
         return id;

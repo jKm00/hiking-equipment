@@ -2,15 +2,20 @@ package no.ntnu.xxs.services;
 
 import no.ntnu.xxs.entities.product.Color;
 import no.ntnu.xxs.entities.product.Product;
+import no.ntnu.xxs.entities.product.ProductDetail;
 import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
 import no.ntnu.xxs.repositories.ColorRepository;
+import no.ntnu.xxs.repositories.ProductDetailRepository;
 import no.ntnu.xxs.repositories.ProductRepository;
 import no.ntnu.xxs.repositories.SizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ProductService {
@@ -20,13 +25,15 @@ public class ProductService {
     private ColorRepository colorRepository;
     @Autowired
     private SizeRepository sizeRepository;
+    @Autowired
+    private ProductDetailRepository productDetailRepository;
 
     /**
      * Return a list of all products stored in the application state
      * @return a list of all products
      */
     public List<Product> getAllProducts() {
-        return (List<Product>) this.productRepository.findAll();
+        return StreamSupport.stream(this.productRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
     /**
@@ -52,34 +59,31 @@ public class ProductService {
      * @param sizes a list of sized available for the product described as string
      * @throws ProductAlreadyExistException if the product already exists
      */
-    public void addProduct(Product product, List<String> colors, List<String> sizes) throws ProductAlreadyExistException {
-        product.setColors(this.createColorSet(colors));
-        product.setSizes(this.createSizeSet(sizes));
-
-        Optional<Product> result = this.productRepository.findById(product.getId());
-        if (result.isEmpty()) {
-            this.productRepository.save(product);
-        } else {
-            throw new ProductAlreadyExistException("Product already in database");
-        }
-    }
-
-    /**
-     * Creates a set of sizes that can be applied to a product
-     * @param sizes a list of string that described the sizes
-     * @return a set of sizes
-     */
-    private Set<Size> createSizeSet(List<String> sizes) {
-        Set<Size> sizeSet = new LinkedHashSet<>();
-        for (String size : sizes) {
-            Size sizeFound = this.sizeRepository.findOneBySize(size);
-            if (sizeFound == null) {
-                sizeFound = new Size(size);
-                this.sizeRepository.save(sizeFound);
+    public void addProduct(Product product, List<String> colors, List<String> sizes, List<String> details) throws ProductAlreadyExistException {
+        for (String colorValue : colors) {
+            Color color = this.colorRepository.findOneByColor(colorValue);
+            if (color == null) {
+                color = new Color(colorValue);
+                this.colorRepository.save(color);
             }
-            sizeSet.add(sizeFound);
+            product.addColor(color);
         }
-        return sizeSet;
+
+        for (String sizeValue : sizes) {
+            Size size = this.sizeRepository.findOneBySize(sizeValue);
+            if (size == null) {
+                size = new Size(sizeValue);
+                this.sizeRepository.save(size);
+            }
+            product.addSize(size);
+        }
+
+        this.productRepository.save(product);
+
+        for (String detailValue : details) {
+            ProductDetail detail = new ProductDetail(detailValue, product);
+            this.productDetailRepository.save(detail);
+        }
     }
 
     /**
@@ -95,23 +99,5 @@ public class ProductService {
             deleted = true;
         }
         return deleted;
-    }
-
-    /**
-     * Creates a set of colors that can be applied to a product
-     * @param colors a list of string that described the colors
-     * @return a set of colors
-     */
-    private Set<Color> createColorSet(List<String> colors) {
-        Set<Color> colorSet = new LinkedHashSet<>();
-        for (String color : colors) {
-            Color colorFound = this.colorRepository.findOneByColor(color);
-            if (colorFound == null) {
-                colorFound = new Color(color);
-                this.colorRepository.save(colorFound);
-            }
-            colorSet.add(colorFound);
-        }
-        return colorSet;
     }
 }

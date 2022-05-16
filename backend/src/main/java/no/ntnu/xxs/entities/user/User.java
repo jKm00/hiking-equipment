@@ -59,8 +59,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Order> order = new LinkedHashSet<>();
 
-
-
     public User() {}
 
     public User(String firstName, String lastName, String email, String password, String country, String zipCode, String city, String address) {
