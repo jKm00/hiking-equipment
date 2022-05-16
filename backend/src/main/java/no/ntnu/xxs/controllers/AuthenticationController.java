@@ -54,7 +54,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    ResponseEntity<String> response;
+
     /**
      * Processes data received from the sign-up form
      *
@@ -64,13 +64,15 @@ public class AuthenticationController {
     @PostMapping("/signup")
     @CrossOrigin
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest)  {
+        ResponseEntity<String> response = null;
         try{
             String errorMsg = userService.tryCreateNewUser(signUpRequest);
             if (errorMsg == null) {
-                this.response = new ResponseEntity<>(HttpStatus.OK);
+                response = new ResponseEntity<>(HttpStatus.OK);
+
             }
         } catch (EmailAlreadyInUseException emailAlreadyInUseException) {
-            this.response = new ResponseEntity<>(emailAlreadyInUseException.getMessage(), HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity<>(emailAlreadyInUseException.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return response;
     }
