@@ -25,6 +25,7 @@ public class Size
     private Set<Product> products = new LinkedHashSet<>();
 
     // Relation to CartItems
+    @JsonIgnore
     @OneToMany(mappedBy = "size")
     private Set<CartItem> cartItem;
 

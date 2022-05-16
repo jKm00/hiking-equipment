@@ -83,6 +83,14 @@ public class Product {
     }
 
     /**
+     * Adds a detail about the product to the product
+     * @param productDetail the detail to be added
+     */
+    public void addProductDetails(ProductDetail productDetail) {
+        this.productDetails.add(productDetail);
+    }
+
+    /**
      * Adds a size to the product
      * @param size the size to add
      */

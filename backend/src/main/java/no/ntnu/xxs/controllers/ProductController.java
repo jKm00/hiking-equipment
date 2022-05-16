@@ -62,9 +62,24 @@ public class ProductController {
         @PostMapping("")
         @PreAuthorize("hasRole('ROLE_ADMIN')")
         @CrossOrigin
-        // TODO: add dto class for product request
         public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            try {
+                this.productService.addProduct(
+                        new Product(
+                                requestBody.getProductName(),
+                                requestBody.getDescription(),
+                                requestBody.getPrice(),
+                                requestBody.getCategory(),
+                                requestBody.getSex(),
+                                requestBody.isFeatured(),
+                                requestBody.getDiscount()),
+                        requestBody.getColors(),
+                        requestBody.getSizes(),
+                        requestBody.getDetails());
+                return new ResponseEntity<>(HttpStatus.OK);
+            } catch (ProductAlreadyExistException e) {
+                return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
+            }
         }
 
         /**

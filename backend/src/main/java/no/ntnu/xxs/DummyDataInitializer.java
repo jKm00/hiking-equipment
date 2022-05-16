@@ -3,6 +3,7 @@ package no.ntnu.xxs;
 
 import no.ntnu.xxs.entities.product.Color;
 import no.ntnu.xxs.entities.product.Product;
+import no.ntnu.xxs.entities.product.ProductDetail;
 import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.entities.user.Role;
 import no.ntnu.xxs.repositories.*;
@@ -32,6 +33,8 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     private ColorRepository colorRepository;
     @Autowired
     private SizeRepository sizeRepository;
+    @Autowired
+    private ProductDetailRepository productDetailRepository;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -79,6 +82,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             sizeRepository.save(large);
 
             productRepository.save(sweater);
+
+            ProductDetail detailOne = new ProductDetail("This is a nice sweater", sweater);
+            ProductDetail detailTwo = new ProductDetail("Very warm and cozy", sweater);
+
+            productDetailRepository.save(detailOne);
+            productDetailRepository.save(detailTwo);
 
             logger.info("Finished initializing data...");
         } else {
