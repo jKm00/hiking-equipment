@@ -14,8 +14,7 @@ export default function FormInput({ value, updateValue, label, type }) {
       </label>
       <input
         id={label}
-        type={type == null ? "text" : type}
-        accept={type !== null && type === "file" ? "image/png, image/jpeg" : ""}
+        type={type === null ? "text" : type}
         className="form__input"
         value={value}
         onChange={handleChange}
