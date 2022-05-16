@@ -4,6 +4,7 @@ package no.ntnu.xxs.entities.cart;
 import no.ntnu.xxs.entities.product.Color;
 import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.entities.product.Product;
+import no.ntnu.xxs.exception.QuantityBelowZeroException;
 
 import javax.persistence.*;
 
@@ -14,28 +15,33 @@ public class CartItem {
     //Primary key
     @Id
     @GeneratedValue
+    @Column(name = "cartitem_id")
     private long id;
 
-    // Relation to Product
-    @OneToOne(mappedBy = "cartItem")
-    private Product product;
+    @Column(name = "product_id")
+    private long productId;
 
-    // Relation to Cart
-    @ManyToOne
-    @JoinColumn(name = "cart_item", referencedColumnName = "id")
-    private Cart cart;
+    @Column(name = "product_name")
+    private String productName;
 
-    // Relation to Color
-    @ManyToOne
-    @JoinColumn(name = "item_color", referencedColumnName = "id")
-    private Color color;
+    @Column(name = "product_price")
+    private float productPrice;
 
-    // Relation to Size
-    @ManyToOne
-    @JoinColumn(name = "item_size", referencedColumnName = "id")
-    private Size size;
+    @Column(name = "product_category")
+    private String productCategory;
 
-    // Columns
+    @Column(name = "product_sex")
+    private String productSex;
+
+    @Column(name = "discount")
+    private float discount;
+
+    @Column(name = "product_color")
+    private String color;
+
+    @Column(name = "product_size")
+    private String size;
+
     @Column(name = "quantity")
     private int quantity;
 
@@ -43,6 +49,58 @@ public class CartItem {
      * Empty constructor
      */
     public CartItem(){}
+
+    public CartItem(long productId, String productName, float productPrice, String productCategory, String productSex, float discount, String color, String size, int quantity) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productCategory = productCategory;
+        this.productSex = productSex;
+        this.discount = discount;
+        this.color = color;
+        this.size = size;
+        this.quantity = quantity;
+    }
+
+    /**
+     * Increments the quantity be one
+     */
+    public void incrementQuantity() {
+        this.quantity++;
+    }
+
+    /**
+     * Increments the quantity by a fixed amount
+     * @param incrementAmount the amount to increment with
+     */
+    public void incrementQuantity(int incrementAmount) {
+        this.quantity += incrementAmount;
+    }
+
+    /**
+     * Decrements the quantity by one
+     * @throws QuantityBelowZeroException if the quantity reached 0 or below
+     * after a call to this method, this exception is thrown
+     */
+    public void decrementQuantity() throws QuantityBelowZeroException {
+        this.quantity--;
+        if (this.quantity <= 0) {
+            throw new QuantityBelowZeroException("Quantity of cart item was decremented below zero");
+        }
+    }
+
+    /**
+     * Decrements the quantity a fixed amount
+     * @param decrementAmount the amount to decrement with
+     * @throws QuantityBelowZeroException if the quantity reached 0 or below
+     * after a call to this method, this exception is thrown
+     */
+    public void decrementQuantity(int decrementAmount) throws QuantityBelowZeroException {
+        this.quantity -= decrementAmount;
+        if (this.quantity <= 0) {
+            throw new QuantityBelowZeroException("Quantity of cart item was decremented below zero");
+        }
+    }
 
     public long getId() {
         return id;
@@ -52,35 +110,67 @@ public class CartItem {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
-    public Cart getCart() {
-        return cart;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public Color getColor() {
+    public float getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(float productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public String getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
+    }
+
+    public String getProductSex() {
+        return productSex;
+    }
+
+    public void setProductSex(String productSex) {
+        this.productSex = productSex;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public Size getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
