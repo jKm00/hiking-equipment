@@ -1,5 +1,6 @@
 package no.ntnu.xxs.entities.cart;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.exception.QuantityBelowZeroException;
 
 import javax.persistence.*;
@@ -44,6 +45,11 @@ public class CartItem {
 
     @Column(name = "quantity")
     private int quantity;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    @JsonIgnore
+    private Cart cart;
 
     /**
      * Empty constructor

@@ -188,14 +188,6 @@ public class Product {
         this.productDetails = productDetails;
     }
 
-    public CartItem getCartItem() {
-        return cartItem;
-    }
-
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
-    }
-
     public Set<Order> getOrder() {
         return order;
     }
