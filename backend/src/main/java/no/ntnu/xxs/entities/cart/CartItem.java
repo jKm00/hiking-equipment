@@ -1,13 +1,13 @@
 package no.ntnu.xxs.entities.cart;
 
-
-import no.ntnu.xxs.entities.product.Color;
-import no.ntnu.xxs.entities.product.Size;
-import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.exception.QuantityBelowZeroException;
 
 import javax.persistence.*;
 
+/**
+ * Describes a product that is in a cart of a user. Only contains
+ * information about the product that is necessary for the cart.
+ */
 @Entity
 @Table(name = "cart_item")
 public class CartItem {
