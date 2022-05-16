@@ -14,6 +14,7 @@ export default function AdminTableRow({ product, deleteProduct }) {
       <td>{product.price}</td>
       <td>{product.category}</td>
       <td>{product.sex}</td>
+      <td>{product.featured ? "Yes" : "No"}</td>
       <td className="table__row--delete">
         <button onClick={handleDeletion}>x</button>
       </td>

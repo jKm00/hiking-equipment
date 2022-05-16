@@ -85,6 +85,7 @@ export default function ProductForm({ products, updateProducts }) {
             document.querySelector("[data-feedback-product]")
           );
           updateProducts();
+          resetInputs();
         },
         newProduct,
         (error) => {
@@ -97,6 +98,23 @@ export default function ProductForm({ products, updateProducts }) {
         }
       );
     }
+  }
+
+  /**
+   * Resets all inputs in the form
+   */
+  function resetInputs() {
+    setTitle("");
+    setDescription("");
+    setPrice("");
+    setCategory("");
+    setSex("");
+    setDiscount("");
+    setColors("");
+    setSizes("");
+    setImages([]);
+    setFeatured(false);
+    setDetails("");
   }
 
   /**
@@ -208,6 +226,7 @@ export default function ProductForm({ products, updateProducts }) {
             <th className="table__heading">Price</th>
             <th className="table__heading">Category</th>
             <th className="table__heading">Sex</th>
+            <th className="table__heading">Featured</th>
           </tr>
         </thead>
         <tbody>
