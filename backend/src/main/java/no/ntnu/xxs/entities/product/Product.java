@@ -37,9 +37,19 @@ public class Product {
     @Column(name = "discount")
     private float discount;
 
-    @OneToMany(mappedBy = "product")
-    private Set<ProductEntry> productEntries = new LinkedHashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "product_colors",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "color_id")
+    )
+    private Set<Color> colors = new LinkedHashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "product_sizes",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "size_id")
+    )
+    private Set<Size> sizes = new LinkedHashSet<>();
 
     // Relation to ProductDetails
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -70,6 +80,22 @@ public class Product {
         this.sex = sex;
         this.featured = featured;
         this.discount = discount;
+    }
+
+    /**
+     * Adds a size to the product
+     * @param size the size to add
+     */
+    public void addSize(Size size) {
+        this.sizes.add(size);
+    }
+
+    /**
+     * Adds a color to the product
+     * @param color the color to add
+     */
+    public void addColor(Color color) {
+        this.colors.add(color);
     }
 
     public long getId() {
@@ -128,6 +154,30 @@ public class Product {
         this.featured = featured;
     }
 
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public Set<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(Set<Color> colors) {
+        this.colors = colors;
+    }
+
+    public Set<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(Set<Size> sizes) {
+        this.sizes = sizes;
+    }
+
     public Set<ProductDetail> getProductDetails() {
         return productDetails;
     }
@@ -142,14 +192,6 @@ public class Product {
 
     public void setCartItem(CartItem cartItem) {
         this.cartItem = cartItem;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
     }
 
     public Set<Order> getOrder() {

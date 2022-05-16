@@ -3,10 +3,8 @@ package no.ntnu.xxs;
 
 import no.ntnu.xxs.entities.product.Color;
 import no.ntnu.xxs.entities.product.Product;
-import no.ntnu.xxs.entities.product.ProductEntry;
 import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.entities.user.Role;
-import no.ntnu.xxs.keys.ProductEntryKey;
 import no.ntnu.xxs.repositories.*;
 import no.ntnu.xxs.entities.user.User;
 import org.slf4j.Logger;
@@ -34,8 +32,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     private ColorRepository colorRepository;
     @Autowired
     private SizeRepository sizeRepository;
-    @Autowired
-    private ProductEntryRepository productEntryRepository;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -71,11 +67,10 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             Size large = new Size("L");
 
             Product sweater = new Product("Sweater", "Winter Sweater", 399f, "sweater", "unisex", false, 0f);
-
-            ProductEntry blackMediumSweater = new ProductEntry(new ProductEntryKey(sweater.getId(), medium.getId(), black.getId()), sweater, medium, black, 10);
-            ProductEntry blackLargeSweater = new ProductEntry(new ProductEntryKey(sweater.getId(), large.getId(), black.getId()), sweater, large, black, 3);
-            ProductEntry blueMediumSweater = new ProductEntry(new ProductEntryKey(sweater.getId(), medium.getId(), blue.getId()), sweater, medium, blue, 32);
-            ProductEntry blueLargeSweater = new ProductEntry(new ProductEntryKey(sweater.getId(), large.getId(), blue.getId()), sweater, large, blue, 18);
+            sweater.addColor(black);
+            sweater.addColor(blue);
+            sweater.addSize(medium);
+            sweater.addSize(large);
 
             colorRepository.save(black);
             colorRepository.save(blue);
@@ -84,11 +79,6 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             sizeRepository.save(large);
 
             productRepository.save(sweater);
-
-            productEntryRepository.save(blackMediumSweater);
-            productEntryRepository.save(blackLargeSweater);
-            productEntryRepository.save(blueMediumSweater);
-            productEntryRepository.save(blueLargeSweater);
 
             logger.info("Finished initializing data...");
         } else {
