@@ -18,6 +18,7 @@ import java.util.List;
 // TODO: Make product endpoint public. This is made private only for demo purposes
 @RestController
 @RequestMapping("/api/products")
+@CrossOrigin
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -27,8 +28,6 @@ public class ProductController {
      * @return a list of all products
      */
     @GetMapping
-    // TODO: remove this in deployment
-    @CrossOrigin
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
     }
@@ -39,7 +38,6 @@ public class ProductController {
      * @return an item with same id as given
      */
     @GetMapping("/{id}")
-    @CrossOrigin
     public ResponseEntity<Product> getProductById(@PathVariable long id) {
         ResponseEntity<Product> response;
         Product product = this.productService.getProductById(id);
@@ -51,51 +49,49 @@ public class ProductController {
         return response;
     }
 
-
-            
-        /**
-        * HTTP POST request to /api/products. Tries to add product to database.
-        * @param requestBody The body of the request containing the product to be added
-        * @return Http.OK when product is added, or Http.CONFLICT if product
-         * is already registered
-        */
-        @PostMapping("")
-        @PreAuthorize("hasRole('ROLE_ADMIN')")
-        @CrossOrigin
-        public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
-            try {
-                this.productService.addProduct(
-                        new Product(
-                                requestBody.getProductName(),
-                                requestBody.getDescription(),
-                                requestBody.getPrice(),
-                                requestBody.getCategory(),
-                                requestBody.getSex(),
-                                requestBody.isFeatured(),
-                                requestBody.getDiscount()),
-                        requestBody.getColors(),
-                        requestBody.getSizes(),
-                        requestBody.getDetails());
-                return new ResponseEntity<>(HttpStatus.OK);
-            } catch (ProductAlreadyExistException e) {
-                return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
-            }
+    /**
+    * HTTP POST request to /api/products. Tries to add product to database.
+    * @param requestBody The body of the request containing the product to be added
+    * @return Http.OK when product is added, or Http.CONFLICT if product
+     * is already registered
+    */
+    @PostMapping("/add")
+    /* TODO: make it only accessible for admin. Currently its accessible for any
+        logged in users */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
+        try {
+            this.productService.addProduct(
+                    new Product(
+                            requestBody.getProductName(),
+                            requestBody.getDescription(),
+                            requestBody.getPrice(),
+                            requestBody.getCategory(),
+                            requestBody.getSex(),
+                            requestBody.isFeatured(),
+                            requestBody.getDiscount()),
+                    requestBody.getColors(),
+                    requestBody.getSizes(),
+                    requestBody.getDetails());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (ProductAlreadyExistException e) {
+            return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
         }
+    }
 
-        /**
-         *  HTTP PUT request to /api/products/{id}
-         * @param id The id of the product to be updated
-         * 
-         */
-        @DeleteMapping("/{id}")
-        @PreAuthorize("hasRole('ROLE_ADMIN')")
-        @CrossOrigin
-        public ResponseEntity<?> deleteProduct(@PathVariable() Long id) {
-            if (this.productService.deleteProduct(id)) {
-                return new ResponseEntity<>(HttpStatus.OK);
-            }
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    /**
+     *  HTTP PUT request to /api/products/{id}
+     * @param id The id of the product to be updated
+     *
+     */
+    @DeleteMapping("/{id}")
+    /* TODO: make it only accessible for admin. Currently its accessible for any
+        logged in users */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> deleteProduct(@PathVariable() Long id) {
+        if (this.productService.deleteProduct(id)) {
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-
-
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }
