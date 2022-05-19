@@ -20,7 +20,7 @@ export function sendAuthenticationRequest(
   };
   sendApiRequest(
     "POST",
-    "/auth/signin",
+    "/authenticate",
     function (jwtResponse) {
       setCookie("jwt", jwtResponse.jwt);
       const userData = parseJwtUser(jwtResponse.jwt);
@@ -87,14 +87,14 @@ export function parseJwtUser(jwtString) {
 /**
  * Checks if a jwt token is expired or not
  * @param {*} jwt the jwt to check
- * @returns true if it has not expired, false if it has expired
+ * @returns true if it has expired, false otherwise
  */
-export function isUnexpired(jwt) {
+export function isExpired(jwt) {
   const jwtObject = parseJwt(jwt);
   const expiration = jwtObject.exp;
   const current = parseInt(Date.now().toString().slice(0, -3));
 
-  if (expiration > current) {
+  if (expiration < current) {
     return true;
   }
   return false;

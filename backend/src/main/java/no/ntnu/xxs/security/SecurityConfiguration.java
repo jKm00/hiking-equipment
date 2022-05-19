@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * The @EnableGlobalMethodSecurity is needed so that each endpoint can specify which role it requires
  */
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     /**
      * A service providing our users from the database
@@ -54,11 +53,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 // Public endpoints
-                // TODO: Make product endpoint public. This is made private only for demo purposes
-                .antMatchers("/api/auth/signin").permitAll()
-                .antMatchers("/api/auth/signup").permitAll()
+                .antMatchers("/api/authenticate").permitAll()
+                .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/products").permitAll()
-                .antMatchers("/api/products/").permitAll()
+
                 // Every other endpoints need one form of authentication
                 // What type of authentication is specified with an annotation over each endpoint
                 .anyRequest().authenticated()
