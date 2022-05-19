@@ -1,0 +1,57 @@
+package no.ntnu.xxs.entities.product;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table
+public class Image {
+
+    // Primary Key
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "id")
+    @JsonIgnore
+    private Product product;
+
+    @Column(name = "binaryValue")
+    private long imageBinary;
+
+    public Image()
+    {
+
+    }
+
+    public Image(long binaryStream){
+        this.imageBinary = binaryStream;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public long getImageBinary() {
+        return imageBinary;
+    }
+
+    public void setImageBinary(long imageBinary) {
+        this.imageBinary = imageBinary;
+    }
+}

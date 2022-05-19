@@ -5,15 +5,14 @@ import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.entities.product.ProductDetail;
 import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
-import no.ntnu.xxs.repositories.ColorRepository;
-import no.ntnu.xxs.repositories.ProductDetailRepository;
-import no.ntnu.xxs.repositories.ProductRepository;
-import no.ntnu.xxs.repositories.SizeRepository;
+import no.ntnu.xxs.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -27,6 +26,8 @@ public class ProductService {
     private SizeRepository sizeRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
+    @Autowired
+    private ImageRepository imageRepository;
 
     /**
      * Return a list of all products stored in the application state
@@ -59,7 +60,7 @@ public class ProductService {
      * @param sizes a list of sized available for the product described as string
      * @throws ProductAlreadyExistException if the product already exists
      */
-    public void addProduct(Product product, List<String> colors, List<String> sizes, List<String> details) throws ProductAlreadyExistException {
+    public void addProduct(Product product, List<String> colors, List<String> sizes, List<String> details, List<Image> images) throws ProductAlreadyExistException {
         for (String colorValue : colors) {
             Color color = this.colorRepository.findOneByColor(colorValue);
             if (color == null) {
@@ -76,6 +77,15 @@ public class ProductService {
                 this.sizeRepository.save(size);
             }
             product.addSize(size);
+        }
+
+        for (Image imageValue : images) {
+            no.ntnu.xxs.entities.product.Image image = this.imageRepository.findOneByImage(imageValue);
+            if (image == null) {
+                image = new Size(imageValue);
+                this.imageRepository.save(image);
+            }
+            product.addImage(image);
         }
 
         this.productRepository.save(product);

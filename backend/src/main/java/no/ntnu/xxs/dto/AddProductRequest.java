@@ -1,5 +1,6 @@
 package no.ntnu.xxs.dto;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -15,10 +16,11 @@ public class AddProductRequest {
     private List<String> colors;
     private List<String> sizes;
     private List<String> details;
+    private List<Image> images;
 
     public AddProductRequest(String productName, String description, float price, String category, String sex,
                              boolean featured, float discount, List<String> colors, List<String> sizes,
-                             List<String> details) {
+                             List<String> details, List<Image> images) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -29,6 +31,7 @@ public class AddProductRequest {
         this.colors = colors;
         this.sizes = sizes;
         this.details = details;
+        this.images = images;
     }
 
     public String getProductName() {
@@ -109,5 +112,13 @@ public class AddProductRequest {
 
     public void setDetails(List<String> details) {
         this.details = details;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

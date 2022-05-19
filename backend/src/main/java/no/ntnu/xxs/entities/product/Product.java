@@ -55,6 +55,10 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails = new LinkedHashSet<>();
 
+    // Relation to images
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Image> images = new LinkedHashSet<>();
+
     // Relation to Order
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_products",
@@ -75,6 +79,7 @@ public class Product {
         this.featured = featured;
         this.discount = discount;
     }
+
 
     /**
      * Adds a detail about the product to the product
@@ -98,6 +103,11 @@ public class Product {
      */
     public void addColor(Color color) {
         this.colors.add(color);
+    }
+
+    public void addImage(Image image)
+    {
+        this.images.add(image);
     }
 
     public long getId() {
