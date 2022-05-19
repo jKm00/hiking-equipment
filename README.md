@@ -11,8 +11,7 @@
     - DATABASE_NAME
     - POSTGRES_PORT
 3. Download and install ".env file support" plugin for intellij. (Make sure it's working, might need to restart idea)
-4. Enable "EnvFile" in "Run/Debug Configurations"
-5. Select the .env file you created in step 1
+4. Enable "EnvFile" in "Run/Debug Configurations" and select the .env file created in step 1
 
 ### Running the App
 
