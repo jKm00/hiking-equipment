@@ -1,22 +1,23 @@
 # Webshop for XXS
 
-## Setup
+## Setup Intellij
 
-### Run/create docker container for postgres
+### Initial Setup
 
-- Install docker
-- First time run `docker run -d --name some-name -p 5000:5432 -e POSTGRES_PASSWORD=mysecretpassword` where "some-name" is the name of the container and "mysecretpassword" is the database password
-- Later you can use docker dashboard to start the container
+1. Create an .env file in the root folder of the backend
+2. Add environment variabler:
+    - POSTGRES_USERNAME
+    - POSTGRES_PASSWORD
+    - DATABASE_NAME
+    - POSTGRES_PORT
+3. Download and install ".env file support" plugin for intellij. (Make sure it's working, might need to restart idea)
+4. Enable "EnvFile" in "Run/Debug Configurations"
+5. Select the .env file you created in step 1
 
-### Fix env variables
+### Running the App
 
-- In intellij, select "Edit configuration"
-- Type in "prod" as active profiles
-- Add environment variable for the 4 variables specified in application-prod.properties
-  - POSTGRES_PORT: the port specified when creating the container, example: 5000
-  - DATABASE_NAME: the name of the database within the container
-  - POSTGRES_ROOT_USERNAME: postgres unless other was specified
-  - POSTGRES_ROOT_PASSWORD: the password you wrote when creating the container
+1. Run `docker compose up -d` in terminal. (Spins up a docker container for postgres)
+2. Run backend from idea or another docker container
 
 ## Link to Postman test for security
 
