@@ -73,6 +73,8 @@ public class AuthenticationController {
             }
         } catch (EmailAlreadyInUseException emailAlreadyInUseException) {
             response = new ResponseEntity<>(emailAlreadyInUseException.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            response = new ResponseEntity<>(illegalArgumentException.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return response;
     }
