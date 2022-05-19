@@ -63,12 +63,18 @@
 .form__input--wrapper {
   display: flex;
   flex-direction: column;
+  align-items: start;
+}
+
+.form__input--wrapper--full-width {
+  grid-column: 1 / -1;
 }
 
 .form__label {
   display: flex;
   gap: var(--spacing-small);
   margin-bottom: var(--spacing-smaller);
+  font-size: var(--fs-medium);
 }
 
 .form__input {
@@ -94,6 +100,19 @@
 
 .form__input[type="file"]::file-selector-button:active {
   background-color: var(--clr-dark-300);
+}
+
+.form__input[type="checkbox"] {
+  display: block;
+  width: 1.5rem;
+}
+
+.form__input--textarea {
+  resize: none;
+}
+
+.form__input--full-width {
+  grid-column: 1 / span 2;
 }
 
 .form-submit-wrapper--stretch {
