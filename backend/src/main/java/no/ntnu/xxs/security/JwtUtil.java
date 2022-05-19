@@ -1,6 +1,7 @@
 package no.ntnu.xxs.security;
 
 import io.jsonwebtoken.*;
+import no.ntnu.xxs.entities.user.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,10 @@ public class JwtUtil {
      * This is the key inside the JWT token that stores all the roles
      */
     private static final String JWT_AUTH_KEY = "roles";
+    private static final String JWT_ID_KEY = "ueid";
 
     // TODO: add user id to token
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails, User user) {
         final long CURRENT_TIME = System.currentTimeMillis();
         final long HOUR_IN_MILLISECOND = 60 * 60 * 1000;
         final long TIME_AFTER_ONE_HOUR = CURRENT_TIME + HOUR_IN_MILLISECOND;
@@ -29,6 +31,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .claim(JWT_AUTH_KEY, userDetails.getAuthorities())
+                .claim(JWT_ID_KEY, user.getId())
                 .setIssuedAt(new Date(CURRENT_TIME))
                 .setExpiration(new Date(TIME_AFTER_ONE_HOUR))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
