@@ -5,12 +5,12 @@
 ### Initial Setup
 
 1. Create an .env file in the root folder of the backend
-2. Add environment variabler:
+2. Add environment variables:
     - POSTGRES_USERNAME
     - POSTGRES_PASSWORD
     - DATABASE_NAME
     - POSTGRES_PORT
-3. Download and install ".env file support" plugin for intellij. (Make sure it's working, might need to restart idea)
+3. Download and install "EnvFile" plugin for intellij by Borys Pierov. (Make sure it's working, might need to restart idea)
 4. Enable "EnvFile" in "Run/Debug Configurations" and select the .env file created in step 1
 
 ### Running the App
