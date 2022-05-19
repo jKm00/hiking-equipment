@@ -2,6 +2,7 @@ package no.ntnu.xxs.controllers;
 
 import no.ntnu.xxs.dto.AuthenticationRequest;
 import no.ntnu.xxs.dto.AuthenticationResponse;
+import no.ntnu.xxs.exception.EmailAlreadyInUseException;
 import no.ntnu.xxs.security.*;
 import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.exception.UserAlreadyExistException;
@@ -64,12 +65,17 @@ public class AuthenticationController {
     @PostMapping("/signup")
     @CrossOrigin
     public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest)  {
-        String errorMsg = userService.tryCreateNewUser(signUpRequest);
-        ResponseEntity<String> response;
-        if (errorMsg == null) {
-            response = new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            response = new ResponseEntity<>(errorMsg, HttpStatus.BAD_REQUEST);
+        ResponseEntity<String> response = null;
+        try{
+            String errorMsg = userService.tryCreateNewUser(signUpRequest);
+            if (errorMsg == null) {
+                response = new ResponseEntity<>(HttpStatus.OK);
+
+            }
+        } catch (EmailAlreadyInUseException emailAlreadyInUseException) {
+            response = new ResponseEntity<>(emailAlreadyInUseException.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            response = new ResponseEntity<>(illegalArgumentException.getMessage(), HttpStatus.BAD_REQUEST);
         }
         return response;
     }
