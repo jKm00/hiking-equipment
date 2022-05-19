@@ -3,9 +3,10 @@
 ---------------*/
 
 .layout {
-    grid-column: 2 / -2;
-    margin-top: 6.4rem;
-    display: grid;
-    row-gap: 1.6rem;
-    grid-template-columns: 20rem 50rem 50rem;
-  }
+  grid-column: 2 / -2;
+  margin: var(--spacing-xxl) 0;
+  display: grid;
+  grid-template-columns: 20rem repeat(2, 1fr);
+  column-gap: var(--spacing-medium);
+  row-gap: var(--spacing-xxl);
+}
