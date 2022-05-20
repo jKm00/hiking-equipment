@@ -6,7 +6,6 @@
  * @param {*} element the text element that displays the feedback
  */
 export function displayFeedback(type, msg, submit, element) {
-  console.log(element);
   // Disable button
   submit.disabled = true;
   // Change style of feedback depending on type
