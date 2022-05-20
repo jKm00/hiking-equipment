@@ -12,12 +12,18 @@ import java.util.*;
  * Contains authentication information needed by UserDetailsService
  */
 public class AccessUserDetails implements UserDetails {
+    private final Long Id;
     private final String email;
     private final String password;
     private final boolean isActive;
     private final Set<GrantedAuthority> authorities = new HashSet<>();
 
+    public Long getId() {
+        return Id;
+    }
+
     public AccessUserDetails(User user) {
+        this.Id = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.isActive = user.isActive();
