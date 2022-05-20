@@ -5,18 +5,18 @@
 .showcase__body {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xxl);
+  gap: var(--spacing-larger);
   justify-content: space-between;
   box-shadow: var(--shadow-box);
-  padding: var(--spacing-medium) var(--spacing-large);
+  padding: var(--spacing-large);
 }
 
 .body__title {
-  font-size: var(--fs-xxl);
+  font-size: var(--fs-larger);
 }
 
 .body__price {
-  font-size: var(--fs-extra-large);
+  font-size: var(--fs-large);
   font-weight: bold;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .body__form__color {
-  font-size: var(--fs-large);
+  font-size: var(--fs-medium);
   font-weight: bold;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .color__button {
-  --size: var(--fs-large);
+  --size: var(--fs-medium);
   display: block;
   width: var(--size);
   height: var(--size);
@@ -68,7 +68,7 @@
 }
 
 .size-selector-text {
-  font-size: var(--fs-large);
+  font-size: var(--fs-medium);
   font-weight: bold;
 }
 

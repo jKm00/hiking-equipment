@@ -88,7 +88,7 @@ export default function ShowCaseImg({ images }) {
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
-        slidesPerView={3.5}
+        slidesPerView={5.5}
         navigation={true}
         freeMode={true}
         watchSlidesProgress={true}
