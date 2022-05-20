@@ -20,7 +20,7 @@ public class Image {
     private Product product;
 
     @Column(name = "binaryValue")
-    private long imageBinary;
+    private long binaryImage;
 
     public Image()
     {
@@ -28,7 +28,7 @@ public class Image {
     }
 
     public Image(long binaryStream){
-        this.imageBinary = binaryStream;
+        this.binaryImage = binaryStream;
     }
 
     public long getId() {
@@ -47,11 +47,11 @@ public class Image {
         this.product = product;
     }
 
-    public long getImageBinary() {
-        return imageBinary;
+    public long getBinaryImage() {
+        return binaryImage;
     }
 
-    public void setImageBinary(long imageBinary) {
-        this.imageBinary = imageBinary;
+    public void setBinaryImage(long imageBinary) {
+        this.binaryImage = imageBinary;
     }
 }
