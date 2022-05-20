@@ -59,7 +59,7 @@
   .cart__item__remove {
     font-size: var(--fs-small);
   }
-    
+
   /* ------ Orders ------ */
   .orders {
     display: flex;
@@ -197,6 +197,16 @@
     flex-direction: column;
   }
 
+  /* ------ Product page ------ */
+  .layout {
+    display: grid;
+    grid-template-columns: 45rem 1fr;
+  }
+
+  .showcase__body {
+    padding: var(--spacing-larger);
+  }
+
   /* ------ Cart page ------ */
   .cart-page {
     display: grid;
@@ -208,7 +218,7 @@
   .cart-page__title {
     grid-column: 1 / -1;
   }
-    
+
   /* ------ Orders ------ */
   .order__detail__title {
     font-size: var(--fs-large);
@@ -224,5 +234,10 @@
   /* ------ Shop ------ */
   .shop-items {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* ------ Product page ------ */
+  .layout {
+    grid-template-columns: 50rem 1fr;
   }
 }
