@@ -10,8 +10,10 @@ export function displayFeedback(type, msg, submit, element) {
   submit.disabled = true;
   // Change style of feedback depending on type
   if (type === "success") {
+    element.classList.remove("form__feedback--error");
     element.classList.add("form__feedback--success");
   } else {
+    element.classList.remove("form__feedback--success");
     element.classList.add("form__feedback--error");
   }
   // Set feedback text

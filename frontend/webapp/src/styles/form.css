@@ -133,7 +133,7 @@
 }
 
 .form__feedback--success {
-  color: var(--clr-accent-400);
+  color: var(--clr-dark-800);
   background-color: var(--clr-accent-400);
 }
 
