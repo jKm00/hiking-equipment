@@ -24,18 +24,6 @@ export default function ProductForm({ products, updateProducts }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(
-      title,
-      description,
-      price,
-      category,
-      sex,
-      discount,
-      colors,
-      sizes,
-      images.length,
-      details
-    );
     if (
       title === "" ||
       description === "" ||
