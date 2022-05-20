@@ -25,7 +25,7 @@ public class JwtUtil {
     private static final String JWT_ID_KEY = "ueid";
 
     // TODO: add user id to token
-    public String generateToken(UserDetails userDetails, User user) {
+    public String generateToken(AccessUserDetails userDetails) {
         final long CURRENT_TIME = System.currentTimeMillis();
         final long HOUR_IN_MILLISECOND = 60 * 60 * 1000;
         final long TIME_AFTER_ONE_HOUR = CURRENT_TIME + HOUR_IN_MILLISECOND;
@@ -33,7 +33,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .claim(JWT_AUTH_KEY, userDetails.getAuthorities())
-                .claim(JWT_ID_KEY, user.getId())
+                .claim(JWT_ID_KEY, userDetails.getId())
                 .setIssuedAt(new Date(CURRENT_TIME))
                 .setExpiration(new Date(TIME_AFTER_ONE_HOUR))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
