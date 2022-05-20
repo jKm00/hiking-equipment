@@ -3,6 +3,7 @@ package no.ntnu.xxs.services;
 import no.ntnu.xxs.dto.UserSignUpRequest;
 import no.ntnu.xxs.entities.user.Role;
 import no.ntnu.xxs.entities.user.User;
+import no.ntnu.xxs.exception.EmailAlreadyInUseException;
 import no.ntnu.xxs.exception.UserAlreadyExistException;
 import no.ntnu.xxs.repositories.RoleRepository;
 import no.ntnu.xxs.repositories.UserRepository;
@@ -69,12 +70,14 @@ public class AccessUserService implements UserDetailsService {
      * @param userDetails request containing user details
      * @return null when user is created, error message on error
      */
-    public String tryCreateNewUser(UserSignUpRequest userDetails) {
+    public String tryCreateNewUser(UserSignUpRequest userDetails) throws EmailAlreadyInUseException, IllegalArgumentException {
         String errorMsg;
         if ("".equals(userDetails.getEmail())) {
             errorMsg = "Email can't be empty";
+            throw new IllegalArgumentException(errorMsg);
         } else if (userExists(userDetails.getEmail())) {
             errorMsg = "Email is already taken";
+            throw new EmailAlreadyInUseException(errorMsg);
         } else {
             errorMsg = checkPasswordRequirements(userDetails.getPassword());
             if (errorMsg == null) {
