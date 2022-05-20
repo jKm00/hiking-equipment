@@ -102,6 +102,9 @@ export default function ProductForm({ products, updateProducts }) {
     setSizes("");
     setImages([]);
     setFeatured(false);
+    document
+      .querySelectorAll("input[type=checkbox]")
+      .forEach((el) => (el.checked = false));
     setDetails("");
   }
 
