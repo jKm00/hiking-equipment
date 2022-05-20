@@ -1,8 +1,13 @@
 package no.ntnu.xxs.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.crypto.codec.Base64;
 
+import javax.imageio.ImageIO;
 import javax.persistence.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 @Entity
 @Table
@@ -26,6 +31,7 @@ public class Image {
     {
 
     }
+
 
     public Image(long binaryStream){
         this.binaryImage = binaryStream;

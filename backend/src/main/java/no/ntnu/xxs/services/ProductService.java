@@ -82,7 +82,7 @@ public class ProductService {
         for (Image imageValue : images) {
             no.ntnu.xxs.entities.product.Image image = this.imageRepository.findOneByImage(imageValue);
             if (image == null) {
-                image = new Size(imageValue);
+                image = new Image(imageValue);
                 this.imageRepository.save(image);
             }
             product.addImage(image);
