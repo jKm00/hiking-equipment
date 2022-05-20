@@ -11,17 +11,17 @@ function ProductPage() {
     <>
       <div className="layout">
         <ShowCaseImg
-          bigImg="https://picsum.photos/200/300"
+          bigImg="https://picsum.photos/200/300?random=1"
           bigImgAlt="demo placeholder from swiper"
-          bigImg2="https://picsum.photos/200/300"
+          bigImg2="https://picsum.photos/200/300?random=2"
           bigImgAlt2="demo placeholder from swiper"
-          bigImg3="https://picsum.photos/200/300"
+          bigImg3="https://picsum.photos/200/300?random=3"
           bigImgAlt3="demo placeholder from swiper"
-          navImg="https://picsum.photos/200/300"
+          navImg="https://picsum.photos/200/300?random=1"
           navImgAlt="demo placeholder from swiper"
-          navImg2="https://picsum.photos/200/300"
+          navImg2="https://picsum.photos/200/300?random=2"
           navImgAlt2="demo placeholder from swiper"
-          navImg3="https://picsum.photos/200/300"
+          navImg3="https://picsum.photos/200/300?random=3"
           navImgAlt3="demo placeholder from swiper"
         />
 
