@@ -10,17 +10,25 @@ public class AddProductRequest {
     private float price;
     private String category;
     private String sex;
-    private String colors;
-    private String sizes;
+    private boolean featured;
+    private float discount;
+    private List<String> colors;
+    private List<String> sizes;
+    private List<String> details;
 
-    public AddProductRequest(String productName, String description, float price, String category, String sex, String colors, String sizes) {
+    public AddProductRequest(String productName, String description, float price, String category, String sex,
+                             boolean featured, float discount, List<String> colors, List<String> sizes,
+                             List<String> details) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.category = category;
         this.sex = sex;
+        this.featured = featured;
+        this.discount = discount;
         this.colors = colors;
         this.sizes = sizes;
+        this.details = details;
     }
 
     public String getProductName() {
@@ -63,27 +71,43 @@ public class AddProductRequest {
         this.sex = sex;
     }
 
-    public String getColors() {
+    public List<String> getColors() {
         return colors;
     }
 
-    public List<String> getColorsAsList() {
-        return Arrays.asList(this.colors.split(", "));
-    }
-
-    public void setColors(String colors) {
+    public void setColors(List<String> colors) {
         this.colors = colors;
     }
 
-    public String getSizes() {
+    public List<String> getSizes() {
         return sizes;
     }
 
-    public List<String> getSizesAsList() {
-        return Arrays.asList(this.sizes.split(", "));
+    public void setSizes(List<String> sizes) {
+        this.sizes = sizes;
     }
 
-    public void setSizes(String sizes) {
-        this.sizes = sizes;
+    public boolean isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(boolean featured) {
+        this.featured = featured;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public List<String> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<String> details) {
+        this.details = details;
     }
 }

@@ -2,7 +2,6 @@ package no.ntnu.xxs.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.entities.cart.CartItem;
-import no.ntnu.xxs.entities.product.Product;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -18,16 +17,16 @@ public class Color
     // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "id")
+    @Column(name = "id")
     private long id;
 
-    // Relation to ProductEntrySet
     @JsonIgnore
     @ManyToMany(mappedBy = "colors")
-    private Set<Product> productEntrySet = new LinkedHashSet<>();
+    private Set<Product> products = new LinkedHashSet<>();
 
     // Relation to CartItem
     @OneToMany(mappedBy = "color")
+    @JsonIgnore
     private Set<CartItem> cartItem;
 
     // Columns
@@ -35,13 +34,10 @@ public class Color
     private String color;
 
 
-
     /**
      * empty constructor
      */
-    public Color() {
-
-    }
+    public Color() {}
 
     public Color(String color) {
         this.color = color;
@@ -53,14 +49,6 @@ public class Color
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Set<Product> getProductEntrySet() {
-        return productEntrySet;
-    }
-
-    public void setProductEntrySet(Set<Product> productEntrySet) {
-        this.productEntrySet = productEntrySet;
     }
 
     public Set<CartItem> getCartItem() {
@@ -77,5 +65,13 @@ public class Color
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

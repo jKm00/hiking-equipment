@@ -1,5 +1,6 @@
 package no.ntnu.xxs.entities.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.entities.Order;
 import no.ntnu.xxs.entities.cart.CartItem;
 
@@ -16,8 +17,8 @@ public class Product {
 
     //Primary Key
     @Id
-    @GeneratedValue
-    @Column(unique = true, name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private long id;
 
     //Columns
@@ -33,44 +34,26 @@ public class Product {
     private String sex;
     @Column(name="featured")
     private boolean featured;
-    @Column(name = "quantity")
-    private int quantity;
+    @Column(name = "discount")
+    private float discount;
 
-    // Relation to Sizes
-    @Column(name = "product_size")
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "product_entries",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "size_id")
-    )
-    private Set<Size> sizes = new LinkedHashSet<>();
-
-    //Relation to Colors
-    @Column(name = "product_color")
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "product_entries",
+    @JoinTable(name = "product_colors",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "color_id")
     )
     private Set<Color> colors = new LinkedHashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "product_sizes",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "size_id")
+    )
+    private Set<Size> sizes = new LinkedHashSet<>();
+
     // Relation to ProductDetails
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails = new LinkedHashSet<>();
-
-    // Relation to CartItem
-    @OneToOne
-    @JoinColumn(name = "cart_item", referencedColumnName = "id")
-    private CartItem cartItem;
-
-    // Relation to Discount
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "discount_id", referencedColumnName = "id")
-    private Discount discount;
-
-    // Relation to Image
-    @OneToMany(mappedBy = "product")
-    private Set<Image> image = new LinkedHashSet<>();
 
     // Relation to Order
     @ManyToMany(fetch = FetchType.EAGER)
@@ -78,16 +61,43 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id")
     )
+    @JsonIgnore
     private Set<Order> order = new LinkedHashSet<>();
 
     public Product() {}
 
-    public Product(String productName, String description, float price, String category, String sex) {
+    public Product(String productName, String description, float price, String category, String sex, boolean featured, float discount) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.category = category;
         this.sex = sex;
+        this.featured = featured;
+        this.discount = discount;
+    }
+
+    /**
+     * Adds a detail about the product to the product
+     * @param productDetail the detail to be added
+     */
+    public void addProductDetails(ProductDetail productDetail) {
+        this.productDetails.add(productDetail);
+    }
+
+    /**
+     * Adds a size to the product
+     * @param size the size to add
+     */
+    public void addSize(Size size) {
+        this.sizes.add(size);
+    }
+
+    /**
+     * Adds a color to the product
+     * @param color the color to add
+     */
+    public void addColor(Color color) {
+        this.colors.add(color);
     }
 
     public long getId() {
@@ -146,20 +156,12 @@ public class Product {
         this.featured = featured;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public float getDiscount() {
+        return discount;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Set<Size> getSizes() {
-        return sizes;
-    }
-
-    public void setSizes(Set<Size> sizes) {
-        this.sizes = sizes;
+    public void setDiscount(float discount) {
+        this.discount = discount;
     }
 
     public Set<Color> getColors() {
@@ -170,6 +172,14 @@ public class Product {
         this.colors = colors;
     }
 
+    public Set<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(Set<Size> sizes) {
+        this.sizes = sizes;
+    }
+
     public Set<ProductDetail> getProductDetails() {
         return productDetails;
     }
@@ -178,27 +188,11 @@ public class Product {
         this.productDetails = productDetails;
     }
 
-    public CartItem getCartItem() {
-        return cartItem;
+    public Set<Order> getOrder() {
+        return order;
     }
 
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
-    }
-
-    public Discount getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
-    }
-
-    public Set<Image> getImage() {
-        return image;
-    }
-
-    public void setImage(Set<Image> image) {
-        this.image = image;
+    public void setOrder(Set<Order> order) {
+        this.order = order;
     }
 }

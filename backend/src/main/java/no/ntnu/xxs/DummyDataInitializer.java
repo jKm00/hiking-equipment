@@ -2,8 +2,8 @@ package no.ntnu.xxs;
 
 
 import no.ntnu.xxs.entities.product.Color;
-import no.ntnu.xxs.entities.product.Discount;
 import no.ntnu.xxs.entities.product.Product;
+import no.ntnu.xxs.entities.product.ProductDetail;
 import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.entities.user.Role;
 import no.ntnu.xxs.repositories.*;
@@ -15,9 +15,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedHashSet;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * A class which initializes some data in the database, when the web application start
@@ -36,7 +34,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
     @Autowired
     private SizeRepository sizeRepository;
     @Autowired
-    private DiscountRepository discountRepository;
+    private ProductDetailRepository productDetailRepository;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
@@ -63,6 +61,33 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
             userRepository.save(adam);
             userRepository.save(carl);
+
+            // Add product
+            Color black = new Color("Black");
+            Color blue = new Color("Blue");
+
+            Size medium = new Size("M");
+            Size large = new Size("L");
+
+            Product sweater = new Product("Sweater", "Winter Sweater", 399f, "sweater", "unisex", false, 0f);
+            sweater.addColor(black);
+            sweater.addColor(blue);
+            sweater.addSize(medium);
+            sweater.addSize(large);
+
+            colorRepository.save(black);
+            colorRepository.save(blue);
+
+            sizeRepository.save(medium);
+            sizeRepository.save(large);
+
+            productRepository.save(sweater);
+
+            ProductDetail detailOne = new ProductDetail("This is a nice sweater", sweater);
+            ProductDetail detailTwo = new ProductDetail("Very warm and cozy", sweater);
+
+            productDetailRepository.save(detailOne);
+            productDetailRepository.save(detailTwo);
 
             logger.info("Finished initializing data...");
         } else {
