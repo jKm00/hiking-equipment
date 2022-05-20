@@ -121,8 +121,10 @@
 
 .form__feedback {
   font-size: var(--fs-small);
+  text-align: center;
   margin-top: var(--spacing-smaller);
-  opacity: 0;
+  padding: var(--spacing-smaller);
+  opacity: 1;
 }
 
 .form__feedback--inline {
@@ -132,10 +134,12 @@
 
 .form__feedback--success {
   color: var(--clr-accent-400);
+  background-color: var(--clr-accent-400);
 }
 
 .form__feedback--error {
-  color: var(--clr-error-400);
+  color: var(--clr-light-400);
+  background-color: var(--clr-error-400);
 }
 
 .form__feedback__animation {

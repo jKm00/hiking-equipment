@@ -40,7 +40,7 @@ button {
   --clr-light-400: #fff;
 
   /* error */
-  --clr-error-400: #e12c2c;
+  --clr-error-400: #ff4d4d;
 
   /* Shadow */
   --shadow-box: 0px 5px 10px rgba(0, 0, 0, 0.1);
