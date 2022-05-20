@@ -121,10 +121,10 @@
 
 .form__feedback {
   font-size: var(--fs-small);
-  text-align: center;
+  text-align: centerz;
   margin-top: var(--spacing-smaller);
   padding: var(--spacing-smaller);
-  opacity: 1;
+  opacity: 0;
 }
 
 .form__feedback--inline {
@@ -144,7 +144,7 @@
 
 .form__feedback__animation {
   opacity: 1;
-  animation: fade-out 250ms ease-in-out 2s forwards;
+  animation: fade-out 250ms ease-in-out 5s forwards;
 }
 
 @keyframes fade-out {
