@@ -1,0 +1,9 @@
+/*---------------
+    showcase description box
+---------------*/
+
+.description-box {
+  grid-row: 2 / 3;
+  grid-column: 1 / -1;
+  margin-bottom: 6.4rem;
+}
