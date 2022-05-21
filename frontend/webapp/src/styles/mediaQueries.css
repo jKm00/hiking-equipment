@@ -223,7 +223,10 @@
   .layout {
     display: grid;
     grid-template-columns: 50rem 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: var(--spacing-xxxl);
     margin: var(--spacing-xxxl) 0;
+    min-height: 60vh;
   }
 
   .image--big {
