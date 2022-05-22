@@ -72,8 +72,8 @@ public class ProductController {
                             requestBody.getDiscount()),
                     requestBody.getColors(),
                     requestBody.getSizes(),
-                    requestBody.getDetails()),
-                    requestBody.getImages();
+                    requestBody.getDetails(),
+                    requestBody.getImages());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ProductAlreadyExistException e) {
             return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);

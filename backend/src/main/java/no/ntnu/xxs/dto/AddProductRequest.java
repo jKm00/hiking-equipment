@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import no.ntnu.xxs.entities.product.Image;
 
 public class AddProductRequest {
     private String productName;

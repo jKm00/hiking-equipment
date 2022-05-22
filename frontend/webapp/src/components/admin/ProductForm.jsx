@@ -21,6 +21,7 @@ export default function ProductForm({ products, updateProducts }) {
   const [images, setImages] = useState([]);
   const [featured, setFeatured] = useState(false);
   const [details, setDetails] = useState("");
+  
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -73,6 +74,7 @@ export default function ProductForm({ products, updateProducts }) {
         colors: colors.split(", "),
         sizes: sizes.split(", "),
         details: details.split("\n"),
+        images: images,
       };
       sendApiRequest(
         "POST",

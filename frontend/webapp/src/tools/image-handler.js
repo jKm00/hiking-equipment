@@ -1,6 +1,6 @@
 // Here we handle business logic for images
 
-import {API_BASE_URL, sendApiDeleteRequest, sendApiFileUploadRequest} from "./api-requests";
+import {API_BASE_URL, sendApiDeleteRequest, sendApiFileUploadRequest} from "./image-api-handler";
 
 const IMAGE_URL = "/images";
 
