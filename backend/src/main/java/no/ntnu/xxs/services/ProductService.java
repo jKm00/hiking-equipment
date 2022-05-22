@@ -7,6 +7,7 @@ import no.ntnu.xxs.entities.product.Size;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
 import no.ntnu.xxs.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import no.ntnu.xxs.entities.product.Image;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
@@ -80,11 +81,8 @@ public class ProductService {
         }
 
         for (Image imageValue : images) {
-            no.ntnu.xxs.entities.product.Image image = this.imageRepository.findOneByImage(imageValue);
-            if (image == null) {
-                image = new Image(imageValue);
-                this.imageRepository.save(image);
-            }
+            Image image = new Image(imageValue.getData(), imageValue.getExtension(), imageValue.getContentType());
+            this.imageRepository.save(image);
             product.addImage(image);
         }
 

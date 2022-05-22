@@ -24,17 +24,22 @@ public class Image {
     @JsonIgnore
     private Product product;
 
-    @Column(name = "binaryValue")
-    private long binaryImage;
+    @Lob
+    @Column
+    private byte[] data;
+
+    private String extension;
+    private String contentType;
 
     public Image()
     {
 
     }
 
-
-    public Image(long binaryStream){
-        this.binaryImage = binaryStream;
+    public Image(byte[] data, String extension, String contentType) {
+        this.data = data;
+        this.extension = extension;
+        this.contentType = contentType;
     }
 
     public long getId() {
@@ -53,11 +58,27 @@ public class Image {
         this.product = product;
     }
 
-    public long getBinaryImage() {
-        return binaryImage;
+    public byte[] getData() {
+        return data;
     }
 
-    public void setBinaryImage(long imageBinary) {
-        this.binaryImage = imageBinary;
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 }
