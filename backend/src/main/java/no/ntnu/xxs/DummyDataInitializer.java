@@ -75,6 +75,12 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             sweater.addSize(medium);
             sweater.addSize(large);
 
+            Product boots = new Product("Boots", "Hiking boots", 799f, "boots", "male", false, 0f);
+            boots.addColor(black);
+            boots.addColor(blue);
+            boots.addSize(medium);
+            boots.addSize(large);
+
             colorRepository.save(black);
             colorRepository.save(blue);
 
@@ -82,6 +88,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             sizeRepository.save(large);
 
             productRepository.save(sweater);
+            productRepository.save(boots);
 
             ProductDetail detailOne = new ProductDetail("This is a nice sweater", sweater);
             ProductDetail detailTwo = new ProductDetail("Very warm and cozy", sweater);
