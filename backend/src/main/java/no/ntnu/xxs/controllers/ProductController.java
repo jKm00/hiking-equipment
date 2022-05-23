@@ -32,6 +32,7 @@ public class ProductController {
      * @return a list of all products
      */
     @GetMapping
+    @CrossOrigin
     public List<Product> getProductsBySexAndCategory(@RequestParam String sex, @RequestParam String category) {
         List<Product> products;
         if (sex.equals(UNDEFINED) && category.equals(UNDEFINED)) {
