@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 // Import header styles
 import "../styles/showCaseBody.css";
 
 function ShowCaseBody({ title, price, colors, sizes }) {
-  const [loading, setLoading] = useState(true);
-  const [productColors, setProductColors] = useState([]);
-  const [productSizes, setProductSizes] = useState([]);
-
-  useEffect(() => {
-    setProductColors(colors);
-    setProductSizes(sizes);
-    setLoading(false);
-  }, [colors, sizes]);
-
   return (
     <div className="showcase__body">
       <div>
@@ -24,10 +14,10 @@ function ShowCaseBody({ title, price, colors, sizes }) {
         <div className="body__form__wrapper">
           <p className="body__form__color">Color:</p>
           <div className="color__button--wrapper">
-            {loading || !productColors ? (
+            {!colors ? (
               <p>No colors</p>
             ) : (
-              productColors.map((color) => (
+              colors.map((color) => (
                 <div key={color.id}>
                   <input
                     className="body__form__checkbox"
@@ -51,14 +41,18 @@ function ShowCaseBody({ title, price, colors, sizes }) {
             Size:
           </label>
           <select name="size" id="sizes" className="size-selector">
-            {loading || !productSizes ? (
+            {!sizes ? (
               <option value="undefined">No sizes</option>
             ) : (
-              productSizes.map((size, index) => (
-                <option key={index} value={size.size}>
-                  {size.size}
-                </option>
-              ))
+              sizes
+                .sort(function (a, b) {
+                  return a - b;
+                })
+                .map((size, index) => (
+                  <option key={index} value={size.size}>
+                    {size.size}
+                  </option>
+                ))
             )}
           </select>
         </div>
