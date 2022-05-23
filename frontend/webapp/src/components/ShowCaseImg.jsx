@@ -8,26 +8,14 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-import "../styles/showCaseImg.css";
-
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
+// import custom styles
+import "../styles/showCaseImg.css";
+
 // pass inn en liste med bilder istedenfor. se på thumbs.
-export default function ShowCaseImg({
-  bigImg,
-  bigImgAlt,
-  bigImg2,
-  bigImgAlt2,
-  bigImg3,
-  bigImgAlt3,
-  navImg,
-  navImgAlt,
-  navImg2,
-  navImgAlt2,
-  navImg3,
-  navImgAlt3,
-}) {
+export default function ShowCaseImg({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -38,42 +26,104 @@ export default function ShowCaseImg({
           "--swiper-pagination-color": "#fff",
         }}
         loop={true}
-        spaceBetween={10}
+        spaceBetween={0}
         slidesPerView="auto"
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="big__images"
+        className="mySwiper2 big-images"
       >
         <SwiperSlide>
-          <img src={bigImg} alt={bigImgAlt} className="swiper-slide-pic" />
+          <img src="/img/articles/hiking-shoes-transparent-black-01.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={bigImg2} alt={bigImgAlt2} className="swiper-slide-pic" />
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-black-02.png"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={bigImg3} alt={bigImgAlt3} className="swiper-slide-pic" />
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-black-03.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-blue-01.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-blue-02.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-blue-03.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-red-01.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-red-02.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="image--big"
+            src="/img/articles/hiking-shoes-transparent-red-03.png"
+          />
         </SwiperSlide>
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
-        slidesPerView="3.5"
-        direction="vertical"
+        slidesPerView={5.5}
         navigation={true}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="small__images"
+        className="mySwiper small-images"
       >
         <SwiperSlide>
-          <img src={navImg} alt={navImgAlt} className="swiper-slide-pic" />
+          <img src="/img/articles/hiking-shoes-transparent-black-01.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={navImg2} alt={navImgAlt2} className="swiper-slide-pic" />
+          <img src="/img/articles/hiking-shoes-transparent-black-02.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={navImg3} alt={navImgAlt3} className="swiper-slide-pic" />
+          <img src="/img/articles/hiking-shoes-transparent-black-03.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-blue-01.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-blue-02.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-blue-03.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-red-01.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-red-02.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-red-03.png" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="/img/articles/hiking-shoes-transparent-black-01.png" />
         </SwiperSlide>
       </Swiper>
     </>

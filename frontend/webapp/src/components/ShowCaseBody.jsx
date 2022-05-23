@@ -7,8 +7,8 @@ function ShowCaseBody({ title, price, sizeSelector }) {
   return (
     <div className="showcase__body">
       <div>
-        <h1 className="body__title">{title}</h1>
-        <p className="body__price">{price}</p>
+        <h1 className="body__title">Winter Sweater</h1>
+        <p className="body__price">800,-</p>
       </div>
       <form className="body__form">
         <div className="body__form__wrapper">
@@ -43,7 +43,10 @@ function ShowCaseBody({ title, price, sizeSelector }) {
             Size:
           </label>
           <select name="size" id="sizes" className="size-selector">
-            {sizeSelector}
+            <option value="XS">XS</option>
+            <option value="XS">S</option>
+            <option value="XS">M</option>
+            <option value="XS">L</option>
           </select>
         </div>
       </form>

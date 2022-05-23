@@ -35,6 +35,28 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* ------ Product page ------ */
+  .showcase__body {
+    gap: var(--spacing-xxl);
+  }
+
+  .body__title {
+    font-size: var(--fs-xxl);
+  }
+
+  .body__price {
+    font-size: var(--fs-extra-large);
+  }
+
+  .body__form__color,
+  .size-selector-text {
+    font-size: var(--fs-large);
+  }
+
+  .color__button {
+    font-size: var(--fs-large);
+  }
+
   /* ------ Cart page ------ */
   .cart__item__img {
     width: 7rem;
@@ -59,7 +81,7 @@
   .cart__item__remove {
     font-size: var(--fs-small);
   }
-    
+
   /* ------ Orders ------ */
   .orders {
     display: flex;
@@ -197,6 +219,24 @@
     flex-direction: column;
   }
 
+  /* ------ Product page ------ */
+  .layout {
+    display: grid;
+    grid-template-columns: 50rem 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: var(--spacing-xxxl);
+    margin: var(--spacing-xxxl) 0;
+    min-height: 60vh;
+  }
+
+  .image--big {
+    margin-bottom: var(--spacing-xxl);
+  }
+
+  .showcase__body {
+    padding: var(--spacing-larger);
+  }
+
   /* ------ Cart page ------ */
   .cart-page {
     display: grid;
@@ -208,7 +248,7 @@
   .cart-page__title {
     grid-column: 1 / -1;
   }
-    
+
   /* ------ Orders ------ */
   .order__detail__title {
     font-size: var(--fs-large);
