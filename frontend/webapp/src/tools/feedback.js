@@ -24,5 +24,5 @@ export function displayFeedback(type, msg, submit, element) {
     // Reset button and feedback message after 2250ms
     element.classList.remove("form__feedback__animation");
     submit.disabled = false;
-  }, 5250);
+  }, 7250);
 }

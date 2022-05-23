@@ -144,7 +144,7 @@
 
 .form__feedback__animation {
   opacity: 1;
-  animation: fade-out 250ms ease-in-out 5s forwards;
+  animation: fade-out 250ms ease-in-out 7s forwards;
 }
 
 @keyframes fade-out {
