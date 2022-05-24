@@ -33,6 +33,10 @@ function ShopPage() {
     }
   }, [sex]);
 
+  useEffect(() => {
+    updateProducts(sex, category);
+  }, [sex, category]);
+
   /**
    * Updates the product to be displayed in the shop. The
    * update is triggered by the ShopCategories component, when
@@ -44,17 +48,20 @@ function ShopPage() {
    */
   function updateProducts(sex, category) {
     let url = "/products";
-    if (sex !== "all" && category) {
+    if (sex === "all" && category === undefined) {
+      url += "?sex=undefined&category=undefined";
+    } else if (sex === "all") {
+      url += "?sex=undefined&category=" + category;
+    } else if (category === undefined) {
+      url += "?sex=" + sex + "&category=undefined";
+    } else {
       url += "?sex=" + sex + "&category=" + category;
-    } else if (category) {
-      url += "?category=" + category;
-    } else if (sex !== "all") {
-      url += "?sex=" + sex;
     }
     sendApiRequest(
       "GET",
       url,
       function (response) {
+        console.log(response);
         setProducts(response);
       },
       null,
@@ -75,7 +82,7 @@ function ShopPage() {
         />
         <div className="shop-items">
           {products.length === 0 ? (
-            <p>Loading...</p>
+            <p>No products :(</p>
           ) : (
             products.map((product) => (
               <ProductCard

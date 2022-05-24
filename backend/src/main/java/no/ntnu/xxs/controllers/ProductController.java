@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -20,16 +21,30 @@ import java.util.List;
 @RequestMapping("/api/products")
 @CrossOrigin
 public class ProductController {
+    private final String UNDEFINED = "undefined";
     @Autowired
     private ProductService productService;
 
     /**
-     * Returns a list of all products
+     * Returns a list of all products with the attributes given.
+     * @param sex the sex of the products to be returned
+     * @param category the category of the products to be returned
      * @return a list of all products
      */
     @GetMapping
-    public List<Product> getAllProducts() {
-        return this.productService.getAllProducts();
+    @CrossOrigin
+    public List<Product> getProductsBySexAndCategory(@RequestParam String sex, @RequestParam String category) {
+        List<Product> products;
+        if (sex.equals(UNDEFINED) && category.equals(UNDEFINED)) {
+            products = this.productService.getAllProducts();
+        } else if (sex.equals(UNDEFINED)) {
+            products = this.productService.getProductsByCategory(category);
+        } else if (category.equals(UNDEFINED)) {
+            products = this.productService.getProductsBySex(sex);
+        } else {
+            products = this.productService.getProductsBySexAndCategory(sex, category);
+        }
+        return products;
     }
 
     /**

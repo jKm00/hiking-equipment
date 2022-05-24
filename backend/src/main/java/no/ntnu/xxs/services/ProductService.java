@@ -100,4 +100,32 @@ public class ProductService {
         }
         return deleted;
     }
+
+    /**
+     * Returns a list of products with the sex and the category as specified
+     * @param sex the sex of the product
+     * @param category the category of the product
+     * @return a list of products
+     */
+    public List<Product> getProductsBySexAndCategory(String sex, String category) {
+        return this.productRepository.findAllBySexAndCategory(sex, category);
+    }
+
+    /**
+     * Returns all products with the same sex as attribute as given in the param
+     * @param sex the sex attribute of the products to get
+     * @return a list of products with the same sex as attribute as given.
+     */
+    public List<Product> getProductsBySex(String sex) {
+        return this.productRepository.findAllBySex(sex);
+    }
+
+    /**
+     * Returns all products with the same category as attribute as given in the param
+     * @param category the category attribute of the products to get
+     * @return a list of products with the same category as attribute as given.
+     */
+    public List<Product> getProductsByCategory(String category) {
+        return this.productRepository.findAllByCategory(category);
+    }
 }
