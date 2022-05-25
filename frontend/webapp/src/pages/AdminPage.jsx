@@ -19,7 +19,7 @@ export default function AdminPage({ user }) {
   function updateProducts() {
     sendApiRequest(
       "GET",
-      "/products",
+      "/products?sex=undefined&category=undefined",
       function (response) {
         setProducts(response);
       },

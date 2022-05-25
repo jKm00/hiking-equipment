@@ -1,0 +1,12 @@
+/*---------------
+    Profile page
+---------------*/
+.profile-page {
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--spacing-large);
+  min-height: 60vh;
+  margin: var(--spacing-larger) 0;
+}

@@ -1,13 +1,11 @@
 /**
- * Displays a feedback message for 2 seconds when a form is submitted
+ * Displays a feedback message for 7 seconds when a form is submitted
  * @param {*} type the type of the feedback, "success" or "error"
  * @param {*} msg the message to be displayed
  * @param {*} submit the submit button of the form
  * @param {*} element the text element that displays the feedback
  */
 export function displayFeedback(type, msg, submit, element) {
-  // Disable button
-  submit.disabled = true;
   // Change style of feedback depending on type
   if (type === "success") {
     element.classList.remove("form__feedback--error");
@@ -23,6 +21,5 @@ export function displayFeedback(type, msg, submit, element) {
   setTimeout(() => {
     // Reset button and feedback message after 2250ms
     element.classList.remove("form__feedback__animation");
-    submit.disabled = false;
   }, 7250);
 }
