@@ -98,13 +98,13 @@ export default function OrderPage({ user }) {
     if (user !== null) {
       sendApiRequest(
         "GET",
-        "/orders/" + user.email,
+        "/orders/" + user.id,
         function (respone) {
           setOrders(respone);
         },
         null,
         function (error) {
-          console.error("Could not load order: " + error);
+          console.error("Could not load orders: " + error);
         }
       );
     }
