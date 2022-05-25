@@ -79,16 +79,30 @@ export default function ProfilePage({ user }) {
         document.querySelector("[data-profile-feedback]")
       );
     } else {
-      const newDetails = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-        country: country,
-        city: city,
-        address: address,
-        zipCode: zipCode,
-      };
+      let newDetails;
+      if (password === "********") {
+        newDetails = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: null,
+          country: country,
+          city: city,
+          address: address,
+          zipCode: zipCode,
+        };
+      } else {
+        newDetails = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          country: country,
+          city: city,
+          address: address,
+          zipCode: zipCode,
+        };
+      }
       sendApiRequest(
         "PUT",
         "/users/" + id,
