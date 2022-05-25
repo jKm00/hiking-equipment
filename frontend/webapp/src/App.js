@@ -34,7 +34,6 @@ function App() {
       } else {
         const userData = parseJwtUser(jwt);
         setUser(userData);
-        console.log(userData);
       }
     }
   }, []);

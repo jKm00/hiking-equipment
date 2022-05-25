@@ -28,7 +28,7 @@ export default function ProfileDetail({ label, value, type, updateValue }) {
     <div className="profile-info">
       <p className="profile-info__label">{label}:</p>
       <p className="profile-info__value" data-value={label.replace(" ", "-")}>
-        {value}
+        {type === "password" ? "********" : value}
       </p>
       <input
         className="profile-info__input profile-info__input--hidden"
