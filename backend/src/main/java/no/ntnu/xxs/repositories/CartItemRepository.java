@@ -8,6 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
+
+    @Query(value = "SELECT * FROM cart_item WHERE product_name = productName AND cart_id = cartId", nativeQuery = true)
+    CartItem findCartItemByName(long cartId, String productName);
+
     @Query(value = "UPDATE cart_item SET quantity = quantity + 1 WHERE cartitem_id = id ", nativeQuery = true)
     void increment(long id);
 
@@ -19,4 +23,6 @@ public interface CartItemRepository extends CrudRepository<CartItem, Long> {
 
     @Query(value = "UPDATE cart_item SET quantity = decrementAmount WHERE cartitem_id = id ", nativeQuery = true)
     void decrementByAmount(int decrementAmount, long id);
+
+
 }
