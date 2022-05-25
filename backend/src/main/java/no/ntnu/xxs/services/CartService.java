@@ -40,7 +40,7 @@ public class CartService {
     }
 
     public void incrementCartItemAmount(Long id){
-
+        this.cartItemRepository.findById(id).
     }
 
     public void decrementCartItemAmount(Long id){
