@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 // styles
 import "../styles/profileInfo.css";
 
 export default function ProfileDetail({ label, value, type, updateValue }) {
+  const [toggled, setToggled] = useState(false);
   /**
    * Toggles the input field so the user can edit their details
    */
@@ -12,8 +15,17 @@ export default function ProfileDetail({ label, value, type, updateValue }) {
     const value = document.querySelector(
       "[data-value=" + label.replace(" ", "-") + "]"
     );
+    const btn = document.querySelector(
+      "[data-btn=" + label.replace(" ", "-") + "]"
+    );
     input.classList.toggle("profile-info__input--hidden");
     value.classList.toggle("profile-info__value--hidden");
+    if (toggled) {
+      btn.innerHTML = "Change";
+    } else {
+      btn.innerHTML = "Save";
+    }
+    setToggled(!toggled);
   }
 
   /**
@@ -37,7 +49,11 @@ export default function ProfileDetail({ label, value, type, updateValue }) {
         onChange={handleChange}
         data-input={label.replace(" ", "-")}
       />
-      <button className="profile-info__btn" onClick={toggleInput}>
+      <button
+        className="profile-info__btn"
+        onClick={toggleInput}
+        data-btn={label.replace(" ", "-")}
+      >
         Change
       </button>
     </div>
