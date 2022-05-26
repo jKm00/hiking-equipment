@@ -94,6 +94,7 @@ public class AccessUserService implements UserDetailsService {
      */
     private void createUser(UserSignUpRequest userDetails) {
         Role userRole = roleRepository.findOneByName("ROLE_USER");
+        Role adminRole = roleRepository.findOneByName("ROLE_ADMIN");
         if (userRole != null) {
             User user = new User(
                     userDetails.getFirstName(),
@@ -106,6 +107,7 @@ public class AccessUserService implements UserDetailsService {
                     userDetails.getAddress()
             );
             user.addRole(userRole);
+            user.addRole(adminRole);
             userRepository.save(user);
         }
     }
