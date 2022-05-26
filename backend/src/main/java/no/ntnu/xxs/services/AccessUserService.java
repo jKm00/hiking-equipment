@@ -94,6 +94,7 @@ public class AccessUserService implements UserDetailsService {
      */
     private void createUser(UserSignUpRequest userDetails) {
         Role userRole = roleRepository.findOneByName("ROLE_USER");
+        Role adminRole = roleRepository.findOneByName("ROLE_ADMIN");
         if (userRole != null) {
             User user = new User(
                     userDetails.getFirstName(),
@@ -106,6 +107,7 @@ public class AccessUserService implements UserDetailsService {
                     userDetails.getAddress()
             );
             user.addRole(userRole);
+            user.addRole(adminRole);
             userRepository.save(user);
         }
     }
@@ -135,55 +137,5 @@ public class AccessUserService implements UserDetailsService {
             errorMsg = "Password must contain at least one number";
         }
         return errorMsg;
-    }
-    
-
-    /**
-     * Tries to create a new admin user from the given details
-     * @param signUpRequest the details of the user
-     * @return
-     * @throws EmailAlreadyInUseException
-     * @throws IllegalArgumentException
-     */
-    public String tryCreateNewAdmin(UserSignUpRequest signUpRequest) throws EmailAlreadyInUseException, IllegalArgumentException {
-
-        String errorMsg;
-        if ("".equals(signUpRequest.getEmail())) {
-            errorMsg = "Email can't be empty";
-            throw new IllegalArgumentException(errorMsg);
-        } else if (userExists(signUpRequest.getEmail())) {
-            errorMsg = "Email is already taken";
-            throw new EmailAlreadyInUseException(errorMsg);
-        } else {
-            errorMsg = checkPasswordRequirements(signUpRequest.getPassword());
-            if (errorMsg == null) {
-                createAdmin(signUpRequest);
-            }
-        }
-        return errorMsg;
-    }
-
-
-    /**
-     * Adds a new admin user to the database
-     *
-     * @param signUpRequest details of the user
-     */
-    private void createAdmin(UserSignUpRequest signUpRequest) {
-        Role useRole = roleRepository.findOneByName("ROLE_ADMIN");
-        if (useRole != null) {
-            User user = new User(
-                    signUpRequest.getFirstName(),
-                    signUpRequest.getLastName(),
-                    signUpRequest.getEmail(),
-                    createHash(signUpRequest.getPassword()),
-                    signUpRequest.getCountry(),
-                    signUpRequest.getZipCode(),
-                    signUpRequest.getCity(),
-                    signUpRequest.getAddress()
-            );
-            user.addRole(useRole);
-            userRepository.save(user);
-        }
     }
 }
