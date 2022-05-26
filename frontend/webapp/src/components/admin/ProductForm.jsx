@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { sendApiRequest } from "../../tools/request";
 import { displayFeedback } from "../../tools/feedback";
 import { isImages } from "../../tools/validators";
+import { uploadImageToServer } from "../../tools/image-handler";
 
 import FormInput from "./FormInput";
 import AdminTableRow from "./AdminTableRow";
@@ -25,6 +26,7 @@ export default function ProductForm({ products, updateProducts }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    addImages();
     console.log(
       title,
       description,
@@ -101,6 +103,21 @@ export default function ProductForm({ products, updateProducts }) {
       );
     }
   }
+
+  /**
+     * Handler for image input
+     * @param event The event. Files available in event.target.files
+     */
+   function addImages() {
+    if (images > 0) {
+      for (let i = 0; i< images.length; i++){
+        const chosenImage = images[i];
+        console.log("Image changed");
+        //setImageUrl(URL.createObjectURL(chosenImage)); //method sets image url
+        uploadImageToServer(chosenImage, console.log("success"), console.log("failed"));
+      }
+    }
+}
 
   /**
    * Resets all inputs in the form
