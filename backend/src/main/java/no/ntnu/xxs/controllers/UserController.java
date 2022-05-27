@@ -83,7 +83,11 @@ public class UserController {
      * @return {@code true} if token id and url id is matching
      */
     private boolean matchingTokenAndUrlId(String jwtToken, long urlId) {
-        if (jwtToken == null || jwtUtil.extractId(jwtToken.substring(7, jwtToken.length())) != urlId) {
+        if (jwtToken == null) {
+            return false;
+        }
+        int jwtId = jwtUtil.extractId(jwtToken.substring(7, jwtToken.length()));
+        if (jwtId == -1 || jwtId != urlId) {
             return false;
         }
         return true;

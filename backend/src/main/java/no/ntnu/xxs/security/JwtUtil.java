@@ -103,13 +103,18 @@ public class JwtUtil {
     }
 
     /**
-     * Extracts the user id in the jwt token
+     * Extracts the user id in the jwt token. If no id was found in the JWT token, -1 is returned.
      * @param token the JWT token to extract the id from
      * @return a string with the id
      */
     public int extractId(String token) {
-        Claims jwtBody = extractAllClaims(token);
-        int id = (int) jwtBody.get(JWT_ID_KEY);
-        return id;
+        int response;
+        try {
+            Claims jwtBody = extractAllClaims(token);
+            response = (int) jwtBody.get(JWT_ID_KEY);
+        } catch (SignatureException e) {
+            response = -1;
+        }
+        return response;
     }
 }
