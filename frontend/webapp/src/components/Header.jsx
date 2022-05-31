@@ -15,7 +15,7 @@ import "../styles/header.css";
 
 export default function Header() {
   return (
-    <header>
+    <>
       <Swiper
         className="header"
         autoplay={{
@@ -147,6 +147,6 @@ export default function Header() {
           </div>
         </SwiperSlide>
       </Swiper>
-    <header/>
+    </>
   );
 }
