@@ -26,4 +26,7 @@ public interface CartItemRepository extends CrudRepository<CartItem, Long> {
 
     @Query(value = "SELECT * FROM cart_item WHERE id = ?", nativeQuery = true)
     CartItem findByCartItemById(long id);
+
+    @Query(value = "SELECT * FROM cart_item WHERE id = ? AND user_id = ?", nativeQuery = true)
+    CartItem findUserCartItemByCartItemById(long id, long user_id);
 }
