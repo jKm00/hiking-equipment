@@ -70,6 +70,8 @@ public class User {
         this.zipCode = zipCode;
         this.city = city;
         this.address = address;
+        //se over hvis det ikke funker
+        this.cart = new Cart(this);
     }
 
     public Long getId() {return id;}

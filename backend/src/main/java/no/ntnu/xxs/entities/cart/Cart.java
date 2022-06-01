@@ -43,6 +43,7 @@ public class Cart
     public void addCartItem(CartItem cartItem) {
         this.cartItem.add(cartItem);
     }
+    public void removeCartItem(CartItem cartItem) { this.cartItem.remove(cartItem); }
 
     public long getId() {
         return id;

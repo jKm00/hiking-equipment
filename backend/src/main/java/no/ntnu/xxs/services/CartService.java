@@ -1,5 +1,7 @@
 package no.ntnu.xxs.services;
 
+import no.ntnu.xxs.dto.AddCartItemRequest;
+import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.repositories.CartItemRepository;
@@ -21,34 +23,43 @@ public class CartService {
 
 
     //kan du se over joakim
-    public List<CartItem> getAllCartItems(){
-        return StreamSupport.stream(this.cartItemRepository.findAll().spliterator(), false).collect(Collectors.toList());
+    public Cart getCart(Long id){
+        return this.cartRepository.findByUserId(id);
     }
 
-    public Product getProductById(Long id) {
-        Product productFound = null;
-        Optional<Product> result = this.productRepository.findById(id);
-        if (result.isPresent()) {
-            productFound = result.get();
-        }
-        return productFound;
+
+    public void addCartItemToCart(Long userID, Long itemID){
+        Cart cart = getCart(userID);
+        cart.addCartItem(this.cartItemRepository.findByCartItemById(itemID));
+        cartRepository.save(cart);
     }
 
-    public void addCartItemToCart(Long id){
-
-
+    public void addCartItem(AddCartItemRequest itemDetails){
+        CartItem cartItem = new CartItem(
+                itemDetails.getProductId(),
+                itemDetails.getProductName(),
+                itemDetails.getProductPrice(),
+                itemDetails.getProductCategory(),
+                itemDetails.getProductSex(),
+                itemDetails.getDiscount(),
+                itemDetails.getColor(),
+                itemDetails.getSize(),
+                itemDetails.getQuantity()
+        );
     }
 
-    public void addCartItem(long productId, String productName, float productPrice, String productCategory, String productSex, float discount, String color, String size, int quantity){
-
+    public void removeItemFromCart(Long userID,Long itemID){
+        Cart cart = getCart(userID);
+        cart.removeCartItem(this.cartItemRepository.findByCartItemById(itemID));
+        cartRepository.save(cart);
     }
 
-    public void removeItemFromCart(Long id){
-
+    public void getCartItem(Long id){
+        this.cartItemRepository.findByCartItemById(id);
     }
-
     public void findCartItemByName(Long id, String cartItemName){
-        this.cartItemRepository.findCartItemByName(id, cartItemName);
+
+        this.cartItemRepository.findCartItemByName(cartItemName, id);
     }
 
     public void incrementCartItemAmount(Long id){
