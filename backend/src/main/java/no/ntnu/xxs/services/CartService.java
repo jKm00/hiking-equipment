@@ -3,16 +3,11 @@ package no.ntnu.xxs.services;
 import no.ntnu.xxs.dto.AddCartItemRequest;
 import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
-import no.ntnu.xxs.entities.product.Product;
+import no.ntnu.xxs.exception.CartItemAlreadyExistsException;
 import no.ntnu.xxs.exception.QuantityBelowZeroException;
 import no.ntnu.xxs.repositories.CartItemRepository;
 import no.ntnu.xxs.repositories.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 public class CartService {
 
@@ -35,7 +30,7 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public void addCartItem(AddCartItemRequest itemDetails){
+    public void addCartItem(AddCartItemRequest itemDetails) throws CartItemAlreadyExistsException {
         CartItem cartItem = new CartItem(
                 itemDetails.getProductId(),
                 itemDetails.getProductName(),
@@ -47,6 +42,7 @@ public class CartService {
                 itemDetails.getSize(),
                 itemDetails.getQuantity()
         );
+        cartItemRepository.save(cartItem);
     }
 
     public void removeItemFromCart(Long userID, Long itemID){
@@ -55,13 +51,10 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public void getCartItem(Long id){
-        this.cartItemRepository.findByCartItemById(id);
+    public CartItem getCartItem(Long id){
+        return this.cartItemRepository.findByCartItemById(id);
     }
-    public void findCartItemByName(Long id, String cartItemName){
-
-        this.cartItemRepository.findCartItemByName(cartItemName, id);
-    }
+    public void findCartItemByName(Long id, String cartItemName){this.cartItemRepository.findCartItemByName(cartItemName, id);}
 
     /**
 
