@@ -11,8 +11,6 @@ function SearchResultPage() {
   const { keyword } = useParams();
   const [products, setProduct] = useState([]);
 
-  console.log(keyword);
-
 
   useEffect(() => {
     sendApiRequest(
