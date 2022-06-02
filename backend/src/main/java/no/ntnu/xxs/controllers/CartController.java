@@ -5,9 +5,7 @@ import no.ntnu.xxs.dto.AddCartItemRequest;
 import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
 import no.ntnu.xxs.entities.product.Product;
-import no.ntnu.xxs.exception.CartItemAlreadyExistsException;
-import no.ntnu.xxs.exception.EmailAlreadyInUseException;
-import no.ntnu.xxs.exception.ProductAlreadyExistException;
+import no.ntnu.xxs.exception.*;
 import no.ntnu.xxs.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,42 +77,79 @@ public class CartController {
             this.cartService.addCartItem(requestBody);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (CartItemAlreadyExistsException e) {
-            return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Cart item already exists", HttpStatus.CONFLICT);
         }
+
     }
 
-    @PatchMapping
-    public ResponseEntity<CartItem> incrementCartItemAmount(@RequestBody long itemId, @RequestBody long userId) {
-        //trenger denne en responseEntity?
-        if (getCart(userId).equals(userId) && getCartItem(itemId).equals(itemId)) {
-            this.cartService.incrementCartItemAmount(itemId, userId);
-        }
-        if (cartItem == null) {
-            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            response = new ResponseEntity<CartItem>(cartItem, HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<?> addCartItemToCart(Long userID, Long itemID) {
+        ResponseEntity<?> response;
+        try {
+            cartService.addCartItemToCart(userID, itemID);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (CartItemNotFoundException e) {
+            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
+        } catch (CartNotFoundException e) {
+            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
         }
         return response;
     }
 
-    @PatchMapping
-    public ResponseEntity<CartItem> incrementCartByItemAmount(@RequestBody long itemId, @RequestBody long userId,
-      @RequestBody int incrementAmount) {
-        //trenger denne en responseEntity?
-        this.cartService.incrementCartItemAmountByAmount(itemId, userId, incrementAmount);
+    @DeleteMapping
+    public ResponseEntity<?> removeCartItemFromCart(Long userID, Long itemID) {
+        ResponseEntity<?> response;
+        try {
+            cartService.removeItemFromCart(userID, itemID);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (CartItemNotFoundException e) {
+            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
+        } catch (CartNotFoundException e) {
+            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
+        } catch (QuantityBelowZeroException e) {
+            return new ResponseEntity<>("Item amount cannot be decreased to less than 0, so the item has been removed from the cart", HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
-    @PatchMapping
-    public ResponseEntity<CartItem> decrementCartItemAmount(@RequestBody long itemId, @RequestBody long userId) {
-        //trenger denne en responseEntity?
-        this.cartService.incrementCartItemAmount(itemId, userId);
-    }
 
     @PatchMapping
-    public ResponseEntity<CartItem> decrementCartByItemAmount(@RequestBody long itemId, @RequestBody long userId,
-                                                              @RequestBody int decrementAmount) {
-        //trenger denne en responseEntity?
-        this.cartService.incrementCartItemAmountByAmount(itemId, userId, decrementAmount);
+    public ResponseEntity<?> incrementCartByItemAmount(@RequestBody long itemId, @RequestBody long userId,
+    @RequestBody int incrementAmount) {
+        ResponseEntity<?> response;
+        try {
+            cartService.incrementCartItemAmountByAmount(itemId, userId, incrementAmount);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (CartItemNotFoundException e) {
+            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
+        } catch (CartNotFoundException e) {
+            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>("User id or item id is either null or empty", HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
+
+
+    @PatchMapping
+    public ResponseEntity<?> decrementCartByItemAmount(@RequestBody long itemId, @RequestBody long userId,
+    @RequestBody int decrementAmount) throws CartItemNotFoundException, CartNotFoundException, QuantityBelowZeroException {
+        ResponseEntity<?> response;
+        try {
+            cartService.decrementCartItemAmountByAmount(itemId, userId, decrementAmount);
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (CartItemNotFoundException e) {
+            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
+        } catch (CartNotFoundException e) {
+            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>("User id or item id is either null or empty", HttpStatus.BAD_REQUEST);
+        } catch (QuantityBelowZeroException e) {
+            cartService.removeItemFromCart(userId, itemId);
+            return new ResponseEntity<>("Item amount cannot be decreased to less than 0, so the item has been removed from the cart", HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
 }
