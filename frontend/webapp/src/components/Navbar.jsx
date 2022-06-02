@@ -14,6 +14,9 @@ function Navbar({ user, setUser }) {
     "data-search-path",
   ];
 
+  /**
+   * Event listener that hides search bar when clicking outside its container
+   */
   document.addEventListener("click", (e) => {
     const targetedElement = e.target;
     if (
@@ -28,6 +31,10 @@ function Navbar({ user, setUser }) {
     }
   });
 
+  /**
+   * Event listener that hides the user-detail container when clicking
+   * outside its container
+   */
   document.addEventListener("click", (e) => {
     const targetedElement = e.target;
     if (!targetedElement.hasAttribute("data-user-details-element")) {
@@ -38,11 +45,17 @@ function Navbar({ user, setUser }) {
     }
   });
 
+  /**
+   * Toggles the search bar, from hidden to displayed
+   */
   function doToggleSearch() {
     const searchBar = document.querySelector("[data-search-form]");
     searchBar.classList.toggle("search-bar--hidden");
   }
 
+  /**
+   * Makes a search with the value in the search bar
+   */
   function doSearch() {
     const inputValue = document.querySelector("[data-search-input]").value;
     const path = "/search/" + inputValue;
@@ -51,21 +64,33 @@ function Navbar({ user, setUser }) {
     navigate(path);
   }
 
+  /**
+   * Toggles the user-detail, from hidden to displayed
+   */
   function toggleUserDetails() {
     const userDetails = document.querySelector("[data-user-details-container]");
     userDetails.classList.toggle("user-details--hidden");
   }
 
+  /**
+   * Redirects to the login page
+   */
   function redirectLogin() {
     navigate("/login");
     toggleUserDetails();
   }
 
+  /**
+   * Redirects to the sign up page
+   */
   function redirectSignup() {
     navigate("/signup");
     toggleUserDetails();
   }
 
+  /**
+   * Logs out the user from the application
+   */
   function handleLogout() {
     deleteAuthorizationCookies();
     setUser(null);
