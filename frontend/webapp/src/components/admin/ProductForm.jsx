@@ -48,7 +48,7 @@ export default function ProductForm({ products, updateProducts }) {
       discount === "" ||
       colors === "" ||
       sizes === "" ||
-      images.length === 0 ||
+      images.length < 0 ||
       details === ""
     ) {
       displayFeedback(

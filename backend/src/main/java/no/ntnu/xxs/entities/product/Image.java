@@ -36,9 +36,8 @@ public class Image {
 
     }
 
-    public Image(byte[] data, String extension, String contentType) {
+    public Image(byte[] data, String contentType) {
         this.data = data;
-        this.extension = extension;
         this.contentType = contentType;
     }
 

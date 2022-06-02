@@ -81,7 +81,7 @@ public class ProductService {
         }
 
         for (Image imageValue : images) {
-            Image image = new Image(imageValue.getData(), imageValue.getExtension(), imageValue.getContentType());
+            Image image = new Image(imageValue.getData(), imageValue.getContentType());
             this.imageRepository.save(image);
             product.addImage(image);
         }

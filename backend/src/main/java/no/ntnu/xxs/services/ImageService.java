@@ -34,7 +34,7 @@ public class ImageService {
         }
         Image image = null;
         try {
-            image = new Image(imageData.getBytes(), getFileExtension(imageData), imageData.getContentType());
+            image = new Image(imageData.getBytes(), imageData.getContentType());
             imageRepository.save(image);
         } catch (IOException e) {
             logger.error("Could not store image: " + e.getMessage());
