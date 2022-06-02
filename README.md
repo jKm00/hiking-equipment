@@ -1,3 +1,10 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
 # Webshop for XXS
 
 ## Setup Intellij
@@ -6,10 +13,10 @@
 
 1. Create an .env file in the root folder of the backend
 2. Add environment variabler:
-    - POSTGRES_USERNAME
-    - POSTGRES_PASSWORD
-    - DATABASE_NAME
-    - POSTGRES_PORT
+   - POSTGRES_USERNAME
+   - POSTGRES_PASSWORD
+   - DATABASE_NAME
+   - POSTGRES_PORT
 3. Download and install ".env file support" plugin for intellij. (Make sure it's working, might need to restart idea)
 4. Enable "EnvFile" in "Run/Debug Configurations" and select the .env file created in step 1
 
