@@ -1,10 +1,14 @@
+// Tools
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { sendApiRequest } from "../tools/request";
 
+// Components
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 
-import { sendApiRequest } from "../tools/request";
+// Styling
+import "../styles/searchResultPage.css";
 
 function SearchResultPage() {
   const { keyword } = useParams();
@@ -22,15 +26,10 @@ function SearchResultPage() {
     );
   }, []);
 
-  const mystyle = {
-    gridColumn: "2 / -2",
-    margin: "12.8em 0",
-  };
-
   return (
     <>
-      <div style={mystyle}>
-        <h1>Results for {keyword}</h1>
+      <div className="search-page">
+        <h1 className="search-page__title">Results for {keyword}</h1>
 
         {products.length === 0 ? (
           <p>No products named {keyword} found.</p>
