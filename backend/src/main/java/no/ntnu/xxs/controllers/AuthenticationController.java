@@ -79,10 +79,34 @@ public class AuthenticationController {
         return response;
     }
 
-    //TODO: implement method
-    @PostMapping("/signup/admin")
+    /**
+     * Registers an admin user.
+     * In order to create an admin user the, the user must be an admin.
+     * @param signUpRequest the data send from the sign-up form
+     * @return HTTP Status OK if the user was created, or BAD_REQUEST if the user already exists
+     * @throws UserAlreadyExistException
+     */        
+    
+    @PostMapping("/users/admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @CrossOrigin
     public ResponseEntity<?> registerAdmin(@RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
+
+        ResponseEntity<String> response = null;
+
+        try {
+            String errorMsg = userService.tryCreateNewAdmin(signUpRequest);
+            if (errorMsg == null) {
+                response = new ResponseEntity<>(HttpStatus.OK);
+
+            }
+        } catch (EmailAlreadyInUseException emailAlreadyInUseException) {
+            response = new ResponseEntity<>(emailAlreadyInUseException.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            response = new ResponseEntity<>(illegalArgumentException.getMessage(), HttpStatus.BAD_REQUEST);
+
+        } 
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
