@@ -11,7 +11,7 @@
   <h3 align="center">XXS Hiking Equipment</h3>
 
   <p align="center">
-    A project to learn frontend & backend development in our batchelor course!
+    A project to learn frontend & backend development in our bachelor course!
     <br />
     <br />
     <a href="http://gr02.appdev.cloudns.ph/">View Demo</a>
