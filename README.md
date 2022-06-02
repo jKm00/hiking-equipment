@@ -120,9 +120,9 @@ Distributed under NTNU. Only for learning purposes
 
 ## Contact
 
-Eduard Cristea - falniir@gmail.com
-Richileu Bailey - richileb@ntnu.no
-Torstein Eide - torstei@ntnu.no
+Eduard Andrei Cristea - eduardac@ntnu.no  
+Richileu Alphonso Bailey - richileb@ntnu.no  
+Torstein Eide - torstei@ntnu.no  
 Joakim Edvardsen - joakied@ntnu.no
 
 <p align="right">(<a href="#top">back to top</a>)</p>
