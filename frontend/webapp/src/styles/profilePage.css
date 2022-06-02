@@ -1,0 +1,25 @@
+/*---------------
+    Profile page
+---------------*/
+.profile-page {
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--spacing-large);
+  min-height: 60vh;
+  margin: var(--spacing-larger) 0;
+}
+
+.profile-page__submit-wrapper {
+  display: flex;
+  gap: var(--spacing-medium);
+}
+
+.profile-page__feedback {
+  display: flex;
+  align-self: center;
+  padding-left: var(--spacing-large);
+  padding-right: var(--spacing-large);
+  margin: 0;
+}

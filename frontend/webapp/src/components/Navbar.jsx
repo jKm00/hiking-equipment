@@ -166,6 +166,14 @@ function Navbar({ user, setUser }) {
                     {user.email}
                   </li>
                   <li data-user-details-element>
+                    <Link
+                      to={"/profile/" + user.id}
+                      className="user-details__link"
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li data-user-details-element>
                     <Link to="/orders" className="user-details__link">
                       Orders
                     </Link>
