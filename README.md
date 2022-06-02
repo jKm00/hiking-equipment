@@ -69,7 +69,7 @@
 
 ## About The Project
 
-[![XXS Front Page Screen Shot][front-page-screenshot]](product-screenshot)
+![XXS Front Page Screen Shot](documentation/readme-images/front-page.png)
 
 A project to learn both frontend and backend development. This project is used in our batchelor program for learning purposes only.
 
@@ -164,4 +164,3 @@ https://www.getpostman.com/collections/1591bbc3e3de4d28a527
 [stars-url]: https://github.com/jKm00/hiking-equipment/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/jKm00/hiking-equipment/issues
-[product-screenshot]: documentation/readme-images/front-page.png
