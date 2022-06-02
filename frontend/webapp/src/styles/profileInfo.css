@@ -1,0 +1,34 @@
+/*---------------
+    Profile info, displayed on profile page
+---------------*/
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--spacing-smaller);
+}
+
+.profile-info__label {
+  font-weight: bold;
+}
+
+.profile-info__value--hidden {
+  display: none;
+}
+
+.profile-info__input {
+  padding: var(--spacing-tiny);
+}
+
+.profile-info__input--hidden {
+  display: none;
+}
+
+.profile-info__btn {
+  cursor: pointer;
+  color: var(--clr-accent-400);
+}
+
+.profile-info__btn:hover {
+  text-decoration: underline;
+}

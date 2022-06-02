@@ -22,7 +22,7 @@ public class JwtUtil {
      * This is the key inside the JWT token that stores all the roles
      */
     private static final String JWT_AUTH_KEY = "roles";
-    private static final String JWT_ID_KEY = "ueid";
+    private static final String JWT_ID_KEY = "uid";
     
     public String generateToken(AccessUserDetails userDetails) {
         final long CURRENT_TIME = System.currentTimeMillis();
@@ -100,5 +100,21 @@ public class JwtUtil {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+    /**
+     * Extracts the user id in the jwt token. If no id was found in the JWT token, -1 is returned.
+     * @param token the JWT token to extract the id from
+     * @return a string with the id
+     */
+    public int extractId(String token) {
+        int response;
+        try {
+            Claims jwtBody = extractAllClaims(token);
+            response = (int) jwtBody.get(JWT_ID_KEY);
+        } catch (SignatureException e) {
+            response = -1;
+        }
+        return response;
     }
 }
