@@ -6,11 +6,9 @@ import ProductCard from "../components/ProductCard";
 
 import { sendApiRequest } from "../tools/request";
 
-
 function SearchResultPage() {
   const { keyword } = useParams();
   const [products, setProduct] = useState([]);
-
 
   useEffect(() => {
     sendApiRequest(
@@ -24,38 +22,35 @@ function SearchResultPage() {
     );
   }, []);
 
-
   const mystyle = {
     gridColumn: "2 / -2",
     margin: "12.8em 0",
   };
 
   return (
-
     <>
-
-
-    
       <div style={mystyle}>
         <h1>Results for {keyword}</h1>
-        
+
         {products.length === 0 ? (
           <p>No products named {keyword} found.</p>
-        ) : (products.map((product) => (
-      <ProductCard
-        key={product.id}
-        img="/img/articles/hiking-shoes-transparent-black-02.png"
-        imgAlt={product.productName}
-        title={product.productName}
-        desc={product.description}
-        price={product.price}
-        id={product.id}
-      />
-    )))};
-
+        ) : (
+          products.map((product) => (
+            <ProductCard
+              key={product.id}
+              img="/img/articles/hiking-shoes-transparent-black-02.png"
+              imgAlt={product.productName}
+              title={product.productName}
+              desc={product.description}
+              price={product.price}
+              id={product.id}
+            />
+          ))
+        )}
       </div>
       <Footer />
-  </>
-)}
+    </>
+  );
+}
 
 export default SearchResultPage;
