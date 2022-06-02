@@ -18,4 +18,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM products WHERE category = ?", nativeQuery = true)
     List<Product> findAllByCategory(String category);
+
+    @Query(value = "SELECT * FROM products WHERE product_name iLIKE %?%", nativeQuery = true)
+    List<Product> findAllByName(String name);
 }
