@@ -1,11 +1,5 @@
+<!-- Tamplate from https://github.com/othneildrew/Best-README-Template -->
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -44,26 +38,132 @@
   </p>
 </div>
 
-# Webshop for XXS
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#backend"backend>Backend</a>
+            <ul>
+                <li><a href="#intellij-setup">IntelliJ Setup</a></li>
+                <li><a href="#running-the-backend">Running the Backend</a></li>
+            </ul>
+        </li>
+        <li><a href="#frontend"backend>Frontend</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#postman-tests">Postman tests</a></li>
+  </ol>
+</details>
 
-## Setup Intellij
+<!-- ABOUT THE PROJECT -->
 
-### Initial Setup
+## About The Project
 
-1. Create an .env file in the root folder of the backend
+[![XXS Front Page Screen Shot][front-page-screenshot]](product-screenshot)
+
+A project to learn both frontend and backend development. This project is used in our batchelor program for learning purposes only.
+
+Our webpage is designed for a fictional company (XXS) with the main purpose of selling premium hiking equipment. For now you can add items to cart and place an order, but the order will never get processed.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Built With
+
+The frameworks and tools used in this project:
+
+- [React.js](https://reactjs.org/)
+- [Spring Boot](https://spring.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Backend
+
+#### IntelliJ SetUp
+
+1. Create an `.env` file in the root folder of the backend (/backend)
 2. Add environment variabler:
-   - POSTGRES_USERNAME
-   - POSTGRES_PASSWORD
-   - DATABASE_NAME
-   - POSTGRES_PORT
+   - `POSTGRES_USERNAME`
+   - `POSTGRES_PASSWORD`
+   - `DATABASE_NAME`
+   - `POSTGRES_PORT`
 3. Download and install ".env file support" plugin for intellij. (Make sure it's working, might need to restart idea)
-4. Enable "EnvFile" in "Run/Debug Configurations" and select the .env file created in step 1
+4. Enable "EnvFile" in "Run/Debug Configurations" and select the `.env` file created in step 1
 
-### Running the App
+#### Running the Backend
 
 1. Run `docker compose up -d` in terminal. (Spins up a docker container for postgres)
 2. Run backend from idea or another docker container
 
-## Link to Postman test for security
+### Frontend
+
+1. Add an `.env` file in the root folder of the frontend (/frontent/webapp)
+2. Add environment variable `REACT_APP_API_BASE_URL` that points to the url of the the API (e.g. http://localhost:8080/api)
+3. Run `npm install` to make sure all dependencies are installed
+4. Run `npm start` to start the web application
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under NTNU. Only for learning purposes
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+Eduard Cristea - falniir@gmail.com
+Richileu Bailey - richileb@ntnu.no
+Torstein Eide - torstei@ntnu.no
+Joakim Edvardsen - joakied@ntnu.no
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- [Readme Template](https://github.com/othneildrew/Best-README-Template#getting-started)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Postman tests
 
 https://www.getpostman.com/collections/1591bbc3e3de4d28a527
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/jKm00/hiking-equipment/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/jKm00/hiking-equipment/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/jKm00/hiking-equipment/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/jKm00/hiking-equipment/issues
+[product-screenshot]: documentation/readme-images/front-page.png
