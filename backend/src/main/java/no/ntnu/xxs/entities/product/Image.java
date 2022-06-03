@@ -21,7 +21,7 @@ public class Image{
     @JsonIgnore
     private Product product;
 
-    @Column(name = "blob")
+    @Column(name = "imageBlob")
     private String imageString;
 
 

@@ -14,7 +14,7 @@ public class AddProductRequest {
     private List<String> sizes;
     private List<String> details;
 
-    private List<String> images;
+    private List<String> imageStrings;
 
     public AddProductRequest(String productName, String description, float price, String category, String sex,
                              boolean featured, float discount, List<String> colors, List<String> sizes,
@@ -29,7 +29,7 @@ public class AddProductRequest {
         this.colors = colors;
         this.sizes = sizes;
         this.details = details;
-        this.images =imageStrings;
+        this.imageStrings=imageStrings;
     }
 
     public String getProductName() {
@@ -112,11 +112,11 @@ public class AddProductRequest {
         this.details = details;
     }
 
-    public List<String> getImages() {
-        return images;
+    public List<String> getImageStrings() {
+        return imageStrings;
     }
 
-    public void setImages(List<String> imageBlob) {
-        this.images = imageBlob;
+    public void setImageStrings(List<String> imageBlob) {
+        this.imageStrings = imageBlob;
     }
 }

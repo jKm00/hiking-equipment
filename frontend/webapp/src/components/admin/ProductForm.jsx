@@ -18,7 +18,7 @@ export default function ProductForm({ products, updateProducts }) {
   const [discount, setDiscount] = useState("");
   const [colors, setColors] = useState("");
   const [sizes, setSizes] = useState("");
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState("");
   const [featured, setFeatured] = useState(false);
   const [details, setDetails] = useState("");
 
@@ -61,9 +61,11 @@ export default function ProductForm({ products, updateProducts }) {
         colors: colors.split(", "),
         sizes: sizes.split(", "),
         details: details.split("\n"),
-        images: convertImageToB64String(images)
+        images: convertImageFileToB64(images)
       };
-    
+
+      console.log(convertImageFileToB64(images));
+
       sendApiRequest(
         "POST",
         "/products/add",
@@ -90,18 +92,21 @@ export default function ProductForm({ products, updateProducts }) {
     }
   }
 
-  function convertImageToB64String(images) {
-    let stringList = new Array(images.length);
-    for(let i=0;i<images.length; i++){
-      var file = images[i];
-      var reader = new FileReader();
-      reader.onloadend = function() {
-        stringList[i]=reader.result;
+  function convertImageFileToB64(images) {
+    let array = [];
+
+    for (let i=0;i<images.length;i++){
+      const reader = new FileReader();
+      reader.readAsDataURL(images[i]);
+      reader.onload = function (event) {
+        let shitncum = reader.result;
+        array.push(shitncum);
       }
-      reader.readAsDataURL(file);
     }
-    return stringList;
-    }
+
+    console.log(array);
+    return array;
+  }
 
   /**
    * Resets all inputs in the form
