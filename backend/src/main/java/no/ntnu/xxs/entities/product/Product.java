@@ -55,6 +55,9 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductDetail> productDetails = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Image> images = new LinkedHashSet<>();
+
     // Relation to Order
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "order_products",

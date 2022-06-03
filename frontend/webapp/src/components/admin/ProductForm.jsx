@@ -61,7 +61,9 @@ export default function ProductForm({ products, updateProducts }) {
         colors: colors.split(", "),
         sizes: sizes.split(", "),
         details: details.split("\n"),
+        images: convertImageToB64String(images)
       };
+    
       sendApiRequest(
         "POST",
         "/products/add",
@@ -83,10 +85,23 @@ export default function ProductForm({ products, updateProducts }) {
             document.querySelector("[data-submit-product]"),
             document.querySelector("[data-feedback-product]")
           );
-        }
+        },
       );
     }
   }
+
+  function convertImageToB64String(images) {
+    let stringList = new Array(images.length);
+    for(let i=0;i<images.length; i++){
+      var file = images[i];
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        stringList[i]=reader.result;
+      }
+      reader.readAsDataURL(file);
+    }
+    return stringList;
+    }
 
   /**
    * Resets all inputs in the form

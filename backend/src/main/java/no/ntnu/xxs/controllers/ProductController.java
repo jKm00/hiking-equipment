@@ -85,7 +85,8 @@ public class ProductController {
             requestBody.getDiscount()),
             requestBody.getColors(),
             requestBody.getSizes(),
-            requestBody.getDetails());
+            requestBody.getDetails(),
+                    requestBody.getImages());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ProductAlreadyExistException e) {
             return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
@@ -115,7 +116,7 @@ public class ProductController {
 /**
  * Searches for products with the given name
  * 
- * @param search name of the product to search for
+ * @param name of the product to search for
  * @return 
  */
     @GetMapping("/search/{name}")

@@ -1,14 +1,8 @@
 package no.ntnu.xxs.services;
 
-import no.ntnu.xxs.entities.product.Color;
-import no.ntnu.xxs.entities.product.Product;
-import no.ntnu.xxs.entities.product.ProductDetail;
-import no.ntnu.xxs.entities.product.Size;
+import no.ntnu.xxs.entities.product.*;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
-import no.ntnu.xxs.repositories.ColorRepository;
-import no.ntnu.xxs.repositories.ProductDetailRepository;
-import no.ntnu.xxs.repositories.ProductRepository;
-import no.ntnu.xxs.repositories.SizeRepository;
+import no.ntnu.xxs.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
@@ -27,6 +21,9 @@ public class ProductService {
     private SizeRepository sizeRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
     /**
      * Return a list of all products stored in the application state
@@ -59,7 +56,7 @@ public class ProductService {
      * @param sizes a list of sized available for the product described as string
      * @throws ProductAlreadyExistException if the product already exists
      */
-    public void addProduct(Product product, List<String> colors, List<String> sizes, List<String> details) throws ProductAlreadyExistException {
+    public void addProduct(Product product, List<String> colors, List<String> sizes, List<String> details, List<String> imageBlobs) throws ProductAlreadyExistException {
         for (String colorValue : colors) {
             Color color = this.colorRepository.findOneByColor(colorValue);
             if (color == null) {
@@ -83,6 +80,11 @@ public class ProductService {
         for (String detailValue : details) {
             ProductDetail detail = new ProductDetail(detailValue, product);
             this.productDetailRepository.save(detail);
+        }
+
+        for (String blobString : imageBlobs) {
+            Image image = new Image(blobString);
+            this.imageRepository.save(image);
         }
     }
 
