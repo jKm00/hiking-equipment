@@ -58,6 +58,7 @@ public class User {
     private Cart cart = new Cart();
 
     //Relation to Order
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Order> order = new LinkedHashSet<>();
 

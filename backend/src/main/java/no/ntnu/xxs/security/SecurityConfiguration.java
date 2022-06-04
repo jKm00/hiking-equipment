@@ -57,6 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/products/**").permitAll()
                 .antMatchers("/api/users/*").permitAll()
+                .antMatchers("/api/carts").permitAll()
 
                 // Every other endpoints need one form of authentication
                 // What type of authentication is specified with an annotation over each endpoint

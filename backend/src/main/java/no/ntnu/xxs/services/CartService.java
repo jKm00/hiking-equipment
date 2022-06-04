@@ -34,7 +34,7 @@ public class CartService {
      */
     public Cart getCart(Long id){
         Cart cart = null;
-        Long cartId = this.userRepository.findCartIdByUserId(id);
+        Long cartId = this.getCartIdByUserId(id);
         if (cartId != null) {
             Optional<Cart> result = this.cartRepository.findById(cartId);
             if (result.isPresent()) {
@@ -44,44 +44,60 @@ public class CartService {
         return cart;
     }
 
-    public void addCartItemToCart(Long userID, Long itemID) throws CartNotFoundException, CartItemNotFoundException {
-        String errorMsg;
-        if (getCart(userID) == null) {
-            errorMsg = "UserId is null";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        if (getCartItem(itemID) == null) {
-            errorMsg = "ItemId is null";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        if (getCart(userID).equals("")) {
-            errorMsg = "UserId can't be empty";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        if (getCartItem(itemID).equals("")) {
-            errorMsg = "ItemId can't be empty";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        else {
-            if (!getCart(userID).equals(userID)) {
-                errorMsg = "The Inputted user id does not match any user id in the database";
-                throw new CartNotFoundException(errorMsg);
-            }
-            if (!getCartItem(itemID).equals(itemID)) {
-                errorMsg = "The Inputted cart item id does not match any cart item id in the database";
-                throw new CartItemNotFoundException(errorMsg);
-            }
+    /**
+     * Returns the cart id of the cart for the user specified in the params
+     * @param userId the id of the user to find the cart id for
+     * @return the id of the cart for the user
+     */
+    private Long getCartIdByUserId(Long userId) {
+        return this.userRepository.findCartIdByUserId(userId);
+    }
 
-            else if (getCart(userID).equals(userID) && getCartItem(itemID).equals(itemID)) {
-                Cart cart = getCart(userID);
-                if (findCartItemByName(itemID, userID) == getCartItem(itemID))
-                {
-                    incrementCartItemAmountByAmount(itemID, userID, 1);
-                    cartRepository.save(cart);
-                }
-                cart.addCartItem(this.cartItemRepository.findByCartItemById(itemID));
-                cartRepository.save(cart);
-            }
+    /**
+     * Adds a cart item to the cart of the user specified by the user id
+     * @param userId the user id of the user to add a cart item to the cart for
+     * @param cartItemDetails details about the product to add be added to the cart
+     * @return true if successful, false otherwise
+     */
+    public void addCartItemToCart(Long userId, AddCartItemRequest cartItemDetails) {
+        Long cartId = this.getCartIdByUserId(userId);
+        // Check if cart item with same details already is added to cart
+        Optional<CartItem> result = this.cartItemRepository.findSpecificCartItem(
+                cartId,
+                cartItemDetails.getProductId(),
+                cartItemDetails.getColor(),
+                cartItemDetails.getSize()
+                );
+        CartItem cartItem;
+        // If so, increment the quantity
+        if (result.isPresent()) {
+            cartItem = result.get();
+            cartItem.incrementQuantity();
+            // Save cart item
+            this.cartItemRepository.save(cartItem);
+        } else {
+            // If no, create a new cart item
+            cartItem = new CartItem(
+                    cartItemDetails.getProductId(),
+                    cartItemDetails.getProductName(),
+                    cartItemDetails.getProductPrice(),
+                    cartItemDetails.getProductCategory(),
+                    cartItemDetails.getProductSex(),
+                    cartItemDetails.getDiscount(),
+                    cartItemDetails.getColor(),
+                    cartItemDetails.getSize(),
+                    cartItemDetails.getQuantity()
+            );
+            // Get cart
+            Cart cart = this.getCart(userId);
+            // Add cart to cart item
+            cartItem.setCart(cart);
+            // Save cart item
+            this.cartItemRepository.save(cartItem);
+            // Add
+            cart.addCartItem(cartItem);
+            // Save cart
+            this.cartRepository.save(cart);
         }
     }
 

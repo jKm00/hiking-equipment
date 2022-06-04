@@ -22,6 +22,7 @@ public class Cart
 
     // Relation to cartItem
     @OneToMany(mappedBy = "cart")
+    @Column(name = "cart_item_id")
     private Set<CartItem> cartItem = new LinkedHashSet<>();
 
     // Relation to User

@@ -11,6 +11,7 @@ import no.ntnu.xxs.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,10 +24,12 @@ public class CartController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    //se over. jeg er usikker om den vil ta inn id-en fra user og bruke den på user i query-en
-    // eller om den vil ta inn id-en fra cart og bruke den på user i query-en.
-    //btw be han også dobbeltsjekke om mappingen er sånn vi vil ha den.
-    //hvilke metoder trenger exceptions og hvilke metoder holder det med if setninger som produserer responseEntities
+    /**
+     * Returns a cart for the user in the jwt token sent as a header
+     * @param authorization the jwt token of the user to get the cart for
+     * @return a Http.OK with cart if successful, or Http.NOT_FOUND if no
+     * cart was found
+     */
     @GetMapping
     public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
         ResponseEntity response;
@@ -41,14 +44,12 @@ public class CartController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addCartItem(@RequestBody AddCartItemRequest requestBody) {
-        try {
-            this.cartService.addCartItem(requestBody);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (CartItemAlreadyExistsException e) {
-            return new ResponseEntity<>("Cart item already exists", HttpStatus.CONFLICT);
-        }
-
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> addCartItem(@RequestHeader("Authorization") String authorization, @RequestBody AddCartItemRequest requestBody) {
+        String jwt = authorization.substring(7, authorization.length());
+        Long userId = (long) jwtUtil.extractId(jwt);
+        this.cartService.addCartItemToCart(userId, requestBody);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping
