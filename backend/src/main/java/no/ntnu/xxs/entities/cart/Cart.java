@@ -26,6 +26,7 @@ public class Cart
     private Set<CartItem> cartItem = new LinkedHashSet<>();
 
     // Relation to User
+    @JsonIgnore
     @OneToOne(mappedBy = "cart")
     private User user;
 

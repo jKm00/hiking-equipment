@@ -52,7 +52,6 @@ public class User {
     private Set<Role> roles = new LinkedHashSet<>();
 
     // Relation to Cart
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart = new Cart();

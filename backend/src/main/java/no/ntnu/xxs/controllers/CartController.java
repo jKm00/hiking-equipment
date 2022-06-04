@@ -2,6 +2,7 @@ package no.ntnu.xxs.controllers;
 
 
 import no.ntnu.xxs.dto.AddCartItemRequest;
+import no.ntnu.xxs.dto.DeleteCartItemRequest;
 import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
 import no.ntnu.xxs.entities.product.Product;
@@ -33,8 +34,8 @@ public class CartController {
     @GetMapping
     public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
         ResponseEntity response;
-        String jwt = authorization.substring(7, authorization.length());
-        Cart cart = this.cartService.getCart((long) jwtUtil.extractId(jwt));
+        Long userId = this.getUserIdFromJwt(authorization);
+        Cart cart = this.cartService.getCart(userId);
         if (cart == null) {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
@@ -43,28 +44,40 @@ public class CartController {
         return response;
     }
 
+    /**
+     * Adds a product to the cart of the user with the same id as the on in the jwt token
+     * @param authorization the jwt token of the user to add the product to the cart for
+     * @param requestBody details about the product that should be saved to the cart
+     * @return Http.OK product was successfully added to cart.
+     */
     @PostMapping
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> addCartItem(@RequestHeader("Authorization") String authorization, @RequestBody AddCartItemRequest requestBody) {
-        String jwt = authorization.substring(7, authorization.length());
-        Long userId = (long) jwtUtil.extractId(jwt);
+        Long userId = this.getUserIdFromJwt(authorization);
         this.cartService.addCartItemToCart(userId, requestBody);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> removeCartItemFromCart(Long userID, Long itemID) {
+    public ResponseEntity<?> removeCartItemFromCart(@RequestHeader("Authorization") String authorization, @RequestBody DeleteCartItemRequest requestBody) {
+        Long userId = this.getUserIdFromJwt(authorization);
         ResponseEntity<?> response;
         try {
-            cartService.removeItemFromCart(userID, itemID);
+            this.cartService.removeItemFromCart(userId, requestBody.getCartItemId());
             response = new ResponseEntity<>(HttpStatus.OK);
         } catch (CartItemNotFoundException e) {
-            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
-        } catch (CartNotFoundException e) {
-            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
-        } catch (QuantityBelowZeroException e) {
-            return new ResponseEntity<>("Item amount cannot be decreased to less than 0, so the item has been removed from the cart", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("No cart item with id " + requestBody.getCartItemId() + " was found in the users(" + userId + ") cart", HttpStatus.NOT_FOUND);
         }
         return response;
+    }
+
+    /**
+     * Gets the user id from the jwt given
+     * @param jwtHeader the jwt as its send with "Bearer jwt..."
+     * @return the user id from the jwt
+     */
+    private long getUserIdFromJwt(String jwtHeader) {
+        String jwt = jwtHeader.substring(7, jwtHeader.length());
+        return (long) jwtUtil.extractId(jwt);
     }
 }

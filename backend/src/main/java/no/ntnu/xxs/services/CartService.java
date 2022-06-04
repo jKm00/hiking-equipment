@@ -94,7 +94,7 @@ public class CartService {
             cartItem.setCart(cart);
             // Save cart item
             this.cartItemRepository.save(cartItem);
-            // Add
+            // Add cart item to cart
             cart.addCartItem(cartItem);
             // Save cart
             this.cartRepository.save(cart);
@@ -116,45 +116,29 @@ public class CartService {
         cartItemRepository.save(cartItem);
     }
 
-    public void removeItemFromCart(Long userID, Long itemID) throws CartNotFoundException, CartItemNotFoundException, QuantityBelowZeroException {
-        String errorMsg;
-        if (getCart(userID) == null) {
-            errorMsg = "UserId is null";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        if (getCartItem(itemID) == null) {
-            errorMsg = "ItemId is null";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        if (getCart(userID).equals("")) {
-            errorMsg = "UserId can't be empty";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        if (getCartItem(itemID).equals("")) {
-            errorMsg = "ItemId can't be empty";
-            throw new IllegalArgumentException(errorMsg);
-        }
-        else {
-            //er rekkefølgen her riktig på .equals ?
-            if (!getCart(userID).equals(userID)) {
-                errorMsg = "The Inputted user id does not match any user id in the database";
-                throw new CartNotFoundException(errorMsg);
+    /**
+     * Removes a product from the cart of the user specified
+     * @param userId the id of the user to delete a product from that users cart
+     * @param cartItemId the id of the cart item that should be removed from the cart
+     * @throws CartNotFoundException
+     * @throws CartItemNotFoundException
+     * @throws QuantityBelowZeroException
+     */
+    public void removeItemFromCart(Long userId, Long cartItemId) throws CartItemNotFoundException {
+        Optional<CartItem> result = this.cartItemRepository.findById(cartItemId);
+        if (result.isPresent()) {
+            CartItem cartItem = result.get();
+            try {
+                cartItem.decrementQuantity();
+                this.cartItemRepository.save(cartItem);
+            } catch (QuantityBelowZeroException e) {
+                this.cartItemRepository.delete(cartItem);
+                Cart cart = this.getCart(userId);
+                cart.removeCartItem(cartItem);
+                this.cartRepository.save(cart);
             }
-            if (!getCartItem(itemID).equals(itemID)) {
-                errorMsg = "The Inputted cart item id does not match any cart item id in the database";
-                throw new CartItemNotFoundException(errorMsg);
-            }
-
-            else if (getCart(userID).equals(userID) && getCartItem(itemID).equals(itemID)) {
-                Cart cart = getCart(userID);
-                if (findCartItemByName(itemID, userID) == getCartItem(itemID))
-                {
-                    decrementCartItemAmountByAmount(itemID, userID, 1);
-                    cartRepository.save(cart);
-                }
-                cart.removeCartItem(this.cartItemRepository.findByCartItemById(itemID));
-                cartRepository.save(cart);
-            }
+        } else {
+            throw new CartItemNotFoundException("Cart item was not found");
         }
     }
 
