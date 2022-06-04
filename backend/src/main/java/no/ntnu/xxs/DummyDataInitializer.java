@@ -78,7 +78,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             sweater.addSize(medium);
             sweater.addSize(large);
 
-            Product boots = new Product("Boots", "Hiking boots", 799f, "boots", "men", false, 0f);
+            Product boots = new Product("Boots", "Hiking boots", 799f, "boots", "unisex", false, 0f);
             boots.addColor(black);
             boots.addColor(blue);
             boots.addSize(medium);
