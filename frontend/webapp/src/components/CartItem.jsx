@@ -8,36 +8,36 @@ export default function CartItem({ product, handleRemove }) {
   }
 
   return (
-    <Link to={"/product/" + product.id} className="cart__item__link">
-      <div className="cart__item" key={product.id}>
+    <div className="cart__item">
+      <Link to={"/product/" + product.productId} className="cart__item__link">
         <img
           className="cart__item__img"
-          src={"https://picsum.photos/200/300?random=" + product.id}
+          src={"https://picsum.photos/200/300?random=" + product.productId}
           alt=""
         />
         <div className="cart__item__details">
-          <h3 className="cart__item__title">{product.title}</h3>
+          <h3 className="cart__item__title">{product.productName}</h3>
           <p className="cart__item__detail">Color: {product.color}</p>
           <p className="cart__item__detail">Size: {product.size}</p>
           <p className="cart__item__detail">Quantity: {product.quantity}</p>
         </div>
-        <div className="cart__item__addons">
-          <div className="cart__item__price--wrapper">
-            <p className="cart__item__price">
-              {parseFloat(
-                (product.price - product.discount) * product.quantity
-              ).toFixed(2)}
-              ,-
-            </p>
-            <p className="cart__item__price--small">
-              {parseFloat(product.price - product.discount).toFixed(2)},-
-            </p>
-          </div>
-          <button className="cart__item__remove" onClick={onSubmit}>
-            Remove
-          </button>
+      </Link>
+      <div className="cart__item__addons">
+        <div className="cart__item__price--wrapper">
+          <p className="cart__item__price">
+            {parseFloat(
+              (product.productPrice - product.discount) * product.quantity
+            ).toFixed(2)}
+            ,-
+          </p>
+          <p className="cart__item__price--small">
+            {parseFloat(product.productPrice - product.discount).toFixed(2)},-
+          </p>
         </div>
+        <button className="cart__item__remove" onClick={onSubmit}>
+          Remove
+        </button>
       </div>
-    </Link>
+    </div>
   );
 }

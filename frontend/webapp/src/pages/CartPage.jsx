@@ -42,7 +42,17 @@ export default function CartPage({ user }) {
   const [finalSum, setFinalSum] = useState(0);
 
   useEffect(() => {
-    updateCart();
+    sendApiRequest(
+      "GET",
+      "/carts",
+      function (response) {
+        setCart(response.cartItem);
+      },
+      null,
+      function (error) {
+        console.error("Could not load cart: " + error);
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -58,9 +68,9 @@ export default function CartPage({ user }) {
     if (user !== null) {
       sendApiRequest(
         "GET",
-        "/carts/" + user.email,
+        "/carts",
         function (response) {
-          setCart(response);
+          setCart(response.cartItem);
         },
         null,
         function (error) {
@@ -78,7 +88,7 @@ export default function CartPage({ user }) {
     let total = 0;
     let discount = 0;
     cart.forEach((product) => {
-      total += product.price * product.quantity;
+      total += product.productPrice * product.quantity;
       discount += product.discount * product.quantity;
     });
     setTotal(total);
