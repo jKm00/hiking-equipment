@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import no.ntnu.xxs.entities.product.Image;
+import no.ntnu.xxs.services.ProductService;
+
 public class AddProductRequest {
     private String productName;
     private String description;
@@ -14,11 +19,15 @@ public class AddProductRequest {
     private float discount;
     private List<String> colors;
     private List<String> sizes;
+    private List<Image> images;
     private List<String> details;
 
+    @Autowired
+    ProductService productService;
+
     public AddProductRequest(String productName, String description, float price, String category, String sex,
-                             boolean featured, float discount, List<String> colors, List<String> sizes,
-                             List<String> details) {
+            boolean featured, float discount, List<String> colors, List<String> sizes, List<Image> images,
+            List<String> details) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -28,6 +37,7 @@ public class AddProductRequest {
         this.discount = discount;
         this.colors = colors;
         this.sizes = sizes;
+        this.images = images;
         this.details = details;
     }
 
@@ -109,5 +119,13 @@ public class AddProductRequest {
 
     public void setDetails(List<String> details) {
         this.details = details;
+    }
+
+    public List<Image> getImages() {
+        return this.images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

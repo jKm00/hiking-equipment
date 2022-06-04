@@ -9,14 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * REST API controller for product collection
  */
-// TODO: Make product endpoint public. This is made private only for demo purposes
+// TODO: Make product endpoint public. This is made private only for demo
+// purposes
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin
@@ -27,7 +27,8 @@ public class ProductController {
 
     /**
      * Returns a list of all products with the attributes given.
-     * @param sex the sex of the products to be returned
+     * 
+     * @param sex      the sex of the products to be returned
      * @param category the category of the products to be returned
      * @return a list of all products
      */
@@ -49,6 +50,7 @@ public class ProductController {
 
     /**
      * Returns an item with the id given in the URL
+     * 
      * @param id the id of the item to get
      * @return an item with same id as given
      */
@@ -65,29 +67,38 @@ public class ProductController {
     }
 
     /**
-    * HTTP POST request to /api/products. Tries to add product to database.
-    * @param requestBody The body of the request containing the product to be added
-    * @return Http.OK when product is added, or Http.CONFLICT if product
-     * is already registered
-    */
+     * HTTP POST request to /api/products. Tries to add product to database.
+     * 
+     * @param requestBody The body of the request containing the product to be added
+     * @return Http.OK when product is added, or Http.CONFLICT if product
+     *         is already registered
+     */
     @PostMapping("/add")
-    /* TODO: make it only accessible for admin. Currently its accessible for any
-        logged in users */
+    /*
+     * TODO: make it only accessible for admin. Currently its accessible for any
+     * logged in users
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
         try {
-            this.productService.addProduct(
-                    new Product(
-                            requestBody.getProductName(),
-                            requestBody.getDescription(),
-                            requestBody.getPrice(),
-                            requestBody.getCategory(),
-                            requestBody.getSex(),
-                            requestBody.isFeatured(),
-                            requestBody.getDiscount()),
-                    requestBody.getColors(),
-                    requestBody.getSizes(),
-                    requestBody.getDetails());
+            try {
+                this.productService.addProduct(
+                        new Product(
+                                requestBody.getProductName(),
+                                requestBody.getDescription(),
+                                requestBody.getPrice(),
+                                requestBody.getCategory(),
+                                requestBody.getSex(),
+                                requestBody.isFeatured(),
+                                requestBody.getDiscount()),
+                        requestBody.getColors(),
+                        requestBody.getSizes(),
+                        requestBody.getImages(),
+                        requestBody.getDetails());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ProductAlreadyExistException e) {
             return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
@@ -95,13 +106,16 @@ public class ProductController {
     }
 
     /**
-     *  HTTP PUT request to /api/products/{id}
+     * HTTP PUT request to /api/products/{id}
+     * 
      * @param id The id of the product to be updated
      *
      */
     @DeleteMapping("/{id}")
-    /* TODO: make it only accessible for admin. Currently its accessible for any
-        logged in users */
+    /*
+     * TODO: make it only accessible for admin. Currently its accessible for any
+     * logged in users
+     */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> deleteProduct(@PathVariable() Long id) {
         if (this.productService.deleteProduct(id)) {
