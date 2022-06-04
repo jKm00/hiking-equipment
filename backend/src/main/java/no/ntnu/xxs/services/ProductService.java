@@ -128,4 +128,12 @@ public class ProductService {
     public List<Product> getProductsByCategory(String category) {
         return this.productRepository.findAllByCategory(category);
     }
+
+    /**
+     * Searches for products with the same name as the given param
+     */
+
+     public List<Product> searchProducts(String name) {
+        return this.productRepository.findAllByName(name);
+     }
 }

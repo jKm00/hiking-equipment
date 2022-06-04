@@ -14,6 +14,9 @@ function Navbar({ user, setUser }) {
     "data-search-path",
   ];
 
+  /**
+   * Event listener that hides search bar when clicking outside its container
+   */
   document.addEventListener("click", (e) => {
     const targetedElement = e.target;
     if (
@@ -28,6 +31,10 @@ function Navbar({ user, setUser }) {
     }
   });
 
+  /**
+   * Event listener that hides the user-detail container when clicking
+   * outside its container
+   */
   document.addEventListener("click", (e) => {
     const targetedElement = e.target;
     if (!targetedElement.hasAttribute("data-user-details-element")) {
@@ -38,11 +45,17 @@ function Navbar({ user, setUser }) {
     }
   });
 
+  /**
+   * Toggles the search bar, from hidden to displayed
+   */
   function doToggleSearch() {
     const searchBar = document.querySelector("[data-search-form]");
     searchBar.classList.toggle("search-bar--hidden");
   }
 
+  /**
+   * Makes a search with the value in the search bar
+   */
   function doSearch() {
     const inputValue = document.querySelector("[data-search-input]").value;
     const path = "/search/" + inputValue;
@@ -51,21 +64,33 @@ function Navbar({ user, setUser }) {
     navigate(path);
   }
 
+  /**
+   * Toggles the user-detail, from hidden to displayed
+   */
   function toggleUserDetails() {
     const userDetails = document.querySelector("[data-user-details-container]");
     userDetails.classList.toggle("user-details--hidden");
   }
 
+  /**
+   * Redirects to the login page
+   */
   function redirectLogin() {
     navigate("/login");
     toggleUserDetails();
   }
 
+  /**
+   * Redirects to the sign up page
+   */
   function redirectSignup() {
     navigate("/signup");
     toggleUserDetails();
   }
 
+  /**
+   * Logs out the user from the application
+   */
   function handleLogout() {
     deleteAuthorizationCookies();
     setUser(null);
@@ -96,13 +121,6 @@ function Navbar({ user, setUser }) {
                   data-search-path
                   d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"
                 />
-              </svg>
-            </button>
-          </li>
-          <li className="first-nav__item">
-            <button aria-label="customer service" className="first-nav__btn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M191.1 224c0-17.72-14.34-32.04-32-32.04L144 192c-35.34 0-64 28.66-64 64.08v47.79C80 339.3 108.7 368 144 368H160c17.66 0 32-14.36 32-32.06L191.1 224zM256 0C112.9 0 4.583 119.1 .0208 256L0 296C0 309.3 10.75 320 23.1 320S48 309.3 48 296V256c0-114.7 93.34-207.8 208-207.8C370.7 48.2 464 141.3 464 256v144c0 22.09-17.91 40-40 40h-110.7C305 425.7 289.7 416 272 416H241.8c-23.21 0-44.5 15.69-48.87 38.49C187 485.2 210.4 512 239.1 512H272c17.72 0 33.03-9.711 41.34-24H424c48.6 0 88-39.4 88-88V256C507.4 119.1 399.1 0 256 0zM368 368c35.34 0 64-28.7 64-64.13V256.1C432 220.7 403.3 192 368 192l-16 0c-17.66 0-32 14.34-32 32.04L320 335.9C320 353.7 334.3 368 352 368H368z" />
               </svg>
             </button>
           </li>
@@ -164,6 +182,14 @@ function Navbar({ user, setUser }) {
                 >
                   <li className="user-details__item" data-user-details-element>
                     {user.email}
+                  </li>
+                  <li data-user-details-element>
+                    <Link
+                      to={"/profile/" + user.id}
+                      className="user-details__link"
+                    >
+                      Profile
+                    </Link>
                   </li>
                   <li data-user-details-element>
                     <Link to="/orders" className="user-details__link">

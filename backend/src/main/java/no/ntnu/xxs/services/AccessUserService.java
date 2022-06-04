@@ -1,9 +1,11 @@
 package no.ntnu.xxs.services;
 
+import no.ntnu.xxs.dto.UpdateUserRequest;
 import no.ntnu.xxs.dto.UserSignUpRequest;
 import no.ntnu.xxs.entities.user.Role;
 import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.exception.EmailAlreadyInUseException;
+import no.ntnu.xxs.exception.NoSuchUserException;
 import no.ntnu.xxs.exception.UserAlreadyExistException;
 import no.ntnu.xxs.repositories.RoleRepository;
 import no.ntnu.xxs.repositories.UserRepository;
@@ -39,6 +41,21 @@ public class AccessUserService implements UserDetailsService {
         } else {
             throw new UsernameNotFoundException("User " + email + " not found");
         }
+    }
+
+    /**
+     * Returns a user stored in the application based on the id of the user
+     * @param id the id of the user to retrieve
+     * @return if a user with the id is found, that user is returned, otherwise null
+     * is returned.
+     */
+    public User getUser(long id) {
+        User user = null;
+        Optional<User> result = this.userRepository.findById(id);
+        if (result.isPresent()) {
+            user = result.get();
+        }
+        return user;
     }
 
     /**
@@ -94,6 +111,7 @@ public class AccessUserService implements UserDetailsService {
      */
     private void createUser(UserSignUpRequest userDetails) {
         Role userRole = roleRepository.findOneByName("ROLE_USER");
+        Role adminRole = roleRepository.findOneByName("ROLE_ADMIN");
         if (userRole != null) {
             User user = new User(
                     userDetails.getFirstName(),
@@ -106,6 +124,7 @@ public class AccessUserService implements UserDetailsService {
                     userDetails.getAddress()
             );
             user.addRole(userRole);
+            user.addRole(adminRole);
             userRepository.save(user);
         }
     }
@@ -136,4 +155,98 @@ public class AccessUserService implements UserDetailsService {
         }
         return errorMsg;
     }
+
+    /**
+     * Updates the user with the id given, with the values given. If a value is {@code null} the old value
+     * is kept
+     * @param id the id of the user to update
+     * @param newUserDetails an object containing the updated values of the user
+     */
+    public void updateUser(long id, UpdateUserRequest newUserDetails) throws NoSuchUserException {
+        Optional<User> result = this.userRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new NoSuchUserException("No user with id " + id + " was found");
+        }
+        User user = result.get();
+        if (newUserDetails.getFirstName() != null) {
+            user.setFirstName(newUserDetails.getFirstName());
+        }
+        if (newUserDetails.getLastName() != null) {
+            user.setLastName(newUserDetails.getLastName());
+        }
+        if (newUserDetails.getEmail() != null) {
+            user.setEmail(newUserDetails.getEmail());
+        }
+        if (newUserDetails.getPassword() != null) {
+            user.setPassword(this.createHash(newUserDetails.getPassword()));
+        }
+        if (newUserDetails.getCountry() != null) {
+            user.setCountry(newUserDetails.getCountry());
+        }
+        if (newUserDetails.getCity() != null) {
+            user.setCity(newUserDetails.getCity());
+        }
+        if (newUserDetails.getAddress() != null) {
+            user.setAddress(newUserDetails.getAddress());
+        }
+        if (newUserDetails.getZipCode() != null) {
+            user.setZipCode(newUserDetails.getZipCode());
+        }
+        this.userRepository.save(user);
+    }
+
+
+
+
+    /**
+     * Tries to create a new admin user from the given details
+     * @param signUpRequest the details of the user
+     * @return
+     * @throws EmailAlreadyInUseException
+     * @throws IllegalArgumentException
+     */
+    public String tryCreateNewAdmin(UserSignUpRequest signUpRequest) throws EmailAlreadyInUseException, IllegalArgumentException {
+
+        String errorMsg;
+        if ("".equals(signUpRequest.getEmail())) {
+            errorMsg = "Email can't be empty";
+            throw new IllegalArgumentException(errorMsg);
+        } else if (userExists(signUpRequest.getEmail())) {
+            errorMsg = "Email is already taken";
+            throw new EmailAlreadyInUseException(errorMsg);
+        } else {
+            errorMsg = checkPasswordRequirements(signUpRequest.getPassword());
+            if (errorMsg == null) {
+                createAdmin(signUpRequest);
+            }
+        }
+        return errorMsg;
+    }
+
+
+    /**
+     * Adds a new admin user to the database
+     *
+     * @param signUpRequest details of the user
+     */
+    private void createAdmin(UserSignUpRequest signUpRequest) {
+        Role useRole = roleRepository.findOneByName("ROLE_ADMIN");
+        if (useRole != null) {
+            User user = new User(
+                    signUpRequest.getFirstName(),
+                    signUpRequest.getLastName(),
+                    signUpRequest.getEmail(),
+                    createHash(signUpRequest.getPassword()),
+                    signUpRequest.getCountry(),
+                    signUpRequest.getZipCode(),
+                    signUpRequest.getCity(),
+                    signUpRequest.getAddress()
+            );
+            user.addRole(useRole);
+            userRepository.save(user);
+        }
+    }
+
+
+
 }

@@ -12,5 +12,5 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--clr-dark-1000);
+  --swiper-navigation-color: var(--clr-accent-400);
 }

@@ -8,10 +8,17 @@ function DescriptionBox({ details }) {
     <div className="description-box">
       <h4 className="product__description__title">Details</h4>
       <ul className="product__description__list">
-        <li className="product__description__item">Holds heat effectivly</li>
-        <li className="product__description__item">Very warm</li>
-        <li className="product__description__item">Much wow</li>
-        <li className="product__description__item">Such cool</li>
+        {!details || details.length === 0 ? (
+          <li className="product__description__item">
+            No details for this items
+          </li>
+        ) : (
+          details.map((detail) => (
+            <li key={detail.id} className="product__description__item">
+              {detail.detail}
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

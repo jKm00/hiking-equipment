@@ -29,6 +29,7 @@ public class User {
     private String lastName;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
     @JsonIgnore
     private String password;
     @Column(name="country")
