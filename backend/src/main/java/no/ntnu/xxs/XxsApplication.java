@@ -3,7 +3,6 @@ package no.ntnu.xxs;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -22,7 +21,6 @@ public class XxsApplication {
 	public Docket SwaggerConfiguration () {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/api/*"))
 				.apis(RequestHandlerSelectors.basePackage("no.ntnu.xxs"))
 				.build()
 				.apiInfo(apiDetails());
@@ -30,13 +28,13 @@ public class XxsApplication {
 
 	private ApiInfo apiDetails() {
 		return new ApiInfo(
-			"XXS - API",
-			"API for the XXS-project in application programming at ntnu",
-			"1.0",
-				"Free to use",
+			"XXS - Application development project app",
+			"API for the XXS-project in application development at ntnu",
+			"0.2",
+				"https://github.com/jKm00/hiking-equipment",
 				new springfox.documentation.service.Contact("Group 02", "gr02.appdev.cloudns.ph", "gr02@ntnu.no"),
-				"Api License",
-				"ntnu.no",
+				null,
+				null,
 				Collections.emptyList()
 				);
 	}
