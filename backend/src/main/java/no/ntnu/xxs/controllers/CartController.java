@@ -28,8 +28,16 @@ public class CartController {
     //btw be han også dobbeltsjekke om mappingen er sånn vi vil ha den.
     //hvilke metoder trenger exceptions og hvilke metoder holder det med if setninger som produserer responseEntities
     @GetMapping
-    public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String jwt) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
+        ResponseEntity response;
+        String jwt = authorization.substring(7, authorization.length());
+        Cart cart = this.cartService.getCart((long) jwtUtil.extractId(jwt));
+        if (cart == null) {
+            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            response = new ResponseEntity<>(cart, HttpStatus.OK);
+        }
+        return response;
     }
 
     @PostMapping

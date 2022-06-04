@@ -52,9 +52,10 @@ public class User {
     private Set<Role> roles = new LinkedHashSet<>();
 
     // Relation to Cart
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Cart cart;
+    private Cart cart = new Cart();
 
     //Relation to Order
     @OneToMany(mappedBy = "user")
@@ -71,8 +72,6 @@ public class User {
         this.zipCode = zipCode;
         this.city = city;
         this.address = address;
-        //se over hvis det ikke funker
-        this.cart = new Cart(this);
     }
 
     public Long getId() {return id;}

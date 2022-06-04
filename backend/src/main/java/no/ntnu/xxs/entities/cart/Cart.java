@@ -1,5 +1,6 @@
 package no.ntnu.xxs.entities.cart;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.entities.user.User;
 
 import javax.persistence.*;
@@ -59,5 +60,13 @@ public class Cart
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<CartItem> getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(Set<CartItem> cartItem) {
+        this.cartItem = cartItem;
     }
 }

@@ -3,14 +3,18 @@ package no.ntnu.xxs.services;
 import no.ntnu.xxs.dto.AddCartItemRequest;
 import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
+import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.exception.CartItemAlreadyExistsException;
 import no.ntnu.xxs.exception.CartItemNotFoundException;
 import no.ntnu.xxs.exception.CartNotFoundException;
 import no.ntnu.xxs.exception.QuantityBelowZeroException;
 import no.ntnu.xxs.repositories.CartItemRepository;
 import no.ntnu.xxs.repositories.CartRepository;
+import no.ntnu.xxs.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -20,13 +24,25 @@ public class CartService {
 
     @Autowired
     private CartItemRepository cartItemRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-
-
+    /**
+     * Returns a cart for the user with id given as param
+     * @param id the id of the user to find the cart for
+     * @return a cart or null if no cart is found
+     */
     public Cart getCart(Long id){
-        return this.cartRepository.findByUserId(id);
+        Cart cart = null;
+        Long cartId = this.userRepository.findCartIdByUserId(id);
+        if (cartId != null) {
+            Optional<Cart> result = this.cartRepository.findById(cartId);
+            if (result.isPresent()) {
+                cart = result.get();
+            }
+        }
+        return cart;
     }
-
 
     public void addCartItemToCart(Long userID, Long itemID) throws CartNotFoundException, CartItemNotFoundException {
         String errorMsg;

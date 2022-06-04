@@ -2,6 +2,7 @@ package no.ntnu.xxs.services;
 
 import no.ntnu.xxs.dto.UpdateUserRequest;
 import no.ntnu.xxs.dto.UserSignUpRequest;
+import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.user.Role;
 import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.exception.EmailAlreadyInUseException;
@@ -123,6 +124,7 @@ public class AccessUserService implements UserDetailsService {
                     userDetails.getCity(),
                     userDetails.getAddress()
             );
+            user.setCart(new Cart(user));
             user.addRole(userRole);
             user.addRole(adminRole);
             userRepository.save(user);
