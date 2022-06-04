@@ -1,5 +1,8 @@
 package no.ntnu.xxs.controllers;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Contact;
 import no.ntnu.xxs.dto.AddProductRequest;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
 import no.ntnu.xxs.entities.product.Product;
@@ -14,6 +17,7 @@ import java.util.List;
 /**
 * REST API controller for product collection
 */
+// TODO: Check swagger documentation before making pull request
 // TODO: Make product endpoint public. This is made private only for demo purposes
 @RestController
 @RequestMapping("/api/products")
@@ -30,8 +34,14 @@ public class ProductController {
     * @return a list of all products
     */
     @GetMapping
+    @ApiOperation(value = "Returns all products with a given sex and category",
+                notes = "Provide sex and categories to find all products within these categories",
+                response = Contact.class)
     @CrossOrigin
-    public List<Product> getProductsBySexAndCategory(@RequestParam String sex, @RequestParam String category) {
+    public List<Product> getProductsBySexAndCategory(@ApiParam(value = "Sex of the products a user is trying to find", required = true)
+                                                         @RequestParam String sex,
+                                                     @ApiParam(value = "Category of the products a user is trying to retrieve", required = true)
+                                                     @RequestParam String category) {
         List<Product> products;
         if (sex.equals(UNDEFINED) && category.equals(UNDEFINED)) {
             products = this.productService.getAllProducts();
@@ -51,7 +61,11 @@ public class ProductController {
     * @return an item with same id as given
     */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable long id) {
+    @ApiOperation(value = "Returns a product with a given product id",
+            notes = "Provide the id of the product a user is trying to find",
+            response = Contact.class)
+    public ResponseEntity<Product> getProductById(@ApiParam(value = "id of the product that is to be retrieved")
+                                                    @PathVariable long id) {
         ResponseEntity<Product> response;
         Product product = this.productService.getProductById(id);
         if (product == null) {
@@ -69,10 +83,14 @@ public class ProductController {
     * is already registered
     */
     @PostMapping("/add")
+    @ApiOperation(value = "Adds a product to the database",
+            notes = "provide a valid product to add it to the database",
+            response = Contact.class)
     /* TODO: make it only accessible for admin. Currently its accessible for any
     logged in users */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> addProduct(@RequestBody AddProductRequest requestBody) {
+    public ResponseEntity<?> addProduct(@ApiParam(value = "Product that is to be added to the database")
+                                        @RequestBody AddProductRequest requestBody) {
         try {
             this.productService.addProduct(
             new Product(
@@ -98,10 +116,14 @@ public class ProductController {
     *
     */
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Deletes a product from the database",
+            notes = "Provide the id of a product that is to be deleted from the database",
+            response = Contact.class)
     /* TODO: make it only accessible for admin. Currently its accessible for any
     logged in users */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> deleteProduct(@PathVariable() Long id) {
+    public ResponseEntity<?> deleteProduct(@ApiParam(value = "Id of the product that is to be deleted from the database")
+                                            @PathVariable() Long id) {
         if (this.productService.deleteProduct(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
@@ -115,12 +137,16 @@ public class ProductController {
 /**
  * Searches for products with the given name
  * 
- * @param search name of the product to search for
+ * @param name of the product to search for
  * @return 
  */
     @GetMapping("/search/{name}")
+    @ApiOperation(value = "The name of a product that is to be found",
+            notes = "Provide a name of the product that is trying to be found",
+            response = Contact.class)
     @CrossOrigin
-    public List<Product> searchProducts(@PathVariable String name) {
+    public List<Product> searchProducts(@ApiParam(value = "Name of the products that are to be found")
+                                        @PathVariable String name) {
 
         return this.productService.searchProducts(name);
 
