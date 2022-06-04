@@ -32,6 +32,7 @@ public class CartController {
      * cart was found
      */
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
         ResponseEntity response;
         Long userId = this.getUserIdFromJwt(authorization);
@@ -67,6 +68,7 @@ public class CartController {
      * @return Http.OK if product was successfully delete, Http.NOT_FOUND otherwise
      */
     @DeleteMapping
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> removeCartItemFromCart(@RequestHeader("Authorization") String authorization, @RequestBody DeleteCartItemRequest requestBody) {
         Long userId = this.getUserIdFromJwt(authorization);
         ResponseEntity<?> response;
