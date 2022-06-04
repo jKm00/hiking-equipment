@@ -77,6 +77,7 @@ export function parseJwtUser(jwtString) {
   const jwtObject = parseJwt(jwtString);
   if (jwtObject) {
     user = {
+      id: jwtObject.uid,
       email: jwtObject.sub,
       roles: jwtObject.roles.map((r) => r.authority),
     };

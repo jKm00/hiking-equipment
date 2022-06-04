@@ -61,7 +61,8 @@
 /* Styles for swiper addons */
 
 .swiper {
-  --swiper-theme-color: var(--clr-accent-400);
+  --swiper-navigation-color: var(--clr-accent-400);
+  --swiper-pagination-color: var(--clr-accent-400);
 }
 
 .header .swiper-button-prev,

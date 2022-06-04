@@ -29,6 +29,7 @@ public class User {
     private String lastName;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
     @JsonIgnore
     private String password;
     @Column(name="country")
@@ -53,9 +54,10 @@ public class User {
     // Relation to Cart
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Cart cart;
+    private Cart cart = new Cart();
 
     //Relation to Order
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Order> order = new LinkedHashSet<>();
 
@@ -70,8 +72,6 @@ public class User {
         this.zipCode = zipCode;
         this.city = city;
         this.address = address;
-        //se over hvis det ikke funker
-        this.cart = new Cart(this);
     }
 
     public Long getId() {return id;}

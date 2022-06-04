@@ -93,6 +93,19 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
   }
+
+  /* ------ Search page ------ */
+
+  .search-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: start;
+  }
+
+  .search-page__title {
+    grid-column: 1 / -1;
+    font-size: var(--fs-xxl);
+  }
 }
 
 @media only screen and (min-width: 60em) {
@@ -257,6 +270,34 @@
   .order__detail__item,
   .order__detail__body {
     font-size: var(--fs-medium);
+  }
+
+  /* ------ Profile page ------ */
+  .profile-page {
+    margin: var(--spacing-xxxl) 0;
+    gap: var(--spacing-larger);
+  }
+
+  .profile-info {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xxl);
+  }
+
+  .profile-info__label {
+    flex-basis: 55%;
+  }
+
+  .profile-info__value,
+  .profile-info__input {
+    flex-basis: 25%;
+  }
+
+  /* ------ Search page ------ */
+
+  .search-page {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

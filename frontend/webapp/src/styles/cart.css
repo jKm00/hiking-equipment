@@ -1,3 +1,6 @@
+/*---------------
+    Cart Page
+---------------*/
 .cart-page {
   grid-column: 2 / -2;
   display: flex;
@@ -5,7 +8,7 @@
   justify-content: start;
   gap: var(--spacing-large);
   margin: var(--spacing-xxl) 0;
-  min-height: 50vh;
+  min-height: 60vh;
 }
 
 .cart {

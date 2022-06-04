@@ -17,6 +17,7 @@ import AdminPage from "./pages/AdminPage";
 import CartPage from "./pages/CartPage";
 import SignUpPage from "./pages/SignUpPage";
 import OrderPage from "./pages/OrderPage";
+import ProfilePage from "./pages/ProfilePage";
 
 import "./styles/global.css";
 import "./styles/mediaQueries.css";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/cart" element={<CartPage user={user} />} />
+        <Route path="/profile/:id" element={<ProfilePage user={user} />} />
         <Route
           path="/admin"
           element={

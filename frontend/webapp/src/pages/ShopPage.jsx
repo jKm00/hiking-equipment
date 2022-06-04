@@ -61,7 +61,6 @@ function ShopPage() {
       "GET",
       url,
       function (response) {
-        console.log(response);
         setProducts(response);
       },
       null,

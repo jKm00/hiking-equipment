@@ -2,14 +2,17 @@ package no.ntnu.xxs.controllers;
 
 
 import no.ntnu.xxs.dto.AddCartItemRequest;
+import no.ntnu.xxs.dto.DeleteCartItemRequest;
 import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.exception.*;
+import no.ntnu.xxs.security.JwtUtil;
 import no.ntnu.xxs.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,137 +22,72 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
-    //se over. jeg er usikker om den vil ta inn id-en fra user og bruke den på user i query-en
-    // eller om den vil ta inn id-en fra cart og bruke den på user i query-en.
-    //btw be han også dobbeltsjekke om mappingen er sånn vi vil ha den.
-    //hvilke metoder trenger exceptions og hvilke metoder holder det med if setninger som produserer responseEntities
+    /**
+     * Returns a cart for the user in the jwt token sent as a header
+     * @param authorization the jwt token of the user to get the cart for
+     * @return a Http.OK with cart if successful, or Http.NOT_FOUND if no
+     * cart was found
+     */
     @GetMapping
-    public ResponseEntity<Cart> getCart(@RequestBody long id) {
-        ResponseEntity<Cart> response;
-        Cart cart = this.cartService.getCart(id);
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
+        ResponseEntity response;
+        Long userId = this.getUserIdFromJwt(authorization);
+        Cart cart = this.cartService.getCart(userId);
         if (cart == null) {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            response = new ResponseEntity<Cart>(cart, HttpStatus.OK);
+            response = new ResponseEntity<>(cart, HttpStatus.OK);
         }
         return response;
     }
 
-    @GetMapping
-    public ResponseEntity<CartItem> getCartItem(@RequestBody long id) {
-        ResponseEntity<CartItem> response;
-        CartItem cartItem = this.cartService.getCartItem(id);
-        if (cartItem == null) {
-            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            response = new ResponseEntity<CartItem>(cartItem, HttpStatus.OK);
-        }
-        return response;
-    }
-
-/**
-    @PostMapping("/add")
-    public ResponseEntity<?> addCartItem(@RequestBody AddCartItemRequest requestBody) {
-        try {
-            this.cartService.addCartItem(
-                    new CartItem(
-                            requestBody.getProductId(),
-                            requestBody.getProductName(),
-                            requestBody.getProductPrice(),
-                            requestBody.getProductCategory(),
-                            requestBody.getProductSex(),
-                            requestBody.getDiscount(),
-                            requestBody.getColor(),
-                            requestBody.getSize(),
-                            requestBody.getQuantity()
-                    ));
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (ProductAlreadyExistException e) {
-            return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
-        }
-    }
- */
-
-    @PostMapping("/add")
-    public ResponseEntity<?> addCartItem(@RequestBody AddCartItemRequest requestBody) {
-        try {
-            this.cartService.addCartItem(requestBody);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (CartItemAlreadyExistsException e) {
-            return new ResponseEntity<>("Cart item already exists", HttpStatus.CONFLICT);
-        }
-
-    }
-
+    /**
+     * Adds a product to the cart of the user with the same id as the on in the jwt token
+     * @param authorization the jwt token of the user to add the product to the cart for
+     * @param requestBody details about the product that should be saved to the cart
+     * @return Http.OK product was successfully added to cart.
+     */
     @PostMapping
-    public ResponseEntity<?> addCartItemToCart(Long userID, Long itemID) {
-        ResponseEntity<?> response;
-        try {
-            cartService.addCartItemToCart(userID, itemID);
-            response = new ResponseEntity<>(HttpStatus.OK);
-        } catch (CartItemNotFoundException e) {
-            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
-        } catch (CartNotFoundException e) {
-            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
-        }
-        return response;
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> addCartItem(@RequestHeader("Authorization") String authorization, @RequestBody AddCartItemRequest requestBody) {
+        Long userId = this.getUserIdFromJwt(authorization);
+        this.cartService.addCartItemToCart(userId, requestBody);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Removed a product from the cart of the user that is specified in the jwt token sent as a header
+     * of the request
+     * @param authorization the header containing the jwt token for the user where a product should be
+     *                      deleted from the users cart
+     * @param requestBody a json object containing the cart item id of the cart item to be deleted
+     * @return Http.OK if product was successfully delete, Http.NOT_FOUND otherwise
+     */
     @DeleteMapping
-    public ResponseEntity<?> removeCartItemFromCart(Long userID, Long itemID) {
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<?> removeCartItemFromCart(@RequestHeader("Authorization") String authorization, @RequestBody DeleteCartItemRequest requestBody) {
+        Long userId = this.getUserIdFromJwt(authorization);
         ResponseEntity<?> response;
         try {
-            cartService.removeItemFromCart(userID, itemID);
+            this.cartService.removeItemFromCart(userId, requestBody.getCartItemId());
             response = new ResponseEntity<>(HttpStatus.OK);
         } catch (CartItemNotFoundException e) {
-            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
-        } catch (CartNotFoundException e) {
-            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
-        } catch (QuantityBelowZeroException e) {
-            return new ResponseEntity<>("Item amount cannot be decreased to less than 0, so the item has been removed from the cart", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("No cart item with id " + requestBody.getCartItemId() + " was found in the users(" + userId + ") cart", HttpStatus.NOT_FOUND);
         }
         return response;
     }
 
-
-    @PatchMapping
-    public ResponseEntity<?> incrementCartByItemAmount(@RequestBody long itemId, @RequestBody long userId,
-    @RequestBody int incrementAmount) {
-        ResponseEntity<?> response;
-        try {
-            cartService.incrementCartItemAmountByAmount(itemId, userId, incrementAmount);
-            response = new ResponseEntity<>(HttpStatus.OK);
-        } catch (CartItemNotFoundException e) {
-            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
-        } catch (CartNotFoundException e) {
-            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>("User id or item id is either null or empty", HttpStatus.BAD_REQUEST);
-        }
-        return response;
+    /**
+     * Gets the user id from the jwt given
+     * @param jwtHeader the jwt as its send with "Bearer jwt..."
+     * @return the user id from the jwt
+     */
+    private long getUserIdFromJwt(String jwtHeader) {
+        String jwt = jwtHeader.substring(7, jwtHeader.length());
+        return (long) jwtUtil.extractId(jwt);
     }
-
-
-
-    @PatchMapping
-    public ResponseEntity<?> decrementCartByItemAmount(@RequestBody long itemId, @RequestBody long userId,
-    @RequestBody int decrementAmount) throws CartItemNotFoundException, CartNotFoundException, QuantityBelowZeroException {
-        ResponseEntity<?> response;
-        try {
-            cartService.decrementCartItemAmountByAmount(itemId, userId, decrementAmount);
-            response = new ResponseEntity<>(HttpStatus.OK);
-        } catch (CartItemNotFoundException e) {
-            return new ResponseEntity<>("The Inputted user id does not match any user id in the database", HttpStatus.NOT_FOUND);
-        } catch (CartNotFoundException e) {
-            return new ResponseEntity<>("The Inputted cart item id does not match any cart item id in the database", HttpStatus.NOT_FOUND);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>("User id or item id is either null or empty", HttpStatus.BAD_REQUEST);
-        } catch (QuantityBelowZeroException e) {
-            cartService.removeItemFromCart(userId, itemId);
-            return new ResponseEntity<>("Item amount cannot be decreased to less than 0, so the item has been removed from the cart", HttpStatus.BAD_REQUEST);
-        }
-        return response;
-    }
-
 }

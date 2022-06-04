@@ -1,3 +1,9 @@
+.cart__item__link {
+  color: var(--clr-dark-900);
+  text-decoration: none;
+  font-size: inherit;
+}
+
 .cart__item {
   display: flex;
   gap: var(--spacing-smaller);
@@ -11,6 +17,7 @@
 
 .cart__item__title {
   font-size: var(--fs-small);
+  margin-bottom: var(--spacing-smaller);
 }
 
 .cart__item__details {

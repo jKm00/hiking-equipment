@@ -1,9 +1,14 @@
+/*---------------
+    Admin page
+---------------*/
 .admin-page--wrapper {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: inherit;
+  align-items: start;
   background-color: var(--clr-dark-300);
   padding: var(--spacing-extra-large) 0;
+  min-height: 70vh;
 }
 
 .admin-page {
@@ -13,7 +18,6 @@
   row-gap: var(--spacing-large);
   column-gap: var(--spacing-medium);
   padding: var(--spacing-medium);
-  min-height: 50vh;
 }
 
 .product-form {

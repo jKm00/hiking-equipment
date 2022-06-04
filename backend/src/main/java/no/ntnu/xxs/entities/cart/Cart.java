@@ -1,5 +1,6 @@
 package no.ntnu.xxs.entities.cart;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.entities.user.User;
 
 import javax.persistence.*;
@@ -21,9 +22,11 @@ public class Cart
 
     // Relation to cartItem
     @OneToMany(mappedBy = "cart")
+    @Column(name = "cart_item_id")
     private Set<CartItem> cartItem = new LinkedHashSet<>();
 
     // Relation to User
+    @JsonIgnore
     @OneToOne(mappedBy = "cart")
     private User user;
 
@@ -59,5 +62,13 @@ public class Cart
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<CartItem> getCartItem() {
+        return cartItem;
+    }
+
+    public void setCartItem(Set<CartItem> cartItem) {
+        this.cartItem = cartItem;
     }
 }
