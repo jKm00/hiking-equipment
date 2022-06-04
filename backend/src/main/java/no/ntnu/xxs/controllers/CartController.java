@@ -58,6 +58,14 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Removed a product from the cart of the user that is specified in the jwt token sent as a header
+     * of the request
+     * @param authorization the header containing the jwt token for the user where a product should be
+     *                      deleted from the users cart
+     * @param requestBody a json object containing the cart item id of the cart item to be deleted
+     * @return Http.OK if product was successfully delete, Http.NOT_FOUND otherwise
+     */
     @DeleteMapping
     public ResponseEntity<?> removeCartItemFromCart(@RequestHeader("Authorization") String authorization, @RequestBody DeleteCartItemRequest requestBody) {
         Long userId = this.getUserIdFromJwt(authorization);
