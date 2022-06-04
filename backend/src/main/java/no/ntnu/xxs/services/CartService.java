@@ -10,7 +10,9 @@ import no.ntnu.xxs.exception.QuantityBelowZeroException;
 import no.ntnu.xxs.repositories.CartItemRepository;
 import no.ntnu.xxs.repositories.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CartService {
 
     @Autowired
