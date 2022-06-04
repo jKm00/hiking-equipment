@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 // Import header styles
 import "../styles/productPage.css";
 
-function ProductPage() {
+function ProductPage({ user }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
 
@@ -26,6 +26,31 @@ function ProductPage() {
     );
   }, []);
 
+  function addToCart(color, size) {
+    const cartItem = {
+      productId: product.id,
+      productName: product.productName,
+      productPrice: product.price,
+      productCategory: product.category,
+      productSex: product.sex,
+      discount: product.discount,
+      color: color,
+      size: size,
+      quantity: 1,
+    };
+    sendApiRequest(
+      "POST",
+      "/carts",
+      (response) => {
+        console.log("Product added to cart");
+      },
+      cartItem,
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   return (
     <>
       <div className="layout">
@@ -33,10 +58,12 @@ function ProductPage() {
           <ShowCaseImg images={product.images} />
         </div>
         <ShowCaseBody
+          user={user}
           title={product.productName}
           price={product.price}
           colors={product.colors}
           sizes={product.sizes}
+          addToCart={addToCart}
         />
         <DescriptionBox details={product.productDetails} />
       </div>
