@@ -88,7 +88,10 @@ function ShowCaseBody({ user, title, price, colors, sizes, addToCart }) {
         </Link>
       ) : (
         <div className="body__btn--wrapper">
-          <p className="form__feedback" data-feedback>
+          <p
+            className="form__feedback form__feedback--align-center"
+            data-feedback
+          >
             Feedback
           </p>
           <button

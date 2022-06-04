@@ -97,26 +97,24 @@ export default function CartPage({ user }) {
   }
 
   /**
-   * TODO: make this work with API
    * Removes an item from the shopping cart
    * @param {*} id the id of the item to remove
    */
   function removeItem(id) {
-    let index = 0;
-    let found = false;
-    while (index < cart.length && !found) {
-      if (cart[index].id === id) {
-        found = true;
-      } else {
-        index++;
+    const deleteBody = {
+      cartItemId: id,
+    };
+    sendApiRequest(
+      "DELETE",
+      "/carts",
+      (respone) => {
+        updateCart();
+      },
+      deleteBody,
+      (error) => {
+        console.error(error);
       }
-    }
-    if (cart[index].quantity > 1) {
-      cart[index].quantity -= 1;
-    } else {
-      cart.splice(index, 1);
-    }
-    setCart([...cart]);
+    );
   }
 
   return (

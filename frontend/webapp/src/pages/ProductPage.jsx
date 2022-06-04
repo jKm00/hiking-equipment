@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 
 // Import header styles
 import "../styles/productPage.css";
+import { displayFeedback } from "../tools/feedback";
 
 function ProductPage({ user }) {
   const { id } = useParams();
@@ -42,7 +43,12 @@ function ProductPage({ user }) {
       "POST",
       "/carts",
       (response) => {
-        console.log("Product added to cart");
+        displayFeedback(
+          "success",
+          "Added to cart",
+          document.querySelector("[data-submit]"),
+          document.querySelector("[data-feedback]")
+        );
       },
       cartItem,
       (error) => {

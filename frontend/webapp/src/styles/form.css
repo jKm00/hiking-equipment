@@ -120,10 +120,9 @@
 }
 
 .form__feedback {
-  font-size: var(--fs-small);
+  font-size: var(--fs-medium);
   text-align: centerz;
   margin-top: var(--spacing-smaller);
-  padding: var(--spacing-smaller);
   opacity: 0;
 }
 
@@ -132,14 +131,16 @@
   margin-left: var(--spacing-medium);
 }
 
+.form__feedback--align-center {
+  text-align: center;
+}
+
 .form__feedback--success {
-  color: var(--clr-dark-800);
-  background-color: var(--clr-accent-400);
+  color: var(--clr-accent-400);
 }
 
 .form__feedback--error {
-  color: var(--clr-light-400);
-  background-color: var(--clr-error-400);
+  color: var(--clr-error-400);
 }
 
 .form__feedback__animation {
