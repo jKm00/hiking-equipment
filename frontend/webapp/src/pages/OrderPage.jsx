@@ -11,7 +11,18 @@ export default function OrderPage({ user }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    updateOrders();
+    sendApiRequest(
+      "GET",
+      "/orders",
+      function (respone) {
+        setOrders(respone);
+        console.log(respone);
+      },
+      null,
+      function (error) {
+        console.error("Could not load orders: " + error);
+      }
+    );
   }, []);
 
   /**
@@ -25,6 +36,7 @@ export default function OrderPage({ user }) {
         "/orders/",
         function (respone) {
           setOrders(respone);
+          console.log(respone);
         },
         null,
         function (error) {
@@ -44,7 +56,7 @@ export default function OrderPage({ user }) {
           </p>
         ) : (
           <>
-            <h2>Your orders</h2>¨
+            <h2>Your orders</h2>
             <div className="orders">
               {orders.length === 0 ? (
                 <p>
@@ -53,7 +65,7 @@ export default function OrderPage({ user }) {
                   products
                 </p>
               ) : (
-                orders.map((order) => <Order key={order.id} order={order} />)
+                orders.map((order) => <Order key={order.id} order={order} updateOrders={updateOrders}/>)
               )}
             </div>
           </>
