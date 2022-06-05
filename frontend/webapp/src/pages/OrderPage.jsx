@@ -32,7 +32,7 @@ export default function OrderPage({ user }) {
     if (user !== null) {
       sendApiRequest(
         "GET",
-        "/orders/",
+        "/orders",
         function (respone) {
           setOrders(respone);
         },
