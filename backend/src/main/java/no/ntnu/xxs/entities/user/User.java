@@ -59,7 +59,7 @@ public class User {
     //Relation to Order
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private Set<Order> order = new LinkedHashSet<>();
+    private Set<Order> orders = new LinkedHashSet<>();
 
     public User() {}
 
@@ -164,12 +164,12 @@ public class User {
         this.cart = cart;
     }
 
-    public Set<Order> getOrder() {
-        return order;
+    public Set<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrder(Set<Order> order) {
-        this.order = order;
+    public void setOrders(Set<Order> order) {
+        this.orders = order;
     }
 
     /**
@@ -209,6 +209,10 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 }
 

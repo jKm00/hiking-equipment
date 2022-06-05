@@ -23,7 +23,7 @@ public class Cart
     // Relation to cartItem
     @OneToMany(mappedBy = "cart")
     @Column(name = "cart_item_id")
-    private Set<CartItem> cartItem = new LinkedHashSet<>();
+    private Set<CartItem> cartItems = new LinkedHashSet<>();
 
     // Relation to User
     @JsonIgnore
@@ -44,9 +44,9 @@ public class Cart
      * @param cartItem the cart item to be added
      */
     public void addCartItem(CartItem cartItem) {
-        this.cartItem.add(cartItem);
+        this.cartItems.add(cartItem);
     }
-    public void removeCartItem(CartItem cartItem) { this.cartItem.remove(cartItem); }
+    public void removeCartItem(CartItem cartItem) { this.cartItems.remove(cartItem); }
 
     public long getId() {
         return id;
@@ -64,11 +64,15 @@ public class Cart
         this.user = user;
     }
 
-    public Set<CartItem> getCartItem() {
-        return cartItem;
+    public Set<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartItem(Set<CartItem> cartItem) {
-        this.cartItem = cartItem;
+    public void setCartItems(Set<CartItem> cartItem) {
+        this.cartItems = cartItem;
+    }
+
+    public void emptyCart() {
+        cartItems = new LinkedHashSet<>();
     }
 }
