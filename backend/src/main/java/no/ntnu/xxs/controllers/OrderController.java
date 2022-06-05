@@ -49,6 +49,7 @@ public class OrderController {
      * HttpStatus.BAD_REQUEST, the cart we're taking the order from is empty
      */
     @PostMapping
+    @CrossOrigin
     public ResponseEntity<?> addOrder (@RequestHeader ("Authorization") String authorization) {
         try {
             orderService.addOrder((long) extractUserIdFromJwt(authorization));
@@ -66,7 +67,8 @@ public class OrderController {
      * HttpStatus.OK order was successfully deleted from the user or
      * HttpStatus.BAD_REQUEST, the order we're trying to delete wasn't found
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
+    @CrossOrigin
     public ResponseEntity<?> deleteOrder (@PathVariable Long id, @RequestHeader ("Authorization") String authorization) {
         try {
             orderService.removeOrder(id, (long) extractUserIdFromJwt(authorization));
