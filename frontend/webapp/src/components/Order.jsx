@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 
 import "../styles/order.css";
+import { sendApiRequest } from "../tools/request";
 
-export default function Order({ order }) {
+export default function Order({ order, updateOrders}) {
+
+  function deleteOrder() {
+    const relativeUrl = "/orders/delete/" + order.id;
+    sendApiRequest("DELETE", relativeUrl, updateOrders, null, () => {
+      console.error("Could not cancel order with id: " + order.id);
+    });
+  }
+
   return (
     <div className="order">
       <div className="order__detail">
@@ -37,9 +46,9 @@ export default function Order({ order }) {
           {order.paymentStatus ? "Payed" : "Not payed"}
         </p>
       </div>
-      <Link to={"/order/" + order.id} className="order__link">
-        Go to order
-      </Link>
+      <button onClick={deleteOrder} className="order__link">
+        Cancel order
+      </button>
     </div>
   );
 }
