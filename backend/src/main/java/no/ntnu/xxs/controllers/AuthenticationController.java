@@ -1,5 +1,8 @@
 package no.ntnu.xxs.controllers;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Contact;
 import no.ntnu.xxs.dto.AuthenticationRequest;
 import no.ntnu.xxs.dto.AuthenticationResponse;
 import no.ntnu.xxs.exception.EmailAlreadyInUseException;
@@ -39,8 +42,12 @@ public class AuthenticationController {
      */
     @PostMapping("/authenticate")
     // TODO: Remove this annotation before deployment. Only used while testing login from react.
+    @ApiOperation(value = "Returns a http status from a authentication request",
+            notes = "Provide an authentication request to receive a Json web token if authorized",
+            response = Contact.class)
     @CrossOrigin
-    public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<?> authenticate(@ApiParam(value = "request to be sent and authenticated")
+                                            @RequestBody AuthenticationRequest authenticationRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     authenticationRequest.getEmail(),
@@ -62,8 +69,12 @@ public class AuthenticationController {
      * @return Name of the template for the result page
      */
     @PostMapping("/signup")
+    @ApiOperation(value = "Returns a http response from a given signup request",
+            notes = "Provide a signup request to signup",
+            response = Contact.class)
     @CrossOrigin
-    public ResponseEntity<?> registerUser( @RequestBody UserSignUpRequest signUpRequest)  {
+    public ResponseEntity<?> registerUser(@ApiParam(name = "Signup request to be sent to create a new user")
+                                            @RequestBody UserSignUpRequest signUpRequest)  {
         ResponseEntity<String> response = null;
         try{
             String errorMsg = userService.tryCreateNewUser(signUpRequest);
@@ -88,9 +99,13 @@ public class AuthenticationController {
      */        
     
     @PostMapping("/users/admin")
+    @ApiOperation(value = "Registers an administrative user",
+            notes = "Provide a signup request to signup admin user",
+            response = Contact.class)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @CrossOrigin
-    public ResponseEntity<?> registerAdmin(@RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
+    public ResponseEntity<?> registerAdmin(@ApiParam(value = "Signup request to be sent to create an admin user")
+                                            @RequestBody UserSignUpRequest signUpRequest) throws UserAlreadyExistException {
 
         ResponseEntity<String> response = null;
 

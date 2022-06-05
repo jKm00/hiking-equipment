@@ -61,6 +61,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/products/*").permitAll()
                 .antMatchers("/api/users").hasRole("ADMIN")
                 .antMatchers("/api/users/*").permitAll()
+                .antMatchers("/api/carts").permitAll()
+          
+                .antMatchers("/v3/api-docs").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/swagger-ui/").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/configuration/ui").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/configuration/security").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-ui/*").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/v3/**").permitAll()
 
                 // Every other endpoints need one form of authentication
                 // What type of authentication is specified with an annotation over each endpoint
