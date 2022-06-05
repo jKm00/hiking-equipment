@@ -120,7 +120,7 @@ public class ProductController {
     @CrossOrigin
     public List<Product> searchProducts(@PathVariable String search) {
 
-        return this.productService.searchProducts(name);
+        return this.productService.searchProducts(search);
 
 
     }
