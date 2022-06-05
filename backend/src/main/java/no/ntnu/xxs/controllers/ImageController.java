@@ -6,6 +6,7 @@ import no.ntnu.xxs.services.ProductService;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -55,15 +56,7 @@ public class ImageController {
     public List<Image> get(@PathVariable Long id) {
         // ResponseEntity<List<byte[]>> response;
         List<Image> image = imageService.getAllImagesByProductId(id);
-        /*
-         * if (image != null) {
-         * response = ResponseEntity.ok()
-         * .header(HttpHeaders.CONTENT_TYPE, image.get(0).getContentType())
-         * .body(image);
-         * } else {
-         * response = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-         * }
-         */
+
         return image;
     }
 

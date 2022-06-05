@@ -94,7 +94,6 @@ public class ProductController {
                                 requestBody.getDiscount()),
                         requestBody.getColors(),
                         requestBody.getSizes(),
-                        (Image) requestBody.getImages(),
                         requestBody.getDetails());
             } catch (IOException e) {
                 // TODO Auto-generated catch block

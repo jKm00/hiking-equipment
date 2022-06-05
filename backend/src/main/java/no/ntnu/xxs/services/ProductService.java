@@ -71,7 +71,7 @@ public class ProductService {
      * @throws ProductAlreadyExistException if the product already exists
      * @throws IOException
      */
-    public void addProduct(Product product, List<String> colors, List<String> sizes, Image images,
+    public void addProduct(Product product, List<String> colors, List<String> sizes,
             List<String> details)
             throws ProductAlreadyExistException, IOException {
         ProductService productService = new ProductService();
@@ -98,12 +98,6 @@ public class ProductService {
         for (String detailValue : details) {
             ProductDetail detail = new ProductDetail(detailValue, product);
             this.productDetailRepository.save(detail);
-        }
-
-        try {
-            productService.save(images, product.getId());
-        } catch (NotAnImageException e) {
-            e.printStackTrace();
         }
 
     }

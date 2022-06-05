@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
-import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.services.ProductService;
 
 public class AddProductRequest {
@@ -18,14 +18,13 @@ public class AddProductRequest {
     private float discount;
     private List<String> colors;
     private List<String> sizes;
-    private Set<Image> images;
     private List<String> details;
 
     @Autowired
     ProductService productService;
 
     public AddProductRequest(String productName, String description, float price, String category, String sex,
-            boolean featured, float discount, List<String> colors, List<String> sizes, Set<Image> images,
+            boolean featured, float discount, List<String> colors, List<String> sizes,
             List<String> details) {
         this.productName = productName;
         this.description = description;
@@ -36,7 +35,6 @@ public class AddProductRequest {
         this.discount = discount;
         this.colors = colors;
         this.sizes = sizes;
-        this.images = images;
         this.details = details;
     }
 
@@ -120,11 +118,4 @@ public class AddProductRequest {
         this.details = details;
     }
 
-    public Set<Image> getImages() {
-        return images;
-    }
-
-    public void addImage(Image images) {
-        this.images.add(images);
-    }
 }

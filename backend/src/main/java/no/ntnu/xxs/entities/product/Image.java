@@ -1,9 +1,5 @@
 package no.ntnu.xxs.entities.product;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,15 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import org.springframework.web.multipart.MultipartFile;
-
 /**
  * Entity for storing image data
  */
 @Entity
 @Table(name = "image")
 
-public class Image implements MultipartFile {
+public class Image {
     // Primary Key
     @Column(unique = true, name = "id")
     @Id
@@ -85,39 +79,4 @@ public class Image implements MultipartFile {
         return this.data;
     }
 
-    @Override
-    public String getName() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getOriginalFilename() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public long getSize() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public InputStream getInputStream() throws IOException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void transferTo(File dest) throws IOException, IllegalStateException {
-        // TODO Auto-generated method stub
-
-    }
 }
