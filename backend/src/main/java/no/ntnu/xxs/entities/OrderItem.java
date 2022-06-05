@@ -9,11 +9,13 @@ import javax.persistence.*;
 @Table(name = "order_item")
 public class OrderItem {
 
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "orderitem_id")
     private long id;
 
+    // Columns
     @Column(name = "product_id")
     private long productId;
 
@@ -41,6 +43,7 @@ public class OrderItem {
     @Column(name = "quantity")
     private int quantity;
 
+    // Relation to order
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @JsonIgnore

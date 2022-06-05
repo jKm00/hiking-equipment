@@ -15,6 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * A controller class for our cart entities.
+ */
 @RestController
 @RequestMapping("/api/carts")
 @CrossOrigin
@@ -46,7 +49,7 @@ public class CartController {
     }
 
     /**
-     * Adds a product to the cart of the user with the same id as the on in the jwt token
+     * Adds a product to the cart of the user with the same id as the one in the jwt token
      * @param authorization the jwt token of the user to add the product to the cart for
      * @param requestBody details about the product that should be saved to the cart
      * @return Http.OK product was successfully added to cart.
