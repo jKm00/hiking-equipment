@@ -40,7 +40,7 @@ public class Image {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -48,7 +48,7 @@ public class Image {
     }
 
     public byte[] getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(byte[] data) {
@@ -56,7 +56,7 @@ public class Image {
     }
 
     public String getExtension() {
-        return extension;
+        return this.extension;
     }
 
     public void setExtension(String extension) {
@@ -68,15 +68,11 @@ public class Image {
     }
 
     public String getContentType() {
-        return contentType;
+        return this.contentType;
     }
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
-    }
-
-    public byte[] getBytes() {
-        return this.data;
     }
 
 }
