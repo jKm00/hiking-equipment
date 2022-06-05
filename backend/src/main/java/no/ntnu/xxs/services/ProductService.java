@@ -182,27 +182,6 @@ public class ProductService {
     }
 
     /**
-     * Save the provided images to the storage
-     * 
-     * @param List<Image> images The image file data, as received from the
-     *                    web client
-     * @return
-     * 
-     *         /*
-     *         public List<Image> save(List<Image> images) {
-     *         for (Image image : images) {
-     *         try {
-     *         imageRepository.save(image);
-     *         } catch (Exception e) {
-     *         logger.error("Could not store image: " + e.getMessage());
-     * 
-     *         }
-     *         }
-     *         return images;
-     *         }
-     */
-
-    /**
      * Check if the given file is an image
      * 
      * @param images File to check

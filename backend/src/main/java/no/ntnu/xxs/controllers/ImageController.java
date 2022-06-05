@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +21,15 @@ public class ImageController {
     @Autowired
     ProductService imageService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
+    /**
+     * Adds an image to the database
+     * 
+     * @param multipartFile the image(s) which are to be added
+     * @return HTTP response, OK for success, BAD_REQUEST for failure
+     */
     public ResponseEntity<String> upload(@RequestParam("fileContent") MultipartFile multipartFile) {
-        System.out.println("Ddd");
         ResponseEntity<String> response = null;
         Long imageId = imageService.save(multipartFile);
         if (imageId > 0) {
@@ -60,6 +67,7 @@ public class ImageController {
      * @return HTTP OK on success, NOT FOUND when image not found
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         ResponseEntity<String> response;
         if (imageService.delete(id)) {
