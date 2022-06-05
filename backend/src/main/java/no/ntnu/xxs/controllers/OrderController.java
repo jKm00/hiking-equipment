@@ -2,10 +2,13 @@ package no.ntnu.xxs.controllers;
 
 
 import no.ntnu.xxs.entities.Order;
+import no.ntnu.xxs.exception.EmptyCartException;
 import no.ntnu.xxs.security.JwtUtil;
 import no.ntnu.xxs.services.OrderService;
 import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +33,12 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<?> addOrder (@RequestHeader ("Authorization") String authorization) {
-
+        try {
+            orderService.addOrder((long) extractUserIdFromJwt(authorization));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (EmptyCartException e) {
+            return new ResponseEntity<>("cart is empty", HttpStatus.BAD_REQUEST);
+        }
     }
 
     private int extractUserIdFromJwt (String authorization) {
