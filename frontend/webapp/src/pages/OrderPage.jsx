@@ -16,7 +16,6 @@ export default function OrderPage({ user }) {
       "/orders",
       function (respone) {
         setOrders(respone);
-        console.log(respone);
       },
       null,
       function (error) {
@@ -36,7 +35,6 @@ export default function OrderPage({ user }) {
         "/orders/",
         function (respone) {
           setOrders(respone);
-          console.log(respone);
         },
         null,
         function (error) {
