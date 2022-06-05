@@ -8,35 +8,7 @@ import Footer from "../components/Footer";
 import "../styles/cart.css";
 
 export default function CartPage({ user }) {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      title: "Winter Sweater",
-      color: "green",
-      size: "L",
-      quantity: 1,
-      price: 463.89,
-      discount: 200,
-    },
-    {
-      id: 2,
-      title: "Boots",
-      color: "Blue",
-      size: "42",
-      quantity: 2,
-      price: 399.49,
-      discount: 0,
-    },
-    {
-      id: 3,
-      title: "Dog Set",
-      color: "green",
-      size: "S",
-      quantity: 5,
-      price: 6670,
-      discount: 5970,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [finalSum, setFinalSum] = useState(0);
@@ -46,12 +18,12 @@ export default function CartPage({ user }) {
     sendApiRequest(
       "GET",
       "/carts",
-      function (response) {
+      (response) => {
         setCart(response.cartItems);
       },
       null,
-      function (error) {
-        console.error("Could not load cart: " + error);
+      (error) => {
+        console.error(error);
       }
     );
   }, []);
@@ -123,7 +95,7 @@ export default function CartPage({ user }) {
     sendApiRequest(
       "DELETE",
       "/carts",
-      (respone) => {
+      () => {
         updateCart();
       },
       deleteBody,
