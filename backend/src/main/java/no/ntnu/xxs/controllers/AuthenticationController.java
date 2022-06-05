@@ -43,7 +43,7 @@ public class AuthenticationController {
      */
     @PostMapping("/authenticate")
     // TODO: Remove this annotation before deployment. Only used while testing login from react.
-    @ApiOperation(value = "Returns all a http status from a authentication request",
+    @ApiOperation(value = "Returns a http status from a authentication request",
             notes = "Provide an authentication request to receive a Json web token if authorized",
             response = Contact.class)
     @CrossOrigin
