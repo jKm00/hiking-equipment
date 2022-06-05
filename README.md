@@ -129,6 +129,7 @@ Joakim Edvardsen - joakied@ntnu.no
 ## Acknowledgments
 
 - [Readme Template](https://github.com/othneildrew/Best-README-Template#getting-started)
+- [Swiper JS](https://swiperjs.com/react)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

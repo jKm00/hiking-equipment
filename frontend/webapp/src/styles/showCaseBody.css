@@ -79,3 +79,9 @@
   outline: 1px solid var(--clr-dark-1000);
   border-radius: var(--br);
 }
+
+.body__btn--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}

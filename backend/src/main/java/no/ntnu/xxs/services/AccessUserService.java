@@ -2,6 +2,7 @@ package no.ntnu.xxs.services;
 
 import no.ntnu.xxs.dto.UpdateUserRequest;
 import no.ntnu.xxs.dto.UserSignUpRequest;
+import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.user.Role;
 import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.exception.EmailAlreadyInUseException;
@@ -111,7 +112,6 @@ public class AccessUserService implements UserDetailsService {
      */
     private void createUser(UserSignUpRequest userDetails) {
         Role userRole = roleRepository.findOneByName("ROLE_USER");
-        Role adminRole = roleRepository.findOneByName("ROLE_ADMIN");
         if (userRole != null) {
             User user = new User(
                     userDetails.getFirstName(),
@@ -123,8 +123,8 @@ public class AccessUserService implements UserDetailsService {
                     userDetails.getCity(),
                     userDetails.getAddress()
             );
+            user.setCart(new Cart(user));
             user.addRole(userRole);
-            user.addRole(adminRole);
             userRepository.save(user);
         }
     }
@@ -230,7 +230,8 @@ public class AccessUserService implements UserDetailsService {
      * @param signUpRequest details of the user
      */
     private void createAdmin(UserSignUpRequest signUpRequest) {
-        Role useRole = roleRepository.findOneByName("ROLE_ADMIN");
+        Role useRole = roleRepository.findOneByName("ROLE_USER");
+        Role adminRole = roleRepository.findOneByName("ROLE_ADMIN");
         if (useRole != null) {
             User user = new User(
                     signUpRequest.getFirstName(),
@@ -242,7 +243,9 @@ public class AccessUserService implements UserDetailsService {
                     signUpRequest.getCity(),
                     signUpRequest.getAddress()
             );
+            user.setCart(new Cart(user));
             user.addRole(useRole);
+            user.addRole(adminRole);
             userRepository.save(user);
         }
     }

@@ -42,7 +42,17 @@ export default function CartPage({ user }) {
   const [finalSum, setFinalSum] = useState(0);
 
   useEffect(() => {
-    updateCart();
+    sendApiRequest(
+      "GET",
+      "/carts",
+      function (response) {
+        setCart(response.cartItem);
+      },
+      null,
+      function (error) {
+        console.error("Could not load cart: " + error);
+      }
+    );
   }, []);
 
   useEffect(() => {
@@ -58,9 +68,9 @@ export default function CartPage({ user }) {
     if (user !== null) {
       sendApiRequest(
         "GET",
-        "/carts/" + user.email,
+        "/carts",
         function (response) {
-          setCart(response);
+          setCart(response.cartItem);
         },
         null,
         function (error) {
@@ -78,7 +88,7 @@ export default function CartPage({ user }) {
     let total = 0;
     let discount = 0;
     cart.forEach((product) => {
-      total += product.price * product.quantity;
+      total += product.productPrice * product.quantity;
       discount += product.discount * product.quantity;
     });
     setTotal(total);
@@ -87,26 +97,24 @@ export default function CartPage({ user }) {
   }
 
   /**
-   * TODO: make this work with API
    * Removes an item from the shopping cart
    * @param {*} id the id of the item to remove
    */
   function removeItem(id) {
-    let index = 0;
-    let found = false;
-    while (index < cart.length && !found) {
-      if (cart[index].id === id) {
-        found = true;
-      } else {
-        index++;
+    const deleteBody = {
+      cartItemId: id,
+    };
+    sendApiRequest(
+      "DELETE",
+      "/carts",
+      (respone) => {
+        updateCart();
+      },
+      deleteBody,
+      (error) => {
+        console.error(error);
       }
-    }
-    if (cart[index].quantity > 1) {
-      cart[index].quantity -= 1;
-    } else {
-      cart.splice(index, 1);
-    }
-    setCart([...cart]);
+    );
   }
 
   return (

@@ -1,4 +1,7 @@
 .cart__item__link {
+  display: flex;
+  flex-basis: 90%;
+  gap: var(--spacing-smaller);
   color: var(--clr-dark-900);
   text-decoration: none;
   font-size: inherit;
@@ -6,6 +9,7 @@
 
 .cart__item {
   display: flex;
+  justify-content: space-between;
   gap: var(--spacing-smaller);
 }
 

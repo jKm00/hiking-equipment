@@ -54,9 +54,10 @@ public class User {
     // Relation to Cart
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Cart cart;
+    private Cart cart = new Cart();
 
     //Relation to Order
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Order> order = new LinkedHashSet<>();
 
