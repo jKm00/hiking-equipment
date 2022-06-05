@@ -19,7 +19,6 @@ import java.util.List;
 /**
  * REST API controller for user collection
  */
-// TODO: Check swagger documentation before making pull request
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin

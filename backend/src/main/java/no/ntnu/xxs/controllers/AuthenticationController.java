@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 /**
 * A controller responsible for authentication
 */
-// TODO: Check swagger documentation before making pull request
 @RestController
 @RequestMapping("/api")
 public class AuthenticationController {
