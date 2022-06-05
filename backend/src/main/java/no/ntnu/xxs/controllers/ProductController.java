@@ -118,7 +118,7 @@ public class ProductController {
  */
     @GetMapping("/search/{name}")
     @CrossOrigin
-    public List<Product> searchProducts(@PathVariable String name) {
+    public List<Product> searchProducts(@PathVariable String search) {
 
         return this.productService.searchProducts(name);
 
