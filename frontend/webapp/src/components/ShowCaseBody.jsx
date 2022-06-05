@@ -5,7 +5,15 @@ import { displayFeedback } from "../tools/feedback";
 // Import header styles
 import "../styles/showCaseBody.css";
 
-function ShowCaseBody({ user, title, price, colors, sizes, addToCart }) {
+function ShowCaseBody({
+  user,
+  title,
+  price,
+  discount,
+  colors,
+  sizes,
+  addToCart,
+}) {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
 
@@ -26,7 +34,20 @@ function ShowCaseBody({ user, title, price, colors, sizes, addToCart }) {
     <div className="showcase__body">
       <div>
         <h1 className="body__title">{title}</h1>
-        <p className="body__price">{price},-</p>
+        <div className="body__price--wrapper">
+          <p
+            className={
+              discount > 0 ? "body__price body__price--discount" : "body__price"
+            }
+          >
+            {price},-
+          </p>
+          <p className="body__price">
+            {discount > 0
+              ? (price * (1 - discount / 100)).toFixed(2) + ",-"
+              : ""}
+          </p>
+        </div>
       </div>
       <form className="body__form">
         <div className="body__form__wrapper">

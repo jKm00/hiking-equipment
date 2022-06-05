@@ -30,6 +30,7 @@ export default function ProductForm({ products, updateProducts }) {
       price === "" ||
       category === "" ||
       sex === "" ||
+      sex === "undefined" ||
       discount === "" ||
       colors === "" ||
       sizes === "" ||
@@ -115,7 +116,7 @@ export default function ProductForm({ products, updateProducts }) {
    * @param {*} id the id of the product to delete
    */
   function deleteProduct(id) {
-    const relativeUrl = "/products/" + id;
+    const relativeUrl = "/products/delete/" + id;
     sendApiRequest("DELETE", relativeUrl, updateProducts, null, () => {
       console.error("Could not delete product with id: " + id);
     });
@@ -147,7 +148,23 @@ export default function ProductForm({ products, updateProducts }) {
             updateValue={setCategory}
             label="Category"
           />
-          <FormInput value={sex} updateValue={setSex} label="Sex" />
+          <div className="form__input--wrapper">
+            <label htmlFor="sex" className="form__label">
+              Sex
+            </label>
+            <select
+              name="sex"
+              id="sex"
+              className="form__input"
+              onChange={(e) => setSex(e.target.value)}
+            >
+              <option value="undefined">None selected</option>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+              <option value="animal">Animal</option>
+              <option value="unisex">Unisex</option>
+            </select>
+          </div>
           <FormInput
             value={discount}
             updateValue={setDiscount}

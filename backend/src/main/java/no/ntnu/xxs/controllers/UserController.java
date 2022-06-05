@@ -50,6 +50,7 @@ public class UserController {
      * @return Http.OK if the ID in the jwt token matches the ID in the URL. Http.FORBIDDEN otherwise
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation(value = "Finds a user with a given id",
             notes = "Provide an id to find a user",
             response = Contact.class)
@@ -73,6 +74,7 @@ public class UserController {
      * access is denied.
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @ApiOperation(value = "Updates an already existing user based on a given id",
             notes = "Provide the json web token and id of the user to be updated",
             response = Contact.class)

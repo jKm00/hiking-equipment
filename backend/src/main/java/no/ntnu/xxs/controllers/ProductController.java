@@ -114,12 +114,13 @@ public class ProductController {
     * @param id The id of the product to be updated
     *
     */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @ApiOperation(value = "Deletes a product from the database",
             notes = "Provide the id of a product that is to be deleted from the database",
             response = Contact.class)
     /* TODO: make it only accessible for admin. Currently its accessible for any
     logged in users */
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> deleteProduct(@ApiParam(value = "Id of the product that is to be deleted from the database")
                                             @PathVariable() Long id) {
@@ -129,29 +130,20 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-
-
-
-
 /**
  * Searches for products with the given name
  * 
- * @param name of the product to search for
+ * @param search of the product to search for
  * @return 
  */
     @GetMapping("/search/{name}")
     @ApiOperation(value = "The name of a product that is to be found",
             notes = "Provide a name of the product that is trying to be found",
             response = Contact.class)
-    @CrossOrigin
     public List<Product> searchProducts(@ApiParam(value = "Name of the products that are to be found")
-                                        @PathVariable String name) {
-
-        return this.productService.searchProducts(name);
+                                        @PathVariable String search) {
+        return this.productService.searchProducts(search);
 
 
     }
-
-
-
 }
