@@ -44,6 +44,7 @@ public class UserController {
      * @return Http.OK if the ID in the jwt token matches the ID in the URL. Http.FORBIDDEN otherwise
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> getUser(@RequestHeader("Authorization") String jwt, @PathVariable long id) {
         if (!matchingTokenAndUrlId(jwt, id)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -61,6 +62,7 @@ public class UserController {
      * access is denied.
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<?> updateUser(@RequestHeader("Authorization") String jwt, @PathVariable long id, @RequestBody UpdateUserRequest newUserDetails) {
         if (!matchingTokenAndUrlId(jwt, id)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

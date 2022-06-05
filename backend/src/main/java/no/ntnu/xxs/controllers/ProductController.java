@@ -97,9 +97,7 @@ public class ProductController {
     * @param id The id of the product to be updated
     *
     */
-    @DeleteMapping("/{id}")
-    /* TODO: make it only accessible for admin. Currently its accessible for any
-    logged in users */
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> deleteProduct(@PathVariable() Long id) {
         if (this.productService.deleteProduct(id)) {

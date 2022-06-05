@@ -115,7 +115,7 @@ export default function ProductForm({ products, updateProducts }) {
    * @param {*} id the id of the product to delete
    */
   function deleteProduct(id) {
-    const relativeUrl = "/products/" + id;
+    const relativeUrl = "/products/delete/" + id;
     sendApiRequest("DELETE", relativeUrl, updateProducts, null, () => {
       console.error("Could not delete product with id: " + id);
     });
