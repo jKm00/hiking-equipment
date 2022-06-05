@@ -3,6 +3,7 @@ package no.ntnu.xxs.controllers;
 
 import no.ntnu.xxs.entities.Order;
 import no.ntnu.xxs.exception.EmptyCartException;
+import no.ntnu.xxs.exception.NoSuchOrderException;
 import no.ntnu.xxs.security.JwtUtil;
 import no.ntnu.xxs.services.OrderService;
 import org.apache.tomcat.util.http.parser.Authorization;
@@ -38,6 +39,16 @@ public class OrderController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (EmptyCartException e) {
             return new ResponseEntity<>("cart is empty", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteOrder (@PathVariable Long id, @RequestHeader ("Authorization") String authorization) {
+        try {
+            orderService.removeOrder(id, (long) extractUserIdFromJwt(authorization));
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchOrderException e) {
+            return new ResponseEntity<>("No order found that is matching the order id and/ or user id", HttpStatus.BAD_REQUEST);
         }
     }
 

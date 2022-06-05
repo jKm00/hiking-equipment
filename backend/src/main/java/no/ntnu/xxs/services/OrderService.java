@@ -6,6 +6,7 @@ import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.cart.CartItem;
 import no.ntnu.xxs.entities.user.User;
 import no.ntnu.xxs.exception.EmptyCartException;
+import no.ntnu.xxs.exception.NoSuchOrderException;
 import no.ntnu.xxs.repositories.CartItemRepository;
 import no.ntnu.xxs.repositories.OrderItemRepository;
 import no.ntnu.xxs.repositories.OrderRepository;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -75,4 +77,15 @@ public class OrderService {
         userRepository.save(user);
     }
 
+    public void removeOrder(Long orderId, Long userId) throws NoSuchOrderException {
+        Optional<Order> result = orderRepository.findOrderByIdAndUserId(orderId, userId);
+        if (result.isEmpty()) {
+            throw new NoSuchOrderException("No order found that is matching the order id and/ or user id");
+        }
+        Order order = result.get();
+        for (OrderItem orderItem : order.getOrderItems()) {
+            orderItemRepository.delete(orderItem);
+        }
+        orderRepository.delete(order);
+    }
 }
