@@ -67,6 +67,7 @@ function ProductPage({ user }) {
           user={user}
           title={product.productName}
           price={product.price}
+          discount={product.discount}
           colors={product.colors}
           sizes={product.sizes}
           addToCart={addToCart}
