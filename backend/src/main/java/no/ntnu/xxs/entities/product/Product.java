@@ -55,11 +55,6 @@ public class Product {
     @JsonIgnore
     private Set<Order> order = new LinkedHashSet<>();
 
-    // Many to many relation to image
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
-    private Set<Image> images = new LinkedHashSet<>();
-
     public Product() {
     }
 
@@ -197,7 +192,4 @@ public class Product {
         this.order = order;
     }
 
-    public Set<Image> getImages() {
-        return images;
-    }
 }

@@ -3,8 +3,9 @@ package no.ntnu.xxs.controllers;
 import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.services.ProductService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,20 +23,24 @@ public class ImageController {
     ProductService imageService;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/add")
+    @PostMapping("/add/{productId}")
     /**
      * Adds an image to the database
      * 
      * @param multipartFile the image(s) which are to be added
      * @return HTTP response, OK for success, BAD_REQUEST for failure
      */
-    public ResponseEntity<String> upload(@RequestParam("fileContent") MultipartFile multipartFile) {
+    public ResponseEntity<String> upload(@PathVariable Long productId,
+            @RequestParam("fileContent") List<MultipartFile> multipartFile) {
         ResponseEntity<String> response = null;
-        Long imageId = imageService.save(multipartFile);
-        if (imageId > 0) {
-            response = new ResponseEntity<>("" + imageId, HttpStatus.OK);
-        } else {
-            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        try {
+            for (MultipartFile file : multipartFile) {
+                imageService.save(file, productId);
+            }
+            response = new ResponseEntity<>(HttpStatus.OK);
+
+        } catch (Exception e) {
+            response = new ResponseEntity<String>("Image not saved", HttpStatus.BAD_REQUEST);
         }
         return response;
     }
@@ -47,17 +52,19 @@ public class ImageController {
      * @return Image content (and correct content type) or NOT FOUND
      */
     @GetMapping("/{id}")
-    public ResponseEntity<byte[]> get(@PathVariable Long id) {
-        ResponseEntity<byte[]> response;
-        Image image = imageService.getById(id);
-        if (image != null) {
-            response = ResponseEntity.ok()
-                    .header(HttpHeaders.CONTENT_TYPE, image.getContentType())
-                    .body(image.getData());
-        } else {
-            response = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return response;
+    public List<Image> get(@PathVariable Long id) {
+        // ResponseEntity<List<byte[]>> response;
+        List<Image> image = imageService.getAllImagesByProductId(id);
+        /*
+         * if (image != null) {
+         * response = ResponseEntity.ok()
+         * .header(HttpHeaders.CONTENT_TYPE, image.get(0).getContentType())
+         * .body(image);
+         * } else {
+         * response = new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+         * }
+         */
+        return image;
     }
 
     /**
@@ -66,7 +73,7 @@ public class ImageController {
      * @param id ID of the image to delete
      * @return HTTP OK on success, NOT FOUND when image not found
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         ResponseEntity<String> response;

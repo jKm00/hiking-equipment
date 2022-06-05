@@ -5,6 +5,7 @@ import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.entities.product.ProductDetail;
 import no.ntnu.xxs.entities.product.Size;
+import no.ntnu.xxs.exception.NotAnImageException;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
 import no.ntnu.xxs.repositories.ColorRepository;
 import no.ntnu.xxs.repositories.ImageRepository;
@@ -32,6 +33,8 @@ public class ProductService {
     private SizeRepository sizeRepository;
     @Autowired
     private ProductDetailRepository productDetailRepository;
+    @Autowired
+    private ImageRepository imageRepository;
 
     /**
      * Return a list of all products stored in the application state
@@ -68,9 +71,10 @@ public class ProductService {
      * @throws ProductAlreadyExistException if the product already exists
      * @throws IOException
      */
-    public void addProduct(Product product, List<String> colors, List<String> sizes, List<Image> images,
+    public void addProduct(Product product, List<String> colors, List<String> sizes, Image images,
             List<String> details)
             throws ProductAlreadyExistException, IOException {
+        ProductService productService = new ProductService();
         for (String colorValue : colors) {
             Color color = this.colorRepository.findOneByColor(colorValue);
             if (color == null) {
@@ -79,6 +83,8 @@ public class ProductService {
             }
             product.addColor(color);
         }
+
+        this.productRepository.save(product);
 
         for (String sizeValue : sizes) {
             Size size = this.sizeRepository.findOneBySize(sizeValue);
@@ -89,16 +95,15 @@ public class ProductService {
             product.addSize(size);
         }
 
-        for (Image image : images) {
-            Image imageToAdd = new Image(image.getData(), image.getContentType(), image.getFileName());
-            this.imageRepository.save(imageToAdd);
-        }
-
-        this.productRepository.save(product);
-
         for (String detailValue : details) {
             ProductDetail detail = new ProductDetail(detailValue, product);
             this.productDetailRepository.save(detail);
+        }
+
+        try {
+            productService.save(images, product.getId());
+        } catch (NotAnImageException e) {
+            e.printStackTrace();
         }
 
     }
@@ -154,9 +159,6 @@ public class ProductService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
-    @Autowired
-    private ImageRepository imageRepository;
-
     /**
      * Save the provided image to the storage
      *
@@ -164,21 +166,18 @@ public class ProductService {
      * @return ID of the newly created image or -1 on error
      */
 
-    public Long save(MultipartFile images) {
+    public void save(MultipartFile images, Long productId) throws NotAnImageException {
         if (!isImage(images)) {
-            return (long) -1;
+            throw new NotAnImageException("File is not an image");
         }
         Image image = null;
         try {
             image = new Image(images.getBytes(), getFileExtension(images),
-                    images.getContentType());
+                    images.getContentType(), productId);
             imageRepository.save(image);
         } catch (IOException e) {
             logger.error("Could not store image: " + e.getMessage());
-            return (long) -1;
         }
-
-        return image.getId();
     }
 
     /**
@@ -246,6 +245,10 @@ public class ProductService {
             deleted = true;
         }
         return deleted;
+    }
+
+    public List<Image> getAllImagesByProductId(Long id) {
+        return imageRepository.findAllImages(id);
     }
 
 }

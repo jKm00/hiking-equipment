@@ -2,6 +2,7 @@ package no.ntnu.xxs.controllers;
 
 import no.ntnu.xxs.dto.AddProductRequest;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
+import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,7 +94,7 @@ public class ProductController {
                                 requestBody.getDiscount()),
                         requestBody.getColors(),
                         requestBody.getSizes(),
-                        requestBody.getImages(),
+                        (Image) requestBody.getImages(),
                         requestBody.getDetails());
             } catch (IOException e) {
                 // TODO Auto-generated catch block
