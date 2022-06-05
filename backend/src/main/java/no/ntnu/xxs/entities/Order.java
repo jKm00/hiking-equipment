@@ -30,9 +30,9 @@ public class Order
     private User user;
 
     // Relation to Product
-    @JsonIgnore
-    @ManyToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    private Set<Product> product = new LinkedHashSet<>();
+   @Column(name = "order_items_id")
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private Set<OrderItem> orderItems = new LinkedHashSet<>();
 
     // Columns
     @Column(name = "total_price")

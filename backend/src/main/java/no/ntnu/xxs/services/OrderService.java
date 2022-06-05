@@ -18,4 +18,9 @@ public class OrderService {
         return orderRepository.findAllOrdersByUserId(id);
     }
 
+    public void addOrder() {
+        public getCart
+
+    }
+
 }
