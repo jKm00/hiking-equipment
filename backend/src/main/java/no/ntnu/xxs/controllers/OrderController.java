@@ -37,7 +37,7 @@ public class OrderController {
      * @return the order
      */
     @GetMapping
-    public List<Order> getOrder(@RequestHeader ("Authorization") String authorization) {
+    public List<Order> getOrders(@RequestHeader ("Authorization") String authorization) {
         return orderService.getAllOrdersById((long) extractUserIdFromJwt(authorization));
     }
 
