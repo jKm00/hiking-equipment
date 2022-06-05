@@ -3,8 +3,11 @@ package no.ntnu.xxs.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import no.ntnu.xxs.entities.user.User;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -38,6 +41,8 @@ public class Order
     private float totalPrice;
     @Column(name = "status")
     private Status status;
+
+    private LocalDate orderDate;
 
     private enum Status {
         /**
@@ -127,5 +132,13 @@ public class Order
      */
     public void initializeStatus() {
         setStatus(Status.PENDING);
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 }

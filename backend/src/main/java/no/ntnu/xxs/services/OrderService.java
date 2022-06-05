@@ -14,6 +14,8 @@ import no.ntnu.xxs.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,6 +89,7 @@ public class OrderService {
         //creates an order and assigns a user to it using the given id
         Order order = new Order();
         order.setUser(user);
+        order.setOrderDate(LocalDate.now());
         orderRepository.save(order);
         float totalPrice = 0;
         //iterates through the cart getting cart items
