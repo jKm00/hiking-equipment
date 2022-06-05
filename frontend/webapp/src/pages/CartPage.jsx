@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { sendApiRequest } from "../tools/request";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import CartItem from "../components/CartItem";
 import Footer from "../components/Footer";
@@ -40,13 +40,14 @@ export default function CartPage({ user }) {
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [finalSum, setFinalSum] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     sendApiRequest(
       "GET",
       "/carts",
       function (response) {
-        setCart(response.cartItem);
+        setCart(response.cartItems);
       },
       null,
       function (error) {
@@ -59,6 +60,21 @@ export default function CartPage({ user }) {
     calculateBill();
   }, [cart]);
 
+
+  function createOrder() {
+    sendApiRequest(
+      "POST",
+      "/orders/add",
+      function (response) {
+        navigate("/orders");
+      },
+      null,
+      function (error) {
+        console.error("Could not create order: " + error);
+      }
+    );
+  }
+
   /**
    * Sends a request to API to get cart for current logged in user.
    * If request is successfull, cart is populated with producs. Otherwise
@@ -70,7 +86,7 @@ export default function CartPage({ user }) {
         "GET",
         "/carts",
         function (response) {
-          setCart(response.cartItem);
+          setCart(response.cartItems);
         },
         null,
         function (error) {
@@ -157,7 +173,7 @@ export default function CartPage({ user }) {
                   Total: <span>{parseFloat(finalSum).toFixed(2)},-</span>
                 </p>
               </div>
-              <button className="cart__submit cta">Make purchase</button>
+              <button onClick={createOrder} className="cart__submit cta">Make purchase</button>
             </div>
           </>
         )}
