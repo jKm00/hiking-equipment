@@ -36,8 +36,9 @@ public class OrderController {
      * @param authorization the jwt token of the user to get the orders for
      * @return the order
      */
-    @GetMapping
-    public List<Order> getOrder(@RequestHeader ("Authorization") String authorization) {
+    @GetMapping()
+    @CrossOrigin
+    public List<Order> getOrders(@RequestHeader ("Authorization") String authorization) {
         return orderService.getAllOrdersById((long) extractUserIdFromJwt(authorization));
     }
 
@@ -48,7 +49,8 @@ public class OrderController {
      * @return HttpStatus.OK order was successfully added to the user or
      * HttpStatus.BAD_REQUEST, the cart we're taking the order from is empty
      */
-    @PostMapping
+    @PostMapping("/add")
+    @CrossOrigin
     public ResponseEntity<?> addOrder (@RequestHeader ("Authorization") String authorization) {
         try {
             orderService.addOrder((long) extractUserIdFromJwt(authorization));
@@ -66,7 +68,8 @@ public class OrderController {
      * HttpStatus.OK order was successfully deleted from the user or
      * HttpStatus.BAD_REQUEST, the order we're trying to delete wasn't found
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
+    @CrossOrigin
     public ResponseEntity<?> deleteOrder (@PathVariable Long id, @RequestHeader ("Authorization") String authorization) {
         try {
             orderService.removeOrder(id, (long) extractUserIdFromJwt(authorization));
