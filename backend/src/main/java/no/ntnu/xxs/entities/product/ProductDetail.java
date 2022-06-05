@@ -1,7 +1,6 @@
 package no.ntnu.xxs.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import no.ntnu.xxs.entities.product.Product;
 
 import javax.persistence.*;
 
@@ -22,10 +21,11 @@ public class ProductDetail {
     private Product product;
 
     // Columns
-    @Column(name="details")
+    @Column(name = "details")
     private String detail;
 
-    public ProductDetail() {}
+    public ProductDetail() {
+    }
 
     public ProductDetail(String detail, Product product) {
         this.detail = detail;

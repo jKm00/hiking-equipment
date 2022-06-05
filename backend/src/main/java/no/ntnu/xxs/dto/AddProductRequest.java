@@ -1,8 +1,12 @@
 package no.ntnu.xxs.dto;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
+
+import no.ntnu.xxs.services.ProductService;
 
 public class AddProductRequest {
     private String productName;
@@ -16,9 +20,12 @@ public class AddProductRequest {
     private List<String> sizes;
     private List<String> details;
 
+    @Autowired
+    ProductService productService;
+
     public AddProductRequest(String productName, String description, float price, String category, String sex,
-                             boolean featured, float discount, List<String> colors, List<String> sizes,
-                             List<String> details) {
+            boolean featured, float discount, List<String> colors, List<String> sizes,
+            List<String> details) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -110,4 +117,5 @@ public class AddProductRequest {
     public void setDetails(List<String> details) {
         this.details = details;
     }
+
 }

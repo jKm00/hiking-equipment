@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.Contact;
 import no.ntnu.xxs.dto.AddProductRequest;
 import no.ntnu.xxs.exception.ProductAlreadyExistException;
+import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.List;
 
 /**
-* REST API controller for product collection
-*/
-// TODO: Make product endpoint public. This is made private only for demo purposes
+ * REST API controller for product collection
+ */
+// TODO: Make product endpoint public. This is made private only for demo
+// purposes
+
 @RestController
 @RequestMapping("/api/products")
 @CrossOrigin
@@ -32,6 +37,7 @@ public class ProductController {
     * @param category the category of the products to be returned
     * @return a list of all products
     */
+
     @GetMapping
     @ApiOperation(value = "Returns all products with a given sex and category",
                 notes = "Provide sex and categories to find all products within these categories",
@@ -76,6 +82,7 @@ public class ProductController {
     }
     
     /**
+
     * HTTP POST request to /api/products. Tries to add product to database.
     * @param requestBody The body of the request containing the product to be added
     * @return Http.OK when product is added, or Http.CONFLICT if product
@@ -91,18 +98,23 @@ public class ProductController {
     public ResponseEntity<?> addProduct(@ApiParam(value = "Product that is to be added to the database")
                                         @RequestBody AddProductRequest requestBody) {
         try {
-            this.productService.addProduct(
-            new Product(
-            requestBody.getProductName(),
-            requestBody.getDescription(),
-            requestBody.getPrice(),
-            requestBody.getCategory(),
-            requestBody.getSex(),
-            requestBody.isFeatured(),
-            requestBody.getDiscount()),
-            requestBody.getColors(),
-            requestBody.getSizes(),
-            requestBody.getDetails());
+            try {
+                this.productService.addProduct(
+                        new Product(
+                                requestBody.getProductName(),
+                                requestBody.getDescription(),
+                                requestBody.getPrice(),
+                                requestBody.getCategory(),
+                                requestBody.getSex(),
+                                requestBody.isFeatured(),
+                                requestBody.getDiscount()),
+                        requestBody.getColors(),
+                        requestBody.getSizes(),
+                        requestBody.getDetails());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (ProductAlreadyExistException e) {
             return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
@@ -110,6 +122,7 @@ public class ProductController {
     }
     
     /**
+
     *  HTTP PUT request to /api/products/{id}
     * @param id The id of the product to be updated
     *

@@ -16,8 +16,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * Creates AuthenticationManager - sets up authentication type
- * The @EnableWebSecurity is needed to specify that this is a web security configuration class
- * The @EnableGlobalMethodSecurity is needed so that each endpoint can specify which role it requires
+ * The @EnableWebSecurity is needed to specify that this is a web security
+ * configuration class
+ * The @EnableGlobalMethodSecurity is needed so that each endpoint can specify
+ * which role it requires
  */
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -30,7 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private JwtRequestFilter jwtRequestFilter;
 
     /**
-     * This method is called automatically by the framework, so that its knows what type of authentication to use.
+     * This method is called automatically by the framework, so that its knows what
+     * type of authentication to use.
      * We also tell the framework to load the users from a database
      *
      * @param auth Authentication builder
@@ -61,6 +64,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/products/*").permitAll()
                 .antMatchers("/api/users").hasRole("ADMIN")
                 .antMatchers("/api/users/*").permitAll()
+                .antMatchers("/api/images/add").hasRole("ADMIN")
+                .antMatchers("/api/images/delete/*").hasRole("ADMIN")
+                .antMatchers("/api/images/*").permitAll()
                 .antMatchers("/api/carts").permitAll()
                 .antMatchers("/api/orders/add").hasRole("USER")
           
@@ -77,7 +83,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v3/**").permitAll()
 
                 // Every other endpoints need one form of authentication
-                // What type of authentication is specified with an annotation over each endpoint
+                // What type of authentication is specified with an annotation over each
+                // endpoint
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -93,7 +100,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * This method is executed so that the framework knows what encryption to use when checking for password
+     * This method is executed so that the framework knows what encryption to use
+     * when checking for password
      *
      * @return The password encryptor
      */

@@ -15,40 +15,34 @@ import java.util.Set;
 @Table(name = "products")
 public class Product {
 
-    //Primary Key
+    // Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
 
-    //Columns
-    @Column(name="product_name")
+    // Columns
+    @Column(name = "product_name")
     private String productName;
-    @Column(name="product_description")
+    @Column(name = "product_description")
     private String description;
-    @Column(name="price")
+    @Column(name = "price")
     private float price;
-    @Column(name="category")
+    @Column(name = "category")
     private String category;
-    @Column(name="sex")
+    @Column(name = "sex")
     private String sex;
-    @Column(name="featured")
+    @Column(name = "featured")
     private boolean featured;
     @Column(name = "discount")
     private float discount;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "product_colors",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "color_id")
-    )
+    @JoinTable(name = "product_colors", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "color_id"))
     private Set<Color> colors = new LinkedHashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "product_sizes",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "size_id")
-    )
+    @JoinTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "size_id"))
     private Set<Size> sizes = new LinkedHashSet<>();
 
     // Relation to ProductDetails
@@ -57,16 +51,15 @@ public class Product {
 
     // Relation to Order
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "order_products",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
+    @JoinTable(name = "order_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
     @JsonIgnore
     private Set<Order> order = new LinkedHashSet<>();
 
-    public Product() {}
+    public Product() {
+    }
 
-    public Product(String productName, String description, float price, String category, String sex, boolean featured, float discount) {
+    public Product(String productName, String description, float price, String category, String sex, boolean featured,
+            float discount) {
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -78,6 +71,7 @@ public class Product {
 
     /**
      * Adds a detail about the product to the product
+     * 
      * @param productDetail the detail to be added
      */
     public void addProductDetails(ProductDetail productDetail) {
@@ -86,6 +80,7 @@ public class Product {
 
     /**
      * Adds a size to the product
+     * 
      * @param size the size to add
      */
     public void addSize(Size size) {
@@ -94,6 +89,7 @@ public class Product {
 
     /**
      * Adds a color to the product
+     * 
      * @param color the color to add
      */
     public void addColor(Color color) {
@@ -195,4 +191,5 @@ public class Product {
     public void setOrder(Set<Order> order) {
         this.order = order;
     }
+
 }

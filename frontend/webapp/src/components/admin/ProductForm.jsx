@@ -62,6 +62,7 @@ export default function ProductForm({ products, updateProducts }) {
         colors: colors.split(", "),
         sizes: sizes.split(", "),
         details: details.split("\n"),
+        images: images
       };
       sendApiRequest(
         "POST",
