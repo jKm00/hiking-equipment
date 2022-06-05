@@ -35,7 +35,7 @@ public class CartController {
      * cart was found
      */
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
         ResponseEntity response;
         Long userId = this.getUserIdFromJwt(authorization);
