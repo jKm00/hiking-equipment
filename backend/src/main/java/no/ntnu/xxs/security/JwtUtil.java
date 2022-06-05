@@ -22,8 +22,9 @@ public class JwtUtil {
      * This is the key inside the JWT token that stores all the roles
      */
     private static final String JWT_AUTH_KEY = "roles";
+
     private static final String JWT_ID_KEY = "uid";
-    
+
     public String generateToken(AccessUserDetails userDetails) {
         final long CURRENT_TIME = System.currentTimeMillis();
         final long HOUR_IN_MILLISECOND = 60 * 60 * 1000;

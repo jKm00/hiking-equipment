@@ -150,7 +150,6 @@ public class ProductService {
     public List<Product> getProductsByCategory(String category) {
         return this.productRepository.findAllByCategory(category);
     }
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     /**
@@ -244,5 +243,13 @@ public class ProductService {
     public List<Image> getAllImagesByProductId(Long id) {
         return imageRepository.findAllImages(id);
     }
+
+    /**
+     * Searches for products with the same name as the given param
+     */
+
+     public List<Product> searchProducts(String name) {
+        return this.productRepository.findAllByName(name);
+     }
 
 }

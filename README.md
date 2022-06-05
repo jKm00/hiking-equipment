@@ -4,14 +4,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/jKm00/hiking-equipment">
+    <img src="documentation/readme-images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">XXS Hiking Equipment</h3>
 
   <p align="center">
-    A project to learn frontend & backend development in our batchelor course!
+    A project to learn frontend & backend development in our bachelor course!
     <br />
     <br />
     <a href="http://gr02.appdev.cloudns.ph/">View Demo</a>
@@ -129,6 +129,7 @@ Joakim Edvardsen - joakied@ntnu.no
 ## Acknowledgments
 
 - [Readme Template](https://github.com/othneildrew/Best-README-Template#getting-started)
+- [Swiper JS](https://swiperjs.com/react)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

@@ -52,13 +52,14 @@ public class User {
     private Set<Role> roles = new LinkedHashSet<>();
 
     // Relation to Cart
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Cart cart;
+    private Cart cart = new Cart();
 
     //Relation to Order
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private Set<Order> order = new LinkedHashSet<>();
+    private Set<Order> orders = new LinkedHashSet<>();
 
     public User() {}
 
@@ -163,12 +164,12 @@ public class User {
         this.cart = cart;
     }
 
-    public Set<Order> getOrder() {
-        return order;
+    public Set<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrder(Set<Order> order) {
-        this.order = order;
+    public void setOrders(Set<Order> order) {
+        this.orders = order;
     }
 
     /**
@@ -183,16 +184,16 @@ public class User {
      * Returns true if a user is admin, false if not
      * @return true if a user is admin, false if not
      */
-    public boolean isAdmin(){
+    /*public boolean isAdmin(){
         return this.hasRole("ROLE_ADMIN");
-    }
+    }*/
 
     /**
      * Checks if a user has a specific role
      * @param roleName name of the role to be checked
      * @return true if role is found, false if not
      */
-    public boolean hasRole(String roleName){
+    /*public boolean hasRole(String roleName){
         boolean found = false;
         Iterator<Role> it = roles.iterator();
         while(!found && it.hasNext())
@@ -204,10 +205,14 @@ public class User {
             }
         }
         return found;
-    }
+    }*/
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 }
 

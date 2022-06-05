@@ -1,6 +1,7 @@
 package no.ntnu.xxs;
 
 
+import no.ntnu.xxs.entities.cart.Cart;
 import no.ntnu.xxs.entities.product.Color;
 import no.ntnu.xxs.entities.product.Product;
 import no.ntnu.xxs.entities.product.ProductDetail;
@@ -54,7 +55,9 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             Role admin = new Role("ROLE_ADMIN");
             adam.addRole(user);
             adam.addRole(admin);
+            adam.setCart(new Cart(adam));
             carl.addRole(user);
+            carl.setCart(new Cart(carl));
 
             roleRepository.save(user);
             roleRepository.save(admin);
@@ -75,7 +78,7 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
             sweater.addSize(medium);
             sweater.addSize(large);
 
-            Product boots = new Product("Boots", "Hiking boots", 799f, "boots", "men", false, 0f);
+            Product boots = new Product("Boots", "Hiking boots", 799f, "boots", "unisex", false, 0f);
             boots.addColor(black);
             boots.addColor(blue);
             boots.addSize(medium);

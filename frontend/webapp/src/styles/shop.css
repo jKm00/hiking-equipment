@@ -4,9 +4,9 @@
 
 .shop-header {
   grid-column: 1 / -1;
-  background-image: url("../img/shop-header/girl-hiking-compressed.jpg");
+  background-image: url("../img/shop-header/hiking-header-compressed.jpg");
   background-size: cover;
-  background-position: 50% 35%;
+  background-position: 50% 60%;
   color: var(--clr-light-400);
 }
 
@@ -35,6 +35,7 @@
 
 .shop-header--men {
   background-image: url("../img/shop-header/man-hiking-compressed.jpg");
+  background-position: 50% 35%;
 }
 
 /* ----- Womans shop ------ */
