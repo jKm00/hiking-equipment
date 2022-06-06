@@ -243,6 +243,17 @@ public class ProductService {
         return deleted;
     }
 
+    /**
+     * Delete all images from database
+     *
+     * @param id ID of the images to delete
+     */
+    public void deleteAllImagesById(Long id) throws InvocationTargetException {
+            for (Image image : getAllImagesByProductId(id)) {
+                imageRepository.delete(image);
+            }
+    }
+
     public List<Image> getAllImagesByProductId(Long id) throws InvocationTargetException {
         return imageRepository.findAllImages(id);
     }

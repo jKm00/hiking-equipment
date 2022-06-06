@@ -1,6 +1,9 @@
 package no.ntnu.xxs.controllers;
 
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Contact;
 import no.ntnu.xxs.dto.AddCartItemRequest;
 import no.ntnu.xxs.dto.DeleteCartItemRequest;
 import no.ntnu.xxs.entities.cart.Cart;
@@ -35,8 +38,12 @@ public class CartController {
      * cart was found
      */
     @GetMapping
+    @ApiOperation(value = "Returns the cart of a user.",
+            notes = "Provide an authentication request to receive Http.OK and the cart of the authorized user",
+            response = Contact.class)
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Cart> getCart(@RequestHeader("Authorization") String authorization) {
+    public ResponseEntity<Cart> getCart(@ApiParam(value = "Request to be sent and authorized")
+                                        @RequestHeader("Authorization") String authorization) {
         ResponseEntity response;
         Long userId = this.getUserIdFromJwt(authorization);
         Cart cart = this.cartService.getCart(userId);
@@ -55,8 +62,14 @@ public class CartController {
      * @return Http.OK product was successfully added to cart.
      */
     @PostMapping
+    @ApiOperation(value = "Adds a cart item to a users cart",
+            notes = "Provide an authentication request and a add cart item request to add a cart item to a users cart",
+            response = Contact.class)
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> addCartItem(@RequestHeader("Authorization") String authorization, @RequestBody AddCartItemRequest requestBody) {
+    public ResponseEntity<?> addCartItem(@ApiParam(value = "Request to be sent and authorized")
+                                            @RequestHeader("Authorization") String authorization,
+                                         @ApiParam(value = "add cart item request")
+                                         @RequestBody AddCartItemRequest requestBody) {
         Long userId = this.getUserIdFromJwt(authorization);
         this.cartService.addCartItemToCart(userId, requestBody);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -71,8 +84,14 @@ public class CartController {
      * @return Http.OK if product was successfully delete, Http.NOT_FOUND otherwise
      */
     @DeleteMapping
+    @ApiOperation(value = "Removes a cart item from a users cart",
+            notes = "Provide an authentication request and a delete cart item request to delete a cart item from a users cart",
+            response = Contact.class)
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<?> removeCartItemFromCart(@RequestHeader("Authorization") String authorization, @RequestBody DeleteCartItemRequest requestBody) {
+    public ResponseEntity<?> removeCartItemFromCart(@ApiParam(value = "Request to be sent and authorized")
+                                                    @RequestHeader("Authorization") String authorization,
+                                                    @ApiParam(value = "delete cart item request")
+                                                    @RequestBody DeleteCartItemRequest requestBody) {
         Long userId = this.getUserIdFromJwt(authorization);
         ResponseEntity<?> response;
         try {

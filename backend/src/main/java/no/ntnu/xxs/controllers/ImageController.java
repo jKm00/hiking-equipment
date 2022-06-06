@@ -1,5 +1,8 @@
 package no.ntnu.xxs.controllers;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Contact;
 import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.services.ProductService;
 
@@ -34,8 +37,13 @@ public class ImageController {
      * @param multipartFile the image(s) which are to be added
      * @return HTTP response, OK for success, BAD_REQUEST for failure
      */
-    public ResponseEntity<String> upload(@PathVariable Long productId,
-            @RequestParam("fileContent") List<MultipartFile> multipartFile) {
+    @ApiOperation(value = "Uploads an image to the database",
+            notes = "Provide an product id and the file content of an image to upload to specific product",
+            response = Contact.class)
+    public ResponseEntity<String> upload(@ApiParam(value = "Id of the product related to the image")
+                                            @PathVariable Long productId,
+                                         @ApiParam(value = "List of multipart files")
+                                         @RequestParam("fileContent") List<MultipartFile> multipartFile) {
         ResponseEntity<String> response = null;
         try {
             for (MultipartFile file : multipartFile) {
@@ -57,7 +65,11 @@ public class ImageController {
      */
     @GetMapping("/{id}")
     @Transactional
-    public List<Image> get(@PathVariable Long id) {
+    @ApiOperation(value = "Retrieves a list of images related to a product id",
+            notes = "Provide an product id to recevie all images related to that product",
+            response = Contact.class)
+    public List<Image> get(@ApiParam(value = "id of the product that images are related to")
+                            @PathVariable Long id) {
         // ResponseEntity<List<byte[]>> response;
         List<Image> image;
 
@@ -79,7 +91,11 @@ public class ImageController {
      */
     @GetMapping("/thumbnail/{id}")
     @Transactional
-    public ResponseEntity<?> getThumbnail(@PathVariable Long id) {
+    @ApiOperation(value = "Returns the thumbnail of a product with a specified id",
+            notes = "Provide an product id to receive the thumbnail related to that product",
+            response = Contact.class)
+    public ResponseEntity<?> getThumbnail(@ApiParam(value = "id of the product that the thumbnail is related to")
+                                            @PathVariable Long id) {
         try {
             return new ResponseEntity<>(imageService.getAllImagesByProductId(id).get(0), HttpStatus.OK);
         } catch (InvocationTargetException | IndexOutOfBoundsException e) {
@@ -94,8 +110,12 @@ public class ImageController {
      * @return HTTP OK on success, NOT FOUND when image not found
      */
     @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Deletes an image from the database",
+            notes = "Provide an product id to delete the image related to that product",
+            response = Contact.class)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@ApiParam(value = "id of the product that the image to be deleted is related to")
+                                            @PathVariable Long id) {
         ResponseEntity<String> response;
         if (imageService.delete(id)) {
             response = ResponseEntity.ok("");

@@ -1,6 +1,9 @@
 package no.ntnu.xxs.controllers;
 
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.Contact;
 import no.ntnu.xxs.entities.Order;
 import no.ntnu.xxs.exception.EmptyCartException;
 import no.ntnu.xxs.exception.NoSuchOrderException;
@@ -37,8 +40,12 @@ public class OrderController {
      * @return the order
      */
     @GetMapping()
+    @ApiOperation(value = "Returns all orders related to a user",
+            notes = "Provide an authorization json web token that is used to receive a user id and return related orders",
+            response = Contact.class)
     @CrossOrigin
-    public List<Order> getOrders(@RequestHeader ("Authorization") String authorization) {
+    public List<Order> getOrders(@ApiParam(value = "Json web token to be authorized and checked for a user id")
+                                    @RequestHeader ("Authorization") String authorization) {
         return orderService.getAllOrdersById((long) extractUserIdFromJwt(authorization));
     }
 
@@ -50,8 +57,12 @@ public class OrderController {
      * HttpStatus.BAD_REQUEST, the cart we're taking the order from is empty
      */
     @PostMapping("/add")
+    @ApiOperation(value = "Adds order to a users orders",
+            notes = "Provide an authorization json web token that is used to receive a user id and add the orders accordingly",
+            response = Contact.class)
     @CrossOrigin
-    public ResponseEntity<?> addOrder (@RequestHeader ("Authorization") String authorization) {
+    public ResponseEntity<?> addOrder (@ApiParam(value = "Json web token to be authorized and checked for a user id")
+                                        @RequestHeader ("Authorization") String authorization) {
         try {
             orderService.addOrder((long) extractUserIdFromJwt(authorization));
             return new ResponseEntity<>(HttpStatus.OK);
@@ -69,6 +80,9 @@ public class OrderController {
      * HttpStatus.BAD_REQUEST, the order we're trying to delete wasn't found
      */
     @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "Deletes an order from a users orders",
+            notes = "Provide an authorization json web token that is used to receive a user id and delete an orders accordingly",
+            response = Contact.class)
     @CrossOrigin
     public ResponseEntity<?> deleteOrder (@PathVariable Long id, @RequestHeader ("Authorization") String authorization) {
         try {
