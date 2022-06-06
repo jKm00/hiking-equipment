@@ -41,11 +41,11 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        Optional<User> existingUser = userRepository.findUserByEmail("adam@gmail.com");
+        Optional<User> existingUser = userRepository.findUserByEmail("admin@gmail.com");
 
         if (existingUser.isEmpty()) {
             logger.info("Importing dummy data...");
-            
+
             User adminUser = new User("admin", "adminsen", "admin@gmail.com", "$2a$10$D/UnWX1uXdvYViqMRSa.p.nROCXeSg9pT/gQ1Oc401xi97WliiCBS", "Norway", "6004", "Ålesund", "Øvre strandgate 2");
 
             Role user = new Role("ROLE_USER");
