@@ -1,37 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { sendApiRequest } from "../tools/request";
 
 import ProductCard from "./ProductCard";
 
 import "../styles/campaigns.css";
 
 function Campaigns() {
+  const [featured, setFeatured] = useState([]);
+
+  useEffect(() => {
+    sendApiRequest(
+      "GET",
+      "/products/features",
+      (response) => {
+        setFeatured(response);
+      },
+      null,
+      (error) => {
+        console.error(error);
+      }
+    );
+  }, []);
+
   return (
     <section className="campaigns" id="campaigns">
       <h2 className="campaigns__title">Campaigns</h2>
-      <ProductCard
-        img="/img/articles/dog-sweater-green-transparent.png"
-        imgAlt="Military green dog boots"
-        title="Dog set"
-        desc="For small dogs. Includes boots, pants and sweater"
-        price="700"
-        id="1"
-      />
-      <ProductCard
-        img="/img/articles/water-bottle-blue-transparent.png"
-        imgAlt="Blue water bottle"
-        title="Water bottle"
-        desc="0.7 Liters, with hook for easy attachment."
-        price="120"
-        id="2"
-      />
-      <ProductCard
-        img="/img/articles/winter-sweater-green-transparent.png"
-        imgAlt="Military green sweater"
-        title="Winter Sweater"
-        desc="Holds the heat effectively."
-        price="800"
-        id="3"
-      />
+      {!featured || featured.length === 0 ? (
+        <p>Loading featured products...</p>
+      ) : (
+        featured.map((product) => (
+          <ProductCard
+            key={product.id}
+            title={product.productName}
+            desc={product.description}
+            price={product.price}
+            id={product.id}
+          />
+        ))
+      )}
     </section>
   );
 }

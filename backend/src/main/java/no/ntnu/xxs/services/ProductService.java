@@ -255,4 +255,11 @@ public class ProductService {
         return this.productRepository.findAllByName(name);
      }
 
+    /**
+     * Returns a list of featured products
+     * @return a list of featured products
+     */
+    public List<Product> getFeaturedProducts() {
+        return this.productRepository.findAllFeaturedProducts();
+    }
 }

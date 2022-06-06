@@ -59,6 +59,15 @@ public class ProductController {
         }
         return products;
     }
+
+    /**
+     * Returns a list of featured products
+     * @return a list of freatured products
+     */
+    @GetMapping("/features")
+    public List<Product> getFeaturedProducts() {
+        return this.productService.getFeaturedProducts();
+    }
     
     /**
     * Returns an item with the id given in the URL
