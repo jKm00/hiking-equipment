@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -140,8 +141,9 @@ public class ProductController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> deleteProduct(@ApiParam(value = "Id of the product that is to be deleted from the database")
-                                            @PathVariable() Long id) {
+                                            @PathVariable() Long id) throws InvocationTargetException {
         if (this.productService.deleteProduct(id)) {
+            this.productService.deleteAllImagesById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
