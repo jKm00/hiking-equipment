@@ -13,12 +13,6 @@
   gap: var(--spacing-smaller);
 }
 
-.cart__item__img {
-  width: 5rem;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
 .cart__item__title {
   font-size: var(--fs-small);
   margin-bottom: var(--spacing-smaller);

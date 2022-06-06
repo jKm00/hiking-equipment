@@ -58,9 +58,6 @@
   }
 
   /* ------ Cart page ------ */
-  .cart__item__img {
-    width: 7rem;
-  }
 
   .cart__item__title {
     font-size: var(--fs-large);

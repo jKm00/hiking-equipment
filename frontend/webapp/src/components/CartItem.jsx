@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { sendApiRequest } from "../tools/request";
 
 import "../styles/cartItem.css";
 
@@ -10,11 +11,6 @@ export default function CartItem({ product, handleRemove }) {
   return (
     <div className="cart__item">
       <Link to={"/product/" + product.productId} className="cart__item__link">
-        <img
-          className="cart__item__img"
-          src={"https://picsum.photos/200/300?random=" + product.productId}
-          alt=""
-        />
         <div className="cart__item__details">
           <h3 className="cart__item__title">{product.productName}</h3>
           <p className="cart__item__detail">Color: {product.color}</p>
