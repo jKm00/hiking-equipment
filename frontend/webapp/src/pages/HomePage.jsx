@@ -1,5 +1,6 @@
 import React from "react";
 
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Campaigns from "../components/Campaigns";
 import ReviewSection from "../components/ReviewSection";
@@ -14,6 +15,7 @@ function HomePage() {
       <ReviewSection />
       <CompanyInfo />
       <Newsletter />
+      <Footer />
     </>
   );
 }

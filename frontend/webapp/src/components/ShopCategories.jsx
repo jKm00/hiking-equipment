@@ -1,23 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import "../styles/categories.css";
 
-function ShopCategories() {
+function ShopCategories({ sex, category, updateProducts }) {
+  useEffect(() => {
+    updateProducts(sex, category);
+  }, [sex, category]);
+
   return (
     <aside className="categories">
       <h2 className="categories__title">Categories</h2>
-      <a className="categories__item" href="#">
+      <Link
+        to={"/shop/" + sex}
+        className={
+          category == undefined
+            ? "categories__item categories__item--selected"
+            : "categories__item"
+        }
+      >
         All items
-      </a>
-      <a className="categories__item" href="#">
+      </Link>
+      <Link
+        to={"/shop/" + sex + "/boots"}
+        className={
+          category === "boots"
+            ? "categories__item categories__item--selected"
+            : "categories__item"
+        }
+      >
         Boots
-      </a>
-      <a className="categories__item" href="#">
+      </Link>
+      <Link
+        to={"/shop/" + sex + "/sweater"}
+        className={
+          category === "sweater"
+            ? "categories__item categories__item--selected"
+            : "categories__item"
+        }
+        href="#"
+      >
         Sweaters
-      </a>
-      <a className="categories__item" href="#">
+      </Link>
+      <Link
+        to={"/shop/" + sex + "/hats"}
+        className={
+          category === "hats"
+            ? "categories__item categories__item--selected"
+            : "categories__item"
+        }
+      >
         Hats
-      </a>
+      </Link>
     </aside>
   );
 }

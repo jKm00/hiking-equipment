@@ -38,6 +38,7 @@ button {
 
   /* Shadow */
   --shadow-box: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  --shadow-box-strong: 0 5px 10px rgba(0, 0, 0, 0.5);
   --shadow-txt: 0px 0px 10px rgba(0, 0, 0, 0.4);
 
   /* Border radius */
@@ -734,6 +735,119 @@ span.swiper-pagination-bullet {
 .shop-header--animals {
   background-image: url("img/dog-on-hike.jpeg");
   background-position: 50% 75%;
+}
+
+/*---------------
+    product page
+---------------*/
+
+.layout {
+  grid-column: 2 / -2;
+  display: grid;
+  row-gap: 1.6rem;
+  grid-template-columns: 20rem 50rem 50rem;
+}
+
+/*---------------
+    showcase card body
+---------------*/
+
+.showcase__body {
+  grid-column: 3 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 1.6rem;
+}
+
+
+.card__body__title{
+  display: flex;
+  justify-self: flex-start;
+  order: 0;
+  padding: 2.4rem 0rem 1.6rem 2.4rem;
+}
+
+.card__body__price {
+  display: flex;
+  justify-self: flex-start;
+  order: 1;
+  padding: 0rem 0rem 6.4rem 2.4rem;
+}
+
+.card__body__color{
+  display: flex;
+  justify-self: flex-start;
+  order: 3;
+  padding: 0rem 0rem 1.6rem 2.4rem;
+}
+
+.size_selector_text{
+  display: flex;
+  justify-self: flex-start;
+  order: 5;
+  padding: 0rem 0rem 0.8rem 2.4rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  /*---------------
+    Fikk den til å etterligne h4, skal jeg bare bytte den til h4
+---------------*/
+}
+
+.size_selector {
+  display: flex;
+  justify-self: flex-start;
+  order: 6;
+  margin-left: 2.4rem;
+  padding: 1.6rem 9.6rem 1.6rem 1.6rem;
+  text-align: left;
+}
+
+.option_text {
+  display: flex;
+  justify-self: flex-start;
+}
+
+#cta--add--to--cart {
+  display: block;
+  justify-self: flex-start;
+  padding: 0.8rem 0rem 0.8rem 0rem;
+  margin: 6.4rem 2.4rem 2.4rem 2.4rem;
+  text-align: center;
+}
+
+/*---------------
+    showcase card img
+---------------*/
+
+.small__images {
+  grid-column: 1 / -3;
+  grid-row: 1 / 2;
+  justify-content: left;
+  align-content: left;
+
+}
+
+.small__images--selected {
+  border: rgb(0, 0, 0) 0.2rem solid;
+}
+
+.big__images {
+  display:flex;
+  grid-column: 2 / -2;
+  grid-row: 1 / 2;
+  justify-content: center;
+  align-items: center;
+}
+
+/*---------------
+    showcase description box
+---------------*/
+
+.description-box {
+  grid-row: 2 / 3;
+  grid-column: 1 / -1;
+  outline: red 0.2rem solid;
 }
 
 /*---------------

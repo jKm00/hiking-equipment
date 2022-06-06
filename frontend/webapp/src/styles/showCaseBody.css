@@ -1,0 +1,97 @@
+/*---------------
+    showcase card body
+---------------*/
+
+.showcase__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-larger);
+  justify-content: space-between;
+  box-shadow: var(--shadow-box);
+  padding: var(--spacing-large);
+}
+
+.body__title {
+  font-size: var(--fs-larger);
+}
+
+.body__price--wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-medium);
+}
+
+.body__price {
+  font-size: var(--fs-large);
+  font-weight: bold;
+}
+
+.body__price--discount {
+  text-decoration: line-through;
+}
+
+.body__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large);
+}
+
+.body__form__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-smaller);
+}
+
+.body__form__color {
+  font-size: var(--fs-medium);
+  font-weight: bold;
+}
+
+.body__form__checkbox {
+  display: none;
+}
+
+.body__form__checkbox:checked + .color__button {
+  outline: 2px solid #000;
+}
+
+.color__button--wrapper {
+  display: flex;
+  gap: var(--spacing-small);
+}
+
+.color__button {
+  --size: var(--fs-medium);
+  display: block;
+  width: var(--size);
+  height: var(--size);
+}
+
+.color__button--green {
+  background-color: green;
+  outline: 2px solid green;
+}
+
+.color__button--orange {
+  background-color: orange;
+  outline: 2px solid orange;
+}
+
+.size-selector-text {
+  font-size: var(--fs-medium);
+  font-weight: bold;
+}
+
+.size-selector {
+  align-self: start;
+  min-width: 20rem;
+  padding: var(--spacing-smaller);
+  outline: 1px solid var(--clr-dark-1000);
+  border-radius: var(--br);
+}
+
+.body__btn--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
