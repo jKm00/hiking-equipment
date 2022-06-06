@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -18,13 +18,11 @@ import "../styles/showCaseImg.css";
 export default function ShowCaseImg({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
-  return (
+  return images.length === 0 ? (
+    <p>No images available</p>
+  ) : (
     <>
       <Swiper
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
         loop={true}
         spaceBetween={0}
         slidesPerView="auto"
@@ -33,12 +31,17 @@ export default function ShowCaseImg({ images }) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2 big-images"
       >
-        {
-          // TODO: Loop through images and display them in swiper
-        }
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-black-02.png" />
-        </SwiperSlide>
+        {images.map((image, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <img
+                src={"data:image/" + image.extension + ";base64," + image.data}
+                alt=""
+                className="image--big"
+              />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -50,36 +53,16 @@ export default function ShowCaseImg({ images }) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper small-images"
       >
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-black-01.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-black-02.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-black-03.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-blue-01.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-blue-02.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-blue-03.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-red-01.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-red-02.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-red-03.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-black-01.png" />
-        </SwiperSlide>
+        {images.map((image, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <img
+                src={"data:image/" + image.extension + ";base64," + image.data}
+                alt=""
+              />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

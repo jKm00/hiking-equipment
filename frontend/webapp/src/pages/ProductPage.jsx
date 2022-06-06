@@ -30,7 +30,6 @@ function ProductPage({ user }) {
       "GET",
       "/images/" + id,
       (response) => {
-        console.log(response);
         setImages(response);
       },
       null,
