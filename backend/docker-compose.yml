@@ -1,7 +1,18 @@
 version: '3'
 services:
+ app:
+    build: .
+    ports:
+      - 80:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      db:
+        # This is important! Without it application will fail because Postgres has not started properly!
+        condition: service_healthy
 
-  db:
+
+ db:
     image: postgres
     restart: always
     environment:
@@ -10,3 +21,8 @@ services:
     - POSTGRES_DB=${DATABASE_NAME}
     ports:
     - "${POSTGRES_PORT}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
