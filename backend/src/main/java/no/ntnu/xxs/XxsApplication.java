@@ -30,7 +30,7 @@ public class XxsApplication {
 		return new ApiInfo(
 			"XXS - Application development project app",
 			"API for the XXS-project in application development at ntnu",
-			"0.3",
+			"1.0",
 				"https://github.com/jKm00/hiking-equipment",
 				new springfox.documentation.service.Contact("Group 02", "gr02.appdev.cloudns.ph", "gr02@ntnu.no"),
 				null,
