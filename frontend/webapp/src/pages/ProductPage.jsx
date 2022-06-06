@@ -14,6 +14,7 @@ import { displayFeedback } from "../tools/feedback";
 function ProductPage({ user }) {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     sendApiRequest(
@@ -21,6 +22,16 @@ function ProductPage({ user }) {
       "/products/" + id,
       (response) => {
         setProduct(response);
+      },
+      null,
+      (error) => console.error(error)
+    );
+    sendApiRequest(
+      "GET",
+      "/images/" + id,
+      (response) => {
+        console.log(response);
+        setImages(response);
       },
       null,
       (error) => console.error(error)
@@ -61,7 +72,7 @@ function ProductPage({ user }) {
     <>
       <div className="layout">
         <div className="images--wrapper">
-          <ShowCaseImg images={product.images} />
+          <ShowCaseImg images={images} />
         </div>
         <ShowCaseBody
           user={user}

@@ -33,56 +33,11 @@ export default function ShowCaseImg({ images }) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2 big-images"
       >
+        {
+          // TODO: Loop through images and display them in swiper
+        }
         <SwiperSlide>
-          <img src="/img/articles/hiking-shoes-transparent-black-01.png" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-black-02.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-black-03.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-blue-01.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-blue-02.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-blue-03.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-red-01.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-red-02.png"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="image--big"
-            src="/img/articles/hiking-shoes-transparent-red-03.png"
-          />
+          <img src="/img/articles/hiking-shoes-transparent-black-02.png" />
         </SwiperSlide>
       </Swiper>
       <Swiper

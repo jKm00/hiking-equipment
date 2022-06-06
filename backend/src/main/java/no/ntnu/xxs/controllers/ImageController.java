@@ -49,7 +49,7 @@ public class ImageController {
     /**
      * Return image content from the database
      * 
-     * @param id ID of the image to locate
+     * @param id ID of the product to find images for
      * @return Image content (and correct content type) or NOT FOUND
      */
     @GetMapping("/{id}")
