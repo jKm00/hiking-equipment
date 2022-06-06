@@ -60,6 +60,17 @@ public class ImageController {
         return image;
     }
 
+
+    /**
+     * Returns a thumbnail for the product with the id given
+     * @param id the id of the product to get the thumbnail for
+     * @return a thumbnail of a product
+     */
+    @GetMapping("/thumbnail/{id}")
+    public Image getThumbnail(@PathVariable Long id) {
+        return imageService.getAllImagesByProductId(id).get(0);
+    }
+
     /**
      * Delete image content from the database
      * 
