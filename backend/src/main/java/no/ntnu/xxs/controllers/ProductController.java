@@ -98,24 +98,21 @@ public class ProductController {
     public ResponseEntity<?> addProduct(@ApiParam(value = "Product that is to be added to the database")
                                         @RequestBody AddProductRequest requestBody) {
         try {
-            try {
-                this.productService.addProduct(
-                        new Product(
-                                requestBody.getProductName(),
-                                requestBody.getDescription(),
-                                requestBody.getPrice(),
-                                requestBody.getCategory(),
-                                requestBody.getSex(),
-                                requestBody.isFeatured(),
-                                requestBody.getDiscount()),
-                        requestBody.getColors(),
-                        requestBody.getSizes(),
-                        requestBody.getDetails());
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
+            long productId = this.productService.addProduct(
+                    new Product(
+                            requestBody.getProductName(),
+                            requestBody.getDescription(),
+                            requestBody.getPrice(),
+                            requestBody.getCategory(),
+                            requestBody.getSex(),
+                            requestBody.isFeatured(),
+                            requestBody.getDiscount()),
+                    requestBody.getColors(),
+                    requestBody.getSizes(),
+                    requestBody.getDetails());
+            return new ResponseEntity<>(productId, HttpStatus.OK);
+        } catch (IOException e) {
+            return new ResponseEntity<>("Something went wronh", HttpStatus.BAD_REQUEST);
         } catch (ProductAlreadyExistException e) {
             return new ResponseEntity<>("Product already exists", HttpStatus.CONFLICT);
         }

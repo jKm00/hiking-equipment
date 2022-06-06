@@ -70,8 +70,9 @@ public class ProductService {
      * @param sizes   a list of sized available for the product described as string
      * @throws ProductAlreadyExistException if the product already exists
      * @throws IOException
+     * @return the id of the product that was added.
      */
-    public void addProduct(Product product, List<String> colors, List<String> sizes,
+    public long addProduct(Product product, List<String> colors, List<String> sizes,
             List<String> details)
             throws ProductAlreadyExistException, IOException {
         ProductService productService = new ProductService();
@@ -100,6 +101,7 @@ public class ProductService {
             this.productDetailRepository.save(detail);
         }
 
+        return product.getId();
     }
 
     /**

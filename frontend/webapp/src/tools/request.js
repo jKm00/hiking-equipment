@@ -18,7 +18,8 @@ export function sendApiRequest(
   url,
   callback,
   requestBody,
-  errorCallback
+  errorCallback,
+  fileContent
 ) {
   const request = new XMLHttpRequest();
   request.onreadystatechange = function () {
@@ -45,14 +46,21 @@ export function sendApiRequest(
     request.setRequestHeader("Authorization", "Bearer " + jwtToken);
   }
 
+  let dataToSend = null;
   if (requestBody) {
     if (method.toLowerCase() !== "get") {
       request.setRequestHeader("Content-Type", "application/json");
-      request.send(JSON.stringify(requestBody));
+      dataToSend = JSON.stringify(requestBody);
     } else {
       console.error("Sending HTTP GET with request body not allowed!");
-      request.send();
     }
+  } else if (fileContent) {
+    dataToSend = new FormData();
+    dataToSend.append("fileContent", fileContent);
+  }
+
+  if (dataToSend) {
+    request.send(dataToSend);
   } else {
     request.send();
   }

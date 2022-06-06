@@ -8,6 +8,7 @@ import AdminTableRow from "./AdminTableRow";
 
 import "../../styles/productForm.css";
 import "../../styles/table.css";
+import { upload } from "@testing-library/user-event/dist/upload";
 
 export default function ProductForm({ products, updateProducts }) {
   const [title, setTitle] = useState("");
@@ -21,6 +22,8 @@ export default function ProductForm({ products, updateProducts }) {
   const [images, setImages] = useState([]);
   const [featured, setFeatured] = useState(false);
   const [details, setDetails] = useState("");
+
+  const [newProductId, setNewProductId] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -62,20 +65,12 @@ export default function ProductForm({ products, updateProducts }) {
         colors: colors.split(", "),
         sizes: sizes.split(", "),
         details: details.split("\n"),
-        images: images
       };
       sendApiRequest(
         "POST",
         "/products/add",
         (response) => {
-          displayFeedback(
-            "success",
-            "Product was added",
-            document.querySelector("[data-submit-product]"),
-            document.querySelector("[data-feedback-product]")
-          );
-          updateProducts();
-          resetInputs();
+          uploadImages(response);
         },
         newProduct,
         (error) => {
@@ -88,6 +83,34 @@ export default function ProductForm({ products, updateProducts }) {
         }
       );
     }
+  }
+
+  /**
+   * Uploads the images stored in the images state to the product with
+   * the id given as param
+   * @param {*} id the id of the product to which the images should be added to
+   */
+  function uploadImages(id) {
+    for (let i = 0; i < images.length; i++) {
+      sendApiRequest(
+        "POST",
+        "/images/add/" + id,
+        (response) => {
+          console.log(response);
+        },
+        null,
+        (error) => console.error(error),
+        images[0]
+      );
+    }
+    displayFeedback(
+      "success",
+      "Product was added",
+      document.querySelector("[data-submit-product]"),
+      document.querySelector("[data-feedback-product]")
+    );
+    updateProducts();
+    resetInputs();
   }
 
   /**
