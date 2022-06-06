@@ -45,59 +45,19 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
         if (existingUser.isEmpty()) {
             logger.info("Importing dummy data...");
-
-            // Password = adam123
-            User adam = new User("Adam", "Jensen", "adam@gmail.com", "$2a$10$Z1Hv5cq1uzscCA94L/GqgOOvNfQiEH8izQimZBTOCopLuF18Ggqg.", "Norway", "1302", "Langhus", "Grensegata 89");
-            // Password = carl123
-            User carl = new User("Carl", "Hansen", "carl@gmail.com", "$2a$10$bUi6E8PPgwlUhBszkEugw.Ma/exSzgXUhMZTf4Bf/SvcaWwonHKSO", "Norway", "1884", "Trondheim", "Kongens gate 12");
+            
+            User adminUser = new User("admin", "adminsen", "admin@gmail.com", "$2a$10$D/UnWX1uXdvYViqMRSa.p.nROCXeSg9pT/gQ1Oc401xi97WliiCBS", "Norway", "6004", "Ålesund", "Øvre strandgate 2");
 
             Role user = new Role("ROLE_USER");
             Role admin = new Role("ROLE_ADMIN");
-            adam.addRole(user);
-            adam.addRole(admin);
-            adam.setCart(new Cart(adam));
-            carl.addRole(user);
-            carl.setCart(new Cart(carl));
+            adminUser.addRole(user);
+            adminUser.addRole(admin);
+            adminUser.setCart(new Cart(adminUser));
 
             roleRepository.save(user);
             roleRepository.save(admin);
 
-            userRepository.save(adam);
-            userRepository.save(carl);
-
-            // Add product
-            Color black = new Color("Black");
-            Color blue = new Color("Blue");
-
-            Size medium = new Size("M");
-            Size large = new Size("L");
-
-            Product sweater = new Product("Sweater", "Winter Sweater", 399f, "sweater", "women", false, 0f);
-            sweater.addColor(black);
-            sweater.addColor(blue);
-            sweater.addSize(medium);
-            sweater.addSize(large);
-
-            Product boots = new Product("Boots", "Hiking boots", 799f, "boots", "unisex", false, 0f);
-            boots.addColor(black);
-            boots.addColor(blue);
-            boots.addSize(medium);
-            boots.addSize(large);
-
-            colorRepository.save(black);
-            colorRepository.save(blue);
-
-            sizeRepository.save(medium);
-            sizeRepository.save(large);
-
-            productRepository.save(sweater);
-            productRepository.save(boots);
-
-            ProductDetail detailOne = new ProductDetail("This is a nice sweater", sweater);
-            ProductDetail detailTwo = new ProductDetail("Very warm and cozy", sweater);
-
-            productDetailRepository.save(detailOne);
-            productDetailRepository.save(detailTwo);
+            userRepository.save(adminUser);
 
             logger.info("Finished initializing data...");
         } else {
