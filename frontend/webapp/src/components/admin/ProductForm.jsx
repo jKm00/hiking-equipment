@@ -182,7 +182,7 @@ export default function ProductForm({ products, updateProducts }) {
               <option value="undefined">None selected</option>
               <option value="men">Men</option>
               <option value="women">Women</option>
-              <option value="animal">Animal</option>
+              <option value="animals">Animal</option>
               <option value="unisex">Unisex</option>
             </select>
           </div>
