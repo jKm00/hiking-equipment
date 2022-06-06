@@ -34,7 +34,7 @@ export default function AdminPage({ user }) {
     <>
       <div className="admin-page--wrapper">
         <div className="admin-page">
-          <PictureForm />
+          <PictureForm products={products}/>
           <CreateAdminUserForm />
           <ProductForm products={products} updateProducts={updateProducts} />
         </div>

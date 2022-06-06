@@ -52,6 +52,7 @@ public class ImageController {
      * @param id ID of the product to find images for
      * @return Image content (and correct content type) or NOT FOUND
      */
+    @CrossOrigin
     @GetMapping("/{id}")
     public List<Image> get(@PathVariable Long id) {
         // ResponseEntity<List<byte[]>> response;
