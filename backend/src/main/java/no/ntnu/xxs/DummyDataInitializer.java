@@ -48,16 +48,22 @@ public class DummyDataInitializer implements ApplicationListener<ApplicationRead
 
             User adminUser = new User("admin", "adminsen", "admin@gmail.com", "$2a$10$D/UnWX1uXdvYViqMRSa.p.nROCXeSg9pT/gQ1Oc401xi97WliiCBS", "Norway", "6004", "Ålesund", "Øvre strandgate 2");
 
+            // Dummy user, password: adam123
+            User dummyUser = new User("Adam", "Jensen", "adam@gmail.com", "$2a$10$x6abssMsyUHdhFkAjiWhf.QkwgTiCy3qupoCv0ujQg.dbQpWwamWO", "Norway", "6004", "Ålesund", "Kongensgate 10");
+
             Role user = new Role("ROLE_USER");
             Role admin = new Role("ROLE_ADMIN");
             adminUser.addRole(user);
             adminUser.addRole(admin);
             adminUser.setCart(new Cart(adminUser));
+            dummyUser.addRole(user);
+            dummyUser.setCart(new Cart(dummyUser));
 
             roleRepository.save(user);
             roleRepository.save(admin);
 
             userRepository.save(adminUser);
+            userRepository.save(dummyUser);
 
             logger.info("Finished initializing data...");
         } else {
