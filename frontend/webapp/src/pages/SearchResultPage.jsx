@@ -14,11 +14,14 @@ function SearchResultPage() {
   const { keyword } = useParams();
   const [products, setProduct] = useState([]);
 
+  console.log(keyword);
+
   useEffect(() => {
     sendApiRequest(
       "GET",
       "/products/search/" + keyword,
       (response) => {
+        console.log(response);
         setProduct(response);
       },
       null,

@@ -155,7 +155,7 @@ public class ProductController {
  * @param search of the product to search for
  * @return 
  */
-    @GetMapping("/search/{name}")
+    @GetMapping("/search/{search}")
     @ApiOperation(value = "The name of a product that is to be found",
             notes = "Provide a name of the product that is trying to be found",
             response = Contact.class)
