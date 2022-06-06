@@ -1,0 +1,15 @@
+/*---------------
+    product page
+---------------*/
+
+.layout {
+  grid-column: 2 / -2;
+  display: flex;
+  flex-direction: column;
+  margin: var(--spacing-large) 0;
+  gap: var(--spacing-larger);
+}
+
+.images--wrapper {
+  max-width: 100%;
+}

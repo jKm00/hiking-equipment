@@ -1,0 +1,24 @@
+.login--background {
+  --nav-height: 128px;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--nav-height));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../img/01-robust-clothing-rainydude.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login__redirect {
+  text-align: center;
+  margin-top: var(--spacing-small);
+  font-size: var(--fs-small);
+  color: var(--clr-dark-600);
+}
+
+.login__redirect a {
+  font-size: inherit;
+  color: inherit;
+}

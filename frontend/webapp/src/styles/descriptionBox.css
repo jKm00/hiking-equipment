@@ -1,0 +1,20 @@
+/*---------------
+    showcase description box
+---------------*/
+
+.description-box {
+  margin-bottom: 6.4rem;
+}
+
+.product__description__title {
+  margin-bottom: var(--spacing-small);
+}
+
+.product__description__list {
+  font-size: var(--fs-small);
+  margin-left: var(--spacing-large);
+}
+
+.product__description__item {
+  margin-bottom: var(--spacing-tiny);
+}

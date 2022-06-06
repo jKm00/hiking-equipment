@@ -1,22 +1,91 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { sendApiRequest } from "../tools/request";
 
-function ProductPage() {
+import ShowCaseImg from "../components/ShowCaseImg";
+import ShowCaseBody from "../components/ShowCaseBody";
+import DescriptionBox from "../components/DescriptionBox";
+import Footer from "../components/Footer";
+
+// Import header styles
+import "../styles/productPage.css";
+import { displayFeedback } from "../tools/feedback";
+
+function ProductPage({ user }) {
   const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const [images, setImages] = useState([]);
 
-  const mystyle = {
-    gridColumn: "2 / -2",
-    margin: "12.8em 0",
-  };
+  useEffect(() => {
+    sendApiRequest(
+      "GET",
+      "/products/" + id,
+      (response) => {
+        setProduct(response);
+      },
+      null,
+      (error) => console.error(error)
+    );
+    sendApiRequest(
+      "GET",
+      "/images/" + id,
+      (response) => {
+        setImages(response);
+      },
+      null,
+      (error) => console.error(error)
+    );
+  }, []);
+
+  function addToCart(color, size) {
+    const cartItem = {
+      productId: product.id,
+      productName: product.productName,
+      productPrice: product.price,
+      productCategory: product.category,
+      productSex: product.sex,
+      discount: product.discount,
+      color: color,
+      size: size,
+      quantity: 1,
+    };
+    sendApiRequest(
+      "POST",
+      "/carts",
+      (response) => {
+        displayFeedback(
+          "success",
+          "Added to cart",
+          document.querySelector("[data-submit]"),
+          document.querySelector("[data-feedback]")
+        );
+      },
+      cartItem,
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
   return (
-    <div style={mystyle}>
-      <h1>Product page</h1>
-      <p>
-        Tried to display item with id {id}, but failed because this page is not
-        fully implemented
-      </p>
-    </div>
+    <>
+      <div className="layout">
+        <div className="images--wrapper">
+          <ShowCaseImg images={images} />
+        </div>
+        <ShowCaseBody
+          user={user}
+          title={product.productName}
+          price={product.price}
+          discount={product.discount}
+          colors={product.colors}
+          sizes={product.sizes}
+          addToCart={addToCart}
+        />
+        <DescriptionBox details={product.productDetails} />
+      </div>
+      <Footer />
+    </>
   );
 }
 

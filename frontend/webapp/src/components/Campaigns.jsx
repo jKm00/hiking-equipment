@@ -6,30 +6,30 @@ import "../styles/campaigns.css";
 
 function Campaigns() {
   return (
-    <section className="campaigns">
+    <section className="campaigns" id="campaigns">
       <h2 className="campaigns__title">Campaigns</h2>
       <ProductCard
-        img="/img/articles/01-dog-boots-green.jpg"
+        img="/img/articles/dog-sweater-green-transparent.png"
         imgAlt="Military green dog boots"
         title="Dog set"
         desc="For small dogs. Includes boots, pants and sweater"
-        price="700,-"
+        price="700"
         id="1"
       />
       <ProductCard
-        img="/img/articles/water-bottle-blue.jpeg"
+        img="/img/articles/water-bottle-blue-transparent.png"
         imgAlt="Blue water bottle"
         title="Water bottle"
         desc="0.7 Liters, with hook for easy attachment."
-        price="120,-"
+        price="120"
         id="2"
       />
       <ProductCard
-        img="/img/articles/winter-sweater-green.jpg"
+        img="/img/articles/winter-sweater-green-transparent.png"
         imgAlt="Military green sweater"
         title="Winter Sweater"
         desc="Holds the heat effectively."
-        price="800,-"
+        price="800"
         id="3"
       />
     </section>

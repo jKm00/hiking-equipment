@@ -17,10 +17,22 @@
 .header-carousel__img {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.header-carousel__img--overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.7) 70%,
+    rgba(0, 0, 0, 0.1)
+  );
+  z-index: -1;
 }
 
 .header-carousel__body {
@@ -30,33 +42,33 @@
   justify-content: center;
   height: 100%;
   width: 70%;
-  max-width: 1200px;
-  min-width: 200px;
+  max-width: 120rem;
+  min-width: 20rem;
   margin: auto;
 }
 
 .header-carousel__body__title {
-  max-width: 500px;
+  max-width: 50rem;
   text-shadow: var(--shadow-txt);
 }
 
 .header-carousel__body__desc {
-  margin-bottom: 6.4rem;
-  max-width: 600px;
+  margin-bottom: var(--spacing-xxl);
+  max-width: 60rem;
   text-shadow: var(--shadow-txt);
 }
 
 /* Styles for swiper addons */
 
-.header .swiper-pagination-bullet-active {
-  background-color: var(--clr-accent-400);
+.swiper {
+  --swiper-navigation-color: var(--clr-accent-400);
+  --swiper-pagination-color: var(--clr-accent-400);
 }
 
 .header .swiper-button-prev,
 .header .swiper-button-next {
   --offset: 3%;
   position: absolute;
-  color: var(--clr-light-400);
 }
 
 .header .swiper-button-prev {

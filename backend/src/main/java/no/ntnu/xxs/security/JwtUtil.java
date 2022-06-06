@@ -1,15 +1,15 @@
 package no.ntnu.xxs.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.*;
+import no.ntnu.xxs.entities.user.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.function.Function;
+
+import no.ntnu.xxs.entities.user.User;
 
 /**
  * A utility class for handling JWT token
@@ -23,7 +23,9 @@ public class JwtUtil {
      */
     private static final String JWT_AUTH_KEY = "roles";
 
-    public String generateToken(UserDetails userDetails) {
+    private static final String JWT_ID_KEY = "uid";
+
+    public String generateToken(AccessUserDetails userDetails) {
         final long CURRENT_TIME = System.currentTimeMillis();
         final long HOUR_IN_MILLISECOND = 60 * 60 * 1000;
         final long TIME_AFTER_ONE_HOUR = CURRENT_TIME + HOUR_IN_MILLISECOND;
@@ -31,6 +33,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .claim(JWT_AUTH_KEY, userDetails.getAuthorities())
+                .claim(JWT_ID_KEY, userDetails.getId())
                 .setIssuedAt(new Date(CURRENT_TIME))
                 .setExpiration(new Date(TIME_AFTER_ONE_HOUR))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
@@ -51,7 +54,7 @@ public class JwtUtil {
         try {
             final Claims claims = extractAllClaims(token);
             return claimsResolver.apply(claims);
-        } catch (SignatureException e) {
+        } catch (SignatureException | ExpiredJwtException e) {
             return null;
         }
     }
@@ -64,7 +67,7 @@ public class JwtUtil {
      * @throws SignatureException if parser failed to parse token, this exception is thrown. For example
      * if an invalid token is submitted in a request.
      */
-    private Claims extractAllClaims(String token) throws SignatureException {
+    private Claims extractAllClaims(String token) throws SignatureException, ExpiredJwtException {
         return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
     }
 
@@ -98,5 +101,21 @@ public class JwtUtil {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+    /**
+     * Extracts the user id in the jwt token. If no id was found in the JWT token, -1 is returned.
+     * @param token the JWT token to extract the id from
+     * @return a string with the id
+     */
+    public int extractId(String token) {
+        int response;
+        try {
+            Claims jwtBody = extractAllClaims(token);
+            response = (int) jwtBody.get(JWT_ID_KEY);
+        } catch (SignatureException e) {
+            response = -1;
+        }
+        return response;
     }
 }

@@ -1,0 +1,29 @@
+/*---------------
+    Admin page
+---------------*/
+.admin-page--wrapper {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  align-items: start;
+  background-color: var(--clr-dark-300);
+  padding: var(--spacing-extra-large) 0;
+  min-height: 70vh;
+}
+
+.admin-page {
+  grid-column: 2 / -2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: var(--spacing-large);
+  column-gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+}
+
+.product-form {
+  grid-column: 1 / -1;
+}
+
+.create-admin-form {
+  grid-column: span 2;
+}
