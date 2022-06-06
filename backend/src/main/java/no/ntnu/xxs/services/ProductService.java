@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -242,7 +243,7 @@ public class ProductService {
         return deleted;
     }
 
-    public List<Image> getAllImagesByProductId(Long id) {
+    public List<Image> getAllImagesByProductId(Long id) throws InvocationTargetException {
         return imageRepository.findAllImages(id);
     }
 

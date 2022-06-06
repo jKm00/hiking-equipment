@@ -3,6 +3,7 @@ package no.ntnu.xxs.controllers;
 import no.ntnu.xxs.entities.product.Image;
 import no.ntnu.xxs.services.ProductService;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,13 @@ public class ImageController {
     @GetMapping("/{id}")
     public List<Image> get(@PathVariable Long id) {
         // ResponseEntity<List<byte[]>> response;
-        List<Image> image = imageService.getAllImagesByProductId(id);
+        List<Image> image;
+
+        try {
+            image = imageService.getAllImagesByProductId(id);
+        } catch (InvocationTargetException e) {
+            image = null;
+        }
 
         return image;
     }
@@ -64,11 +71,16 @@ public class ImageController {
     /**
      * Returns a thumbnail for the product with the id given
      * @param id the id of the product to get the thumbnail for
-     * @return a thumbnail of a product
+     * @return 200 OK with the image if successful, 404 NOT FOUND if
+     * no thumbnail was found for the product with the id given
      */
     @GetMapping("/thumbnail/{id}")
-    public Image getThumbnail(@PathVariable Long id) {
-        return imageService.getAllImagesByProductId(id).get(0);
+    public ResponseEntity<?> getThumbnail(@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(imageService.getAllImagesByProductId(id).get(0), HttpStatus.OK);
+        } catch (InvocationTargetException | IndexOutOfBoundsException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     /**

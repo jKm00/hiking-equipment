@@ -86,8 +86,6 @@ function ShopPage() {
             products.map((product) => (
               <ProductCard
                 key={product.id}
-                img="/img/articles/hiking-shoes-transparent-black-02.png"
-                imgAlt={product.productName}
                 title={product.productName}
                 desc={product.description}
                 price={product.price}

@@ -69,7 +69,12 @@ function ShowCaseBody({
                   <label
                     htmlFor={color.id}
                     className={"color__button"}
-                    style={{ backgroundColor: color.color.toLowerCase() }}
+                    style={{
+                      backgroundColor:
+                        color.color.toLowerCase() === "transparent"
+                          ? "lightgrey"
+                          : color.color.toLowerCase(),
+                    }}
                   ></label>
                 </div>
               ))
