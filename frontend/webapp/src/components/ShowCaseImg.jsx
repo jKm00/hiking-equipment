@@ -19,7 +19,7 @@ export default function ShowCaseImg({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return images.length === 0 ? (
-    <p>No images available</p>
+    <p>Loading images...</p>
   ) : (
     <>
       <Swiper
