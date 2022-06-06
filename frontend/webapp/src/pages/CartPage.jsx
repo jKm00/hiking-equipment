@@ -32,7 +32,6 @@ export default function CartPage({ user }) {
     calculateBill();
   }, [cart]);
 
-
   function createOrder() {
     sendApiRequest(
       "POST",
@@ -77,7 +76,8 @@ export default function CartPage({ user }) {
     let discount = 0;
     cart.forEach((product) => {
       total += product.productPrice * product.quantity;
-      discount += product.discount * product.quantity;
+      discount +=
+        ((product.productPrice * product.discount) / 100) * product.quantity;
     });
     setTotal(total);
     setDiscount(discount);
@@ -145,7 +145,9 @@ export default function CartPage({ user }) {
                   Total: <span>{parseFloat(finalSum).toFixed(2)},-</span>
                 </p>
               </div>
-              <button onClick={createOrder} className="cart__submit cta">Make purchase</button>
+              <button onClick={createOrder} className="cart__submit cta">
+                Make purchase
+              </button>
             </div>
           </>
         )}
