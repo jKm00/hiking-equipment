@@ -7,7 +7,7 @@ export function isImages(files) {
   let i = 0;
   let allImages = true;
   while (allImages && i < files.length) {
-    const extension = getExtension(files[i].name);
+    const extension = getExtension(files[i].name).toLowerCase();
     if (extension !== "jpg" && extension !== "jpeg" && extension !== "png") {
       allImages = false;
     }
