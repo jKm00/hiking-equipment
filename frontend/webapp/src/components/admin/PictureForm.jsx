@@ -61,7 +61,7 @@ export default function PictureForm({ products }) {
               <option value="undefined">No products</option>
             ) : (
               products.map((product) => (
-                <option value={product.id}>{product.productName}</option>
+                <option key={product.id} value={product.id}>{product.productName}</option>
               ))
             )}
           </select>
