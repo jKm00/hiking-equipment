@@ -91,26 +91,23 @@ export default function ProductForm({ products, updateProducts }) {
    * @param {*} id the id of the product to which the images should be added to
    */
   function uploadImages(id) {
-    for (let i = 0; i < images.length; i++) {
-      sendApiRequest(
-        "POST",
-        "/images/add/" + id,
-        (response) => {
-          console.log(response);
-        },
-        null,
-        (error) => console.error(error),
-        images[0]
-      );
-    }
-    displayFeedback(
-      "success",
-      "Product was added",
-      document.querySelector("[data-submit-product]"),
-      document.querySelector("[data-feedback-product]")
+    sendApiRequest(
+      "POST",
+      "/images/add/" + id,
+      (response) => {
+        displayFeedback(
+          "success",
+          "Product was added",
+          document.querySelector("[data-submit-product]"),
+          document.querySelector("[data-feedback-product]")
+        );
+        updateProducts();
+        resetInputs();
+      },
+      null,
+      (error) => console.error(error),
+      images
     );
-    updateProducts();
-    resetInputs();
   }
 
   /**

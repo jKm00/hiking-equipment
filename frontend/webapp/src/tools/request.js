@@ -56,7 +56,9 @@ export function sendApiRequest(
     }
   } else if (fileContent) {
     dataToSend = new FormData();
-    dataToSend.append("fileContent", fileContent);
+    for (let i = 0; i < fileContent.length; i++) {
+      dataToSend.append("fileContent", fileContent[i]);
+    }
   }
 
   if (dataToSend) {
