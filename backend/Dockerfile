@@ -6,7 +6,8 @@ FROM amazoncorretto:17.0.2
 COPY target/*.jar app.jar
 
 
+
 # When the container starts, we will launch command `java -jar /app.jar`
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=${SPRING_PROFILE_ACTIVE}","/app.jar"]
 
 
