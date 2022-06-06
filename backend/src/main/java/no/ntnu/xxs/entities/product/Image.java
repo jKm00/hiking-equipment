@@ -1,5 +1,7 @@
 package no.ntnu.xxs.entities.product;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,13 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 /**
  * Entity for storing image data
  */
 @Entity
 @Table(name = "image")
-
 public class Image {
     // Primary Key
     @Column(unique = true, name = "id")

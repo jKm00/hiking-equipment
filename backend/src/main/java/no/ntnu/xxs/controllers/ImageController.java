@@ -14,6 +14,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
+
 /**
  * Controller for image handling endpoints
  */
@@ -54,6 +56,7 @@ public class ImageController {
      * @return Image content (and correct content type) or NOT FOUND
      */
     @GetMapping("/{id}")
+    @Transactional
     public List<Image> get(@PathVariable Long id) {
         // ResponseEntity<List<byte[]>> response;
         List<Image> image;
@@ -75,6 +78,7 @@ public class ImageController {
      * no thumbnail was found for the product with the id given
      */
     @GetMapping("/thumbnail/{id}")
+    @Transactional
     public ResponseEntity<?> getThumbnail(@PathVariable Long id) {
         try {
             return new ResponseEntity<>(imageService.getAllImagesByProductId(id).get(0), HttpStatus.OK);

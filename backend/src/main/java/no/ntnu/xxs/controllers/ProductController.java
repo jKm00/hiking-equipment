@@ -101,8 +101,6 @@ public class ProductController {
     @ApiOperation(value = "Adds a product to the database",
             notes = "provide a valid product to add it to the database",
             response = Contact.class)
-    /* TODO: make it only accessible for admin. Currently its accessible for any
-    logged in users */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> addProduct(@ApiParam(value = "Product that is to be added to the database")
                                         @RequestBody AddProductRequest requestBody) {
