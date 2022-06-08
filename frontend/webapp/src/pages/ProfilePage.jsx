@@ -14,12 +14,19 @@ import Footer from "../components/Footer";
 // styles
 import "../styles/profilePage.css";
 
+/**
+ * Returns a profile page with details about the user
+ * @param {*} user, the current user logged in on the app
+ * @returns a profile page
+ */
 export default function ProfilePage({ user }) {
+  // Id of the user to retrieve
   const { id } = useParams();
 
+  // Boolean, discribing if the user logged in has access or not
   const [validUser, setValidUser] = useState(false);
-  const [uid, setUid] = useState("");
 
+  // Details about the user
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,8 +36,9 @@ export default function ProfilePage({ user }) {
   const [address, setAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
 
+  // Checks if the user logged in is the same as the user page requested
+  // If so, update the user details
   useEffect(() => {
-    // TODO: Use user instead of getting the jwt
     const jwt = getCookie("jwt");
     if (jwt !== "") {
       const userData = parseJwtUser(jwt);

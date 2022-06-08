@@ -3,6 +3,14 @@ import { useState } from "react";
 // styles
 import "../styles/profileInfo.css";
 
+/**
+ * Creates a component containing information about the profile of a user
+ * @param label,
+ * @param value,
+ * @param type,
+ * @param updateValue,
+ * @returns returns a component containing information about a users credentials
+ */
 export default function ProfileDetail({ label, value, type, updateValue }) {
   const [toggled, setToggled] = useState(false);
   /**

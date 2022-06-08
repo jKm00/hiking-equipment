@@ -5,6 +5,10 @@ import { validEmail, validPassword } from "../../tools/validators";
 
 import "../../styles/form.css";
 
+/**
+ * Creates a admin user form that is to be used in the admin page
+ * @returns returns a form component that is to be used in the admin page
+ */
 export default function CreateAdminUserForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

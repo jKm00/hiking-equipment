@@ -2,6 +2,10 @@ import React from "react";
 
 import "../styles/newsletter.css";
 
+/**
+ * Creates the newsletter component that is displayed on the main page of the website
+ * @returns returns a component that contains the newsletter information of the main page
+ */
 function Newsletter() {
   return (
     <section className="newsletter">

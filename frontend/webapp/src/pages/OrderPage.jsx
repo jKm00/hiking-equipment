@@ -7,9 +7,16 @@ import Footer from "../components/Footer";
 
 import "../styles/orderPage.css";
 
+/**
+ * Returns an order page containing a list of all order for the user
+ * currently login in
+ * @param {*} user, the user signed in on the app
+ * @returns an order page
+ */
 export default function OrderPage({ user }) {
   const [orders, setOrders] = useState([]);
 
+  // Retrieves the orders from backend when page loads
   useEffect(() => {
     sendApiRequest(
       "GET",
@@ -63,7 +70,13 @@ export default function OrderPage({ user }) {
                   products
                 </p>
               ) : (
-                orders.map((order) => <Order key={order.id} order={order} updateOrders={updateOrders}/>)
+                orders.map((order) => (
+                  <Order
+                    key={order.id}
+                    order={order}
+                    updateOrders={updateOrders}
+                  />
+                ))
               )}
             </div>
           </>

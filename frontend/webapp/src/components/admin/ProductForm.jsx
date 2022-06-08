@@ -10,6 +10,12 @@ import "../../styles/productForm.css";
 import "../../styles/table.css";
 import { upload } from "@testing-library/user-event/dist/upload";
 
+/**
+ * Creates a product from component where products can be added to the database
+ * @param products, a list of all existing products
+ * @param updateProducts, method that updates the list of products
+ * @returns returns a form component that can be used to add products
+ */
 export default function ProductForm({ products, updateProducts }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -25,6 +31,9 @@ export default function ProductForm({ products, updateProducts }) {
 
   const [newProductId, setNewProductId] = useState("");
 
+  /**
+   * Handles adding products to the database
+   */
   function handleSubmit(event) {
     event.preventDefault();
     if (
