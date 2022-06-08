@@ -148,10 +148,10 @@ Distributed under NTNU. Only for learning purposes
 
 ## Contact
 
-Eduard Andrei Cristea - eduardac@ntnu.no  
-Richileu Alphonso Bailey - richileb@ntnu.no  
-Torstein Eide - torstei@ntnu.no  
-Joakim Edvardsen - joakied@ntnu.no
+Eduard Andrei Cristea - eduardac@stud.ntnu.no  
+Richileu Alphonso Bailey - richileb@stud.ntnu.no  
+Torstein Eide - torstei@stud.ntnu.no  
+Joakim Edvardsen - joakied@stud.ntnu.no
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
