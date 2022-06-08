@@ -166,4 +166,6 @@ Joakim Edvardsen - joakied@stud.ntnu.no
 
 ## Postman tests
 
-https://www.getpostman.com/collections/1591bbc3e3de4d28a527
+Multiple collections stored under /documentation/postman-tests
+
+*Might need to create an environment to store the jwt when running tests where login is necessary*
