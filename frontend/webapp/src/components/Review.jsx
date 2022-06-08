@@ -2,6 +2,13 @@ import React from "react";
 
 import "../styles/review.css";
 
+/**
+ * Creates a component containing information about a review
+ * @param img, image of the user reviewing
+ * @param name, name of the user reviewing
+ * @param desc, The actual review that a user submits
+ * @returns returns a component containing information about a review
+ */
 function Review({ img, name, desc }) {
   return (
     <article className="review">

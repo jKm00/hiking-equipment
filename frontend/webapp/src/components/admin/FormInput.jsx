@@ -1,3 +1,12 @@
+
+/**
+ * Creates a form input component
+ * @param value, the value of the input
+ * @param updateValue, method that updates values
+ * @param label, what the label of the form is going to say
+ * @param type, the type of input the form will accept
+ * @returns an input form component
+ */
 export default function FormInput({ value, updateValue, label, type }) {
   function handleChange(e) {
     if (type !== null && type === "checkbox") {

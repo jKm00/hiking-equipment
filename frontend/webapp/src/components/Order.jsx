@@ -4,8 +4,17 @@ import { Link } from "react-router-dom";
 import "../styles/order.css";
 import { sendApiRequest } from "../tools/request";
 
+/**
+ * Returns an order component that is to be used in the orderPage
+ * @param order, the order that the component will be connected to
+ * @param updateOrders, the method that updates orders 
+ * @returns returns an order component that is to be used in the orderPage
+ */
 export default function Order({ order, updateOrders }) {
 
+  /**
+   * Sends a request to the backend to delete a users order
+   */
   function deleteOrder() {
     const relativeUrl = "/orders/delete/" + order.id;
     sendApiRequest("DELETE", relativeUrl, updateOrders, null, () => {

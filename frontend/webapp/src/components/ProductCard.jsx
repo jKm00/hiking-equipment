@@ -4,6 +4,14 @@ import { sendApiRequest } from "../tools/request";
 
 import "../styles/productCard.css";
 
+/**
+ * Creates the product card component containing information about a product
+ * @param title, the title of the product contained within the product card
+ * @param desc, the description of the product contained within the product card
+ * @param price, the price of the product contained within the product card
+ * @param id, the id of the product
+ * @returns returns a product card component containing information about a product
+ */
 function ProductCard({ title, desc, price, id }) {
   const [image, setImage] = useState(null);
 

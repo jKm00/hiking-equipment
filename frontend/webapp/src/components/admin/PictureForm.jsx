@@ -2,7 +2,11 @@ import { useState } from "react";
 import { sendApiRequest } from "../../tools/request";
 import { displayFeedback } from "../../tools/feedback";
 
-
+/**
+ * Creates a picture form where images can be added to an already existing product
+ * @param products, list of products that images can be added to
+ * @returns returns a form component
+ */
 export default function PictureForm({ products }) {
   const [images, setImages] = useState([]);
   const [productId, setProductId] = useState("");

@@ -5,6 +5,10 @@ import ProductCard from "./ProductCard";
 
 import "../styles/campaigns.css";
 
+/**
+ * Sends a request to the backend to find the featured products to display in campaigns
+ * @returns returns a component with all featured products
+ */
 function Campaigns() {
   const [featured, setFeatured] = useState([]);
 

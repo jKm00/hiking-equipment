@@ -3,6 +3,10 @@ import { HashLink as Link } from "react-router-hash-link";
 
 import "../styles/footer.css";
 
+/**
+ * Creates the footer of the page which includes information about the company
+ * @returns returns the footer component that will rest at the bottom of the website at all times
+ */
 function Footer() {
   return (
     <footer className="footer">

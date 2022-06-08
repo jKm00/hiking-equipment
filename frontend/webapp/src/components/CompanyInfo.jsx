@@ -2,6 +2,10 @@ import React from "react";
 
 import "../styles/companyInfo.css";
 
+/**
+ * Creates a component that includes all information about the company
+ * @returns returns a component that includes information about the company 
+ */
 function CompanyInfo() {
   return (
     <div className="company-info">

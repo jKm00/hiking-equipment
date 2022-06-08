@@ -3,6 +3,10 @@ import Review from "./Review";
 
 import "../styles/reviewSection.css";
 
+/**
+ * Creates the review section component containing all reviews from users
+ * @returns returns a component containing review components with reviews from the users
+ */
 function ReviewSection() {
   return (
     <section className="reviews" id="reviews">

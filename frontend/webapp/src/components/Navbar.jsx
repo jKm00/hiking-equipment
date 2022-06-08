@@ -4,6 +4,12 @@ import { deleteAuthorizationCookies } from "../tools/authentication";
 
 import "../styles/nav.css";
 
+/**
+ * Creates the main navbar that will be dislayed on the top of the website at all times
+ * @param user, the user that is logged in
+ * @param setUser, sets user if the user logs in or logs out
+ * @returns returns the main navbar component that will rest on the top of the website at all times
+ */
 function Navbar({ user, setUser }) {
   const navigate = useNavigate();
   const searchElements = [

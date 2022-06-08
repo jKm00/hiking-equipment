@@ -3,6 +3,12 @@ import { sendApiRequest } from "../tools/request";
 
 import "../styles/cartItem.css";
 
+/**
+ * Creates a cart item component that represents a item in a cart
+ * @param product, the product that the component represents
+ * @param handleRemove, method that handles the event when removing a product form the cart
+ * @returns returns a component with information about a product
+ */
 export default function CartItem({ product, handleRemove }) {
   function onSubmit() {
     handleRemove(product.id);

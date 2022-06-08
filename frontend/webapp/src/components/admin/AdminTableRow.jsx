@@ -1,3 +1,9 @@
+
+/**
+ * Returns a table row component that is to be used in the admin page
+ * @param product, the product that the table rows are for
+ * @returns a table row component that is to be used in the admin page
+ */
 export default function AdminTableRow({ product, deleteProduct }) {
   /**
    * Handling when delete button is pressed

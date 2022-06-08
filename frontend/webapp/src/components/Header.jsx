@@ -13,6 +13,10 @@ import "swiper/css/navigation";
 // Import header styles
 import "../styles/header.css";
 
+/**
+ * Creates the header of the main site containing the hero section of the website
+ * @returns returns a component that holds the hero section and the "main" part of the home page
+ */
 export default function Header() {
   return (
     <>
