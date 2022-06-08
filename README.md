@@ -37,19 +37,19 @@
       <ul>
         <li><a href="#development"backend>Development</a>
             <ul>
-                <li><a href="#backend-dev">Backend - Dev</a></li>
-                <li><a href="#frontend-dev">frontend - Dev</a></li>
+                <li><a href="#backend---dev">Backend - Dev</a></li>
+                <li><a href="#frontend---dev">frontend - Dev</a></li>
             </ul>
         </li>
         <li><a href="#production"backend>Production</a>
           <ul>
-            <li><a href="backend-prod">Backend - Prod</a>
+            <li><a href="backend---prod">Backend - Prod</a>
               <ul>
                 <li><a href="intellij-setup">IntelliJ SetUp</a></li>
                 <li><a href="running-the-backend">Running the Backend</a></li>
               </ul>
             </li>
-            <li><a href="frontend-prod">Frontend - Prod</a></li>
+            <li><a href="frontend---prod">Frontend - Prod</a></li>
           </ul>
         </li>
       </ul>
