@@ -78,9 +78,28 @@ The frameworks and tools used in this project:
 
 ## Getting Started
 
-### Backend
+### Dev
 
-#### IntelliJ SetUp
+#### Backend
+
+1. Open the backend in your IDE of choice
+2. Run the backend through your IDE
+
+*The backend will boot up an in memory database which is only populated with an admin user*
+
+#### Frontend
+
+1. Open webapp in your IDE of choice (/frontend/webapp)
+2. Create an `.env` file in the root folder of the frontend
+3. Add environment variable: `REACT_APP_API_BASE_URL=http://localhost:8080/api`
+4. Run `npm install` to install all dependencies
+5. Run `npm start` to start the react app
+
+### Prod
+
+#### Backend
+
+##### IntelliJ SetUp
 
 1. Create an `.env` file in the root folder of the backend (/backend)
 2. Add environment variabler:
@@ -88,20 +107,22 @@ The frameworks and tools used in this project:
    - `POSTGRES_PASSWORD`
    - `DATABASE_NAME`
    - `POSTGRES_PORT`
+   - `JWT_KEY`
 3. Download and install ".env file support" plugin for intellij. (Make sure it's working, might need to restart idea)
 4. Enable "EnvFile" in "Run/Debug Configurations" and select the `.env` file created in step 1
 
-#### Running the Backend
+##### Running the Backend
 
-1. Run `docker compose up -d` in terminal. (Spins up a docker container for postgres)
-2. Run backend from idea or another docker container
+1. Package the project with `mvn package`
+3. Run `docker-compose up --build -d` in terminal.
 
-### Frontend
+#### Frontend
 
-1. Add an `.env` file in the root folder of the frontend (/frontent/webapp)
-2. Add environment variable `REACT_APP_API_BASE_URL` that points to the url of the the API (e.g. http://localhost:8080/api)
-3. Run `npm install` to make sure all dependencies are installed
-4. Run `npm start` to start the web application
+1. Open webapp in your IDE of choice (/frontend/webapp)
+2. Create an `.env` file in the root folder of the frontend
+3. Add environment variable: `REACT_APP_API_BASE_URL=http://localhost:80/api`
+4. Run `npm install` to install all dependencies
+5. Run `npm start` to start the react app
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
