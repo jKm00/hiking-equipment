@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 
 import "../styles/categories.css";
 
+/**
+ * Returns a list of all categories
+ * @param {*} sex, the current sex selected
+ * @param {*} category, the current category selected
+ * @param {*} updateProducts, a function that updates the products on the product page
+ * @returns
+ */
 function ShopCategories({ sex, category, updateProducts }) {
+  // Updated the products whenever the sex or category is changes
   useEffect(() => {
     updateProducts(sex, category);
   }, [sex, category]);
