@@ -9,11 +9,20 @@ import ProductCard from "../components/ProductCard";
 
 import "../styles/shop.css";
 
+/**
+ * Returns a shop page, containing all the products matching the filter
+ * @returns
+ */
 function ShopPage() {
+  // A filter for sex
   const { sex } = useParams();
+  // A filter for category
   const { category } = useParams();
+  // List of all products matching the filters
   const [products, setProducts] = useState([]);
+  // The title to be displayed at the top of the page
   const [title, setTitle] = useState("");
+  // The style classes the header should have
   const [headerStyle, setHeaderStyle] = useState("");
 
   // Update shop header based on gender
@@ -33,6 +42,7 @@ function ShopPage() {
     }
   }, [sex]);
 
+  // Updates the products whenever a filter is changed
   useEffect(() => {
     updateProducts(sex, category);
   }, [sex, category]);

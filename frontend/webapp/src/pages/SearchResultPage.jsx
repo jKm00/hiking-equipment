@@ -10,12 +10,16 @@ import ProductCard from "../components/ProductCard";
 // Styling
 import "../styles/searchResultPage.css";
 
+/**
+ * Returns a page containing products the match the search keywod
+ */
 function SearchResultPage() {
+  // The search keyword
   const { keyword } = useParams();
+  // Set of products that match the keyword
   const [products, setProduct] = useState([]);
 
-  console.log(keyword);
-
+  // Retrieves all products that match the keyword when page loads
   useEffect(() => {
     sendApiRequest(
       "GET",
