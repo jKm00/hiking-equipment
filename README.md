@@ -35,13 +35,23 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#backend"backend>Backend</a>
+        <li><a href="#development"backend>Development</a>
             <ul>
-                <li><a href="#intellij-setup">IntelliJ Setup</a></li>
-                <li><a href="#running-the-backend">Running the Backend</a></li>
+                <li><a href="#backend-dev">Backend - Dev</a></li>
+                <li><a href="#frontend-dev">frontend - Dev</a></li>
             </ul>
         </li>
-        <li><a href="#frontend"backend>Frontend</a></li>
+        <li><a href="#production"backend>Production</a>
+          <ul>
+            <li><a href="backend-prod">Backend - Prod</a>
+              <ul>
+                <li><a href="intellij-setup">IntelliJ SetUp</a></li>
+                <li><a href="running-the-backend">Running the Backend</a></li>
+              </ul>
+            </li>
+            <li><a href="frontend-prod">Frontend - Prod</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
     <li><a href="#license">License</a></li>
@@ -78,16 +88,16 @@ The frameworks and tools used in this project:
 
 ## Getting Started
 
-### Dev
+### Development
 
-#### Backend
+#### Backend - Dev
 
 1. Open the backend in your IDE of choice
 2. Run the backend through your IDE
 
 *The backend will boot up an in memory database which is only populated with an admin user*
 
-#### Frontend
+#### Frontend - Dev
 
 1. Open webapp in your IDE of choice (/frontend/webapp)
 2. Create an `.env` file in the root folder of the frontend
@@ -95,9 +105,9 @@ The frameworks and tools used in this project:
 4. Run `npm install` to install all dependencies
 5. Run `npm start` to start the react app
 
-### Prod
+### Production
 
-#### Backend
+#### Backend - Prod
 
 ##### IntelliJ SetUp
 
@@ -116,7 +126,7 @@ The frameworks and tools used in this project:
 1. Package the project with `mvn package`
 3. Run `docker-compose up --build -d` in terminal.
 
-#### Frontend
+#### Frontend - Prod
 
 1. Open webapp in your IDE of choice (/frontend/webapp)
 2. Create an `.env` file in the root folder of the frontend
