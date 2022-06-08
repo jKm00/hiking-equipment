@@ -5,6 +5,17 @@ import { displayFeedback } from "../tools/feedback";
 // Import header styles
 import "../styles/showCaseBody.css";
 
+/**
+ * Returns a show case body that contains details about a product
+ * @param {*} user, the current user logged in
+ * @param {*} title, title of the product
+ * @param {*} price, the price of the product
+ * @param {*} discount, the discount of the product
+ * @param {*} colors, the colors the product is available in
+ * @param {*} size, the sizes the product is available in
+ * @param {*} addToCart, a function to be called whenere the add to cart button is pressed
+ * @returns
+ */
 function ShowCaseBody({
   user,
   title,
@@ -14,9 +25,16 @@ function ShowCaseBody({
   sizes,
   addToCart,
 }) {
+  // The color the user has selected
   const [color, setColor] = useState("");
+  // The size the user has selected
   const [size, setSize] = useState("");
 
+  /**
+   * Handles the event when a user clicks on "Add to cart"
+   * If no color or size is selected an error message is displayed,
+   * otherwise the "addToCart" is called
+   */
   function handleSubmit() {
     if (color === "" || size === "" || size === "undefined") {
       displayFeedback(

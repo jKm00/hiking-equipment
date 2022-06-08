@@ -14,7 +14,11 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 // import custom styles
 import "../styles/showCaseImg.css";
 
-// pass inn en liste med bilder istedenfor. se på thumbs.
+/**
+ * Returns a swiper that displayes all the images for a product
+ * @param {*} images, all the images to be display in the swiper
+ * @returns a swiper
+ */
 export default function ShowCaseImg({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
