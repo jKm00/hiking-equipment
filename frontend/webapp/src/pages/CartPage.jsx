@@ -7,6 +7,10 @@ import Footer from "../components/Footer";
 
 import "../styles/cart.css";
 
+/**
+ * Returns a page containing all cartitems in a users cart
+ * @param {*} user, the user signed in on the app
+ */
 export default function CartPage({ user }) {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
@@ -14,6 +18,7 @@ export default function CartPage({ user }) {
   const [finalSum, setFinalSum] = useState(0);
   const navigate = useNavigate();
 
+  // Retrieves the cart for the user logged in the the page loades
   useEffect(() => {
     sendApiRequest(
       "GET",
@@ -28,11 +33,16 @@ export default function CartPage({ user }) {
     );
   }, []);
 
+  // Calculates the bill whenever the cart is updated
   useEffect(() => {
     calculateBill();
   }, [cart]);
 
-
+  /**
+   * Sends a request to the API to create an order.
+   * If successfull, redirected to order page. Otherwise,
+   * error is printed in console
+   */
   function createOrder() {
     sendApiRequest(
       "POST",
@@ -77,7 +87,8 @@ export default function CartPage({ user }) {
     let discount = 0;
     cart.forEach((product) => {
       total += product.productPrice * product.quantity;
-      discount += product.discount * product.quantity;
+      discount +=
+        ((product.productPrice * product.discount) / 100) * product.quantity;
     });
     setTotal(total);
     setDiscount(discount);
@@ -145,7 +156,9 @@ export default function CartPage({ user }) {
                   Total: <span>{parseFloat(finalSum).toFixed(2)},-</span>
                 </p>
               </div>
-              <button onClick={createOrder} className="cart__submit cta">Make purchase</button>
+              <button onClick={createOrder} className="cart__submit cta">
+                Make purchase
+              </button>
             </div>
           </>
         )}

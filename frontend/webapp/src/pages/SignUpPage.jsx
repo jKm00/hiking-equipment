@@ -4,9 +4,15 @@ import { displayFeedback } from "../tools/feedback";
 import { sendApiRequest } from "../tools/request";
 import { validEmail, validPassword } from "../tools/validators";
 
+/**
+ * Returns a sign up page with inputs for all necessary data for a user
+ * to sign up
+ * @returns
+ */
 export default function SignUpPage() {
   const navigate = useNavigate();
 
+  // State variables for each form input
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +23,10 @@ export default function SignUpPage() {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
 
+  /**
+   * Handles the event that is triggered whenever the sign up form is submitted
+   * @param {*} event, the event that is triggered when the signup form is submitted
+   */
   function handleSubmit(event) {
     event.preventDefault();
     if (

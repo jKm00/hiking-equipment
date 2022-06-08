@@ -7,11 +7,21 @@ import { validEmail } from "../tools/validators";
 import "../styles/login.css";
 import "../styles/form.css";
 
+/**
+ * Returns a login page
+ * @param {*} setUser, a function to be called whenever the login is successful
+ * @returns a login page
+ */
 export default function LoginPage({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  /**
+   * Handles the event when the login form is submitted
+   * @param {*} event, the event that is triggered when
+   * the login form is submitted
+   */
   function handleSubmit(event) {
     event.preventDefault();
     if (!validEmail(email)) {
@@ -26,11 +36,20 @@ export default function LoginPage({ setUser }) {
     }
   }
 
+  /**
+   * Called whenever the login is successful. Sets the user state to the user
+   * logged in and redirects to home page
+   * @param {*} userData
+   */
   function onLoginSuccess(userData) {
     setUser(userData);
     navigate("/");
   }
 
+  /**
+   * Called whenever login is unsuccessful. Displayes a feedback message
+   * to the user
+   */
   function onError() {
     displayFeedback(
       "error",

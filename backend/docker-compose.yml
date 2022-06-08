@@ -15,7 +15,6 @@ services:
 
     depends_on:
       db:
-        # This is important! Without it application will fail because Postgres has not started properly!
         condition: service_healthy
 
 

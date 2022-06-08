@@ -11,11 +11,20 @@ import Footer from "../components/Footer";
 import "../styles/productPage.css";
 import { displayFeedback } from "../tools/feedback";
 
+/**
+ * Returns a product page containing a product with details and images
+ * @param {*} user, the user signed in on the app
+ * @returns a product page
+ */
 function ProductPage({ user }) {
+  // The id of the product
   const { id } = useParams();
+  // The product
   const [product, setProduct] = useState({});
+  // The images for the product
   const [images, setImages] = useState([]);
 
+  // Retrieves the product and all its images when page loads
   useEffect(() => {
     sendApiRequest(
       "GET",
@@ -37,6 +46,11 @@ function ProductPage({ user }) {
     );
   }, []);
 
+  /**
+   * Adds the product with the color and size selected to the cart
+   * @param {*} color, the color of the product the user chose
+   * @param {*} size, the size of the product the user chose
+   */
   function addToCart(color, size) {
     const cartItem = {
       productId: product.id,

@@ -8,6 +8,10 @@ import Footer from "../components/Footer";
 
 import "../styles/admin.css";
 
+/**
+ * Returns an admin page with forms allowing admins with more functionality
+ * @param {*} user, the user that is signed in on the app
+ */
 export default function AdminPage({ user }) {
   const [products, setProducts] = useState([]);
 
@@ -16,6 +20,9 @@ export default function AdminPage({ user }) {
     updateProducts();
   }, []);
 
+  /**
+   * Updates the products from the backend
+   */
   function updateProducts() {
     sendApiRequest(
       "GET",
@@ -34,7 +41,7 @@ export default function AdminPage({ user }) {
     <>
       <div className="admin-page--wrapper">
         <div className="admin-page">
-          <PictureForm products={products}/>
+          <PictureForm products={products} />
           <CreateAdminUserForm />
           <ProductForm products={products} updateProducts={updateProducts} />
         </div>
